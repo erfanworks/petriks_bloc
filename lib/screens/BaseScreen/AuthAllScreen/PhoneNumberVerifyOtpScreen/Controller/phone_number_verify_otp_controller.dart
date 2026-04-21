@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 class PhoneNumberVerifyOtpController extends GetxController {
   // ---- OTP Controllers & FocusNodes ----
@@ -62,9 +63,9 @@ class PhoneNumberVerifyOtpController extends GetxController {
   Future<void> verifyOtp() async {
     if (enteredOtp.length < 4) return;
     isLoading.value = true;
-    await Future.delayed(const Duration(seconds: 2)); // Replace with real API
+    await Future.delayed(const Duration(seconds: 2));
     isLoading.value = false;
-    // TODO: navigate to next screen
+    Get.toNamed(AppRoutes.createProfileScreen);
   }
 
   // ---- Resend OTP ----

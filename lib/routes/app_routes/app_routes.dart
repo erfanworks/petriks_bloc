@@ -10,6 +10,7 @@ class AppRoutes {
   static const loginScreen = '/loginScreen';
   static const phoneLoginScreen = '/phoneLoginScreen';
   static const phoneNumberVerifyOtpScreen = '/phoneNumberVerifyOtpScreen';
+  static const createProfileScreen = '/createProfileScreen';
 
 
 }
