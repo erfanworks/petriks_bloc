@@ -35,6 +35,16 @@ class ConstString {
   static const verify = 'Verify';
   static const donTGetOtp = 'Dont get OTP?';
   static const resend = 'Resend';
+  static const tellUsAboutYou = 'Tell us about you';
+  static const helpUsTailor = 'Help us tailor your experience with a few basic details.';
+  static const fullName = 'Full Name';
+  static const enterName = 'Enter name';
+  static const continueA = 'Continue';
+  static const selected = 'SELECTED';
+  static const dateOfBirth = 'Date of birth';
+  static const selectYourAge = 'Select your age band';
+  static const confirmYourArea = 'Confirm your area';
+  static const searchLocation = 'Search Location';
 
 
 }

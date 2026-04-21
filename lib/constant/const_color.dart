@@ -8,10 +8,10 @@ class ConstColor {
   static const borderColor = Color(0xFFE4E5EB);
   static const boxColor = Color(0xFFF2F4F6);
   static const textColor = Color(0xFF474554);
+  static const iconColor = Color(0xFF94A3B8);
   static const silverGray20 = Color(0xFF939393);
   static const teal = Color(0xFFD3F2F1);
   static const blue = Color(0xFF0562FC);
-  static const blueGrey = Color(0xFF6A7282);
   static const grey = Color(0xFF999999);
   static const black = Color(0xFF191C1E);
   static const yellow = Color(0xFFFFCC00);

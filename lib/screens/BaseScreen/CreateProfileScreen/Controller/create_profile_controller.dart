@@ -8,6 +8,7 @@ class CreateProfileController extends GetxController {
 
   // ── Step 1: Basic Info ──
   final nameController = TextEditingController();
+  final dobController = TextEditingController();
   final selectedGender = ''.obs;
   final selectedDob = Rx<DateTime?>(null);
   final selectedAgeBand = ''.obs;
@@ -16,6 +17,12 @@ class CreateProfileController extends GetxController {
 
   final List<String> genderOptions = ['Male', 'Female', 'Non-binary', 'Prefer not to say'];
   final List<String> ageBands = ['18 - 24', '25 - 34', '35 - 44', '45+'];
+
+  void selectDob(DateTime picked) {
+    selectedDob.value = picked;
+    dobController.text =
+    '${picked.day.toString().padLeft(2, '0')}/${picked.month.toString().padLeft(2, '0')}/${picked.year}';
+  }
 
   // ── Step 2: Interests ──
   final selectedInterests = <String>{}.obs;
@@ -167,6 +174,8 @@ class CreateProfileController extends GetxController {
   void onClose() {
     nameController.dispose();
     locationSearchController.dispose();
+    dobController.dispose();
     super.onClose();
   }
+
 }

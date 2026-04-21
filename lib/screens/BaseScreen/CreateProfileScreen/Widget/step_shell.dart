@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_color.dart';
+import 'package:petriks_flutter_app/constant/const_string.dart';
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../Controller/create_profile_controller.dart';
@@ -28,41 +30,39 @@ class StepShell extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // ── Title + subtitle ──
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomText(
-                title: title,
-                textSize: 24.sp,
-                fontWeight: FontWeight.w800,
-                textColor: const Color(0xFF1A1A2E),
-                maxLine: 3,
-              ),
-              SizedBox(height: 6.h),
-              CustomText(
-                title: subtitle,
-                textSize: 13.sp,
-                fontWeight: FontWeight.w400,
-                textColor: const Color(0xFF6B6B80),
-                maxLine: 3,
-              ),
-              SizedBox(height: 20.h),
-            ],
-          ),
-        ),
-
-        // ── Scrollable content ──
+        // ── Scrollable area: title + subtitle + content ──
         Expanded(
           child: SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: child,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Title
+                CustomText(
+                  title: title,
+                  textSize: 28.sp,
+                  fontWeight: FontWeight.w700,
+                  textColor: ConstColor.textColor,
+                  maxLine: 3,
+                ),
+                SizedBox(height: 6.h),
+                // Subtitle
+                CustomText(
+                  title: subtitle,
+                  textSize: 18.sp,
+                  fontWeight: FontWeight.w500,
+                  textColor: ConstColor.silverGray20,
+                  maxLine: 3,
+                ),
+                SizedBox(height: 20.h),
+                // Step content
+                child,
+              ],
+            ),
           ),
         ),
 
-        // ── Continue button ──
+        // ── Continue button (fixed bottom) ──
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
           child: CustomElevatedButton(
@@ -71,13 +71,13 @@ class StepShell extends StatelessWidget {
                 ? (onContinue ?? controller.nextStep)
                 : null,
             color: continueEnabled
-                ? const Color(0xFF6C5CE7)
-                : const Color(0xFF6C5CE7).withAlpha(153),
+                ? ConstColor.primaryColor
+                : ConstColor.primaryDeepColor,
             buttonBorderRadius: 30,
             child: CustomText(
-              title: 'Continue',
+              title: ConstString.continueA,
               textSize: 16.sp,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
               textColor: Colors.white,
             ),
           ),
@@ -193,7 +193,7 @@ class SelectableOptionCard extends StatelessWidget {
                   ),
                 ),
                 child: CustomText(
-                  title: 'SELECTED',
+                  title: ConstString.selected,
                   textSize: 9.sp,
                   fontWeight: FontWeight.w700,
                   textColor: Colors.white,
