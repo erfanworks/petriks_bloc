@@ -1,58 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../utils/app_size.dart';
 import '../text/custom_text.dart';
+import 'error_snackbar_message.dart';
 
 class AppSnackBar {
-  static error(String parameterValue, {int seconds = 6}) {
-    ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(content:  Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const CustomText(title: "Error!", textColor: Colors.white, textSize: 18, fontWeight: FontWeight.w900),
-        const SizedBox(height: 5),
-        // const SpaceWidget(spaceHeight: 5),
-        CustomText(title: parameterValue, textColor: Colors.white, textAlign: TextAlign.center),
-      ],
-    )));
-    // Get.showSnackbar(
-    //   GetSnackBar(
-    //     backgroundColor: Colors.grey,
-    //     animationDuration: const Duration(seconds: 2),
-    //     duration: Duration(seconds: seconds),
-    //     isDismissible: true,
-    //     onTap: (snack) {
-    //       SchedulerBinding.instance.addPostFrameCallback((_) {
-    //         Get.closeAllSnackbars();
-    //       });
-    //     },
-    //     messageText: Column(
-    //       mainAxisSize: MainAxisSize.min,
-    //       mainAxisAlignment: MainAxisAlignment.start,
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [
-    //         const CustomText(title: "Error!", textColor: Colors.white, textSize: 18, fontWeight: FontWeight.w900),
-    //         const SizedBox(height: 5),
-    //         // const SpaceWidget(spaceHeight: 5),
-    //         CustomText(title: parameterValue, textColor: Colors.white, textAlign: TextAlign.center),
-    //       ],
-    //     ),
-    //     borderRadius: AppSize.width(value: 20),
-    //     padding: EdgeInsets.all(AppSize.width(value: 10)),
-    //     margin: EdgeInsets.symmetric(horizontal: AppSize.width(value: 40.0), vertical: AppSize.width(value: 30)),
-    //     snackPosition: SnackPosition.TOP,
-    //   ),
-    // );
-  }
 
-  static success(String parameterValue, {int seconds = 6}) {
+  // ─── Error ───────────────────────────────
+  static void error(String parameterValue, {int seconds = 6}) {
     Get.showSnackbar(
       GetSnackBar(
-        // backgroundColor: ConstColor.primaryColor,
-        animationDuration: const Duration(seconds: 2),
+        backgroundColor: Colors.red.withAlpha(230),
+        animationDuration: const Duration(milliseconds: 400),
         duration: Duration(seconds: seconds),
         isDismissible: true,
         onTap: (snack) {
@@ -60,20 +20,25 @@ class AppSnackBar {
             Get.closeAllSnackbars();
           });
         },
-        messageText: CustomText(title: parameterValue, textColor: Colors.white, textAlign: TextAlign.center),
-        borderRadius: AppSize.width(value: 20.0),
-        padding: EdgeInsets.all(AppSize.width(value: 10.0)),
-        margin: EdgeInsets.symmetric(horizontal: AppSize.width(value: 40.0), vertical: AppSize.width(value: 30)),
+        messageText: ErrorSnackBarMessageWidget(errorMessage: parameterValue),
+        borderRadius: 12.r,
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+        margin: EdgeInsets.only(
+          top: 20.h,
+          left: 16.w,
+          right: 16.w,
+        ),
         snackPosition: SnackPosition.TOP,
       ),
     );
   }
 
-  static message(String parameterValue, {Color backgroundColor = Colors.grey, Color color = Colors.white, int seconds = 10}) {
+  // ─── Success ─────────────────────────────
+  static void success(String parameterValue, {int seconds = 4}) {
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: backgroundColor,
-        animationDuration: const Duration(seconds: 2),
+        backgroundColor: const Color(0xFFECFDF5),
+        animationDuration: const Duration(milliseconds: 400),
         duration: Duration(seconds: seconds),
         isDismissible: true,
         onTap: (snack) {
@@ -81,12 +46,93 @@ class AppSnackBar {
             Get.closeAllSnackbars();
           });
         },
-        messageText: CustomText(title: parameterValue, textColor: color, textSize: 16, textAlign: TextAlign.center, fontWeight: FontWeight.w400),
-        borderRadius: AppSize.width(value: 20.0),
-        padding: EdgeInsets.all(AppSize.width(value: 10.0)),
-        margin: EdgeInsets.symmetric(horizontal: AppSize.width(value: 40.0), vertical: AppSize.width(value: 30)),
+        messageText: _SuccessMessageWidget(message: parameterValue),
+        borderRadius: 12.r,
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+        margin: EdgeInsets.only(
+          top: 20.h,
+          left: 16.w,
+          right: 16.w,
+        ),
         snackPosition: SnackPosition.TOP,
       ),
+    );
+  }
+
+  // ─── Message ─────────────────────────────
+  static void message(
+      String parameterValue, {
+        Color backgroundColor = Colors.grey,
+        Color color = Colors.white,
+        int seconds = 3,
+      }) {
+    Get.showSnackbar(
+      GetSnackBar(
+        backgroundColor: backgroundColor,
+        animationDuration: const Duration(milliseconds: 400),
+        duration: Duration(seconds: seconds),
+        isDismissible: true,
+        onTap: (snack) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            Get.closeAllSnackbars();
+          });
+        },
+        messageText: CustomText(
+          title: parameterValue,
+          textColor: color,
+          textSize: 14.sp,
+          textAlign: TextAlign.left,
+          fontWeight: FontWeight.w400,
+        ),
+        borderRadius: 12.r,
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+        margin: EdgeInsets.only(
+          top: 20.h,
+          left: 16.w,
+          right: 16.w,
+        ),
+        snackPosition: SnackPosition.TOP,
+      ),
+    );
+  }
+}
+
+class _SuccessMessageWidget extends StatelessWidget {
+  final String message;
+
+  const _SuccessMessageWidget({required this.message});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        // ─── Check Icon ──────────────────
+        Container(
+          width: 22.w,
+          height: 22.h,
+          decoration: const BoxDecoration(
+            color: Color(0xFF16A34A),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            Icons.check,
+            color: Colors.white,
+            size: 14.sp,
+          ),
+        ),
+        SizedBox(width: 10.w),
+
+        // ─── Message ─────────────────────
+        Expanded(
+          child: CustomText(
+            title: message,
+            textColor: const Color(0xFF15803D),
+            textSize: 14.sp,
+            fontWeight: FontWeight.w500,
+            maxLine: 2,
+          ),
+        ),
+      ],
     );
   }
 }
