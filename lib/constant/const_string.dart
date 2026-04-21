@@ -51,6 +51,9 @@ class ConstString {
   static const thisHelpsYouConnect = 'This helps you connect comfortably and find local communities that share your native tongue.';
   static const preferredChat = 'Preferred Chat Language';
   static const chooseYourPrimary = 'Choose your primary language for app notifications and chat translations.';
+  static const howToYouPerfect = 'How do you prefer to meet?';
+  static const whatsYourVibe = "What's your vibe?";
+  static const wellMatchYouWithSimilar = "We'll match you with similar people";
 
 
 }

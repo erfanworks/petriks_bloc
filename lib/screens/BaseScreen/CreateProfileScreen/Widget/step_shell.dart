@@ -118,10 +118,7 @@ class SelectableOptionCard extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 12.h),
             padding: EdgeInsets.all(16.r),
             decoration: BoxDecoration(
-              color: isSelected
-                  ? const Color(0xFF6C5CE7).withAlpha(20)
-                  : Colors.white,
-              borderRadius: BorderRadius.circular(14.r),
+              borderRadius: BorderRadius.circular(16.r),
               border: Border.all(
                 color: isSelected
                     ? const Color(0xFF6C5CE7)
@@ -133,12 +130,12 @@ class SelectableOptionCard extends StatelessWidget {
               children: [
                 // Icon circle
                 Container(
-                  width: 48.r,
-                  height: 48.r,
+                  width: 60.r,
+                  height: 60.r,
                   decoration: BoxDecoration(
                     color: isSelected
                         ? const Color(0xFF6C5CE7)
-                        : const Color(0xFFF0EEF9),
+                        : ConstColor.primaryColor.withAlpha(25),
                     shape: BoxShape.circle,
                   ),
                   child: Center(child: iconWidget),
@@ -150,7 +147,7 @@ class SelectableOptionCard extends StatelessWidget {
                     children: [
                       CustomText(
                         title: label,
-                        textSize: 15.sp,
+                        textSize: 18.sp,
                         fontWeight: FontWeight.w700,
                         textColor: const Color(0xFF1A1A2E),
                         maxLine: 1,
@@ -158,7 +155,8 @@ class SelectableOptionCard extends StatelessWidget {
                       SizedBox(height: 2.h),
                       CustomText(
                         title: description,
-                        textSize: 12.sp,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w400,
                         textColor: const Color(0xFF6B6B80),
                         maxLine: 3,
                       ),
@@ -181,21 +179,18 @@ class SelectableOptionCard extends StatelessWidget {
           // 'SELECTED' badge on top-right corner
           if (isSelected && showSelectedBadge)
             Positioned(
-              top: -1,
-              right: 0,
+              top: -11,
+              right: -10,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 5.h),
                 decoration: BoxDecoration(
                   color: const Color(0xFF6C5CE7),
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(14.r),
-                    bottomLeft: Radius.circular(8.r),
-                  ),
+                  borderRadius: BorderRadius.circular(12.r)
                 ),
                 child: CustomText(
                   title: ConstString.selected,
-                  textSize: 9.sp,
-                  fontWeight: FontWeight.w700,
+                  textSize: 11.sp,
+                  fontWeight: FontWeight.w600,
                   textColor: Colors.white,
                   maxLine: 1,
                 ),

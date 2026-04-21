@@ -53,17 +53,17 @@ class CreateProfileController extends GetxController {
     {
       'label': '1:1',
       'desc': 'Focused, personal conversations for deeper connection.',
-      'icon': 'assets/icons/ic_one_one.svg',
+      'icon': 'assets/icons/person_icon.svg',
     },
     {
       'label': 'Small group',
       'desc': 'Dynamic interactions with 3-5 like-minded people.',
-      'icon': 'assets/icons/ic_group.svg',
+      'icon': 'assets/icons/person_group_icon.svg',
     },
     {
       'label': 'Both',
       'desc': "I'm open to all types of discovery and social experiences.",
-      'icon': 'assets/icons/ic_both.svg',
+      'icon': 'assets/icons/both_person_icon.svg',
     },
   ];
 

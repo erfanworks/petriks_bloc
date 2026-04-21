@@ -36,7 +36,9 @@ class Step2Interests extends StatelessWidget {
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 180),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: selected
+                    ? const Color(0xFF6C5CE7).withAlpha(20)
+                    : Colors.white,
                 borderRadius: BorderRadius.circular(16.r),
                 border: Border.all(
                   color: selected
