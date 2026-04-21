@@ -73,22 +73,22 @@ class CreateProfileController extends GetxController {
     {
       'label': 'Quiet',
       'desc': 'You prefer low-key, intimate settings and deep one-on-one conversations.',
-      'icon': 'assets/icons/ic_quiet.svg',
+      'icon': 'assets/icons/quit_icon.svg',
     },
     {
       'label': 'Easygoing',
       'desc': "A balanced mix—you're comfortable in groups but also enjoy calm moments.",
-      'icon': 'assets/icons/ic_easygoing.svg',
+      'icon': 'assets/icons/easygoing_icon.svg',
     },
     {
       'label': 'Social',
       'desc': 'You thrive in active environments and love meeting new groups of people.',
-      'icon': 'assets/icons/ic_social.svg',
+      'icon': 'assets/icons/person_group_icon.svg',
     },
     {
       'label': 'Lively',
       'desc': 'High energy! You enjoy loud music, big crowds, and vibrant social scenes.',
-      'icon': 'assets/icons/ic_lively.svg',
+      'icon': 'assets/icons/lively_icon.svg',
     },
   ];
 
