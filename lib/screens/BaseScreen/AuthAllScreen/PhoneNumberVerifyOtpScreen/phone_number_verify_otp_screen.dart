@@ -20,27 +20,34 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // ---- Background Image ----
-          AppImage(
-            path: 'assets/images/auth_bg.png',
-            width: double.infinity,
-            height: 280.h,
-            fit: BoxFit.cover,
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppImage(
+              path: 'assets/images/auth_img.jpg',
+              width: double.infinity,
+              height: 410.h,
+              fit: BoxFit.cover,
+            ),
           ),
 
-          // ---- Purple overlay ----
-          Container(
-            width: double.infinity,
-            height: 280.h,
-            color: ConstColor.primaryColor.withAlpha(102),
-          ),
-
-          // ---- Bottom dark BG ----
-          Align(
-            alignment: Alignment.bottomCenter,
+          Positioned.fill(
             child: Container(
-              height: 500.h,
-              color: ConstColor.primaryColor,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0.0, 0.0, 0.19, 0.50, 1.0],
+                  colors: [
+                    Color(0xBB000000),
+                    Color(0x66000000),
+                    Color(0x1A6C5CE7),
+                    Color(0xFF211A58),
+                    Color(0xFF211A58),
+                  ],
+                ),
+              ),
             ),
           ),
 
@@ -48,24 +55,20 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: EdgeInsets.only(
-                left: 16.w,
-                right: 16.w,
-                bottom: 40.h,
-              ),
+              margin: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 160.h),
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 28.h),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(24.r),
+                borderRadius: BorderRadius.circular(32.r),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // ---- Logo ----
-                  SvgPicture.asset(
-                    'assets/icons/ic_logo.svg',
-                    width: 48.w,
-                    height: 48.h,
+                  Image.asset(
+                    "assets/images/app_logo.png",
+                    width: 50.r,
+                    height: 50.r,
                   ),
 
                   SizedBox(height: 12.h),
@@ -74,8 +77,8 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                   CustomText(
                     title: ConstString.verifyOtp,
                     textColor: ConstColor.black,
-                    textSize: 20.sp,
-                    fontWeight: FontWeight.bold,
+                    textSize: 24.sp,
+                    fontWeight: FontWeight.w700,
                     textAlign: TextAlign.center,
                     maxLine: 1,
                   ),
@@ -86,35 +89,36 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                   CustomText(
                     title: ConstString.enterCodeSent,
                     textColor: ConstColor.grey,
-                    textSize: 13.sp,
+                    textSize: 15.sp,
                     textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w400,
                     maxLine: 2,
                   ),
 
-                  SizedBox(height: 24.h),
+                  SizedBox(height: 20.h),
 
                   // ---- OTP Boxes ----
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: List.generate(
                       4,
-                          (index) => _OtpBox(
+                      (index) => _OtpBox(
                         controller: controller.otpControllers[index],
                         focusNode: controller.otpFocusNodes[index],
-                        onChanged: (val) =>
-                            controller.onOtpChanged(val, index),
+                        onChanged: (val) => controller.onOtpChanged(val, index),
                       ),
                     ),
                   ),
 
-                  SizedBox(height: 16.h),
+                  SizedBox(height: 10.h),
 
                   // ---- Code sent text ----
                   CustomText(
                     title: ConstString.codeHasBeenSent,
                     textColor: ConstColor.grey,
-                    textSize: 13.sp,
+                    textSize: 14.sp,
                     textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w400,
                     maxLine: 1,
                   ),
 
@@ -122,11 +126,11 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
 
                   // ---- Timer ----
                   Obx(
-                        () => CustomText(
+                    () => CustomText(
                       title: controller.formattedTimer,
                       textColor: ConstColor.primaryColor,
-                      textSize: 15.sp,
-                      fontWeight: FontWeight.w600,
+                      textSize: 16.sp,
+                      fontWeight: FontWeight.w500,
                       textAlign: TextAlign.center,
                       maxLine: 1,
                     ),
@@ -136,29 +140,28 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
 
                   // ---- Verify Button ----
                   Obx(
-                        () => CustomElevatedButton(
+                    () => CustomElevatedButton(
                       onPressed: controller.isLoading.value
                           ? null
                           : controller.verifyOtp,
-                      height: 54,
                       top: 0,
                       buttonBorderRadius: 30,
                       gradient: const [
-                        Color(0xFF7B5EA7),
-                        Color(0xFF5B2D8E),
+                        ConstColor.primaryDeepColor,
+                        ConstColor.primaryColor
                       ],
                       child: controller.isLoading.value
                           ? const CircularProgressIndicator(
-                        color: Colors.white,
-                        strokeWidth: 2,
-                      )
+                              color: Colors.white,
+                              strokeWidth: 2,
+                            )
                           : CustomText(
-                        title: ConstString.verify,
-                        textColor: Colors.white,
-                        textSize: 15.sp,
-                        fontWeight: FontWeight.w600,
-                        maxLine: 1,
-                      ),
+                              title: ConstString.verify,
+                              textColor: Colors.white,
+                              textSize: 15.sp,
+                              fontWeight: FontWeight.w600,
+                              maxLine: 1,
+                            ),
                     ),
                   ),
 
@@ -168,16 +171,17 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                   CustomText(
                     title: ConstString.donTGetOtp,
                     textColor: ConstColor.black,
-                    textSize: 13.sp,
+                    textSize: 14.sp,
                     textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w400,
                     maxLine: 1,
                   ),
 
-                  SizedBox(height: 4.h),
+                  SizedBox(height: 14.h),
 
                   // ---- Resend ----
                   Obx(
-                        () => GestureDetector(
+                    () => GestureDetector(
                       onTap: controller.canResend.value
                           ? controller.resendOtp
                           : null,
@@ -186,8 +190,8 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                         textColor: controller.canResend.value
                             ? ConstColor.primaryColor
                             : ConstColor.grey,
-                        textSize: 13.sp,
-                        fontWeight: FontWeight.w600,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w400,
                         decoration: TextDecoration.underline,
                         textAlign: TextAlign.center,
                         maxLine: 1,
@@ -200,13 +204,20 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                   // ---- Back to Sign Up ----
                   GestureDetector(
                     onTap: controller.goBack,
-                    child: CustomText(
-                      title: ConstString.backToSignUp,
-                      textColor: ConstColor.black,
-                      textSize: 13.sp,
-                      fontWeight: FontWeight.w500,
-                      textAlign: TextAlign.center,
-                      maxLine: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.arrow_back),
+                        SizedBox(width: 4.w,),
+                        CustomText(
+                          title: ConstString.backToSignUp,
+                          textColor: ConstColor.black,
+                          textSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          textAlign: TextAlign.center,
+                          maxLine: 1,
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -234,8 +245,8 @@ class _OtpBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 64.w,
-      height: 60.h,
+      width: 68.w,
+      height: 64.h,
       child: TextFormField(
         controller: controller,
         focusNode: focusNode,
@@ -251,11 +262,14 @@ class _OtpBox extends StatelessWidget {
         decoration: InputDecoration(
           counterText: '',
           filled: true,
-          fillColor: ConstColor.grey,
+          fillColor: ConstColor.boxColor,
           contentPadding: EdgeInsets.zero,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
-            borderSide: const BorderSide(color: Colors.transparent),
+            borderSide: const BorderSide(
+              color: ConstColor.borderColor,
+              width: 1.5,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),

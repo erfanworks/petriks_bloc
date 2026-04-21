@@ -8,6 +8,8 @@ class AppRoutes {
   static const splashScreen = '/splashScreen';
   static const onboardingScreen = '/onboardingScreen';
   static const loginScreen = '/loginScreen';
+  static const phoneLoginScreen = '/phoneLoginScreen';
+  static const phoneNumberVerifyOtpScreen = '/phoneNumberVerifyOtpScreen';
 
 
 }

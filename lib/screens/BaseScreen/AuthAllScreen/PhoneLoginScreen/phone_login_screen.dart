@@ -21,29 +21,46 @@ class PhoneLoginScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // ---- Background Image ----
-          AppImage(
-            path: 'assets/images/auth_bg.png',
-            width: double.infinity,
-            height: 280.h,
-            fit: BoxFit.cover,
-          ),
-
-          // ---- Purple overlay ----
-          Container(
-            width: double.infinity,
-            height: 280.h,
-            color: ConstColor.primaryColor.withAlpha(102),
-          ),
-
-          // ---- Bottom dark BG ----
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 500.h,
-              color: ConstColor.primaryColor,
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppImage(
+              path: 'assets/images/auth_img.jpg',
+              width: double.infinity,
+              height: 410.h,
+              fit: BoxFit.cover,
             ),
           ),
+
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0.0, 0.0, 0.19, 0.50, 1.0],
+                  colors: [
+                    Color(0xBB000000),
+                    Color(0x66000000),
+                    Color(0x1A6C5CE7),
+                    Color(0xFF211A58),
+                    Color(0xFF211A58),
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+
+          // ---- Bottom dark BG ----
+          // Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: Container(
+          //     height: 0.h,
+          //     color: ConstColor.primaryColor,
+          //   ),
+          // ),
 
           // ---- White card ----
           Align(
@@ -52,12 +69,12 @@ class PhoneLoginScreen extends StatelessWidget {
               margin: EdgeInsets.only(
                 left: 16.w,
                 right: 16.w,
-                bottom: 40.h,
+                bottom: 200.h,
               ),
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 28.h),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(24.r),
+                borderRadius: BorderRadius.circular(32.r),
               ),
               child: Form(
                 key: controller.phoneFormKey,
@@ -65,20 +82,16 @@ class PhoneLoginScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     // ---- Logo ----
-                    SvgPicture.asset(
-                      'assets/icons/ic_logo.svg',
-                      width: 48.w,
-                      height: 48.h,
+                    Image.asset("assets/images/app_logo.png",
+                      width: 38.w,
+                      height: 50.h,
                     ),
-
-                    SizedBox(height: 12.h),
-
-                    // ---- Title ----
+                    SizedBox(height: 8.h),
                     CustomText(
                       title: ConstString.continueWithPhoneTitle,
                       textColor: ConstColor.black,
-                      textSize: 20.sp,
-                      fontWeight: FontWeight.bold,
+                      textSize: 22.sp,
+                      fontWeight: FontWeight.w700,
                       textAlign: TextAlign.center,
                       maxLine: 1,
                     ),
@@ -89,20 +102,21 @@ class PhoneLoginScreen extends StatelessWidget {
                     CustomText(
                       title: ConstString.noWorries,
                       textColor: ConstColor.grey,
-                      textSize: 13.sp,
+                      textSize: 15.sp,
                       textAlign: TextAlign.center,
-                      maxLine: 2,
+                      fontWeight: FontWeight.w400,
                     ),
 
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 17.h),
 
                     // ---- Phone Number Field ----
                     CustomTextFormField(
                       fromTitle: ConstString.phoneNumber,
                       hintText: CustomText(
                         title: ConstString.enterPhoneNumber,
-                        textColor: ConstColor.grey,
-                        textSize: 13.sp,
+                        textColor: Color(0xFF94A3B8),
+                        textSize: 15.sp,
+                        fontWeight: FontWeight.w400,
                         maxLine: 1,
                       ),
                       textController: controller.phoneController,
@@ -111,17 +125,17 @@ class PhoneLoginScreen extends StatelessWidget {
                       prefixIcon: Padding(
                         padding: EdgeInsets.all(12.r),
                         child: SvgPicture.asset(
-                          'assets/icons/ic_phone.svg',
-                          width: 20.w,
-                          height: 20.h,
+                          'assets/icons/call_end.svg',
+                          width: 25.w,
+                          height: 25.h,
                           colorFilter: const ColorFilter.mode(
                             ConstColor.grey,
                             BlendMode.srcIn,
                           ),
                         ),
                       ),
-                      borderRadius: 30,
-                      backgroundColor: ConstColor.grey,
+                      borderRadius: 90,
+                      backgroundColor: Color(0xFFF2F4F6),
                       validator: (value) {
                         if (value == null || value.trim().isEmpty) {
                           return 'Please enter phone number';
@@ -142,8 +156,8 @@ class PhoneLoginScreen extends StatelessWidget {
                         top: 0,
                         buttonBorderRadius: 30,
                         gradient: const [
-                          Color(0xFF7B5EA7),
-                          Color(0xFF5B2D8E),
+                          ConstColor.primaryDeepColor,
+                          ConstColor.primaryColor
                         ],
                         child: controller.isLoading.value
                             ? const CircularProgressIndicator(
@@ -153,8 +167,8 @@ class PhoneLoginScreen extends StatelessWidget {
                             : CustomText(
                           title: ConstString.sendOtp,
                           textColor: Colors.white,
-                          textSize: 15.sp,
-                          fontWeight: FontWeight.w600,
+                          textSize: 16.sp,
+                          fontWeight: FontWeight.w500,
                           maxLine: 1,
                         ),
                       ),
@@ -165,13 +179,20 @@ class PhoneLoginScreen extends StatelessWidget {
                     // ---- Back to Sign Up ----
                     GestureDetector(
                       onTap: controller.goBack,
-                      child: CustomText(
-                        title: ConstString.backToSignUp,
-                        textColor: ConstColor.black,
-                        textSize: 13.sp,
-                        fontWeight: FontWeight.w500,
-                        textAlign: TextAlign.center,
-                        maxLine: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.arrow_back),
+                          SizedBox(width: 4.w,),
+                          CustomText(
+                            title: ConstString.backToSignUp,
+                            textColor: ConstColor.black,
+                            textSize: 14.sp,
+                            fontWeight: FontWeight.w600,
+                            textAlign: TextAlign.center,
+                            maxLine: 1,
+                          ),
+                        ],
                       ),
                     ),
                   ],

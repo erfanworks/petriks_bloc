@@ -26,7 +26,7 @@ class ConstString {
   static const phoneNumber = 'Phone Number';
   static const enterPhoneNumber = 'Enter phone number';
   static const sendOtp = 'Send Otp';
-  static const backToSignUp = '← Back to Sign Up';
+  static const backToSignUp = 'Back to Sign Up';
 
   // Verify OTP Screen
   static const verifyOtp = 'Verify OTP';

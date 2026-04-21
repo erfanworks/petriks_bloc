@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 class PhoneLoginController extends GetxController {
   final phoneController = TextEditingController();
@@ -10,9 +11,9 @@ class PhoneLoginController extends GetxController {
   Future<void> sendOtp() async {
     if (!phoneFormKey.currentState!.validate()) return;
     isLoading.value = true;
-    await Future.delayed(const Duration(seconds: 2)); // Replace with real API
+    await Future.delayed(const Duration(seconds: 2));
     isLoading.value = false;
-    Get.toNamed('/verify-otp');
+    Get.toNamed(AppRoutes.phoneNumberVerifyOtpScreen);
   }
 
   void goBack() {

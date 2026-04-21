@@ -4,8 +4,11 @@ import 'package:petriks_flutter_app/screens/BaseScreen/AuthAllScreen/LoginScreen
 import 'package:petriks_flutter_app/screens/BaseScreen/OnboardingScreen/Controller/onboarding_controller.dart';
 import 'package:petriks_flutter_app/screens/BaseScreen/SplashScreen/Controller/splash_screen_controller.dart';
 
+import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/Controller/phone_login_controller.dart';
+import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Controller/phone_number_verify_otp_controller.dart';
 
-class AuthBindings extends Bindings {
+
+class AppBindings extends Bindings {
   @override
   void dependencies() {
 
@@ -13,6 +16,8 @@ class AuthBindings extends Bindings {
     Get.lazyPut(() => SplashScreenController());
     Get.lazyPut(() => OnboardingController());
     Get.lazyPut(() => LoginController());
+    Get.lazyPut(() => PhoneLoginController());
+    Get.lazyPut(() => PhoneNumberVerifyOtpController());
 
 
   }

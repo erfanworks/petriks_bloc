@@ -21,27 +21,34 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // ---- Background Image (top half) ----
-          AppImage(
-            path: 'assets/images/auth_bg.png',
-            width: double.infinity,
-            height: 380.h,
-            fit: BoxFit.cover,
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppImage(
+              path: 'assets/images/auth_img.jpg',
+              width: double.infinity,
+              height: 410.h,
+              fit: BoxFit.cover,
+            ),
           ),
 
-          // ---- Purple overlay on image ----
-          Container(
-            width: double.infinity,
-            height: 380.h,
-            color: ConstColor.primaryColor.withAlpha(102),
-          ),
-
-          // ---- Full page dark bottom background ----
-          Align(
-            alignment: Alignment.bottomCenter,
+          Positioned.fill(
             child: Container(
-              height: 500.h,
-              color: ConstColor.black,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0.0, 0.0, 0.19, 0.50, 1.0],
+                  colors: [
+                    Color(0xBB000000),
+                    Color(0x66000000),
+                    Color(0x1A6C5CE7),
+                    Color(0xFF211A58),
+                    Color(0xFF211A58),
+                  ],
+                ),
+              ),
             ),
           ),
 
@@ -49,13 +56,14 @@ class LoginScreen extends StatelessWidget {
           SafeArea(
             child: Column(
               children: [
-                SizedBox(height: 100.h),
+                SizedBox(height: 160.h),
 
                 // ---- App Logo ----
-                SvgPicture.asset(
-                  'assets/icons/ic_logo.svg',
-                  width: 48.w,
-                  height: 48.h,
+                Image.asset(
+                  'assets/images/app_logo.png',
+                  width: 50.r,
+                  height: 50.r,
+                  color: ConstColor.white,
                 ),
 
                 SizedBox(height: 16.h),
@@ -64,16 +72,16 @@ class LoginScreen extends StatelessWidget {
                 CustomText(
                   title: ConstString.signInToYour,
                   textColor: Colors.white,
-                  textSize: 28.sp,
-                  fontWeight: FontWeight.bold,
+                  textSize: 30.sp,
+                  fontWeight: FontWeight.w700,
                   textAlign: TextAlign.center,
                   maxLine: 1,
                 ),
                 CustomText(
                   title: ConstString.account,
                   textColor: Colors.white,
-                  textSize: 28.sp,
-                  fontWeight: FontWeight.bold,
+                  textSize: 30.sp,
+                  fontWeight: FontWeight.w700,
                   textAlign: TextAlign.center,
                   maxLine: 1,
                 ),
@@ -84,12 +92,13 @@ class LoginScreen extends StatelessWidget {
                 CustomText(
                   title: ConstString.enterEmailPassword,
                   textColor: Colors.white,
-                  textSize: 13.sp,
+                  textSize: 12.sp,
+                  fontWeight: FontWeight.w500,
                   textAlign: TextAlign.center,
                   maxLine: 2,
                 ),
 
-                SizedBox(height: 32.h),
+                SizedBox(height: 12.h),
 
                 // ---- Buttons ----
                 Padding(
@@ -100,23 +109,19 @@ class LoginScreen extends StatelessWidget {
                       CustomElevatedButton(
                         onPressed: controller.continueWithGoogle,
                         color: Colors.white,
-                        height: 54,
                         top: 0,
                         bottom: 12,
                         buttonBorderRadius: 30,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(
-                              'assets/icons/ic_google.svg',
-                              width: 22.w,
-                              height: 22.h,
+                            Image.asset("assets/images/google_icon.png",
                             ),
                             SizedBox(width: 10.w),
                             CustomText(
                               title: ConstString.continueWithGoogle,
                               textColor: ConstColor.black,
-                              textSize: 15.sp,
+                              textSize: 14.sp,
                               fontWeight: FontWeight.w600,
                               maxLine: 1,
                             ),
@@ -128,23 +133,19 @@ class LoginScreen extends StatelessWidget {
                       CustomElevatedButton(
                         onPressed: controller.continueWithFacebook,
                         color: Colors.white,
-                        height: 54,
                         top: 0,
                         bottom: 12,
                         buttonBorderRadius: 30,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SvgPicture.asset(
-                              'assets/icons/ic_facebook.svg',
-                              width: 22.w,
-                              height: 22.h,
+                            Image.asset("assets/images/facebook_icon.png",
                             ),
                             SizedBox(width: 10.w),
                             CustomText(
                               title: ConstString.continueWithFacebook,
                               textColor: ConstColor.black,
-                              textSize: 15.sp,
+                              textSize: 14.sp,
                               fontWeight: FontWeight.w600,
                               maxLine: 1,
                             ),
@@ -156,7 +157,6 @@ class LoginScreen extends StatelessWidget {
                       CustomElevatedButton(
                         onPressed: controller.continueWithPhone,
                         color: Colors.white,
-                        height: 54,
                         top: 0,
                         bottom: 0,
                         buttonBorderRadius: 30,
@@ -190,7 +190,7 @@ class LoginScreen extends StatelessWidget {
                         TextSpan(
                           text: ConstString.termsConditions,
                           style: TextStyle(
-                            color: ConstColor.primaryColor,
+                            color: ConstColor.yellow,
                             decoration: TextDecoration.underline,
                             decorationColor: ConstColor.primaryColor,
                           ),
@@ -201,7 +201,7 @@ class LoginScreen extends StatelessWidget {
                         TextSpan(
                           text: ConstString.privacyPolicy,
                           style: TextStyle(
-                            color: ConstColor.primaryColor,
+                            color: ConstColor.yellow,
                             decoration: TextDecoration.underline,
                             decorationColor: ConstColor.primaryColor,
                           ),
@@ -222,16 +222,17 @@ class LoginScreen extends StatelessWidget {
                     CustomText(
                       title: ConstString.donTHaveAccount,
                       textColor: Colors.white,
-                      textSize: 13.sp,
+                      fontWeight: FontWeight.w400,
+                      textSize: 12.sp,
                       maxLine: 1,
                     ),
                     GestureDetector(
                       onTap: controller.goToSignUp,
                       child: CustomText(
                         title: ConstString.signUp,
-                        textColor: ConstColor.primaryColor,
+                        textColor: ConstColor.yellow,
                         textSize: 13.sp,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w600,
                         maxLine: 1,
                       ),
                     ),

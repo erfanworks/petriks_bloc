@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 class LoginController extends GetxController {
   // ---- Social Login ----
@@ -11,7 +12,7 @@ class LoginController extends GetxController {
   }
 
   void continueWithPhone() {
-    Get.toNamed('/phone-login');
+    Get.toNamed(AppRoutes.phoneLoginScreen);
   }
 
   void goToSignUp() {

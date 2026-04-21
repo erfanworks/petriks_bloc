@@ -10,7 +10,7 @@ class PhoneNumberVerifyOtpController extends GetxController {
   List.generate(4, (_) => FocusNode());
 
   // ---- Timer ----
-  final RxInt timerSeconds = 42.obs;
+  final RxInt timerSeconds = 60.obs;
   final RxBool canResend = false.obs;
   Timer? _timer;
 
@@ -25,7 +25,7 @@ class PhoneNumberVerifyOtpController extends GetxController {
 
   // ---- Start Timer ----
   void startOtpTimer() {
-    timerSeconds.value = 42;
+    timerSeconds.value = 60;
     canResend.value = false;
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
