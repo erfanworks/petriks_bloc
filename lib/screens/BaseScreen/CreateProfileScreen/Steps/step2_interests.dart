@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_color.dart';
+import 'package:petriks_flutter_app/constant/const_string.dart';
 
 import '../../../../widget/text/custom_text.dart';
 import '../Controller/create_profile_controller.dart';
@@ -15,15 +17,15 @@ class Step2Interests extends StatelessWidget {
     final c = Get.find<CreateProfileController>();
 
     return StepShell(
-      title: 'Your Interests',
-      subtitle: "Pick a few — we'll personalize your experience",
+      title: ConstString.yourInterests,
+      subtitle: ConstString.pickAFewWell,
       child: Obx(() => GridView.count(
         crossAxisCount: 2,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         crossAxisSpacing: 12.w,
         mainAxisSpacing: 12.h,
-        childAspectRatio: 1.1,
+        childAspectRatio: 1.2,
         children: c.interests.map((item) {
           final label = item['label']!;
           final icon = item['icon']!;
@@ -59,8 +61,8 @@ class Step2Interests extends StatelessWidget {
                     child: Center(
                       child: SvgPicture.asset(
                         icon,
-                        width: 26.r,
-                        height: 26.r,
+                        width: 25.r,
+                        height: 25.r,
                         colorFilter: ColorFilter.mode(
                           selected
                               ? const Color(0xFF6C5CE7)
@@ -73,9 +75,9 @@ class Step2Interests extends StatelessWidget {
                   SizedBox(height: 10.h),
                   CustomText(
                     title: label,
-                    textSize: 13.sp,
+                    textSize: 15.sp,
                     fontWeight: FontWeight.w600,
-                    textColor: const Color(0xFF1A1A2E),
+                    textColor: ConstColor.textColor,
                     textAlign: TextAlign.center,
                     maxLine: 2,
                   ),

@@ -27,12 +27,12 @@ class CreateProfileController extends GetxController {
   // ── Step 2: Interests ──
   final selectedInterests = <String>{}.obs;
   final List<Map<String, String>> interests = [
-    {'label': 'Coffee & Brunch', 'icon': 'assets/icons/ic_coffee.svg'},
-    {'label': 'Hiking & Outdoors', 'icon': 'assets/icons/ic_hiking.svg'},
-    {'label': 'Art & Museums', 'icon': 'assets/icons/ic_art.svg'},
-    {'label': 'Fitness', 'icon': 'assets/icons/ic_fitness.svg'},
-    {'label': 'Board games', 'icon': 'assets/icons/ic_board.svg'},
-    {'label': 'Food', 'icon': 'assets/icons/ic_food.svg'},
+    {'label': 'Coffee & Brunch', 'icon': 'assets/icons/cofee_icon.svg'},
+    {'label': 'Hiking & Outdoors', 'icon': 'assets/icons/hiking_icon.svg'},
+    {'label': 'Art & Museums', 'icon': 'assets/icons/art_icon.svg'},
+    {'label': 'Fitness', 'icon': 'assets/icons/fitness_icon.svg'},
+    {'label': 'Board games', 'icon': 'assets/icons/board_game_icon.svg'},
+    {'label': 'Food', 'icon': 'assets/icons/food_icon.svg'},
   ];
 
   // ── Step 3: Languages ──

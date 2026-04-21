@@ -6,6 +6,10 @@ import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'Controller/create_profile_controller.dart';
 import 'Steps/step1_basic_info.dart';
 import 'Steps/step2_interests.dart';
+import 'Steps/step3_languages.dart';
+import 'Steps/step4_meet_pref.dart';
+import 'Steps/step5_step6.dart';
+import 'Steps/step7_step8.dart';
 
 class CreateProfileScreen extends StatelessWidget {
   const CreateProfileScreen({super.key});
@@ -13,12 +17,12 @@ class CreateProfileScreen extends StatelessWidget {
   static const _steps = [
     Step1BasicInfo(),
     Step2Interests(),
-    // Step3Languages(),
-    // Step4MeetPref(),
-    // Step5Vibe(),
-    // Step6Availability(),
-    // Step7Mood(),
-    // Step8Travel(),
+    Step3Languages(),
+    Step4MeetPref(),
+    Step5Vibe(),
+    Step6Availability(),
+    Step7Mood(),
+    Step8Travel(),
   ];
 
   @override

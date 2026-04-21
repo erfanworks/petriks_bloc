@@ -45,6 +45,12 @@ class ConstString {
   static const selectYourAge = 'Select your age band';
   static const confirmYourArea = 'Confirm your area';
   static const searchLocation = 'Search Location';
+  static const yourInterests = 'Your Interests';
+  static const pickAFewWell = "Pick a few — we'll personalize your experience";
+  static const whatLanguageTo = 'What languages do you speak?';
+  static const thisHelpsYouConnect = 'This helps you connect comfortably and find local communities that share your native tongue.';
+  static const preferredChat = 'Preferred Chat Language';
+  static const chooseYourPrimary = 'Choose your primary language for app notifications and chat translations.';
 
 
 }
