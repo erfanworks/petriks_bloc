@@ -118,6 +118,9 @@ class SelectableOptionCard extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 12.h),
             padding: EdgeInsets.all(16.r),
             decoration: BoxDecoration(
+              color: isSelected
+                  ? const Color(0xFF6C5CE7).withAlpha(20)
+                  : Colors.white,
               borderRadius: BorderRadius.circular(16.r),
               border: Border.all(
                 color: isSelected
@@ -125,6 +128,15 @@ class SelectableOptionCard extends StatelessWidget {
                     : Colors.transparent,
                 width: 1.5,
               ),
+              boxShadow: isSelected
+                  ? []
+                  : [
+                BoxShadow(
+                  color: Colors.black.withAlpha(15),
+                  blurRadius: 8.r,
+                  offset: Offset(0, 2.h),
+                ),
+              ],
             ),
             child: Row(
               children: [

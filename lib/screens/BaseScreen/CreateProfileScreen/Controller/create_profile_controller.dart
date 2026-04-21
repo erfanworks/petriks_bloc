@@ -98,17 +98,17 @@ class CreateProfileController extends GetxController {
     {
       'label': 'Weekday evenings',
       'desc': 'Perfect for after-work hangouts and dinners.',
-      'icon': 'assets/icons/ic_evening.svg',
+      'icon': 'assets/icons/weekday_icon.svg',
     },
     {
       'label': 'Weekend mornings',
       'desc': 'Coffee, markets, and early adventures.',
-      'icon': 'assets/icons/ic_morning.svg',
+      'icon': 'assets/icons/weekend_morning_icon.svg',
     },
     {
       'label': 'Flexible',
       'desc': "My schedule changes often. I'm open!",
-      'icon': 'assets/icons/ic_flexible.svg',
+      'icon': 'assets/icons/flexible_icon.svg',
     },
   ];
 
