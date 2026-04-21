@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_color.dart';
 
 import 'Controller/create_profile_controller.dart';
 import 'Steps/step1_basic_info.dart';
@@ -76,9 +77,9 @@ class _StepProgressBar extends StatelessWidget {
                         right: i < CreateProfileController.totalSteps - 1 ? 4.w : 0),
                     decoration: BoxDecoration(
                       color: i <= step
-                          ? const Color(0xFF6C5CE7)
-                          : const Color(0xFFDDD8F5),
-                      borderRadius: BorderRadius.circular(2.r),
+                          ? ConstColor.primaryColor
+                          : const Color(0xFFE3E2F6),
+                      borderRadius: BorderRadius.circular(10.r),
                     ),
                   ),
                 ),
