@@ -6,6 +6,7 @@ class AppRoutes {
   //////////////// Auth Part ///////////////////////
   static const initialPage = '/';
   static const splashScreen = '/splashScreen';
+  static const onboardingScreen = '/onboardingScreen';
 
 
 }

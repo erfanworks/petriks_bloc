@@ -19,6 +19,7 @@ dependencies:
   shimmer: ^3.0.0
   flutter_screenutil: ^5.9.3
   google_fonts: ^8.0.2
+  flutter_svg: ^2.2.4
 
 dev_dependencies:
   flutter_test:
@@ -30,7 +31,7 @@ flutter:
 
   assets:
      - assets/images/
-  #   - assets/icons/
+     - assets/icons/
   #   - assets/icons/navbar_Icons/
   #   - assets/icons/profile_icons/
   #   - assets/temp/

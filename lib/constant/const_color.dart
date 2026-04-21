@@ -4,7 +4,7 @@ class ConstColor {
   static const primaryColor = Color(0xFF6C5CE7);
   static const backgroundColor = Color(0xFFF8F9FB);
   static const tabButtonColour = Color(0xFFB0E6E4);
-  static const textColor = Color(0xFF363636);
+  static const textColor = Color(0xFF474554);
   static const silverGray20 = Color(0xFF939393);
   static const teal = Color(0xFFD3F2F1);
   static const blue = Color(0xFF0562FC);

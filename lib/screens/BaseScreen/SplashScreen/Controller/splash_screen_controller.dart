@@ -13,10 +13,10 @@ class SplashScreenController extends GetxController {
 
       await Future.delayed(const Duration(seconds: 3));
 
-      // Get.offAllNamed(AppRoutes.onboardingScreen);
+      Get.offAllNamed(AppRoutes.onboardingScreen);
 
     } catch (e) {
-      // Get.offAllNamed(AppRoutes.onboardingScreen);
+      Get.offAllNamed(AppRoutes.onboardingScreen);
     }
   }
 
