@@ -82,6 +82,21 @@ class ConstString {
   static const addAShort = 'Add a short intro';
   static const sayHelloAndShare = 'Say hello and share the kinds of plans you enjoy';
   static const rec = 'REC';
+  static const appName = 'GoodNiva';
+  static const searchHint = 'Search events, people, or groups';
+  static const easyMeetup = 'Easy Meetup';
+  static const upcomingEvents = 'Upcoming Events';
+  static const peopleYouMayClick = 'Peoples you may click with';
+  static const seeAll = 'See all';
+  static const inviteFriends = 'Invite Friends';
+  static const sayWarmHello = 'Say a warm Hello';
+  static const open = 'OPEN';
+  static const popular = 'POPULAR';
+  static const freeEntry = 'Free Entry';
+  static const invite = 'INVITE';
+  static const joined = 'JOINED';
+  static const newComerFriendly = 'New-Comer Friendly';
+  static const nightOutFriendly = 'Night Out Party';
 
 
 }

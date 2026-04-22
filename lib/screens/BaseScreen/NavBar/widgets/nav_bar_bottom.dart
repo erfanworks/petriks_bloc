@@ -16,11 +16,11 @@ class NavBarBottom extends StatelessWidget {
 
   // ── Tab config ──
   static const _tabs = [
-    {'label': 'HOME',    'icon': 'assets/icons/ic_home.svg'},
-    {'label': 'MY PLAN', 'icon': 'assets/icons/ic_my_plan.svg'},
-    {'label': '',        'icon': ''},   // center + button
-    {'label': 'MESSAGE', 'icon': 'assets/icons/ic_message.svg'},
-    {'label': 'PROFILE', 'icon': 'assets/icons/ic_profile.svg'},
+    {'label': 'HOME',    'icon': 'assets/icons/home_icon.svg'},
+    {'label': 'MY PLAN', 'icon': 'assets/icons/my_plan_icon.svg'},
+    {'label': '',        'icon': 'assets/icons/add_icon.svg'},
+    {'label': 'MESSAGE', 'icon': 'assets/icons/message_icon.svg'},
+    {'label': 'PROFILE', 'icon': 'assets/icons/profile_icon.svg'},
   ];
 
   @override
@@ -55,7 +55,14 @@ class NavBarBottom extends StatelessWidget {
                     width: 54.r,
                     height: 54.r,
                     margin: EdgeInsets.only(bottom: bottomPad),
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: ConstColor.primaryDeepColor.withAlpha(50),
+                          blurRadius: 60.r,
+                          spreadRadius: 20.r,
+                        ),
+                      ],
                       color: ConstColor.primaryColor,
                       shape: BoxShape.circle,
                     ),
@@ -99,9 +106,9 @@ class NavBarBottom extends StatelessWidget {
                         color: isSelected
                             ? ConstColor.primaryColor
                             : ConstColor.iconColor,
-                        fontSize: 10.sp,
+                        fontSize: 11.sp,
                         fontWeight: isSelected
-                            ? FontWeight.w700
+                            ? FontWeight.w600
                             : FontWeight.w500,
                         fontFamily: 'Poppins',
                       ),

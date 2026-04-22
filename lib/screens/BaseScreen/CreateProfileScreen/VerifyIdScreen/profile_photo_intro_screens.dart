@@ -229,7 +229,7 @@ class AddIntroScreen extends StatelessWidget {
                     ],
                   ),
                   GestureDetector(
-                    onTap: () => Get.toNamed('/home'),
+                    onTap: () => Get.toNamed(AppRoutes.navBar),
                     child: CustomText(
                       title: ConstString.skip,
                       textSize: 16.sp,
@@ -376,7 +376,7 @@ class AddIntroScreen extends StatelessWidget {
               EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
               child: CustomElevatedButton(
                 top: 0,
-                onPressed: () => Get.toNamed('/home'),
+                onPressed: () => Get.toNamed(AppRoutes.navBar),
                 gradient: [
                   ConstColor.primaryDeepColor,
                   ConstColor.primaryColor,

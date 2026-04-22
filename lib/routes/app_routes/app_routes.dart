@@ -16,4 +16,11 @@ class AppRoutes {
   static const addIntroScreen = '/addIntroScreen';
 
 
+  //////////////// NavBar ///////////////////////
+  static const navBar = '/navBar';
+
+  /////////////// Home Screen Part ///////////////////////
+  static const homeScreen = '/homeScreen';
+
+
 }
