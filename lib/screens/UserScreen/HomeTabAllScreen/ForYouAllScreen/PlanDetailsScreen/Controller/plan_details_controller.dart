@@ -127,7 +127,7 @@ class PlanDetailsController extends GetxController {
 
   // Review
   void onSelectVibe(int index) => selectedVibe.value = index;
-  void submitReview() => Get.back();
+  void submitReview() => Get.toNamed(AppRoutes.helpCenterScreen);
   void planAgain() => Get.back();
 
   // Help Center Navigation

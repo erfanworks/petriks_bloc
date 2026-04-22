@@ -23,6 +23,7 @@ class AppRoutes {
   static const homeScreen = '/homeScreen';
   static const planDetailsScreen = '/planDetailsScreen';
   static const howDidItGoScreen = '/howDidItGoScreen';
+  static const helpCenterScreen = '/helpCenterScreen';
 
 
 }
