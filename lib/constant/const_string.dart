@@ -145,6 +145,7 @@ class ConstString {
   static const safetyFirst = 'Safety First';
   static const verifyUserOnly = 'Verified users only. Please respect community guidelines and stay within public areas of the park.';
   static const helpAndSafety = "Help & Safety";
+  static const host = "Host";
 
 
 }
