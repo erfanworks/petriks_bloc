@@ -5,6 +5,7 @@ import 'package:petriks_flutter_app/screens/BaseScreen/NavBar/controller/navbar_
 import 'package:petriks_flutter_app/screens/BaseScreen/OnboardingScreen/Controller/onboarding_controller.dart';
 import 'package:petriks_flutter_app/screens/BaseScreen/SplashScreen/Controller/splash_screen_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HomeScreen/Controller/home_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/Controller/phone_login_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Controller/phone_number_verify_otp_controller.dart';
@@ -29,6 +30,7 @@ class AppBindings extends Bindings {
 
     //=========Home Controller Part=========//
     Get.lazyPut(() => HomeController());
+    Get.lazyPut(() => PlanDetailsController());
 
 
   }

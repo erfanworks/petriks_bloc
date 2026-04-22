@@ -1,6 +1,6 @@
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../../constant/const_color.dart';
 
@@ -59,13 +59,14 @@ class PersonItem {
   });
 }
 
+// ---- Home Controller ----
 class HomeController extends GetxController {
   // ---- Tabs ----
   final tabs = ['For You', 'Vibe', 'Feed', 'Community'];
   final selectedTab = 0.obs;
 
   // ---- Easy Meetups ----
-  final meetups = <MeetupItem>[
+  final List<MeetupItem> meetups = [
     const MeetupItem(
       icon: 'assets/icons/cofee_cup_icon.svg',
       title: '30-min coffee catch-up',
@@ -90,7 +91,7 @@ class HomeController extends GetxController {
   ];
 
   // ---- Upcoming Events ----
-  final upcomingEvents = <EventItem>[
+  final List<EventItem> upcomingEvents = [
     const EventItem(
       image: 'assets/images/hank_out_party_img.jpg',
       title: 'Hang out at the park',
@@ -116,7 +117,7 @@ class HomeController extends GetxController {
   ];
 
   // ---- People ----
-  final people = <PersonItem>[
+  final RxList<PersonItem> people = <PersonItem>[
     const PersonItem(
       image: 'assets/images/person1_img.jpg',
       name: 'Maya Sen',
@@ -132,19 +133,9 @@ class HomeController extends GetxController {
   ].obs;
 
   // ---- Actions ----
-  void onInviteFriends() {
-    // TODO: invite friends logic
-  }
-
-  void onSeeAllEvents() {
-    // TODO: navigate to all events
-  }
-
-  void onSeeAllPeople() {
-    // TODO: navigate to all people
-  }
-
-  void onSayHello(PersonItem person) {
-    // TODO: say hello logic
-  }
+  void onInviteFriends() {}
+  void onSeeAllEvents() => Get.toNamed('/all-events');
+  void onSeeAllPeople() => Get.toNamed('/all-people');
+  void onSayHello(PersonItem person) {}
+  void onEventTap(EventItem event) => Get.toNamed(AppRoutes.planDetailsScreen);
 }

@@ -3,7 +3,6 @@ class ConstString {
 
   /////////// Auth Part All String/////////
   static const letsGetStarted = 'Let’s get Started';
-// Onboarding text
   static const String onboardingHeadline    = 'Real friendships that improve your week';
   static const String onboardingSubHeadline = 'Discover local plans and connect with people who share your vibe.';
   static const String getStarted            = 'Get Started';
@@ -19,16 +18,12 @@ class ConstString {
   static const privacyPolicy = 'Privacy Policy';
   static const donTHaveAccount = "Don't have an account?  ";
   static const signUp = 'Sign Up';
-
-  // Continue with Phone Screen
   static const continueWithPhoneTitle = 'Continue with phone';
   static const noWorries = 'No worries, we\'ll help you get back in.';
   static const phoneNumber = 'Phone Number';
   static const enterPhoneNumber = 'Enter phone number';
   static const sendOtp = 'Send Otp';
   static const backToSignUp = 'Back to Sign Up';
-
-  // Verify OTP Screen
   static const verifyOtp = 'Verify OTP';
   static const enterCodeSent = 'Enter the code sent to your phone number';
   static const codeHasBeenSent = 'A code has been sent to your phone no';
@@ -98,6 +93,52 @@ class ConstString {
   static const newComerFriendly = 'New-Comer Friendly';
   static const nightOutFriendly = 'Night Out Party';
   static const sayAWarn = 'Say a warm Hello';
+  static const planDetails = 'Plan Details';
+  static const hangOutPark = 'Hang out at the park';
+  static const pickALocation = 'Pick a location';
+  static const groupChat = 'Group Chat';
+  static const view = 'View';
+  static const joinEvent = 'Join Event';
+  static const confirmAttendance = 'Confirm Attendance';
+  static const joinThisPlan = 'Join this plan?';
+  static const confirm = 'Confirm';
+  static const cancel = 'Cancel';
+  static const howDidItGo = 'How did it go';
+  static const helpSafety = 'Help & Safety';
+  static const didMeetupHappen = 'Did meetup happen?';
+  static const yesItWasGreat = 'Yes, it was great';
+  static const noItFellThrough = 'No, it fell through';
+  static const howWasExperience = 'How was the experience?';
+  static const tapToCaptureVibe = 'Tap to capture the vibe';
+  static const anyStandoutMoments = 'Any standout moments?';
+  static const planAgain = 'Plan again';
+  static const submit = 'Submit';
+  static const urgentHelpNeeded = 'Urgent Help Needed?';
+  static const emergencyNumber = 'Emergency number to need help';
+  static const helpCenter = 'Help Center';
+  static const attendanceTips = 'Attendance Tips';
+  static const howToMeetSafely = 'How to meet safely in person';
+  static const reportProblem = 'Report a problem';
+  static const blockUser = 'Block User';
+  static const stopSomeoneContacting = 'Stop someone from contacting you';
+  static const supportContactHelp = 'Support / Contact Help';
+  static const chatWithTeam = 'Chat with our dedicated team';
+  static const followGuidelines = 'Follow these guidelines to stay while meeting new people';
+  static const whyReporting = 'Why are you reporting this user?';
+  static const urgencyLevel = 'Urgency Level';
+  static const submitReport = 'Submit Report';
+  static const blockThisUser = 'Block This User?';
+  static const whatHappensBlock = 'What happen when you block';
+  static const mutualPrivacy = 'Mutual Privacy';
+  static const mutualPrivacyDesc = "You won't see each other's profiles or activities.";
+  static const noContact = 'No Contact';
+  static const noContactDesc = "They won't be able to message you or join your plans.";
+  static const safeEnvironment = 'Safe Environment';
+  static const safeEnvironmentDesc = 'This helps maintain a comfortable space for everyone.';
+  static const block = 'Block';
+  static const supportHelp = 'Support & Help';
+  static const subject = 'Subject';
+  static const description = 'Description';
 
 
 }

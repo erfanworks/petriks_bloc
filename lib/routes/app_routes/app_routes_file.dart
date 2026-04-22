@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HomeScreen/home_screen.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/plan_details_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/LoginScreen/login_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/phone_login_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/phone_number_verify_otp_screen.dart';
@@ -26,9 +27,14 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.profilePhotoScreen,page: () => ProfilePhotoScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.addIntroScreen,page: () => AddIntroScreen(),binding: AppBindings()),
 
+
+
+  ////////////nav bar Part////////////
+  GetPage(name: AppRoutes.navBar,page: () => NavBar(),binding: AppBindings()),
+
   ////////////Home Screen Part////////////
   GetPage(name: AppRoutes.homeScreen,page: () => HomeScreen(),binding: AppBindings()),
-  GetPage(name: AppRoutes.navBar,page: () => NavBar(),binding: AppBindings()),
+  GetPage(name: AppRoutes.planDetailsScreen,page: () => PlanDetailsScreen(),binding: AppBindings()),
 
 
 

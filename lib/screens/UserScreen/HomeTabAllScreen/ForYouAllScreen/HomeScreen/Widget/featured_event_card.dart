@@ -14,7 +14,6 @@ class FeaturedEventCard extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        // ---- Main Card with Gradient Background ----
         Container(
           height: 190.h,
           decoration: BoxDecoration(
