@@ -1,4 +1,4 @@
-// ── Step 5: What's your vibe? ──
+//Step 5:
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -41,7 +41,7 @@ class Step5Vibe extends StatelessWidget {
   }
 }
 
-// ── Step 6: When are you usually free? ──
+// Step 6:
 class Step6Availability extends StatelessWidget {
   const Step6Availability({super.key});
 
@@ -50,8 +50,8 @@ class Step6Availability extends StatelessWidget {
     final c = Get.find<CreateProfileController>();
 
     return StepShell(
-      title: 'When are you usually free?',
-      subtitle: 'This helps us suggest plans at the right time.',
+      title: ConstString.whenAreYouUsually,
+      subtitle: ConstString.thisHelpsUs,
       child: Obx(() => Column(
         children: c.availabilityOptions.map((opt) {
           final selected = c.selectedAvailability.value == opt['label'];

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_color.dart';
+import 'package:petriks_flutter_app/constant/const_string.dart';
 
 import '../../../../widget/text/custom_text.dart';
 import '../Controller/create_profile_controller.dart';
@@ -16,9 +18,8 @@ class Step7Mood extends StatelessWidget {
     final c = Get.find<CreateProfileController>();
 
     return StepShell(
-      title: "What's your mood today?",
-      subtitle:
-      "Pick how you're feeling. This helps us suggest the best plans for right now.",
+      title: ConstString.whatsYourMood,
+      subtitle:ConstString.pickHowYour,
       child: Obx(() => Column(
         children: c.moodOptions.map((opt) {
           final selected = c.selectedMood.value == opt['label'];
@@ -43,8 +44,8 @@ class Step7Mood extends StatelessWidget {
                 children: [
                   // Emoji circle
                   Container(
-                    width: 40.r,
-                    height: 40.r,
+                    width: 48.r,
+                    height: 48.r,
                     decoration: const BoxDecoration(
                       color: Color(0xFFF0EEF9),
                       shape: BoxShape.circle,
@@ -60,7 +61,7 @@ class Step7Mood extends StatelessWidget {
                   Expanded(
                     child: CustomText(
                       title: opt['label']!,
-                      textSize: 14.sp,
+                      textSize: 16.sp,
                       fontWeight: FontWeight.w600,
                       textColor: const Color(0xFF1A1A2E),
                       maxLine: 1,
@@ -87,7 +88,7 @@ class Step7Mood extends StatelessWidget {
   }
 }
 
-// ── Step 8: How far would you travel? ──
+//Step 8
 class Step8Travel extends StatelessWidget {
   const Step8Travel({super.key});
 
@@ -96,17 +97,17 @@ class Step8Travel extends StatelessWidget {
     final c = Get.find<CreateProfileController>();
 
     return StepShell(
-      title: 'How far would you travel?',
+      title: ConstString.howFarWouldYou,
       subtitle:
-      'Adjust your radius to find connections that fit your daily commute.',
+      ConstString.adjustYourRadius,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // ── Current Location ──
           CustomText(
-            title: 'Current Location',
-            textSize: 14.sp,
-            fontWeight: FontWeight.w600,
+            title: ConstString.currentLocation,
+            textSize: 16.sp,
+            fontWeight: FontWeight.w500,
             textColor: const Color(0xFF1A1A2E),
             maxLine: 1,
           ),
@@ -122,7 +123,7 @@ class Step8Travel extends StatelessWidget {
             child: Row(
               children: [
                 Icon(Icons.location_on_outlined,
-                    color: const Color(0xFF6C5CE7), size: 20.r),
+                    color: ConstColor.textColor, size: 20.r),
                 SizedBox(width: 10.w),
                 Expanded(
                   child: CustomText(
@@ -135,7 +136,7 @@ class Step8Travel extends StatelessWidget {
                 GestureDetector(
                   onTap: c.editLocation,
                   child: Icon(Icons.edit_outlined,
-                      color: const Color(0xFF6B6B80), size: 18.r),
+                      color: ConstColor.primaryColor, size: 18.r),
                 ),
               ],
             ),
@@ -145,7 +146,7 @@ class Step8Travel extends StatelessWidget {
 
           // ── Preferred Transport ──
           CustomText(
-            title: 'Preferred Transport',
+            title: ConstString.preferredTransport,
             textSize: 14.sp,
             fontWeight: FontWeight.w600,
             textColor: const Color(0xFF1A1A2E),
@@ -180,14 +181,14 @@ class Step8Travel extends StatelessWidget {
                       children: [
                         SvgPicture.asset(
                           t == 'Walking'
-                              ? 'assets/icons/ic_walking.svg'
-                              : 'assets/icons/ic_driving.svg',
-                          width: 28.r,
-                          height: 28.r,
+                              ? 'assets/icons/hiking_icon.svg'
+                              : 'assets/icons/driving_car_icon.svg',
+                          width: 24.r,
+                          height: 24.r,
                           colorFilter: ColorFilter.mode(
                             selected
-                                ? const Color(0xFF6C5CE7)
-                                : const Color(0xFF6B6B80),
+                                ? ConstColor.primaryColor
+                                : ConstColor.iconColor,
                             BlendMode.srcIn,
                           ),
                         ),
@@ -197,8 +198,8 @@ class Step8Travel extends StatelessWidget {
                           textSize: 13.sp,
                           fontWeight: FontWeight.w600,
                           textColor: selected
-                              ? const Color(0xFF6C5CE7)
-                              : const Color(0xFF1A1A2E),
+                              ? ConstColor.primaryColor
+                              : ConstColor.textColor,
                           maxLine: 1,
                         ),
                       ],
@@ -213,9 +214,10 @@ class Step8Travel extends StatelessWidget {
 
           // ── Commute slider ──
           CustomText(
-            title: 'Maximum Commute',
-            textSize: 13.sp,
-            textColor: const Color(0xFF6B6B80),
+            title: ConstString.maximumComment,
+            textSize: 12.sp,
+            fontWeight: FontWeight.w600,
+            textColor: ConstColor.grey,
             maxLine: 1,
           ),
           SizedBox(height: 4.h),
@@ -225,16 +227,16 @@ class Step8Travel extends StatelessWidget {
             children: [
               CustomText(
                 title: '${c.commuteMinutes.value.toInt()}',
-                textSize: 36.sp,
-                fontWeight: FontWeight.w800,
+                textSize: 38.sp,
+                fontWeight: FontWeight.w700,
                 textColor: const Color(0xFF1A1A2E),
                 maxLine: 1,
               ),
               SizedBox(width: 6.w),
               CustomText(
-                title: 'mins',
-                textSize: 16.sp,
-                fontWeight: FontWeight.w400,
+                title: ConstString.mins,
+                textSize: 18.sp,
+                fontWeight: FontWeight.w700,
                 textColor: const Color(0xFF1A1A2E),
                 maxLine: 1,
               ),
@@ -243,8 +245,8 @@ class Step8Travel extends StatelessWidget {
 
           Obx(() => SliderTheme(
             data: SliderThemeData(
-              activeTrackColor: const Color(0xFF6C5CE7),
-              inactiveTrackColor: const Color(0xFFE0DFF0),
+              activeTrackColor: ConstColor.primaryColor,
+              inactiveTrackColor: const Color(0xFFE1E2E4),
               thumbColor: const Color(0xFF6C5CE7),
               overlayColor: const Color(0xFF6C5CE7).withAlpha(30),
               trackHeight: 4.h,
@@ -265,8 +267,9 @@ class Step8Travel extends StatelessWidget {
             children: ['5m', '20m', '40m', 'Flexible']
                 .map((l) => CustomText(
               title: l,
-              textSize: 11.sp,
+              textSize: 12.sp,
               textColor: const Color(0xFF6B6B80),
+              fontWeight: FontWeight.w600,
               maxLine: 1,
             ))
                 .toList(),

@@ -7,6 +7,7 @@ import 'package:petriks_flutter_app/screens/BaseScreen/SplashScreen/Controller/s
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/Controller/phone_login_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Controller/phone_number_verify_otp_controller.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/Controller/create_profile_controller.dart';
+import '../../screens/BaseScreen/CreateProfileScreen/VerifyIdScreen/verify_id_screen.dart';
 
 
 class AppBindings extends Bindings {

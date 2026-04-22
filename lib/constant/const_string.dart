@@ -54,6 +54,25 @@ class ConstString {
   static const howToYouPerfect = 'How do you prefer to meet?';
   static const whatsYourVibe = "What's your vibe?";
   static const wellMatchYouWithSimilar = "We'll match you with similar people";
+  static const whenAreYouUsually = 'When are you usually free?';
+  static const thisHelpsUs = 'This helps us suggest plans at the right time.';
+  static const whatsYourMood = "What's your mood today?";
+  static const pickHowYour = "Pick how you're feeling. This helps us suggest the best plans for right now.";
+  static const howFarWouldYou = 'How far would you travel?';
+  static const adjustYourRadius = 'Adjust your radius to find connections that fit your daily commute.';
+  static const currentLocation = 'Current Location';
+  static const preferredTransport = 'Preferred Transport';
+  static const maximumComment = 'Maximum Commute';
+  static const mins = 'mins';
+  static const verifyYourId = 'Verify your ID (optional)';
+  static const skip = 'Skip';
+  static const unlockFullAccess = 'Unlock full access and build more trust';
+  static const whyVerify = 'Why verify?';
+  static const accessAllPlan = 'Access all plans and features';
+  static const higherTrustWithOthers = 'Higher trust with others';
+  static const betterVisibility = 'Better visibility in suggestions';
+  static const yourIdIsSecurely = 'Your ID is securely processed and never shared';
+  static const uploadIdFor = 'Upload id for verification';
 
 
 }

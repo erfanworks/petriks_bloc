@@ -2,6 +2,8 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../screens/BaseScreen/AuthAllScreen/LoginScreen/login_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/phone_login_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/phone_number_verify_otp_screen.dart';
+import '../../screens/BaseScreen/CreateProfileScreen/VerifyIdScreen/profile_photo_intro_screens.dart';
+import '../../screens/BaseScreen/CreateProfileScreen/VerifyIdScreen/verify_id_screen.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/create_profile_screen.dart';
 import '../../screens/BaseScreen/OnboardingScreen/onboarding_screen.dart';
 import '../../screens/BaseScreen/SplashScreen/splash_screen.dart';
@@ -18,6 +20,8 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.phoneLoginScreen,page: () => PhoneLoginScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.phoneNumberVerifyOtpScreen,page: () => PhoneNumberVerifyOtpScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.createProfileScreen,page: () => CreateProfileScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.verifyIdScreen,page: () => VerifyIdScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.profilePhotoScreen,page: () => ProfilePhotoScreen(),binding: AppBindings()),
 
 
 

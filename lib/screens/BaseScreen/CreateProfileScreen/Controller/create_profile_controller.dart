@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 class CreateProfileController extends GetxController {
   // ── Step tracking ──
@@ -139,7 +140,7 @@ class CreateProfileController extends GetxController {
       currentStep.value++;
     } else {
       // Last step → go to verify ID screen
-      Get.toNamed('/verify-id');
+      Get.toNamed(AppRoutes.verifyIdScreen);
     }
   }
 
