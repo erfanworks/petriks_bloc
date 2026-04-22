@@ -13,6 +13,7 @@ class AppRoutes {
   static const createProfileScreen = '/createProfileScreen';
   static const verifyIdScreen = '/verifyIdScreen';
   static const profilePhotoScreen = '/profilePhotoScreen';
+  static const addIntroScreen = '/addIntroScreen';
 
 
 }

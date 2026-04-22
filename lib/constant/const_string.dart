@@ -73,6 +73,12 @@ class ConstString {
   static const betterVisibility = 'Better visibility in suggestions';
   static const yourIdIsSecurely = 'Your ID is securely processed and never shared';
   static const uploadIdFor = 'Upload id for verification';
+  static const addAProfilePhoto = 'Add a profile photo';
+  static const profileWithPhotos = 'Profiles with photos feel more trustworthy';
+  static const takeASelfie = 'Take a Selfie';
+  static const useYourCameraNow = 'Use your camera now';
+  static const uploadFromGallery = 'Upload from Gallery';
+  static const pickFromYour = 'Pick from your photo library';
 
 
 }

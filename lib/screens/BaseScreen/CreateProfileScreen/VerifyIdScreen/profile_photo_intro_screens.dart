@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_color.dart';
+import 'package:petriks_flutter_app/constant/const_string.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 class ProfilePhotoScreen extends StatelessWidget {
@@ -22,17 +25,18 @@ class ProfilePhotoScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(
-                    title: 'Add a profile photo',
-                    textSize: 24.sp,
-                    fontWeight: FontWeight.w800,
-                    textColor: const Color(0xFF1A1A2E),
+                    title: ConstString.addAProfilePhoto,
+                    textSize: 26.sp,
+                    fontWeight: FontWeight.w700,
+                    textColor: ConstColor.textColor,
                     maxLine: 1,
                   ),
                   SizedBox(height: 4.h),
                   CustomText(
-                    title: 'Profiles with photos feel more trustworthy',
-                    textSize: 13.sp,
-                    textColor: const Color(0xFF6B6B80),
+                    title: ConstString.profileWithPhotos,
+                    textSize: 15.sp,
+                    textColor: ConstColor.textColor,
+                    fontWeight: FontWeight.w500,
                     maxLine: 2,
                   ),
                 ],
@@ -47,16 +51,16 @@ class ProfilePhotoScreen extends StatelessWidget {
                     // TODO: open camera
                   },
                   child: Container(
-                    width: 200.r,
-                    height: 200.r,
+                    width: 220.r,
+                    height: 220.r,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: ConstColor.white,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF6C5CE7).withAlpha(20),
-                          blurRadius: 30.r,
-                          spreadRadius: 10.r,
+                          color: const Color(0xFF6C5CE7).withAlpha(30),
+                          blurRadius: 40.r,
+                          spreadRadius: 20.r,
                         ),
                       ],
                     ),
@@ -72,9 +76,9 @@ class ProfilePhotoScreen extends StatelessWidget {
                           ),
                           child: Center(
                             child: SvgPicture.asset(
-                              'assets/icons/ic_camera.svg',
-                              width: 28.r,
-                              height: 28.r,
+                              'assets/icons/camera_icon.svg',
+                              width: 25.r,
+                              height: 23.r,
                               colorFilter: const ColorFilter.mode(
                                   Colors.white, BlendMode.srcIn),
                             ),
@@ -82,17 +86,18 @@ class ProfilePhotoScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 12.h),
                         CustomText(
-                          title: 'Take a Selfie',
-                          textSize: 15.sp,
+                          title: ConstString.takeASelfie,
+                          textSize: 16.sp,
                           fontWeight: FontWeight.w700,
-                          textColor: const Color(0xFF1A1A2E),
+                          textColor: ConstColor.textColor,
                           maxLine: 1,
                         ),
                         SizedBox(height: 2.h),
                         CustomText(
-                          title: 'Use your camera now',
-                          textSize: 12.sp,
-                          textColor: const Color(0xFF6B6B80),
+                          title: ConstString.useYourCameraNow,
+                          textSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          textColor: ConstColor.grey,
                           maxLine: 1,
                         ),
                       ],
@@ -118,19 +123,19 @@ class ProfilePhotoScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        width: 48.r,
-                        height: 48.r,
+                        width: 55.r,
+                        height: 55.r,
                         decoration: BoxDecoration(
-                          color: const Color(0xFF6C5CE7).withAlpha(30),
+                          color: const Color(0xFF6C5CE7).withAlpha(40),
                           shape: BoxShape.circle,
                         ),
                         child: Center(
                           child: SvgPicture.asset(
-                            'assets/icons/ic_gallery.svg',
+                            'assets/icons/gellary_icon.svg',
                             width: 22.r,
                             height: 22.r,
                             colorFilter: const ColorFilter.mode(
-                                Color(0xFF6C5CE7), BlendMode.srcIn),
+                                ConstColor.primaryColor, BlendMode.srcIn),
                           ),
                         ),
                       ),
@@ -139,17 +144,18 @@ class ProfilePhotoScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(
-                            title: 'Upload from Gallery',
-                            textSize: 14.sp,
+                            title: ConstString.uploadFromGallery,
+                            textSize: 18.sp,
                             fontWeight: FontWeight.w700,
-                            textColor: const Color(0xFF1A1A2E),
+                            textColor: ConstColor.textColor,
                             maxLine: 1,
                           ),
                           SizedBox(height: 2.h),
                           CustomText(
-                            title: 'Pick from your photolibrary',
-                            textSize: 12.sp,
-                            textColor: const Color(0xFF6B6B80),
+                            title: ConstString.pickFromYour,
+                            textSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                            textColor: ConstColor.grey,
                             maxLine: 1,
                           ),
                         ],
@@ -166,11 +172,11 @@ class ProfilePhotoScreen extends StatelessWidget {
               EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
               child: CustomElevatedButton(
                 top: 0,
-                onPressed: () => Get.toNamed('/add-intro'),
+                onPressed: () => Get.toNamed(AppRoutes.addIntroScreen),
                 color: const Color(0xFF9E9E9E),
                 buttonBorderRadius: 30,
                 child: CustomText(
-                  title: 'Continue',
+                  title: ConstString.continueA,
                   textSize: 16.sp,
                   fontWeight: FontWeight.w600,
                   textColor: Colors.white,

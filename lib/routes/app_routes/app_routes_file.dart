@@ -22,6 +22,7 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.createProfileScreen,page: () => CreateProfileScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.verifyIdScreen,page: () => VerifyIdScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.profilePhotoScreen,page: () => ProfilePhotoScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.addIntroScreen,page: () => AddIntroScreen(),binding: AppBindings()),
 
 
 
