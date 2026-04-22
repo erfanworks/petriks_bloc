@@ -25,6 +25,7 @@ class AppRoutes {
   static const howDidItGoScreen = '/howDidItGoScreen';
   static const helpCenterScreen = '/helpCenterScreen';
   static const attendanceTipsScreen = '/attendanceTipsScreen';
+  static const reportProblemScreen = '/reportProblemScreen';
 
 
 }
