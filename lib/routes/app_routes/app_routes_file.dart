@@ -14,6 +14,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScre
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/block_user_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/help_center_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/report_problem_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/support_help_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HowDidItGoScreen/how_didIt_go_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
@@ -45,6 +46,7 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.attendanceTipsScreen,page: () => AttendanceTipsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.reportProblemScreen,page: () => ReportProblemScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.blockUserScreen,page: () => BlockUserScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.supportHelpScreen,page: () => SupportHelpScreen(),binding: AppBindings()),
 
 
 

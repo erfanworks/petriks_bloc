@@ -27,6 +27,7 @@ class AppRoutes {
   static const attendanceTipsScreen = '/attendanceTipsScreen';
   static const reportProblemScreen = '/reportProblemScreen';
   static const blockUserScreen = '/blockUserScreen';
+  static const supportHelpScreen = '/supportHelpScreen';
 
 
 }

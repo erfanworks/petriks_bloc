@@ -134,7 +134,7 @@ class PlanDetailsController extends GetxController {
   void goToAttendanceTips() => Get.toNamed(AppRoutes.attendanceTipsScreen);
   void goToReportProblem() => Get.toNamed(AppRoutes.reportProblemScreen);
   void goToBlockUser() => Get.toNamed(AppRoutes.blockUserScreen);
-  void goToSupportHelp() => Get.toNamed('/support-help');
+  void goToSupportHelp() => Get.toNamed(AppRoutes.supportHelpScreen);
 
   // Report
   void selectReason(ReportReason reason) {
