@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_string.dart';
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../widget/AppImage/app_image.dart';
@@ -30,7 +31,7 @@ class PeopleCard extends StatelessWidget {
             child: AppImage(
               path: item.image,
               width: double.infinity,
-              height: 200.h,
+              height: 230.h,
               fit: BoxFit.cover,
             ),
           ),
@@ -51,7 +52,7 @@ class PeopleCard extends StatelessWidget {
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
                   colors: [
-                    Colors.black.withAlpha(200),
+                    Colors.black.withAlpha(250),
                     Colors.transparent,
                   ],
                 ),
@@ -70,19 +71,20 @@ class PeopleCard extends StatelessWidget {
                   CustomText(
                     title: item.bio,
                     textColor: Colors.white.withAlpha(200),
-                    textSize: 11.sp,
+                    textSize: 12.sp,
+                    fontWeight: FontWeight.w500,
                     maxLine: 1,
                   ),
                   SizedBox(height: 2.h),
                   Row(
                     children: [
                       Icon(Icons.location_on_outlined,
-                          size: 11.sp, color: Colors.white.withAlpha(180)),
+                          size: 13.sp, color: Colors.white),
                       SizedBox(width: 2.w),
                       CustomText(
                         title: item.distance,
-                        textColor: Colors.white.withAlpha(180),
-                        textSize: 10.sp,
+                        textColor: Colors.white,
+                        textSize: 12.sp,
                         maxLine: 1,
                       ),
                     ],
@@ -95,10 +97,10 @@ class PeopleCard extends StatelessWidget {
                     top: 0,
                     buttonBorderRadius: 20,
                     child: CustomText(
-                      title: 'Say a warm Hello',
+                      title: ConstString.sayAWarn,
                       textColor: Colors.white,
                       textSize: 12.sp,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       maxLine: 1,
                     ),
                   ),

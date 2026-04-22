@@ -19,7 +19,15 @@ class UpcomingEventCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(24.r),boxShadow: [
+        BoxShadow(
+          color: Colors.black.withAlpha(40),
+          blurRadius: 10.r,
+          spreadRadius: 1.r,
+          offset: Offset(0, 4.h),
+        ),
+      ],
+
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

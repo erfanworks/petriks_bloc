@@ -97,6 +97,7 @@ class ConstString {
   static const joined = 'JOINED';
   static const newComerFriendly = 'New-Comer Friendly';
   static const nightOutFriendly = 'Night Out Party';
+  static const sayAWarn = 'Say a warm Hello';
 
 
 }

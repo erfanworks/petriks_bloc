@@ -118,13 +118,13 @@ class HomeController extends GetxController {
   // ---- People ----
   final people = <PersonItem>[
     const PersonItem(
-      image: 'assets/images/person1.jpg',
+      image: 'assets/images/person1_img.jpg',
       name: 'Maya Sen',
       bio: 'Plant lover, Tea drinker',
       distance: '0.8 km away',
     ),
     const PersonItem(
-      image: 'assets/images/person2.jpg',
+      image: 'assets/images/onboarding5_img.jpg',
       name: 'Maya Sen',
       bio: 'Plant lover, Tea drinker',
       distance: '0.8 km away',
