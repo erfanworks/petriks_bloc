@@ -10,6 +10,7 @@ import '../../screens/BaseScreen/CreateProfileScreen/create_profile_screen.dart'
 import '../../screens/BaseScreen/NavBar/nav_bar.dart';
 import '../../screens/BaseScreen/OnboardingScreen/onboarding_screen.dart';
 import '../../screens/BaseScreen/SplashScreen/splash_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HowDidItGoScreen/how_didIt_go_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
 
@@ -35,6 +36,7 @@ List<GetPage> appRouteFile = <GetPage>[
   ////////////Home Screen Part////////////
   GetPage(name: AppRoutes.homeScreen,page: () => HomeScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.planDetailsScreen,page: () => PlanDetailsScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.howDidItGoScreen,page: () => HowDidItGoScreen(),binding: AppBindings()),
 
 
 

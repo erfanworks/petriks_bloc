@@ -139,6 +139,11 @@ class ConstString {
   static const supportHelp = 'Support & Help';
   static const subject = 'Subject';
   static const description = 'Description';
+  static const joinToUnlock = 'Join to unlock chat';
+  static const interactWith = 'Interact with participants and get live updates';
+  static const viewProfile = 'View Profile';
+  static const safetyFirst = 'Safety First';
+  static const verifyUserOnly = 'Verified users only. Please respect community guidelines and stay within public areas of the park.';
 
 
 }

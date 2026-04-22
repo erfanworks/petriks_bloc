@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -127,13 +129,34 @@ class PlanDetailsScreen extends StatelessWidget {
                     (loc) => _LocationVoteCard(item: loc),
               ),
 
-              // ---- Lock countdown (after join only) ----
               if (controller.hasJoined.value) ...[
                 SizedBox(height: 8.h),
-                _LockCountdownBanner(),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 16.w),
+                  padding: EdgeInsets.symmetric(vertical: 12.h),
+                  decoration: BoxDecoration(
+                    color: ConstColor.primaryColor.withAlpha(20),
+                    borderRadius: BorderRadius.circular(30.r),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.hourglass_bottom_rounded,
+                          color: ConstColor.primaryColor, size: 16.r),
+                      SizedBox(width: 6.w),
+                      CustomText(
+                        title: 'Locks in: 2h 30m',
+                        textColor: ConstColor.primaryColor,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        maxLine: 1,
+                      ),
+                    ],
+                  ),
+                ),
               ],
 
-              SizedBox(height: 20.h),
+              SizedBox(height: 10.h),
 
               // ---- Group Chat ----
               Padding(
@@ -179,7 +202,7 @@ class PlanDetailsScreen extends StatelessWidget {
               // ---- Safety First ----
               _SafetyCard(),
 
-              SizedBox(height: 100.h),
+              SizedBox(height: 50.h),
             ],
           ),
         ),
@@ -195,7 +218,7 @@ class PlanDetailsScreen extends StatelessWidget {
             height: 54,
             top: 0,
             buttonBorderRadius: 30,
-            gradient: const [Color(0xFF7B5EA7), Color(0xFF5B2D8E)],
+            gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
             child: CustomText(
               title: ConstString.confirmAttendance,
               textColor: Colors.white,
@@ -209,7 +232,7 @@ class PlanDetailsScreen extends StatelessWidget {
             height: 54,
             top: 0,
             buttonBorderRadius: 30,
-            gradient: const [Color(0xFF7B5EA7), Color(0xFF5B2D8E)],
+            gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
             child: CustomText(
               title: ConstString.joinEvent,
               textColor: Colors.white,
@@ -233,7 +256,7 @@ class _LocationVoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 12.h),
+      margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 18.h),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14.r),
@@ -260,23 +283,23 @@ class _LocationVoteCard extends StatelessWidget {
               ),
               if (item.isSelected)
                 Positioned(
-                  top: 10.h,
+                  bottom: 8.h,
                   left: 10.w,
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-                    decoration: BoxDecoration(
-                      color: ConstColor.primaryColor,
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
+                    // decoration: BoxDecoration(
+                    //   color: ConstColor.primaryColor,
+                    //   borderRadius: BorderRadius.circular(20.r),
+                    // ),
                     child: Row(
                       children: [
-                        Icon(Icons.check_circle_rounded, color: Colors.white, size: 12.sp),
+                        Icon(Icons.check_circle_rounded, color: Colors.white, size: 16.sp),
                         SizedBox(width: 4.w),
                         CustomText(
                           title: 'Selected',
                           textColor: Colors.white,
-                          textSize: 11.sp,
-                          fontWeight: FontWeight.w600,
+                          textSize: 14.sp,
+                          fontWeight: FontWeight.w700,
                           maxLine: 1,
                         ),
                       ],
@@ -324,18 +347,18 @@ class _LocationVoteCard extends StatelessWidget {
                       SizedBox(width: 8.w),
                       _PillBadge(
                         label: 'MOST VOTED',
-                        bgColor: const Color(0xFFFFF3E0),
-                        textColor: const Color(0xFFFF9800),
+                        bgColor: ConstColor.primaryDeepColor.withAlpha(20),
+                        textColor: ConstColor.primaryColor,
                       ),
                     ],
                   ],
                 ),
                 SizedBox(height: 8.h),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(4.r),
+                  borderRadius: BorderRadius.circular(9.r),
                   child: LinearProgressIndicator(
                     value: item.votes / item.totalVotes,
-                    minHeight: 4.h,
+                    minHeight: 5.h,
                     backgroundColor: const Color(0xFFEDE9FF),
                     valueColor: AlwaysStoppedAnimation<Color>(ConstColor.primaryColor),
                   ),
@@ -349,34 +372,6 @@ class _LocationVoteCard extends StatelessWidget {
   }
 }
 
-// ---- Lock Countdown Banner ----
-class _LockCountdownBanner extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w),
-      padding: EdgeInsets.symmetric(vertical: 12.h),
-      decoration: BoxDecoration(
-        color: const Color(0xFFEDE9FF),
-        borderRadius: BorderRadius.circular(12.r),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.lock_outline_rounded, size: 16.sp, color: ConstColor.primaryColor),
-          SizedBox(width: 6.w),
-          CustomText(
-            title: '🔒 Locks in: 2h 30m',
-            textColor: ConstColor.primaryColor,
-            textSize: 13.sp,
-            fontWeight: FontWeight.w600,
-            maxLine: 1,
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 // ---- Chat Locked ----
 class _ChatLocked extends StatelessWidget {
@@ -384,33 +379,135 @@ class _ChatLocked extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),
-      padding: EdgeInsets.symmetric(vertical: 32.h),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: ConstColor.borderColor,width: 1.5)
       ),
-      child: Column(
+      child: Stack(
+        alignment: Alignment.center,
         children: [
-          Icon(Icons.lock_outline_rounded, size: 32.sp, color: ConstColor.primaryColor),
-          SizedBox(height: 10.h),
-          CustomText(
-            title: 'Join to unlock chat',
-            textColor: ConstColor.black,
-            textSize: 14.sp,
-            fontWeight: FontWeight.w700,
-            textAlign: TextAlign.center,
-            maxLine: 1,
+          // ── Blurred background content ──
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.r),
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(
+                    vertical: 32.h, horizontal: 20.w),
+                child: Column(
+                  children: [
+                    // Fake blurred chat rows
+                    _FakeBlurRow(width: 0.7),
+                    SizedBox(height: 10.h),
+                    _FakeBlurRow(width: 0.5),
+                    SizedBox(height: 10.h),
+                    _FakeBlurRow(width: 0.6),
+                  ],
+                ),
+              ),
+            ),
           ),
-          SizedBox(height: 4.h),
-          CustomText(
-            title: 'Interact with participants and get live updates',
-            textColor: ConstColor.grey,
-            textSize: 12.sp,
-            textAlign: TextAlign.center,
-            maxLine: 2,
+
+          // ── Lock overlay ──
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 20.w),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Lock icon circle
+                Container(
+                  width: 48.r,
+                  height: 48.r,
+                  decoration:  BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(20),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.lock_outline_rounded,
+                    size: 22.sp,
+                    color: ConstColor.primaryColor,
+                  ),
+                ),
+                SizedBox(height: 10.h),
+
+                // Purple glow behind text
+                Container(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 20.w, vertical: 10.h),
+                  decoration: BoxDecoration(
+                    color: ConstColor.primaryColor.withAlpha(30),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: Column(
+                    children: [
+                      CustomText(
+                        title: ConstString.joinToUnlock,
+                        textColor: ConstColor.black,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        textAlign: TextAlign.center,
+                        maxLine: 1,
+                      ),
+                      SizedBox(height: 4.h),
+                      CustomText(
+                        title: ConstString.interactWith,
+                        textColor: ConstColor.black,
+                        textSize: 12.sp,
+                        fontWeight: FontWeight.w400,
+                        textAlign: TextAlign.center,
+                        maxLine: 2,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
+    );
+  }
+}
+
+// ── Fake blurred chat bubble row ──
+class _FakeBlurRow extends StatelessWidget {
+  const _FakeBlurRow({required this.width});
+  final double width; // 0.0 to 1.0 fraction of screen width
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        // Avatar circle
+        Container(
+          width: 32.r,
+          height: 32.r,
+          decoration: BoxDecoration(
+            color: ConstColor.primaryColor.withAlpha(60),
+            shape: BoxShape.circle,
+          ),
+        ),
+        SizedBox(width: 8.w),
+        // Chat bubble
+        Container(
+          height: 20.h,
+          width: MediaQuery.of(context).size.width * width - 80.w,
+          decoration: BoxDecoration(
+            color: ConstColor.primaryColor.withAlpha(40),
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -433,73 +530,97 @@ class _ChatUnlocked extends StatelessWidget {
       child: Column(
         children: controller.chatMessages.map((msg) {
           if (msg.isMe) {
-            return Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                margin: EdgeInsets.only(bottom: 8.h, left: 40.w),
-                padding: EdgeInsets.all(10.r),
-                decoration: BoxDecoration(
-                  color: ConstColor.primaryColor,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: CustomText(
-                  title: msg.message,
-                  textColor: Colors.white,
-                  textSize: 12.sp,
-                  maxLine: 5,
-                ),
+            // ── My message: bubble left, avatar right ──
+            return Padding(
+              padding: EdgeInsets.only(bottom: 8.h, left: 40.w),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(10.r),
+                          decoration: BoxDecoration(
+                            color: ConstColor.primaryColor,
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                          child: CustomText(
+                            title: msg.message,
+                            textColor: Colors.white,
+                            textSize: 14.sp,
+                            fontWeight: FontWeight.w400,
+                            maxLine: 5,
+                          ),
+                        ),
+                        SizedBox(height: 2.h),
+                        CustomText(
+                          title: msg.time,
+                          textColor: ConstColor.grey,
+                          textSize: 10.sp,
+                          textAlign: TextAlign.right,
+                          maxLine: 1,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 8.w),
+                  // Avatar right side
+                  ClipOval(
+                    child: AppImage(
+                      path: msg.avatar ?? 'assets/images/person1_img.jpg',
+                      width: 32.r,
+                      height: 32.r,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
               ),
             );
           }
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipOval(
-                child: AppImage(
-                  path: msg.avatar ?? '',
-                  width: 32.w,
-                  height: 32.h,
-                  fit: BoxFit.cover,
+
+          // ── Other message: no avatar, name top-left, time bottom-right ──
+          return Padding(
+            padding: EdgeInsets.only(bottom: 8.h, right: 40.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(
+                  title: msg.senderName,
+                  textColor: ConstColor.primaryColor,
+                  textSize: 11.sp,
+                  fontWeight: FontWeight.w700,
+                  maxLine: 1,
                 ),
-              ),
-              SizedBox(width: 8.w),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomText(
-                      title: msg.senderName,
-                      textColor: ConstColor.black,
-                      textSize: 11.sp,
-                      fontWeight: FontWeight.w600,
-                      maxLine: 1,
-                    ),
-                    SizedBox(height: 4.h),
-                    Container(
-                      padding: EdgeInsets.all(10.r),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFF5F5FA),
-                        borderRadius: BorderRadius.circular(12.r),
-                      ),
-                      child: CustomText(
-                        title: msg.message,
-                        textColor: ConstColor.black,
-                        textSize: 12.sp,
-                        maxLine: 5,
-                      ),
-                    ),
-                    SizedBox(height: 2.h),
-                    CustomText(
-                      title: msg.time,
-                      textColor: ConstColor.grey,
-                      textSize: 10.sp,
-                      maxLine: 1,
-                    ),
-                    SizedBox(height: 8.h),
-                  ],
+                SizedBox(height: 4.h),
+                Container(
+                  padding: EdgeInsets.all(10.r),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF5F5FA),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: CustomText(
+                    title: msg.message,
+                    textColor: ConstColor.black,
+                    textSize: 14.sp,
+                    maxLine: 5,
+                  ),
                 ),
-              ),
-            ],
+                SizedBox(height: 2.h),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: CustomText(
+                    title: msg.time,
+                    textColor: ConstColor.grey,
+                    textSize: 10.sp,
+                    maxLine: 1,
+                  ),
+                ),
+                SizedBox(height: 8.h),
+              ],
+            ),
           );
         }).toList(),
       ),
@@ -516,13 +637,14 @@ class _HostCard extends StatelessWidget {
       padding: EdgeInsets.all(14.r),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(24.r),
+        border: Border.all(color: ConstColor.borderColor,width: 1.5)
       ),
       child: Row(
         children: [
           ClipOval(
             child: AppImage(
-              path: 'assets/images/person1_img.jpg',
+              path: 'assets/images/onboarding1_img.jpg',
               width: 44.w,
               height: 44.h,
               fit: BoxFit.cover,
@@ -542,7 +664,7 @@ class _HostCard extends StatelessWidget {
                 ),
                 SizedBox(height: 2.h),
                 CustomText(
-                  title: '📍 Central Park West, NYC',
+                  title: '⭐ Central Park West, NYC',
                   textColor: ConstColor.grey,
                   textSize: 12.sp,
                   maxLine: 1,
@@ -551,13 +673,13 @@ class _HostCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
+            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
             decoration: BoxDecoration(
               border: Border.all(color: ConstColor.primaryColor),
               borderRadius: BorderRadius.circular(20.r),
             ),
             child: CustomText(
-              title: 'View Profile',
+              title: ConstString.viewProfile,
               textColor: ConstColor.primaryColor,
               textSize: 12.sp,
               fontWeight: FontWeight.w600,
@@ -579,7 +701,8 @@ class _SafetyCard extends StatelessWidget {
       padding: EdgeInsets.all(14.r),
       decoration: BoxDecoration(
         color: const Color(0xFFF0EDFF),
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(32.r),
+          border: Border.all(color: ConstColor.borderColor,width: 1.5)
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -589,7 +712,7 @@ class _SafetyCard extends StatelessWidget {
               Icon(Icons.shield_outlined, size: 16.sp, color: ConstColor.primaryColor),
               SizedBox(width: 6.w),
               CustomText(
-                title: 'Safety First',
+                title: ConstString.safetyFirst,
                 textColor: ConstColor.primaryColor,
                 textSize: 13.sp,
                 fontWeight: FontWeight.w700,
@@ -599,7 +722,7 @@ class _SafetyCard extends StatelessWidget {
           ),
           SizedBox(height: 6.h),
           CustomText(
-            title: 'Verified users only. Please respect community guidelines and stay within public areas of the park.',
+            title: ConstString.verifyUserOnly,
             textColor: ConstColor.grey,
             textSize: 12.sp,
             maxLine: 4,

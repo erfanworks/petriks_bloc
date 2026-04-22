@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+
+import '../Widget/join_confirmation_sheet.dart';
 
 // ---- Plan Detail Models ----
 class LocationVoteItem {
@@ -107,14 +110,20 @@ class PlanDetailsController extends GetxController {
   // ======= Actions =======
 
   // Plan Detail
-  void showJoinSheet() => Get.toNamed('/join-confirmation');
+  void showJoinSheet() {
+    Get.bottomSheet(
+      const JoinConfirmationSheet(),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+    );
+  }
 
   void confirmJoin() {
     hasJoined.value = true;
     Get.back();
   }
 
-  void onConfirmAttendance() => Get.toNamed('/how-did-it-go');
+  void onConfirmAttendance() => Get.toNamed(AppRoutes.howDidItGoScreen);
 
   // Review
   void onSelectVibe(int index) => selectedVibe.value = index;
