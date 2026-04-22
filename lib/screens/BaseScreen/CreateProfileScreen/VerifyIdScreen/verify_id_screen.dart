@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_color.dart';
+import 'package:petriks_flutter_app/constant/const_string.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 
@@ -24,19 +27,19 @@ class VerifyIdScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
-                    title: 'Verify your ID (optional)',
-                    textSize: 22.sp,
-                    fontWeight: FontWeight.w800,
-                    textColor: const Color(0xFF1A1A2E),
+                    title: ConstString.verifyYourId,
+                    textSize: 24.sp,
+                    fontWeight: FontWeight.w700,
+                    textColor: ConstColor.textColor,
                     maxLine: 2,
                   ),
                   GestureDetector(
                     onTap: () => Get.toNamed('/profile-photo'),
                     child: CustomText(
-                      title: 'Skip',
-                      textSize: 15.sp,
-                      fontWeight: FontWeight.w600,
-                      textColor: const Color(0xFF6C5CE7),
+                      title: ConstString.skip,
+                      textSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                      textColor: ConstColor.primaryColor,
                       maxLine: 1,
                     ),
                   ),
@@ -46,8 +49,9 @@ class VerifyIdScreen extends StatelessWidget {
 
             CustomText(
               left: 20,
-              title: 'Unlock full access and build more trust',
-              textSize: 13.sp,
+              title: ConstString.unlockFullAccess,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w500,
               textColor: const Color(0xFF6B6B80),
               maxLine: 2,
             ),
@@ -65,30 +69,31 @@ class VerifyIdScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CustomText(
-                            title: 'Why verify?',
-                            textSize: 15.sp,
+                            title: ConstString.whyVerify,
+                            textSize: 18.sp,
                             fontWeight: FontWeight.w700,
-                            textColor: const Color(0xFF1A1A2E),
+                            textColor: ConstColor.textColor,
                             maxLine: 1,
                           ),
                           SizedBox(height: 12.h),
                           ...[
-                            'Access all plans and features',
-                            'Higher trust with others',
-                            'Better visibility in suggestions',
+                            ConstString.accessAllPlan,
+                            ConstString.higherTrustWithOthers,
+                            ConstString.betterVisibility,
                           ].map(
                                 (text) => Padding(
                               padding: EdgeInsets.only(bottom: 10.h),
                               child: Row(
                                 children: [
                                   Icon(Icons.check_circle_outline,
-                                      color: const Color(0xFF6C5CE7),
+                                      color: ConstColor.primaryColor,
                                       size: 18.r),
                                   SizedBox(width: 10.w),
                                   CustomText(
                                     title: text,
-                                    textSize: 13.sp,
-                                    textColor: const Color(0xFF1A1A2E),
+                                    textSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                    textColor: ConstColor.textColor,
                                     maxLine: 1,
                                   ),
                                 ],
@@ -106,20 +111,21 @@ class VerifyIdScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           SvgPicture.asset(
-                            'assets/icons/ic_lock.svg',
-                            width: 36.r,
-                            height: 36.r,
+                            'assets/icons/lock_icon.svg',
+                            width: 15.r,
+                            height: 20.r,
                             colorFilter: const ColorFilter.mode(
                                 Color(0xFF6C5CE7), BlendMode.srcIn),
                           ),
                           SizedBox(height: 10.h),
                           CustomText(
                             title:
-                            'Your ID is securely processed and never shared',
-                            textSize: 13.sp,
-                            textColor: const Color(0xFF6B6B80),
+                            ConstString.yourIdIsSecurely,
+                            textSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            textColor: ConstColor.textColor,
                             textAlign: TextAlign.center,
-                            maxLine: 3,
+                            maxLine: 2,
                           ),
                         ],
                       ),
@@ -144,11 +150,11 @@ class VerifyIdScreen extends StatelessWidget {
                               ),
                               child: Center(
                                 child: SvgPicture.asset(
-                                  'assets/icons/ic_upload.svg',
+                                  'assets/icons/gellary_icon.svg',
                                   width: 22.r,
                                   height: 22.r,
                                   colorFilter: const ColorFilter.mode(
-                                      Color(0xFF6C5CE7), BlendMode.srcIn),
+                                      ConstColor.primaryColor, BlendMode.srcIn),
                                 ),
                               ),
                             ),
@@ -157,8 +163,8 @@ class VerifyIdScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CustomText(
-                                  title: 'Upload id for verification',
-                                  textSize: 14.sp,
+                                  title: ConstString.uploadIdFor,
+                                  textSize: 16.sp,
                                   fontWeight: FontWeight.w700,
                                   textColor: const Color(0xFF1A1A2E),
                                   maxLine: 1,
@@ -166,8 +172,9 @@ class VerifyIdScreen extends StatelessWidget {
                                 SizedBox(height: 2.h),
                                 CustomText(
                                   title: 'PDF, PNG, Zip',
-                                  textSize: 12.sp,
-                                  textColor: const Color(0xFF6B6B80),
+                                  textSize: 14.sp,
+                                  fontWeight: FontWeight.w400,
+                                  textColor: ConstColor.grey,
                                   maxLine: 1,
                                 ),
                               ],
@@ -187,11 +194,11 @@ class VerifyIdScreen extends StatelessWidget {
               EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
               child: CustomElevatedButton(
                 top: 0,
-                onPressed: () => Get.toNamed('/profile-photo'),
+                onPressed: () => Get.toNamed(AppRoutes.profilePhotoScreen),
                 color: const Color(0xFF6C5CE7),
                 buttonBorderRadius: 30,
                 child: CustomText(
-                  title: 'Continue',
+                  title: ConstString.continueA,
                   textSize: 16.sp,
                   fontWeight: FontWeight.w600,
                   textColor: Colors.white,
