@@ -79,6 +79,9 @@ class ConstString {
   static const useYourCameraNow = 'Use your camera now';
   static const uploadFromGallery = 'Upload from Gallery';
   static const pickFromYour = 'Pick from your photo library';
+  static const addAShort = 'Add a short intro';
+  static const sayHelloAndShare = 'Say hello and share the kinds of plans you enjoy';
+  static const rec = 'REC';
 
 
 }

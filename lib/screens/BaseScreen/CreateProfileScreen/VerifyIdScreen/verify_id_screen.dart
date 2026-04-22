@@ -195,7 +195,10 @@ class VerifyIdScreen extends StatelessWidget {
               child: CustomElevatedButton(
                 top: 0,
                 onPressed: () => Get.toNamed(AppRoutes.profilePhotoScreen),
-                color: const Color(0xFF6C5CE7),
+                gradient: [
+                  ConstColor.primaryDeepColor,
+                  ConstColor.primaryColor,
+                ],
                 buttonBorderRadius: 30,
                 child: CustomText(
                   title: ConstString.continueA,

@@ -213,17 +213,17 @@ class AddIntroScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomText(
-                        title: 'Add a short intro',
-                        textSize: 24.sp,
-                        fontWeight: FontWeight.w800,
-                        textColor: const Color(0xFF1A1A2E),
+                        title: ConstString.addAShort,
+                        textSize: 26.sp,
+                        fontWeight: FontWeight.w700,
+                        textColor: ConstColor.textColor,
                         maxLine: 1,
                       ),
                       SizedBox(height: 4.h),
                       CustomText(
-                        title: 'Say hello and share the kinds of plans you enjoy',
+                        title: ConstString.sayHelloAndShare,
                         textSize: 13.sp,
-                        textColor: const Color(0xFF6B6B80),
+                        textColor: ConstColor.textColor,
                         maxLine: 2,
                       ),
                     ],
@@ -231,10 +231,10 @@ class AddIntroScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () => Get.toNamed('/home'),
                     child: CustomText(
-                      title: 'Skip',
-                      textSize: 15.sp,
-                      fontWeight: FontWeight.w600,
-                      textColor: const Color(0xFF6C5CE7),
+                      title: ConstString.skip,
+                      textSize: 16.sp,
+                      fontWeight: FontWeight.w700,
+                      textColor: ConstColor.primaryColor,
                       maxLine: 1,
                     ),
                   ),
@@ -245,14 +245,13 @@ class AddIntroScreen extends StatelessWidget {
             // ── Video preview area ──
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 30.h),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20.r),
+                  borderRadius: BorderRadius.circular(32.r),
                   child: Stack(
                     fit: StackFit.expand,
                     children: [
-                      // Camera preview placeholder
-                      Container(color: Colors.black87),
+                      Image.asset("assets/images/onboarding2_img.jpg",fit: BoxFit.cover,),
 
                       // REC badge
                       Positioned(
@@ -262,8 +261,8 @@ class AddIntroScreen extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                               horizontal: 10.w, vertical: 5.h),
                           decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(6.r),
+                            color: Color(0xFFBA1A1A),
+                            borderRadius: BorderRadius.circular(16.r),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -277,8 +276,8 @@ class AddIntroScreen extends StatelessWidget {
                               ),
                               SizedBox(width: 5.w),
                               CustomText(
-                                title: 'REC',
-                                textSize: 11.sp,
+                                title: ConstString.rec,
+                                textSize: 10.sp,
                                 fontWeight: FontWeight.w700,
                                 textColor: Colors.white,
                                 maxLine: 1,
@@ -295,7 +294,7 @@ class AddIntroScreen extends StatelessWidget {
                         child: CustomText(
                           title: '00:08 / 00:15',
                           textSize: 12.sp,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w400,
                           textColor: Colors.white,
                           maxLine: 1,
                         ),
@@ -330,9 +329,9 @@ class AddIntroScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: SvgPicture.asset(
-                          'assets/icons/ic_flip_camera.svg',
-                          width: 22.r,
-                          height: 22.r,
+                          'assets/icons/camera_flip_icon.svg',
+                          width: 20.r,
+                          height: 18.r,
                           colorFilter: const ColorFilter.mode(
                               Color(0xFF6B6B80), BlendMode.srcIn),
                         ),
@@ -353,14 +352,14 @@ class AddIntroScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                            color: const Color(0xFF6C5CE7), width: 2.5),
+                            color: ConstColor.primaryDeepColor, width: 3.5),
                       ),
                       child: Center(
                         child: Container(
                           width: 44.r,
                           height: 44.r,
                           decoration: const BoxDecoration(
-                            color: Colors.red,
+                            color: Color(0xFFBA1A1A),
                             shape: BoxShape.circle,
                           ),
                         ),
@@ -378,10 +377,13 @@ class AddIntroScreen extends StatelessWidget {
               child: CustomElevatedButton(
                 top: 0,
                 onPressed: () => Get.toNamed('/home'),
-                color: const Color(0xFF6C5CE7),
+                gradient: [
+                  ConstColor.primaryDeepColor,
+                  ConstColor.primaryColor,
+                ],
                 buttonBorderRadius: 30,
                 child: CustomText(
-                  title: 'Confirm',
+                  title: ConstString.continueA,
                   textSize: 16.sp,
                   fontWeight: FontWeight.w600,
                   textColor: Colors.white,
