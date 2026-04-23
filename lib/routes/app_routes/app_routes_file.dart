@@ -14,6 +14,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunitySc
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/GroupDetailScreen/group_detail_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/GroupDetailScreen/join_group_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/my_community_detail_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/my_group_detail_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/feed_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/for_you_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/attendance_tips_screen.dart';
@@ -71,6 +72,7 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.groupDetailScreen,page: () => GroupDetailScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.joinGroupScreen,page: () => JoinGroupScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.myCommunityDetailScreen,page: () => MyCommunityDetailScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.myGroupDetailScreen,page: () => MyGroupDetailScreen(),binding: AppBindings()),
 
 
 
