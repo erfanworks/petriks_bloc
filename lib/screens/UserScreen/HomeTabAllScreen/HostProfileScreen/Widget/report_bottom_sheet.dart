@@ -278,7 +278,6 @@ class _ReportFormView extends StatelessWidget {
   }
 }
 
-// ── Success view ──
 class _SuccessView extends StatelessWidget {
   const _SuccessView({required this.c});
   final HostProfileController c;
@@ -290,20 +289,27 @@ class _SuccessView extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Check circle
           Container(
-            width: 72.r,
-            height: 72.r,
+            width: 96.r,
+            height: 96.r,
             decoration: BoxDecoration(
-              color: ConstColor.primaryColor.withAlpha(20),
+              color: ConstColor.primaryColor.withAlpha(40),
               shape: BoxShape.circle,
             ),
             child: Center(
               child: Container(
-                width: 52.r,
-                height: 52.r,
+                width: 58.r,
+                height: 58.r,
                 decoration: const BoxDecoration(
                   color: ConstColor.primaryColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: ConstColor.primaryColor,
+                      spreadRadius: 1,
+                      blurRadius: 10,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
                   shape: BoxShape.circle,
                 ),
                 child: Icon(Icons.check_rounded,
@@ -315,7 +321,7 @@ class _SuccessView extends StatelessWidget {
 
           CustomText(
             title: ConstString.reportSubmittedSuccess,
-            textSize: 18.sp,
+            textSize: 22.sp,
             fontWeight: FontWeight.w700,
             textColor: ConstColor.black,
             textAlign: TextAlign.center,
@@ -324,7 +330,7 @@ class _SuccessView extends StatelessWidget {
           SizedBox(height: 8.h),
           CustomText(
             title: ConstString.reportSubmittedDesc,
-            textSize: 13.sp,
+            textSize: 14.sp,
             textColor: ConstColor.iconColor,
             textAlign: TextAlign.center,
             maxLine: 3,
@@ -333,6 +339,7 @@ class _SuccessView extends StatelessWidget {
 
           CustomElevatedButton(
             top: 0,
+            gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
             onPressed: () {
               c.resetReport();
               Get.back();
