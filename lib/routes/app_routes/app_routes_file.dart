@@ -1,5 +1,4 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
-import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HomeScreen/home_screen.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/plan_details_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/LoginScreen/login_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/phone_login_screen.dart';
@@ -10,12 +9,16 @@ import '../../screens/BaseScreen/CreateProfileScreen/create_profile_screen.dart'
 import '../../screens/BaseScreen/NavBar/nav_bar.dart';
 import '../../screens/BaseScreen/OnboardingScreen/onboarding_screen.dart';
 import '../../screens/BaseScreen/SplashScreen/splash_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/feed_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/for_you_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/attendance_tips_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/block_user_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/help_center_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/report_problem_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/support_help_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HowDidItGoScreen/how_didIt_go_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/home_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/vibe_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
 
@@ -40,6 +43,8 @@ List<GetPage> appRouteFile = <GetPage>[
 
   ////////////Home Screen Part////////////
   GetPage(name: AppRoutes.homeScreen,page: () => HomeScreen(),binding: AppBindings()),
+  // for you screen
+  GetPage(name: AppRoutes.forYouScreen,page: () => ForYouScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.planDetailsScreen,page: () => PlanDetailsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.howDidItGoScreen,page: () => HowDidItGoScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.helpCenterScreen,page: () => HelpCenterScreen(),binding: AppBindings()),
@@ -47,6 +52,11 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.reportProblemScreen,page: () => ReportProblemScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.blockUserScreen,page: () => BlockUserScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.supportHelpScreen,page: () => SupportHelpScreen(),binding: AppBindings()),
+  //vibe screen
+  GetPage(name: AppRoutes.vibeScreen,page: () => VibeScreen(),binding: AppBindings()),
+
+  // Feed Screen
+  GetPage(name: AppRoutes.feedScreen,page: () => FeedScreen(),binding: AppBindings()),
 
 
 

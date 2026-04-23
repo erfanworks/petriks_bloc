@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../../constant/const_color.dart';
+import '../../../../../../routes/app_routes/app_routes.dart';
 
 // ---- Data Models ----
 class MeetupItem {
@@ -59,12 +59,8 @@ class PersonItem {
   });
 }
 
-// ---- Home Controller ----
-class HomeController extends GetxController {
-  // ---- Tabs ----
-  final tabs = ['For You', 'Vibe', 'Feed', 'Community'];
-  final selectedTab = 0.obs;
-
+// ---- For You Controller ----
+class ForYouController extends GetxController {
   // ---- Easy Meetups ----
   final List<MeetupItem> meetups = [
     const MeetupItem(

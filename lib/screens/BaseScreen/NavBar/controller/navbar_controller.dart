@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../UserScreen/HomeTabAllScreen/ForYouAllScreen/HomeScreen/home_screen.dart';
+import '../../../UserScreen/HomeTabAllScreen/HomeScreen/home_screen.dart';
 
 class NavbarController extends GetxController {
   final RxInt selectedIndex = 0.obs;

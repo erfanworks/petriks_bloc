@@ -70,7 +70,7 @@ class SupportHelpScreen extends StatelessWidget {
                   color: ConstColor.textColor.withAlpha(150),
                   fontSize: 14.sp,
                 ),
-                border: InputBorder.none, // Removes default underline
+                border: InputBorder.none,
                 isDense: true,
                 contentPadding: EdgeInsets.zero,
               ),

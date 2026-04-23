@@ -8,7 +8,7 @@ import 'package:petriks_flutter_app/constant/const_string.dart';
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../widget/AppImage/app_image.dart';
-import '../Controller/home_controller.dart';
+import '../Controller/for_you_controller.dart';
 
 
 class UpcomingEventCard extends StatelessWidget {
@@ -18,7 +18,7 @@ class UpcomingEventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<HomeController>();
+    final controller = Get.find<ForYouController>();
     return InkWell(
       onTap: () => controller.onEventTap(item),
       child: Container(

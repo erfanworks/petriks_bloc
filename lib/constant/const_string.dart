@@ -146,6 +146,14 @@ class ConstString {
   static const verifyUserOnly = 'Verified users only. Please respect community guidelines and stay within public areas of the park.';
   static const helpAndSafety = "Help & Safety";
   static const host = "Host";
+  static const howAreYouFeeling = 'How are you feeling?';
+  static const whoToMeet = 'Who would you like to meet?';
+  static const whatsOnYourMind = "What's on your mind?";
+  static const photo = 'Photo';
+  static const tagFriends = 'Tag Friends';
+  static const feeling = 'Feeling';
+  static const appNews = 'App News';
+  static const viewCommunity = 'View Community';
 
 
 }

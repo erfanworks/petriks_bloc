@@ -21,6 +21,8 @@ class AppRoutes {
 
   /////////////// Home Screen Part ///////////////////////
   static const homeScreen = '/homeScreen';
+  // for you
+  static const forYouScreen = '/forYouScreen';
   static const planDetailsScreen = '/planDetailsScreen';
   static const howDidItGoScreen = '/howDidItGoScreen';
   static const helpCenterScreen = '/helpCenterScreen';
@@ -28,6 +30,11 @@ class AppRoutes {
   static const reportProblemScreen = '/reportProblemScreen';
   static const blockUserScreen = '/blockUserScreen';
   static const supportHelpScreen = '/supportHelpScreen';
+  // vibe screen
+  static const vibeScreen = '/vibeScreen';
+
+  // Feed screen
+  static const feedScreen = '/feedScreen';
 
 
 }

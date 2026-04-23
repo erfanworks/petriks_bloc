@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
-import '../Controller/home_controller.dart';
+import '../Controller/for_you_controller.dart';
 
 class EasyMeetupCard extends StatelessWidget {
   final MeetupItem item;

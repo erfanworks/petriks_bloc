@@ -6,7 +6,7 @@ import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../widget/AppImage/app_image.dart';
 import '../../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
-import '../Controller/home_controller.dart';
+import '../Controller/for_you_controller.dart';
 
 class PeopleCard extends StatelessWidget {
   final PersonItem item;
@@ -15,7 +15,7 @@ class PeopleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<HomeController>();
+    final controller = Get.find<ForYouController>();
 
     return Container(
       margin: EdgeInsets.only(right: 12.w),
