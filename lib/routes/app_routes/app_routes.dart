@@ -41,6 +41,7 @@ class AppRoutes {
   static const communityScreen = '/communityScreen';
   static const communityDetailScreen = '/communityDetailScreen';
   static const groupDetailScreen = '/groupDetailScreen';
+  static const joinGroupScreen = '/joinGroupScreen';
 
 
 }

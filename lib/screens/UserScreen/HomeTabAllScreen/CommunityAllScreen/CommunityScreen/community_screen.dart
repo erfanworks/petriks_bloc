@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityScreen/my_community_screen.dart';
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../constant/const_string.dart';
-import '../../../../../../widget/AppImage/app_image.dart';
-import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import 'Controller/community_controller.dart';
 import 'Widget/community_card.dart';
 
@@ -21,6 +20,7 @@ class CommunityScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10.h,),
+
           Obx(
                 () => Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -59,45 +59,52 @@ class CommunityScreen extends StatelessWidget {
 
           SizedBox(height: 16.h),
 
-          // ---- Community Cards ----
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            itemCount: controller.communities.length,
-            separatorBuilder: (_, _) => SizedBox(height: 16.h),
-            itemBuilder: (_, index) => CommunityCard(
-              item: controller.communities[index],
-              onTap: () => controller.onViewCommunity(controller.communities[index]),
-            ),
-          ),
+          Obx(() {
+            if (controller.selectedCommunityTab.value == 0) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    itemCount: controller.communities.length,
+                    separatorBuilder: (_, _) => SizedBox(height: 16.h),
+                    itemBuilder: (_, index) => CommunityCard(
+                      item: controller.communities[index],
+                      onTap: () => controller.onViewCommunity(controller.communities[index]),
+                    ),
+                  ),
 
-          SizedBox(height: 24.h),
+                  SizedBox(height: 24.h),
 
-          // ---- App News ----
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: CustomText(
-              title: ConstString.appNews,
-              textColor: ConstColor.black,
-              textSize: 22.sp,
-              fontWeight: FontWeight.w700,
-              maxLine: 1,
-            ),
-          ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: CustomText(
+                      title: ConstString.appNews,
+                      textColor: ConstColor.black,
+                      textSize: 22.sp,
+                      fontWeight: FontWeight.w700,
+                      maxLine: 1,
+                    ),
+                  ),
 
-          SizedBox(height: 12.h),
+                  SizedBox(height: 12.h),
 
-          ...controller.appNews.map((news) => _AppNewsItem(item: news)),
+                  ...controller.appNews.map((news) => _AppNewsItem(item: news)),
 
-          SizedBox(height: 24.h),
+                  SizedBox(height: 24.h),
+                ],
+              );
+            } else {
+              return MyCommunityScreen();
+            }
+          }),
         ],
       ),
     );
   }
 }
-
-
 
 // ---- App News Item ----
 class _AppNewsItem extends StatelessWidget {

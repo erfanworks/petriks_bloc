@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../GroupDetailScreen/Widget/join_success_sheet.dart';
+
 // ---- Models ----
 class GroupItem {
   final String image;
@@ -88,19 +90,19 @@ class CommunityDetailController extends GetxController {
 
   // ---- Join Group ----
   final RxList<JoinableGroup> joinableGroups = <JoinableGroup>[
-    JoinableGroup(image: 'assets/images/person1_img.jpg', name: 'Urban Sprinters', activeMembers: '42 ACTIVE MEMBERS'),
-    JoinableGroup(image: 'assets/images/hank_out_party_img.jpg', name: 'Trail Blazers', activeMembers: '18 ACTIVE MEMBERS'),
-    JoinableGroup(image: 'assets/images/hank_out_park_party_img.jpg', name: 'Trail Blazers', activeMembers: '18 ACTIVE MEMBERS'),
-    JoinableGroup(image: 'assets/images/hyde_park.jpg', name: 'Trail Blazers', activeMembers: '18 ACTIVE MEMBERS'),
-    JoinableGroup(image: 'assets/images/hampsted_heath.jpg', name: 'Trail Blazers', activeMembers: '18 ACTIVE MEMBERS'),
+    JoinableGroup(image: 'assets/images/football_play.jpg', name: 'Urban Sprinters', activeMembers: '42 ACTIVE MEMBERS'),
+    JoinableGroup(image: 'assets/images/football_play.jpg', name: 'Trail Blazers', activeMembers: '18 ACTIVE MEMBERS'),
+    JoinableGroup(image: 'assets/images/football_play.jpg', name: 'Trail Blazers', activeMembers: '18 ACTIVE MEMBERS'),
+    JoinableGroup(image: 'assets/images/football_play.jpg', name: 'Trail Blazers', activeMembers: '18 ACTIVE MEMBERS'),
+    JoinableGroup(image: 'assets/images/football_play.jpg', name: 'Trail Blazers', activeMembers: '18 ACTIVE MEMBERS'),
   ].obs;
 
   // ---- Actions ----
   void onViewGroup(GroupItem item) => Get.toNamed(AppRoutes.groupDetailScreen);
 
-  void onJoinCommunity() => Get.toNamed('/join-group');
+  void onJoinCommunity() => Get.toNamed(AppRoutes.joinGroupScreen);
 
-  void onJoinGroup() => Get.toNamed('/join-group');
+  void onJoinGroup() => Get.toNamed(AppRoutes.joinGroupScreen);
 
   void selectGroup(JoinableGroup selected) {
     for (final g in joinableGroups) {
@@ -110,12 +112,7 @@ class CommunityDetailController extends GetxController {
   }
 
   void confirmJoinGroup() {
-    Get.back();
-    Get.bottomSheet(
-      const _JoinSuccessSheetPlaceholder(),
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-    );
+    Get.back(); // join group screen close
   }
 
   void goToCommunityChat() => Get.back();
@@ -123,9 +120,8 @@ class CommunityDetailController extends GetxController {
   void backToDiscovery() => Get.back();
 }
 
-// placeholder — real widget community_screens.dart এ আছে
-class _JoinSuccessSheetPlaceholder extends StatelessWidget {
-  const _JoinSuccessSheetPlaceholder();
-  @override
-  Widget build(BuildContext context) => const SizedBox.shrink();
-}
+// class JoinSuccessSheet extends StatelessWidget {
+//   const JoinSuccessSheet({super.key});
+//   @override
+//   Widget build(BuildContext context) => const SizedBox.shrink();
+// }
