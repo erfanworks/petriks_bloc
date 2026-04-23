@@ -152,6 +152,8 @@ class PlanDetailsController extends GetxController {
   // Support
   void submitSupport() => Get.back();
 
+
+
   @override
   void onClose() {
     reviewController.dispose();

@@ -154,6 +154,27 @@ class ConstString {
   static const feeling = 'Feeling';
   static const appNews = 'App News';
   static const viewCommunity = 'View Community';
+  static const home = 'HOME';
+  static const myPlan = 'MY PLAN';
+  static const message = 'MESSAGE';
+  static const profile = 'Profile';
+  static const verifiedToMeet = 'Verified to Meet';
+  static const follow = 'Follow';
+  static const following = 'Following';
+  static const about = 'About';
+  static const topInterest = 'Top Interest';
+  static const reliabilityBadges = 'Reliability Badges';
+  static const communityIndicators = 'Community Indicators';
+  static const plans = 'Plans';
+  static const community = 'Community';
+  static const introVideo = 'INTRO VIDEO';
+  static const report = 'Report';
+  static const reportUser = 'Report User';
+  static const helpUsUnderstand = 'Help us understand the issue';
+  static const reporting = 'Reporting';
+  static const reportSubmittedSuccess = 'Report submitted successfully';
+  static const reportSubmittedDesc = 'Thank you for helping keep the community safe. Our team will review this shortly.';
+  static const goBack = 'Go Back';
 
 
 }

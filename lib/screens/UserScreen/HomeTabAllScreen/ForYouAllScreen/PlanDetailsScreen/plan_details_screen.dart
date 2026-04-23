@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 
 import '../../../../../../constant/const_color.dart';
@@ -672,18 +673,23 @@ class _HostCard extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
-            decoration: BoxDecoration(
-              border: Border.all(color: ConstColor.primaryColor),
-              borderRadius: BorderRadius.circular(20.r),
-            ),
-            child: CustomText(
-              title: ConstString.viewProfile,
-              textColor: ConstColor.primaryColor,
-              textSize: 12.sp,
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
+          InkWell(
+            onTap: (){
+              Get.toNamed(AppRoutes.hostProfileScreen);
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
+              decoration: BoxDecoration(
+                border: Border.all(color: ConstColor.primaryColor),
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: CustomText(
+                title: ConstString.viewProfile,
+                textColor: ConstColor.primaryColor,
+                textSize: 12.sp,
+                fontWeight: FontWeight.w600,
+                maxLine: 1,
+              ),
             ),
           ),
         ],

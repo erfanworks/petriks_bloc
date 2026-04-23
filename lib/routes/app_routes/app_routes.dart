@@ -24,6 +24,7 @@ class AppRoutes {
   // for you
   static const forYouScreen = '/forYouScreen';
   static const planDetailsScreen = '/planDetailsScreen';
+  static const hostProfileScreen = '/hostProfileScreen';
   static const howDidItGoScreen = '/howDidItGoScreen';
   static const helpCenterScreen = '/helpCenterScreen';
   static const attendanceTipsScreen = '/attendanceTipsScreen';

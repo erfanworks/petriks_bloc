@@ -18,6 +18,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScre
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/support_help_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HowDidItGoScreen/how_didIt_go_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/home_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/HostProfileScreen/host_profile_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/vibe_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
@@ -46,6 +47,7 @@ List<GetPage> appRouteFile = <GetPage>[
   // for you screen
   GetPage(name: AppRoutes.forYouScreen,page: () => ForYouScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.planDetailsScreen,page: () => PlanDetailsScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.hostProfileScreen,page: () => HostProfileScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.howDidItGoScreen,page: () => HowDidItGoScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.helpCenterScreen,page: () => HelpCenterScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.attendanceTipsScreen,page: () => AttendanceTipsScreen(),binding: AppBindings()),

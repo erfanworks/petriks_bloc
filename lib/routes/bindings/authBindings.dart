@@ -5,6 +5,7 @@ import 'package:petriks_flutter_app/screens/BaseScreen/OnboardingScreen/Controll
 import 'package:petriks_flutter_app/screens/BaseScreen/SplashScreen/Controller/splash_screen_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/FeedAllScreen/Controller/feed_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/HostProfileScreen/Controller/host_profile_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/Controller/phone_login_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Controller/phone_number_verify_otp_controller.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/Controller/create_profile_controller.dart';
@@ -31,6 +32,7 @@ class AppBindings extends Bindings {
     //=========Home Controller Part=========//
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => PlanDetailsController());
+    Get.lazyPut(() => HostProfileController());
     Get.lazyPut(() => ForYouController());
     Get.lazyPut(() => VibeController());
     Get.lazyPut(() => FeedController());
