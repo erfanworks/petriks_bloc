@@ -188,6 +188,7 @@ class ConstString {
   static const youReIn = "You're in!";
   static const goToCommunityChat = 'Go to Community Chat';
   static const backToDiscovery = 'Back to Discovery';
+  static const groupDetails = "Group Details";
 
 
 }

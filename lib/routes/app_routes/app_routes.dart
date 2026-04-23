@@ -40,6 +40,7 @@ class AppRoutes {
   // Community Screen
   static const communityScreen = '/communityScreen';
   static const communityDetailScreen = '/communityDetailScreen';
+  static const groupDetailScreen = '/groupDetailScreen';
 
 
 }
