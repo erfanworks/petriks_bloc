@@ -9,6 +9,8 @@ import '../../screens/BaseScreen/CreateProfileScreen/create_profile_screen.dart'
 import '../../screens/BaseScreen/NavBar/nav_bar.dart';
 import '../../screens/BaseScreen/OnboardingScreen/onboarding_screen.dart';
 import '../../screens/BaseScreen/SplashScreen/splash_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityDetailScreen/community_detail_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityScreen/community_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/feed_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/for_you_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/attendance_tips_screen.dart';
@@ -59,6 +61,10 @@ List<GetPage> appRouteFile = <GetPage>[
 
   // Feed Screen
   GetPage(name: AppRoutes.feedScreen,page: () => FeedScreen(),binding: AppBindings()),
+
+  // Community Screen
+  GetPage(name: AppRoutes.communityScreen,page: () => CommunityScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.communityDetailScreen,page: () => CommunityDetailScreen(),binding: AppBindings()),
 
 
 

@@ -3,12 +3,14 @@ import 'package:petriks_flutter_app/screens/BaseScreen/AuthAllScreen/LoginScreen
 import 'package:petriks_flutter_app/screens/BaseScreen/NavBar/controller/navbar_controller.dart';
 import 'package:petriks_flutter_app/screens/BaseScreen/OnboardingScreen/Controller/onboarding_controller.dart';
 import 'package:petriks_flutter_app/screens/BaseScreen/SplashScreen/Controller/splash_screen_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityDetailScreen/Controller/community_detail_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/FeedAllScreen/Controller/feed_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/HostProfileScreen/Controller/host_profile_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/Controller/phone_login_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Controller/phone_number_verify_otp_controller.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/Controller/create_profile_controller.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityScreen/Controller/community_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/Controller/for_you_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/Controller/home_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/Controller/vibe_controller.dart';
@@ -36,6 +38,8 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => ForYouController());
     Get.lazyPut(() => VibeController());
     Get.lazyPut(() => FeedController());
+    Get.lazyPut(() => CommunityController());
+    Get.lazyPut(() => CommunityDetailController());
 
 
   }

@@ -7,6 +7,7 @@ import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+import '../CommunityAllScreen/CommunityScreen/community_screen.dart';
 import '../FeedAllScreen/feed_screen.dart';
 import '../ForYouAllScreen/ForYouScreen/for_you_screen.dart';
 import '../VibeAllScreen/VibeScreen/vibe_screen.dart';
@@ -74,7 +75,7 @@ class HomeScreen extends StatelessWidget {
                   ForYouScreen(),
                   VibeScreen(),
                   FeedScreen(),
-                  // CommunityScreen(),
+                  CommunityScreen(),
                 ],
               ),
             ),

@@ -175,6 +175,19 @@ class ConstString {
   static const reportSubmittedSuccess = 'Report submitted successfully';
   static const reportSubmittedDesc = 'Thank you for helping keep the community safe. Our team will review this shortly.';
   static const goBack = 'Go Back';
+  static const communityCompetitions = 'Community competitions';
+  static const groupsInCommunity = 'Groups in this community';
+  static const groupProgress = 'Group Progress';
+  static const joinCommunity = 'Join community';
+  static const viewGroup = 'View group';
+  static const competitions = 'Competitions';
+  static const joinGroup = 'Join Group';
+  static const joinAGroup = 'Join a Group';
+  static const selectGroups = 'Select Groups';
+  static const chooseGroupParticipate = 'Choose a group where you want to participate';
+  static const youReIn = "You're in!";
+  static const goToCommunityChat = 'Go to Community Chat';
+  static const backToDiscovery = 'Back to Discovery';
 
 
 }

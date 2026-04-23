@@ -37,5 +37,9 @@ class AppRoutes {
   // Feed screen
   static const feedScreen = '/feedScreen';
 
+  // Community Screen
+  static const communityScreen = '/communityScreen';
+  static const communityDetailScreen = '/communityDetailScreen';
+
 
 }
