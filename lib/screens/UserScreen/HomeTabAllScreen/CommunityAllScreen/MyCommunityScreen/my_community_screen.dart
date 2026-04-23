@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../constant/const_string.dart';
@@ -31,7 +32,7 @@ class MyCommunityScreen extends StatelessWidget {
             itemBuilder: (_, index) => MyCommunityCard(
               item: controller.myCommunities[index],
               onTap: () {
-                Get.toNamed("page");
+                Get.toNamed(AppRoutes.myCommunityDetailScreen);
               },
             ),
           ),

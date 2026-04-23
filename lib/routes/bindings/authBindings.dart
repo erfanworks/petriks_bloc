@@ -4,6 +4,7 @@ import 'package:petriks_flutter_app/screens/BaseScreen/NavBar/controller/navbar_
 import 'package:petriks_flutter_app/screens/BaseScreen/OnboardingScreen/Controller/onboarding_controller.dart';
 import 'package:petriks_flutter_app/screens/BaseScreen/SplashScreen/Controller/splash_screen_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityDetailScreen/Controller/community_detail_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/Controller/my_community_detail_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/FeedAllScreen/Controller/feed_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/HostProfileScreen/Controller/host_profile_controller.dart';
@@ -42,6 +43,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => CommunityController());
     Get.lazyPut(() => CommunityDetailController());
     Get.lazyPut(() => MyCommunityController());
+    Get.lazyPut(() => MyCommunityDetailController());
 
 
   }
