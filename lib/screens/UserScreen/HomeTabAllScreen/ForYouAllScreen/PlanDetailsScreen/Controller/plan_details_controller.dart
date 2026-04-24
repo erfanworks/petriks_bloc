@@ -123,7 +123,7 @@ class PlanDetailsController extends GetxController {
     Get.back();
   }
 
-  void onConfirmAttendance() => Get.toNamed(AppRoutes.howDidItGoScreen);
+  void onConfirmAttendance() => Get.back();
 
   // Review
   void onSelectVibe(int index) => selectedVibe.value = index;

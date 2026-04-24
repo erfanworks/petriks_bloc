@@ -34,6 +34,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScre
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HowDidItGoScreen/how_didIt_go_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/home_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/HostProfileScreen/host_profile_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/one_to_one_meetup_details_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/one_to_one_meetup_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/vibe_screen.dart';
 import '../bindings/authBindings.dart';
@@ -93,6 +94,7 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.viewCompetitionScreen,page: () => ViewCompetitionScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.addMatchResultScreen,page: () => AddMatchResultScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.finalScoreScreen,page: () => FinalScoreScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.oneToOneMeetupDetailsScreen,page: () => OneToOneMeetupDetailsScreen(),binding: AppBindings()),
 
 
 

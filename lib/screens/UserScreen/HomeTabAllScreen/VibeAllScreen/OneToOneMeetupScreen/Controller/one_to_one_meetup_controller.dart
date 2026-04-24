@@ -85,5 +85,5 @@ class OneToOneMeetupController extends GetxController {
 
   // ---- Actions ----
   void onViewProfile(OneToOneMeetupItem item) => Get.toNamed(AppRoutes.hostProfileScreen);
-  void onEventTap(OneToOneMeetupItem item) => Get.toNamed('/plan-details');
+  void onEventTap(OneToOneMeetupItem item) => Get.toNamed(AppRoutes.oneToOneMeetupDetailsScreen);
 }

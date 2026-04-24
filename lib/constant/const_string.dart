@@ -97,7 +97,9 @@ class ConstString {
   static const planDetails = 'Plan Details';
   static const hangOutPark = 'Hang out at the park';
   static const pickALocation = 'Pick a location';
+  static const location = 'Location';
   static const groupChat = 'Group Chat';
+  static const group = 'Group';
   static const view = 'View';
   static const joinEvent = 'Join Event';
   static const confirmAttendance = 'Confirm Attendance';
