@@ -83,6 +83,7 @@ class ConstString {
   static const upcomingEvents = 'Upcoming Events';
   static const peopleYouMayClick = 'Peoples you may click with';
   static const seeAll = 'See all';
+  static const createCompetition = "Create Competition";
   static const inviteFriends = 'Invite Friends';
   static const sayWarmHello = 'Say a warm Hello';
   static const open = 'OPEN';
@@ -200,6 +201,7 @@ class ConstString {
   static const describeYourCommunity  = 'Describe your community';
   static const describeCommunitySubtitle = 'Give your tribe an identity that stands out. You can always change this later.';
   static const communityName          = 'Community Name';
+  static const giveYourGroupAName          = 'Give your group a name and description';
   static const shortDescription       = 'Short Description';
   static const shortDescriptionHint   = 'e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.';
   static const uploadCoverPhoto       = 'Upload Cover Photo';

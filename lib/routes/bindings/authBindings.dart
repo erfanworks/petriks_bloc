@@ -5,6 +5,7 @@ import 'package:petriks_flutter_app/screens/BaseScreen/OnboardingScreen/Controll
 import 'package:petriks_flutter_app/screens/BaseScreen/SplashScreen/Controller/splash_screen_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityDetailScreen/Controller/community_detail_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCommunityScreen/Controller/create_community_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateGroup/Controller/create_group_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/Controller/my_community_detail_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/FeedAllScreen/Controller/feed_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
@@ -46,6 +47,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => MyCommunityController());
     Get.lazyPut(() => MyCommunityDetailController());
     Get.lazyPut(() => CreateCommunityController());
+    Get.lazyPut(() => CreateGroupController());
 
 
   }

@@ -211,7 +211,7 @@ class MyCommunityDetailScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             CustomElevatedButton(
-              onPressed: controller.onJoinCommunity,
+              onPressed: controller.toCreateGroup,
               height: 48,
               top: 0,
               buttonBorderRadius: 30,
@@ -226,7 +226,7 @@ class MyCommunityDetailScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             CustomElevatedButton(
-              onPressed: controller.onJoinCommunity,
+              onPressed: controller.toCreateCompetition,
               height: 48,
               elevation: 0,
               isOutLined: true,
@@ -234,7 +234,7 @@ class MyCommunityDetailScreen extends StatelessWidget {
               top: 0,
               buttonBorderRadius: 30,
               child: CustomText(
-                title: "Create Competition",
+                title: ConstString.createCompetition,
                 textColor: ConstColor.primaryColor,
                 textSize: 15.sp,
                 fontWeight: FontWeight.w600,

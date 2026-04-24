@@ -90,9 +90,9 @@ class MyCommunityDetailController extends GetxController {
   // ---- Actions ----
   void onViewGroup(GroupItem item) => Get.toNamed(AppRoutes.myGroupDetailScreen);
 
-  void onJoinCommunity() => Get.toNamed(AppRoutes.joinGroupScreen);
+  void toCreateGroup() => Get.toNamed(AppRoutes.createGroupScreen);
 
-  void onJoinGroup() => Get.toNamed(AppRoutes.joinGroupScreen);
+  void toCreateCompetition() => Get.toNamed("Add create competition screen");
 
 
 

@@ -197,7 +197,7 @@ class MyGroupDetailScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
         child: CustomElevatedButton(
-          onPressed: c.onJoinGroup,
+          onPressed: (){},
           height: 50,
           top: 0,
           buttonBorderRadius: 30,
