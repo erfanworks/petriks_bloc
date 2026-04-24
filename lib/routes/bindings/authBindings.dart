@@ -14,6 +14,7 @@ import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/Controller/phone
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Controller/phone_number_verify_otp_controller.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/Controller/create_profile_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityScreen/Controller/community_controller.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCompetitionScreen/Controller/create_competition_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityScreen/Controller/my_community_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/Controller/for_you_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/Controller/home_controller.dart';
@@ -48,6 +49,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => MyCommunityDetailController());
     Get.lazyPut(() => CreateCommunityController());
     Get.lazyPut(() => CreateGroupController());
+    Get.lazyPut(() => CreateCompetitionController());
 
 
   }

@@ -208,6 +208,26 @@ class ConstString {
   static const coverPhotoHint         = 'Recommended: 1600 × 900px. High-quality \nvisuals attract more members.';
   static const setTheInterest         = 'Set the Interest';
   static const setInterestSubtitle    = 'How would you describe the atmosphere of your community? This helps like-minded people find you.';
+  static const createCompetitions = 'Create Competitions';
+  static const chooseGroups = 'Choose groups';
+  static const selectTwoGroups = 'Select two groups from your community';
+  static const selectActivity = 'Select Activity';
+  static const selectActivitySubtitle = 'Select the activity for this competition.';
+  static const setMatchDetails = 'Set match details';
+  static const competitionTitle = 'Competition Title';
+  static const matchDate = 'Match Date';
+  static const selectTime = 'Select Time';
+  static const notes = 'Notes';
+  static const finalReview = 'Final Review';
+  static const finalReviewSubtitle = 'Check all the details of your competition before going live. Everything looks ready for the pitch!';
+  static const publishCompetition = 'Publish Competition';
+  static const continueText = 'Continue';
+  static const youReAllSet = "You're all set!";
+  static const competitionScheduled = 'Your competition has been successfully scheduled.';
+  static const viewCompetition = 'View Competition';
+  static const backToCommunity = 'Back to community';
+  static const youReAllIn = "You're all in! 🎉";
+  static const youReCompetitionHasBeen = "Your competition has been successfully scheduled.";
 
 
 }

@@ -46,6 +46,10 @@ class AppRoutes {
   static const myGroupDetailScreen = '/myGroupDetailScreen';
   static const createCommunityScreen = '/createCommunityScreen';
   static const createGroupScreen = '/createGroupScreen';
+  static const chooseGroupsScreen = '/chooseGroupsScreen';
+  static const setMatchDetailsScreen = '/setMatchDetailsScreen';
+  static const selectActivityScreen = '/selectActivityScreen';
+  static const finalReviewScreen = '/finalReviewScreen';
 
 
 }

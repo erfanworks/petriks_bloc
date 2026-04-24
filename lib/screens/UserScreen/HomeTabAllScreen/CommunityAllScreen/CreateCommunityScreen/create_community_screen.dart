@@ -28,10 +28,14 @@ class CreateCommunityScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
               child: Obx(() {
                 switch (c.currentStep.value) {
-                  case 0: return _Step1Category(c: c);
-                  case 1: return _Step2Details(c: c);
-                  case 2: return _Step3Interests(c: c);
-                  default: return const SizedBox.shrink();
+                  case 0:
+                    return _Step1Category(c: c);
+                  case 1:
+                    return _Step2Details(c: c);
+                  case 2:
+                    return _Step3Interests(c: c);
+                  default:
+                    return const SizedBox.shrink();
                 }
               }),
             ),
@@ -39,19 +43,24 @@ class CreateCommunityScreen extends StatelessWidget {
 
           Padding(
             padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
-            child: Obx(() => CustomElevatedButton(
-              top: 0,
-              onPressed: c.nextStep,
-              gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-              buttonBorderRadius: 30,
-              child: CustomText(
-                title: c.buttonLabel,
-                textSize: 16.sp,
-                fontWeight: FontWeight.w500,
-                textColor: Colors.white,
-                maxLine: 1,
+            child: Obx(
+              () => CustomElevatedButton(
+                top: 0,
+                onPressed: c.nextStep,
+                gradient: [
+                  ConstColor.primaryDeepColor,
+                  ConstColor.primaryColor,
+                ],
+                buttonBorderRadius: 30,
+                child: CustomText(
+                  title: c.buttonLabel,
+                  textSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  textColor: Colors.white,
+                  maxLine: 1,
+                ),
               ),
-            )),
+            ),
           ),
         ],
       ),
@@ -62,6 +71,7 @@ class CreateCommunityScreen extends StatelessWidget {
 // Step 1
 class _Step1Category extends StatelessWidget {
   const _Step1Category({required this.c});
+
   final CreateCommunityController c;
 
   @override
@@ -74,92 +84,96 @@ class _Step1Category extends StatelessWidget {
           subtitle: ConstString.chooseCategorySubtitle,
         ),
         SizedBox(height: 16.h),
-        Obx(() => Column(
-          children: c.categories.map((cat) {
-            final selected = c.selectedCategory.value == cat['label'];
-            return GestureDetector(
-              onTap: () => c.selectCategory(cat['label'] as String),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 180),
-                margin: EdgeInsets.only(bottom: 12.h),
-                padding: EdgeInsets.all(16.r),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16.r),
-                  border: Border.all(
-                    color: selected
-                        ? ConstColor.primaryColor
-                        : Colors.transparent,
-                    width: 1.5,
+        Obx(
+          () => Column(
+            children: c.categories.map((cat) {
+              final selected = c.selectedCategory.value == cat['label'];
+              return GestureDetector(
+                onTap: () => c.selectCategory(cat['label'] as String),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 180),
+                  margin: EdgeInsets.only(bottom: 12.h),
+                  padding: EdgeInsets.all(16.r),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.r),
+                    border: Border.all(
+                      color: selected
+                          ? ConstColor.primaryColor
+                          : Colors.transparent,
+                      width: 1.5,
+                    ),
                   ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Icon + GUIDED tag row
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 56.r,
-                          height: 56.r,
-                          decoration: BoxDecoration(
-                            color: cat['bgColor'] as Color,
-                            borderRadius: BorderRadius.circular(12.r),
-                          ),
-                          child: Center(
-                            child: SvgPicture.asset(
-                              cat['icon'] as String,
-                              width: 20.r,
-                              height: 20.r,
-                              colorFilter: ColorFilter.mode(
-                                cat['iconColor'] as Color,
-                                BlendMode.srcIn,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Icon + GUIDED tag row
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: 56.r,
+                            height: 56.r,
+                            decoration: BoxDecoration(
+                              color: cat['bgColor'] as Color,
+                              borderRadius: BorderRadius.circular(12.r),
+                            ),
+                            child: Center(
+                              child: SvgPicture.asset(
+                                cat['icon'] as String,
+                                width: 20.r,
+                                height: 20.r,
+                                colorFilter: ColorFilter.mode(
+                                  cat['iconColor'] as Color,
+                                  BlendMode.srcIn,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const Spacer(),
-                        if ((cat['tag'] as String).isNotEmpty)
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.w, vertical: 4.h),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFE5F4FF),
-                              borderRadius: BorderRadius.circular(19.r),
+                          const Spacer(),
+                          if ((cat['tag'] as String).isNotEmpty)
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10.w,
+                                vertical: 4.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFE5F4FF),
+                                borderRadius: BorderRadius.circular(19.r),
+                              ),
+                              child: CustomText(
+                                title: cat['tag'] as String,
+                                textSize: 10.sp,
+                                fontWeight: FontWeight.w700,
+                                textColor: ConstColor.blue,
+                                maxLine: 1,
+                              ),
                             ),
-                            child: CustomText(
-                              title: cat['tag'] as String,
-                              textSize: 10.sp,
-                              fontWeight: FontWeight.w700,
-                              textColor: ConstColor.blue,
-                              maxLine: 1,
-                            ),
-                          ),
-                      ],
-                    ),
-                    SizedBox(height: 10.h),
-                    CustomText(
-                      title: cat['label'] as String,
-                      textSize: 18.sp,
-                      fontWeight: FontWeight.w700,
-                      textColor: ConstColor.black,
-                      maxLine: 1,
-                    ),
-                    SizedBox(height: 4.h),
-                    CustomText(
-                      title: cat['desc'] as String,
-                      textSize: 14.sp,
-                      textColor: ConstColor.iconColor,
-                      fontWeight: FontWeight.w500,
-                      maxLine: 3,
-                    ),
-                  ],
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
+                      CustomText(
+                        title: cat['label'] as String,
+                        textSize: 18.sp,
+                        fontWeight: FontWeight.w700,
+                        textColor: ConstColor.black,
+                        maxLine: 1,
+                      ),
+                      SizedBox(height: 4.h),
+                      CustomText(
+                        title: cat['desc'] as String,
+                        textSize: 14.sp,
+                        textColor: ConstColor.iconColor,
+                        fontWeight: FontWeight.w500,
+                        maxLine: 3,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }).toList(),
-        )),
+              );
+            }).toList(),
+          ),
+        ),
       ],
     );
   }
@@ -168,6 +182,7 @@ class _Step1Category extends StatelessWidget {
 // Step 2
 class _Step2Details extends StatelessWidget {
   const _Step2Details({required this.c});
+
   final CreateCommunityController c;
 
   @override
@@ -193,7 +208,9 @@ class _Step2Details extends StatelessWidget {
               width: 18.r,
               height: 18.r,
               colorFilter: const ColorFilter.mode(
-                  ConstColor.primaryColor, BlendMode.srcIn),
+                ConstColor.primaryColor,
+                BlendMode.srcIn,
+              ),
             ),
           ),
           // suffixIcon: Padding(
@@ -217,33 +234,35 @@ class _Step2Details extends StatelessWidget {
         SizedBox(height: 4.h),
         // ── Short Description ──
         Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-        decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(color: ConstColor.borderColor,width: 1)
+          ),
+          child: TextField(
+            maxLines: 8,
+            style: TextStyle(
+              fontSize: 10.sp,
+              color: ConstColor.silverGray20,
+              fontWeight: FontWeight.w400,
+            ),
+            decoration: InputDecoration(
+              hintText:
+                  "e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.",
+              hintMaxLines: 3,
+              hintStyle: TextStyle(
+                color: ConstColor.textColor.withAlpha(150),
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w400,
+              ),
+              border: InputBorder.none,
+              isDense: true,
+              contentPadding: EdgeInsets.symmetric(vertical: 8.h),
+            ),
+          ),
         ),
-        child: TextField(
-        maxLines: 8,
-        style: TextStyle(
-        fontSize: 10.sp,
-        color: ConstColor.silverGray20,
-        fontWeight: FontWeight.w400,
-        ),
-        decoration: InputDecoration(
-        hintText: "e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.",
-        hintMaxLines: 3,
-    hintStyle: TextStyle(
-    color: ConstColor.textColor.withAlpha(150),
-    fontSize: 14.sp,
-    fontWeight: FontWeight.w400,
-    ),
-    border: InputBorder.none,
-    isDense: true,
-    contentPadding: EdgeInsets.symmetric(vertical: 8.h),
-    ),
-    ),
-    ),
 
         SizedBox(height: 16.h),
 
@@ -299,7 +318,9 @@ class _Step2Details extends StatelessWidget {
                         width: 20.r,
                         height: 20.r,
                         colorFilter: const ColorFilter.mode(
-                            ConstColor.primaryColor, BlendMode.srcIn),
+                          ConstColor.primaryColor,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),
@@ -324,6 +345,7 @@ class _Step2Details extends StatelessWidget {
 // Step 3
 class _Step3Interests extends StatelessWidget {
   const _Step3Interests({required this.c});
+
   final CreateCommunityController c;
 
   @override
@@ -336,70 +358,72 @@ class _Step3Interests extends StatelessWidget {
           subtitle: ConstString.setInterestSubtitle,
         ),
         SizedBox(height: 16.h),
-        Obx(() => GridView.count(
-          crossAxisCount: 2,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisSpacing: 12.w,
-          mainAxisSpacing: 12.h,
-          childAspectRatio: 1.1,
-          children: c.interests.map((item) {
-            final selected = c.selectedInterest.value == item['label'];
-            return GestureDetector(
-              onTap: () => c.selectInterest(item['label']!),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 180),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16.r),
-                  border: Border.all(
-                    color: selected
-                        ? ConstColor.primaryColor
-                        : Colors.transparent,
-                    width: 1.5,
+        Obx(
+          () => GridView.count(
+            crossAxisCount: 2,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisSpacing: 12.w,
+            mainAxisSpacing: 12.h,
+            childAspectRatio: 1.1,
+            children: c.interests.map((item) {
+              final selected = c.selectedInterest.value == item['label'];
+              return GestureDetector(
+                onTap: () => c.selectInterest(item['label']!),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 180),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.r),
+                    border: Border.all(
+                      color: selected
+                          ? ConstColor.primaryColor
+                          : Colors.transparent,
+                      width: 1.5,
+                    ),
                   ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 60.r,
-                      height: 60.r,
-                      decoration: BoxDecoration(
-                        color: selected
-                            ? ConstColor.primaryColor.withAlpha(20)
-                            : ConstColor.backgroundColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: SvgPicture.asset(
-                          item['icon']!,
-                          width: 24.r,
-                          height: 24.r,
-                          colorFilter: ColorFilter.mode(
-                            selected
-                                ? ConstColor.primaryColor
-                                : ConstColor.iconColor,
-                            BlendMode.srcIn,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 60.r,
+                        height: 60.r,
+                        decoration: BoxDecoration(
+                          color: selected
+                              ? ConstColor.primaryColor.withAlpha(20)
+                              : ConstColor.backgroundColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            item['icon']!,
+                            width: 24.r,
+                            height: 24.r,
+                            colorFilter: ColorFilter.mode(
+                              selected
+                                  ? ConstColor.primaryColor
+                                  : ConstColor.iconColor,
+                              BlendMode.srcIn,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 10.h),
-                    CustomText(
-                      title: item['label']!,
-                      textSize: 15.sp,
-                      fontWeight: FontWeight.w600,
-                      textColor: ConstColor.black,
-                      textAlign: TextAlign.center,
-                      maxLine: 1,
-                    ),
-                  ],
+                      SizedBox(height: 10.h),
+                      CustomText(
+                        title: item['label']!,
+                        textSize: 15.sp,
+                        fontWeight: FontWeight.w600,
+                        textColor: ConstColor.black,
+                        textAlign: TextAlign.center,
+                        maxLine: 1,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          }).toList(),
-        )),
+              );
+            }).toList(),
+          ),
+        ),
       ],
     );
   }
@@ -408,6 +432,7 @@ class _Step3Interests extends StatelessWidget {
 // ── Reusable step header ──
 class _StepHeader extends StatelessWidget {
   const _StepHeader({required this.title, required this.subtitle});
+
   final String title, subtitle;
 
   @override

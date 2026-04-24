@@ -12,7 +12,7 @@ class GroupCard extends StatelessWidget {
   final GroupItem item;
   final VoidCallback onTap;
 
-  const GroupCard({required this.item, required this.onTap});
+  const GroupCard({super.key, required this.item, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

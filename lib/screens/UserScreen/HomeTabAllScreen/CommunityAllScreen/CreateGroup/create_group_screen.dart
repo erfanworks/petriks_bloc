@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
@@ -169,7 +170,7 @@ class CreateGroupScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 24.h),
         child: CustomElevatedButton(
-          onPressed: () {},
+          onPressed: () {Get.back();},
           height: 48,
           top: 0,
           buttonBorderRadius: 30,

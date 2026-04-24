@@ -92,7 +92,7 @@ class MyCommunityDetailController extends GetxController {
 
   void toCreateGroup() => Get.toNamed(AppRoutes.createGroupScreen);
 
-  void toCreateCompetition() => Get.toNamed("Add create competition screen");
+  void toCreateCompetition() => Get.toNamed(AppRoutes.chooseGroupsScreen);
 
 
 
