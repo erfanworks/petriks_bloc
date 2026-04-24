@@ -56,7 +56,9 @@ class _InviteFriendsButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: GestureDetector(
-        onTap: (){},
+        onTap: (){
+          Get.toNamed(AppRoutes.createCommunityScreen);
+        },
         child: DottedBorder(
           options: RoundedRectDottedBorderOptions(
             color: ConstColor.primaryDeepColor,
@@ -82,7 +84,7 @@ class _InviteFriendsButton extends StatelessWidget {
                 ),
                 SizedBox(width: 8.w),
                 CustomText(
-                  title: ConstString.inviteFriends,
+                  title: ConstString.createCommunity,
                   textColor: ConstColor.primaryColor,
                   textSize: 16.sp,
                   fontWeight: FontWeight.w500,

@@ -217,14 +217,14 @@ class MyCommunityDetailScreen extends StatelessWidget {
               buttonBorderRadius: 30,
               gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
               child: CustomText(
-                title: "Create Groups",
+                title: ConstString.createGroup,
                 textColor: Colors.white,
                 textSize: 15.sp,
                 fontWeight: FontWeight.w600,
                 maxLine: 1,
               ),
             ),
-            SizedBox(height: 14.h),
+            SizedBox(height: 10.h),
             CustomElevatedButton(
               onPressed: controller.onJoinCommunity,
               height: 48,

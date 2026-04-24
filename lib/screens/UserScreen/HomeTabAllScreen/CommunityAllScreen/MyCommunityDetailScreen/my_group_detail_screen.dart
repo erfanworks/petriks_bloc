@@ -203,7 +203,7 @@ class MyGroupDetailScreen extends StatelessWidget {
           buttonBorderRadius: 30,
           gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
           child: CustomText(
-            title: ConstString.joinGroup,
+            title: ConstString.inviteFriends,
             textColor: Colors.white,
             textSize: 16.sp,
             fontWeight: FontWeight.w500,

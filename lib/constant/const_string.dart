@@ -189,6 +189,23 @@ class ConstString {
   static const goToCommunityChat = 'Go to Community Chat';
   static const backToDiscovery = 'Back to Discovery';
   static const groupDetails = "Group Details";
+  static const createGroup        = 'Create Group';
+  static const groupInformation   = 'Group Information';
+  static const groupInfoSubtitle  = 'Give your group a name and description';
+  static const groupName          = 'Group Name';
+  static const create             = 'Create';
+  static const createCommunity        = 'Create Community';
+  static const whatAreYouCreating     = 'What are you creating?';
+  static const chooseCategorySubtitle = 'Choose the category that best fits your vision. You can refine the details later.';
+  static const describeYourCommunity  = 'Describe your community';
+  static const describeCommunitySubtitle = 'Give your tribe an identity that stands out. You can always change this later.';
+  static const communityName          = 'Community Name';
+  static const shortDescription       = 'Short Description';
+  static const shortDescriptionHint   = 'e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.';
+  static const uploadCoverPhoto       = 'Upload Cover Photo';
+  static const coverPhotoHint         = 'Recommended: 1600 × 900px. High-quality \nvisuals attract more members.';
+  static const setTheInterest         = 'Set the Interest';
+  static const setInterestSubtitle    = 'How would you describe the atmosphere of your community? This helps like-minded people find you.';
 
 
 }
