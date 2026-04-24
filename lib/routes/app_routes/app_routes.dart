@@ -50,6 +50,9 @@ class AppRoutes {
   static const setMatchDetailsScreen = '/setMatchDetailsScreen';
   static const selectActivityScreen = '/selectActivityScreen';
   static const finalReviewScreen = '/finalReviewScreen';
+  static const viewCompetitionScreen = '/viewCompetitionScreen';
+  static const addMatchResultScreen = '/addMatchResultScreen';
+  static const finalScoreScreen = '/finalScoreScreen';
 
 
 }

@@ -114,11 +114,11 @@ class CreateCompetitionController extends GetxController {
       CompetitionSuccessDialog(
         communityName: 'Sunday Championship',
         goToViewCompetition: () {
-          Get.back();
-          // Get.toNamed('/chatScreen');
+          // Get.back();
+          Get.toNamed(AppRoutes.viewCompetitionScreen);
         },
         onBackToCommunity: () {
-          Get.back();
+          Get.toNamed(AppRoutes.communityDetailScreen);
         },
       ),
       barrierDismissible: true,

@@ -21,6 +21,9 @@ import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/GroupDetail
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/GroupDetailScreen/join_group_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/my_community_detail_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/my_group_detail_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/add_match_result_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/final_score_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/view_competition_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/feed_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/for_you_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/attendance_tips_screen.dart';
@@ -85,6 +88,9 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.setMatchDetailsScreen,page: () => SetMatchDetailsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.selectActivityScreen,page: () => SelectActivityScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.finalReviewScreen,page: () => FinalReviewScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.viewCompetitionScreen,page: () => ViewCompetitionScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.addMatchResultScreen,page: () => AddMatchResultScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.finalScoreScreen,page: () => FinalScoreScreen(),binding: AppBindings()),
 
 
 

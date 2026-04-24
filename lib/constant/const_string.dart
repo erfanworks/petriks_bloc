@@ -228,6 +228,17 @@ class ConstString {
   static const backToCommunity = 'Back to community';
   static const youReAllIn = "You're all in! 🎉";
   static const youReCompetitionHasBeen = "Your competition has been successfully scheduled.";
+  static const eventLogistics = 'Event Logistics';
+  static const teamsRoster = 'Teams Roster';
+  static const registerNow = 'Register Now';
+  static const markAsCompleted = 'Mark as completed';
+  static const editCompetition = 'Edit competition';
+  static const addMatchResult = 'Add Match Result';
+  static const selectWinner = 'Select Winner';
+  static const confirmResult = 'Confirm Result';
+  static const finalScore = 'Final Score';
+  static const editResult = 'Edit Result';
+  static const backToHome = 'Back to home';
 
 
 }

@@ -5,7 +5,7 @@ import '../../../UserScreen/HomeTabAllScreen/HomeScreen/home_screen.dart';
 class NavbarController extends GetxController {
   final RxInt selectedIndex = 0.obs;
 
-  final List<Widget> pages = [
+  final List<Widget> pages =[
     const HomeScreen(),
     const _PlaceholderScreen(label: 'My Plan'),
     const _PlaceholderScreen(label: 'Add'),
@@ -19,6 +19,14 @@ class NavbarController extends GetxController {
       return;
     }
     selectedIndex.value = index;
+  }
+
+  @override
+  void onInit() {
+    if (Get.arguments != null && Get.arguments is int) {
+      selectedIndex.value = Get.arguments as int;
+    }
+    super.onInit();
   }
 }
 
