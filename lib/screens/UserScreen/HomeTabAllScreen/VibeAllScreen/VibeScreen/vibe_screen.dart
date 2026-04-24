@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
+import '../OneToOneMeetupScreen/one_to_one_meetup_screen.dart';
 import 'Controller/vibe_controller.dart';
 import 'Widget/viibe_event_card.dart';
 
@@ -191,16 +192,25 @@ class VibeScreen extends StatelessWidget {
 
           SizedBox(height: 20.h),
 
-          // ---- Event Cards ----
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            itemCount: controller.events.length,
-            separatorBuilder: (_, _) => SizedBox(height: 16.h),
-            itemBuilder: (_, index) =>
-                VibeEventCard(item: controller.events[index]),
-          ),
+          Obx(() => IndexedStack(
+            index: controller.selectedVibeTab.value,
+            children: [
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                itemCount: controller.events.length,
+                separatorBuilder: (_, _) => SizedBox(height: 16.h),
+                itemBuilder: (_, index) =>
+                    VibeEventCard(item: controller.events[index]),
+              ),
+
+              // index 1 — 1:1 screen
+              const OneToOneMeetupScreen(),
+            ],
+          )),
+
+          SizedBox(height: 24.h),
 
           SizedBox(height: 24.h),
         ],

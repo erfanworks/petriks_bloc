@@ -33,6 +33,7 @@ class AppRoutes {
   static const supportHelpScreen = '/supportHelpScreen';
   // vibe screen
   static const vibeScreen = '/vibeScreen';
+  static const oneToOneMeetupScreen = '/oneToOneMeetupScreen';
 
   // Feed screen
   static const feedScreen = '/feedScreen';

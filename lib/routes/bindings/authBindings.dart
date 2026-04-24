@@ -19,6 +19,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunity
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/Controller/view_competition_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/Controller/for_you_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/Controller/home_controller.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/Controller/one_to_one_meetup_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/Controller/vibe_controller.dart';
 
 
@@ -52,6 +53,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => CreateGroupController());
     Get.lazyPut(() => CreateCompetitionController());
     Get.lazyPut(() => ViewCompetitionController());
+    Get.lazyPut(() => OneToOneMeetupController());
 
 
   }
