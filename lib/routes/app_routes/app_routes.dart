@@ -75,6 +75,7 @@ class AppRoutes {
   ////////////// Profile Screen Part ///////////////////////
   static const profileScreen = '/profileScreen';
   static const settingsScreen = '/settingsScreen';
+  static const subscriptionScreen = '/subscriptionScreen';
 
 
 

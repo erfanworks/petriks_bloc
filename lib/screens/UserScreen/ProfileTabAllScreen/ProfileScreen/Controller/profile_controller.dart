@@ -81,7 +81,7 @@ class ProfileController extends GetxController {
   ].obs;
 
   void onSettingsTap()                  => Get.toNamed(AppRoutes.settingsScreen);
-  void onManagePlan()                   => Get.toNamed('/subscription');
+  void onManagePlan()                   => Get.toNamed(AppRoutes.subscriptionScreen);
   void onIntroVideoTap()                => Get.toNamed('/intro-video');
   void onFollowersTap()                 => Get.toNamed('/followers');
   void onFollowingTap()                 => Get.toNamed('/following');

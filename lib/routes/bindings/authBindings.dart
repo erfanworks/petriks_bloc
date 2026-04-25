@@ -26,6 +26,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDe
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/Controller/one_to_one_meetup_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/Controller/vibe_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsScreen/Controller/settings_controller.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SubscriptionScreen/Controller/subscription_controller.dart';
 
 
 class AppBindings extends Bindings {
@@ -64,6 +65,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => ChatController());
     Get.lazyPut(() => ProfileController());
     Get.lazyPut(() => SettingsController());
+    Get.lazyPut(() => SubscriptionController());
 
 
   }
