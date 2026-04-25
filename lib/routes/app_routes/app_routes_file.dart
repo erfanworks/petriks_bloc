@@ -39,6 +39,8 @@ import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDe
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/one_to_one_meetup_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/vibe_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/created_plan_details_screen.dart';
+import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/edit_plan_screen.dart';
+import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/joined_plan_details_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
 
@@ -105,6 +107,8 @@ List<GetPage> appRouteFile = <GetPage>[
 
   ////////////My Plan Screen Part////////////
   GetPage(name: AppRoutes.createdPlanDetailsScreen,page: () => CreatedPlanDetailsScreen(),binding: AppBindings()),
+  // GetPage(name: AppRoutes.joinedPlanDetailsScreen,page: () => JoinedPlanDetailsScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.editPlanScreen,page: () => EditPlanScreen(),binding: AppBindings()),
 
 
 ];

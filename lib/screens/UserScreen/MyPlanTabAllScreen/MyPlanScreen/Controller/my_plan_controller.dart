@@ -99,9 +99,9 @@ class MyPlanController extends GetxController {
       Get.toNamed(AppRoutes.createdPlanDetailsScreen, arguments: plan);
 
   void goToJoinedDetails(PlanModel plan) =>
-      Get.toNamed('/joined-plan-details', arguments: plan);
+      Get.toNamed(AppRoutes.planDetailsScreen, arguments: plan);
 
-  void goToEditPlan() => Get.toNamed('/edit-plan');
+  void goToEditPlan() => Get.toNamed(AppRoutes.editPlanScreen);
 
   @override
   void onClose() {
