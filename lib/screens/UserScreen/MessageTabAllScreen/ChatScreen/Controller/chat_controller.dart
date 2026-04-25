@@ -110,7 +110,7 @@ class ChatController extends GetxController {
     if (selectedTab.value == 0) {
       Get.toNamed(AppRoutes.directChatScreen, arguments: item);
     } else {
-      Get.toNamed('/group-chat', arguments: item);
+      Get.toNamed(AppRoutes.groupPlanChatScreen, arguments: item);
     }
   }
 }

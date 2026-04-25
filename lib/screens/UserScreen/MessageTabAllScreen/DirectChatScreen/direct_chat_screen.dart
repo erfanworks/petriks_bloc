@@ -31,7 +31,7 @@ class DirectChatScreen extends StatelessWidget {
           ),
         ),
         title: "John Lura",
-        titleColor: const Color(0xFF635BFE),
+        titleColor: ConstColor.primaryColor,
         subTitle: ConstString.activeNow,
         actions: [
           Icon(Icons.more_vert, size: 24.sp, color: const Color(0xFF635BFE)),
