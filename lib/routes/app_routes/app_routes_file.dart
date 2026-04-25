@@ -45,6 +45,8 @@ import '../../screens/UserScreen/MessageTabAllScreen/GroupPlanChatScreen/group_p
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/created_plan_details_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/edit_plan_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/joined_plan_details_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/ProfileScreen/profile_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsScreen/settings_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
 
@@ -123,5 +125,10 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.chatScreen,page: () => ChatScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.directChatScreen,page: () => DirectChatScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.groupPlanChatScreen,page: () => GroupPlanChatScreen(),binding: AppBindings()),
+
+
+  ////////////Profile Screen Part////////////
+  GetPage(name: AppRoutes.profileScreen,page: () => ProfileScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.settingsScreen,page: () => SettingsScreen(),binding: AppBindings()),
 
 ];

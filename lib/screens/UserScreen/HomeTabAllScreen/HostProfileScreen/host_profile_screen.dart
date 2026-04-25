@@ -60,12 +60,10 @@ class HostProfileScreen extends StatelessWidget {
 
             SizedBox(height: 10.h),
 
-            // ── Section 2: Intro Video ──
             _SectionCard(child: _IntroVideo()),
 
             SizedBox(height: 10.h),
 
-            // ── Section 3: About ──
             _SectionCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +87,6 @@ class HostProfileScreen extends StatelessWidget {
 
             SizedBox(height: 10.h),
 
-            // ── Section 4: Top Interests ──
             _SectionCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +109,6 @@ class HostProfileScreen extends StatelessWidget {
 
             SizedBox(height: 10.h),
 
-            // ── Section 5: Reliability Badges ──
             _SectionCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

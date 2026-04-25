@@ -12,6 +12,7 @@ import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAl
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/HostProfileScreen/Controller/host_profile_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/GroupDetailScreen/Controller/group_details_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/MessageTabAllScreen/ChatScreen/Controller/chat_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/ProfileTabAllScreen/ProfileScreen/Controller/profile_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/Controller/phone_login_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Controller/phone_number_verify_otp_controller.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/Controller/create_profile_controller.dart';
@@ -24,6 +25,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/Controller/home_con
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Controller/one_to_one_meetup_details_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/Controller/one_to_one_meetup_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/Controller/vibe_controller.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsScreen/Controller/settings_controller.dart';
 
 
 class AppBindings extends Bindings {
@@ -41,7 +43,7 @@ class AppBindings extends Bindings {
     //=========NavBar Controller Part=========//
     Get.lazyPut(() => NavbarController());
 
-    //=========Home Controller Part=========//
+    //=========User Screen All Controller Part=========//
     Get.lazyPut(() => HomeController());
     Get.lazyPut(() => PlanDetailsController());
     Get.lazyPut(() => HostProfileController());
@@ -60,6 +62,8 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => MeetupGroupDetailsController());
     Get.lazyPut(() => OneToOneMeetupDetailsController());
     Get.lazyPut(() => ChatController());
+    Get.lazyPut(() => ProfileController());
+    Get.lazyPut(() => SettingsController());
 
 
   }

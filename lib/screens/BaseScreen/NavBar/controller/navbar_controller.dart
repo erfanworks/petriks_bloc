@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/my_plan_screen.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/ProfileTabAllScreen/ProfileScreen/profile_screen.dart';
 import '../../../UserScreen/CreatePlanTabAllScreen/CreatePlanScreen/create_plan_screen.dart';
 import '../../../UserScreen/HomeTabAllScreen/HomeScreen/home_screen.dart';
 import '../../../UserScreen/MessageTabAllScreen/ChatScreen/chat_screen.dart';
@@ -14,7 +15,7 @@ class NavbarController extends GetxController {
     const MyPlanScreen(),
     const CreatePlanScreen(),
     const ChatScreen(),
-    const _PlaceholderScreen(label: 'Profile'),
+    const ProfileScreen(),
   ];
 
   void onTabTap(int index) {

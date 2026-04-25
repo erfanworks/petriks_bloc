@@ -72,5 +72,10 @@ class AppRoutes {
   static const groupPlanChatScreen = '/groupPlanChatScreen';
 
 
+  ////////////// Profile Screen Part ///////////////////////
+  static const profileScreen = '/profileScreen';
+  static const settingsScreen = '/settingsScreen';
+
+
 
 }
