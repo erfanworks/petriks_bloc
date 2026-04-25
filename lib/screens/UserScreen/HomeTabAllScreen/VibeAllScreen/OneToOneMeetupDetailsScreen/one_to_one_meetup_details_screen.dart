@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Controller/one_to_one_meetup_details_controller.dart' hide PlanDetailsController;
 
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../constant/const_string.dart';
@@ -18,7 +19,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<PlanDetailsController>();
+    final controller = Get.find<OneToOneMeetupDetailsController>();
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
@@ -275,134 +276,6 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
     );
   }
 }
-
-// ---- Location Vote Card ----
-class _LocationVoteCard extends StatelessWidget {
-  final LocationVoteItem item;
-
-  const _LocationVoteCard({required this.item});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 18.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14.r),
-        border: item.isSelected
-            ? Border.all(color: ConstColor.primaryColor, width: 1.5.w)
-            : null,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(14.r),
-                  topRight: Radius.circular(14.r),
-                ),
-                child: AppImage(
-                  path: item.image,
-                  width: double.infinity,
-                  height: 110.h,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              if (item.isSelected)
-                Positioned(
-                  bottom: 8.h,
-                  left: 10.w,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-                    // decoration: BoxDecoration(
-                    //   color: ConstColor.primaryColor,
-                    //   borderRadius: BorderRadius.circular(20.r),
-                    // ),
-                    child: Row(
-                      children: [
-                        Icon(Icons.check_circle_rounded, color: Colors.white, size: 16.sp),
-                        SizedBox(width: 4.w),
-                        CustomText(
-                          title: 'Selected',
-                          textColor: Colors.white,
-                          textSize: 14.sp,
-                          fontWeight: FontWeight.w700,
-                          maxLine: 1,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.all(12.r),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(
-                      title: item.name,
-                      textColor: ConstColor.black,
-                      textSize: 14.sp,
-                      fontWeight: FontWeight.w700,
-                      maxLine: 1,
-                    ),
-                    CustomText(
-                      title: '${item.percent}%',
-                      textColor: ConstColor.primaryColor,
-                      textSize: 14.sp,
-                      fontWeight: FontWeight.w700,
-                      maxLine: 1,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 6.h),
-                Row(
-                  children: [
-                    _SmallAvatarStack(),
-                    SizedBox(width: 8.w),
-                    CustomText(
-                      title: '${item.votes} votes',
-                      textColor: ConstColor.grey,
-                      textSize: 11.sp,
-                      maxLine: 1,
-                    ),
-                    if (item.isSelected) ...[
-                      SizedBox(width: 8.w),
-                      _PillBadge(
-                        label: 'MOST VOTED',
-                        bgColor: ConstColor.primaryDeepColor.withAlpha(20),
-                        textColor: ConstColor.primaryColor,
-                      ),
-                    ],
-                  ],
-                ),
-                SizedBox(height: 8.h),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(9.r),
-                  child: LinearProgressIndicator(
-                    value: item.votes / item.totalVotes,
-                    minHeight: 5.h,
-                    backgroundColor: const Color(0xFFEDE9FF),
-                    valueColor: AlwaysStoppedAnimation<Color>(ConstColor.primaryColor),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-
-// ---- Chat Locked ----
 class _ChatLocked extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -543,7 +416,7 @@ class _FakeBlurRow extends StatelessWidget {
 
 // ---- Chat Unlocked ----
 class _ChatUnlocked extends StatelessWidget {
-  final PlanDetailsController controller;
+  final OneToOneMeetupDetailsController controller;
 
   const _ChatUnlocked({required this.controller});
 
@@ -735,7 +608,7 @@ class _SafetyCard extends StatelessWidget {
       padding: EdgeInsets.all(14.r),
       decoration: BoxDecoration(
           color: const Color(0xFFF0EDFF),
-          borderRadius: BorderRadius.circular(32.r),
+          borderRadius: BorderRadius.circular(16.r),
           border: Border.all(color: ConstColor.borderColor,width: 1.5)
       ),
       child: Column(

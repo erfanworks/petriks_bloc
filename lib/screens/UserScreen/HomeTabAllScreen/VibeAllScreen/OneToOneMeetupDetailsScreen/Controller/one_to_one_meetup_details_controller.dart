@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
-import '../../ForYouAllScreen/PlanDetailsScreen/Widget/join_confirmation_sheet.dart';
-
+import '../../../ForYouAllScreen/PlanDetailsScreen/Widget/join_confirmation_sheet.dart';
 // ---- Plan Detail Models ----
 class LocationVoteItem {
   final String image;
@@ -85,7 +84,12 @@ class OneToOneMeetupDetailsController extends GetxController {
     ),
   ].obs;
 
-
+  // ---- Post-meetup Review ----
+  final RxBool meetupHappened = true.obs;
+  final RxInt selectedVibe = 2.obs;
+  final List<String> vibes = ['Electric', 'Chill', 'Unreal', 'Awkward', 'Boring'];
+  final List<String> vibeEmojis = ['⚡', '😌', '🔥', '🤡', '😴'];
+  final reviewController = TextEditingController();
 
   // ---- Report ----
   final List<ReportReason> reportReasons = [
@@ -118,9 +122,10 @@ class OneToOneMeetupDetailsController extends GetxController {
     Get.back();
   }
 
-  void onConfirmAttendance() => Get.toNamed(AppRoutes.howDidItGoScreen);
+  void onConfirmAttendance() => Get.back();
 
   // Review
+  void onSelectVibe(int index) => selectedVibe.value = index;
   void submitReview() => Get.toNamed(AppRoutes.helpCenterScreen);
   void planAgain() => Get.back();
 
@@ -150,6 +155,7 @@ class OneToOneMeetupDetailsController extends GetxController {
 
   @override
   void onClose() {
+    reviewController.dispose();
     supportSubjectController.dispose();
     supportDescController.dispose();
     super.onClose();

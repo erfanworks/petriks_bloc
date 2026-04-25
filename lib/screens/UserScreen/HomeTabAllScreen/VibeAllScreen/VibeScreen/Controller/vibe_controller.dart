@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 // ---- Vibe Event Model ----
 class VibeEventItem {
@@ -81,5 +82,5 @@ class VibeController extends GetxController {
     ),
   ];
 
-  void onEventTap(VibeEventItem event) => Get.toNamed('/plan-details');
+  void onEventTap(VibeEventItem event) => Get.toNamed(AppRoutes.meetupGroupDetailsScreen);
 }
