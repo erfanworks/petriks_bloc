@@ -89,6 +89,6 @@ class ProfileController extends GetxController {
 
   void onInviteFriend(int index) {
     friends[index].isInvited.value = !friends[index].isInvited.value;
-    // TODO
+    Get.toNamed(AppRoutes.inviteFriendsScreen);
   }
 }
