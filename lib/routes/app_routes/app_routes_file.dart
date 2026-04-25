@@ -38,6 +38,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/GroupDetailScree
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/one_to_one_meetup_details_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/one_to_one_meetup_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/vibe_screen.dart';
+import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/created_plan_details_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
 
@@ -100,6 +101,10 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.finalScoreScreen,page: () => FinalScoreScreen(),binding: AppBindings()),
 
 
+
+
+  ////////////My Plan Screen Part////////////
+  GetPage(name: AppRoutes.createdPlanDetailsScreen,page: () => CreatedPlanDetailsScreen(),binding: AppBindings()),
 
 
 ];

@@ -35,10 +35,10 @@ class FeedController extends GetxController {
       timeAgo: '2h ago',
       postImage: 'assets/images/hank_out_party_img.jpg',
       locationTag: 'North Meadow, Central Park',
-      content: 'Great coffee and even better conversation at Dhanmondi today! ☕ Sometimes all you need is a change of scenery and good company to spark new ideas.',
+      content: 'Great coffee and even better conversation at Mohandis today! ☕ Sometimes all you need is a change of scenery and good company to spark new ideas.',
       likes: 12,
       comments: 4,
-      likedByText: 'Liked by Jhon and 12 others',
+      likedByText: 'Liked by John and 12 others',
     ),
     const FeedPost(
       userImage: 'assets/images/person1_img.jpg',
@@ -46,10 +46,10 @@ class FeedController extends GetxController {
       timeAgo: '2h ago',
       postImage: 'assets/images/hank_out_park_party_img.jpg',
       locationTag: 'North Meadow, Central Park',
-      content: 'Great coffee and even better conversation at Dhanmondi today! ☕ Sometimes all you need is a change of scenery and good company to spark new ideas.',
+      content: 'Great coffee and even better conversation at Mohandis today! ☕ Sometimes all you need is a change of scenery and good company to spark new ideas.',
       likes: 12,
       comments: 4,
-      likedByText: 'Liked by Jhon and 12 others',
+      likedByText: 'Liked by John and 12 others',
     ),
   ];
 

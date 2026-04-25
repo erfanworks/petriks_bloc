@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/my_plan_screen.dart';
 import '../../../UserScreen/HomeTabAllScreen/HomeScreen/home_screen.dart';
 
 class NavbarController extends GetxController {
@@ -7,7 +8,7 @@ class NavbarController extends GetxController {
 
   final List<Widget> pages =[
     const HomeScreen(),
-    const _PlaceholderScreen(label: 'My Plan'),
+    const MyPlanScreen(),
     const _PlaceholderScreen(label: 'Add'),
     const _PlaceholderScreen(label: 'Message'),
     const _PlaceholderScreen(label: 'Profile'),

@@ -58,4 +58,8 @@ class AppRoutes {
   static const finalScoreScreen = '/finalScoreScreen';
 
 
+  /////////////// My Plan Screen Part ///////////////////////
+  static const createdPlanDetailsScreen = '/createdPlanDetailsScreen';
+
+
 }

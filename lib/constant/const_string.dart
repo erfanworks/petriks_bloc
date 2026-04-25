@@ -90,7 +90,7 @@ class ConstString {
   static const popular = 'POPULAR';
   static const freeEntry = 'Free Entry';
   static const invite = 'INVITE';
-  static const joined = 'JOINED';
+  static const joined = 'Joined';
   static const newComerFriendly = 'New-Comer Friendly';
   static const nightOutFriendly = 'Night Out Party';
   static const sayAWarn = 'Say a warm Hello';
@@ -241,7 +241,37 @@ class ConstString {
   static const finalScore = 'Final Score';
   static const editResult = 'Edit Result';
   static const backToHome = 'Back to home';
-
+  static const created              = 'Created';
+  static const editPlan             = 'Edit Plan';
+  static const joinedParticipants   = 'Joined Participants';
+  static const pollResult           = 'Poll Result';
+  static const timePoll             = 'Time Poll';
+  static const placePoll            = 'Place Poll';
+  static const voteLockSettings     = 'Vote & Lock settings';
+  static const enableAutoLock       = 'Enable Auto-Lock';
+  static const setTime              = 'Set Time';
+  static const planGroupChat        = 'Plan Group Chat';
+  static const openChat             = 'Open Chat';
+  static const chooseTime           = 'Choose Time';
+  static const choosePlace          = 'Choose Place';
+  static const joinToUnlockChat     = 'Join to unlock chat';
+  static const joinToUnlockSubtitle = 'Interact with participants and get live updates';
+  static const captain              = 'Captain';
+  static const safetySubtitle       = 'Verified users only. Please respect community guidelines and stay within public areas of the park.';
+  static const createAgain          = 'Create again';
+  static const hereWhatPeopleShared = "Here's what people shared";
+  static const overallFeelings      = 'Overall Feelings';
+  static const whoJoined            = 'Who joined';
+  static const title                = 'Title';
+  static const activity             = 'Activity';
+  static const selectDate           = 'Select Date';
+  static const letPeopleVoteTime    = 'Let people vote on time';
+  static const voteTimeSubtitle     = 'Allow guests to suggest and vote on alternatives.';
+  static const pickAPlace           = 'Pick a place';
+  static const addLocation          = '+ Add location';
+  static const letPeopleVotePlace   = 'Let people vote on place';
+  static const votePlaceSubtitle    = 'Allow guests to suggest and vote on alternatives.';
+  static const saveChanges          = 'Save Changes';
 
 }
 

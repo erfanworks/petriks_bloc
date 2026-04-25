@@ -1,0 +1,111 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+
+// ── Plan model ──
+class PlanModel {
+  final String id, title, location, date, time, language, type, image, vibe;
+  final int joined, total;
+  final String? tag;       // 'COMPLETED', 'OPEN', null
+  final bool isFree;
+
+  const PlanModel({
+    required this.id,
+    required this.title,
+    required this.location,
+    required this.date,
+    required this.time,
+    required this.language,
+    required this.type,
+    required this.image,
+    required this.vibe,
+    required this.joined,
+    required this.total,
+    this.tag,
+    this.isFree = true,
+  });
+}
+
+class MyPlanController extends GetxController {
+  final selectedTab = 0.obs; // 0=Created, 1=Joined
+
+  // ── Auto-lock toggle (Edit Plan) ──
+  final autoLock      = true.obs;
+  final voteOnTime    = true.obs;
+  final voteOnPlace   = true.obs;
+
+  // ── Edit Plan fields ──
+  final titleController    = TextEditingController(text: 'Hang out at the park');
+  final selectedActivity   = 'Coffee'.obs;
+  final selectedDate       = 'Saturday, Nov 24'.obs;
+  final selectedTime1      = '07:00 PM'.obs;
+  final selectedTime2      = '08:00 PM'.obs;
+
+  final activities = ['Coffee', 'Sports', 'Art', 'Outdoors', 'Music'];
+
+  // ── Dummy created plans ──
+  final createdPlans = <PlanModel>[
+    const PlanModel(
+      id: '1', title: 'Hang out at the park',
+      location: 'Central Park West', date: 'Saturday, 24 June',
+      time: '6:30 PM Today', language: 'English',
+      type: 'Group', image: 'assets/images/night_party_img.jpg',
+      vibe: 'Social', joined: 3, total: 6,
+    ),
+    const PlanModel(
+      id: '2', title: 'Hang out at the park',
+      location: 'Central Park West', date: 'Saturday, 24 June',
+      time: '6:30 PM Today', language: 'English',
+      type: 'Group', image: 'assets/images/hank_out_park_party_img.jpg',
+      vibe: 'Social', joined: 3, total: 6,
+    ),
+    const PlanModel(
+      id: '3', title: 'Hang out at the park',
+      location: 'Central Park West', date: 'Saturday, 24 June',
+      time: '6:30 PM Today', language: 'English',
+      type: 'Group', image: 'assets/images/hank_out_party_img.jpg',
+      vibe: 'Social', joined: 3, total: 6,
+    ),
+  ];
+
+  // ── Dummy joined plans ──
+  final joinedPlans = <PlanModel>[
+    const PlanModel(
+      id: '4', title: 'Hang out at the park',
+      location: 'Central Park West', date: 'Saturday, 24 June',
+      time: '6:30 PM Today', language: 'English',
+      type: 'Group', image: 'assets/images/hank_out_party_img.jpg',
+      vibe: 'Social', joined: 3, total: 6,
+    ),
+    const PlanModel(
+      id: '5', title: 'Hang out at the park',
+      location: 'Central Park West, NYC', date: 'Saturday, 24 June',
+      time: '6:30 PM Today', language: 'English',
+      type: 'Group', image: 'assets/images/night_party_img.jpg',
+      vibe: 'Nature Walk', joined: 6, total: 6, tag: 'COMPLETED',
+    ),
+    const PlanModel(
+      id: '6', title: 'Hang out at the park',
+      location: 'Central Park West, NYC', date: 'Saturday, 24 June',
+      time: '6:30 PM Today', language: 'English',
+      type: 'Group', image: 'assets/images/night_party_img.jpg',
+      vibe: 'Nature Walk', joined: 3, total: 6, tag: 'OPEN',
+    ),
+  ];
+
+  void switchTab(int i) => selectedTab.value = i;
+
+  void goToCreatedDetails(PlanModel plan) =>
+      Get.toNamed(AppRoutes.createdPlanDetailsScreen, arguments: plan);
+
+  void goToJoinedDetails(PlanModel plan) =>
+      Get.toNamed('/joined-plan-details', arguments: plan);
+
+  void goToEditPlan() => Get.toNamed('/edit-plan');
+
+  @override
+  void onClose() {
+    titleController.dispose();
+    super.onClose();
+  }
+}
