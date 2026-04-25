@@ -68,6 +68,7 @@ class AppRoutes {
 
   ////////////// Messaging Screen Part ///////////////////////
   static const chatScreen = '/chatScreen';
+  static const directChatScreen = '/directChatScreen';
 
 
 

@@ -40,6 +40,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDe
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/one_to_one_meetup_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/vibe_screen.dart';
 import '../../screens/UserScreen/MessageTabAllScreen/ChatScreen/chat_screen.dart';
+import '../../screens/UserScreen/MessageTabAllScreen/DirectChatScreen/direct_chat_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/created_plan_details_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/edit_plan_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/joined_plan_details_screen.dart';
@@ -119,5 +120,6 @@ List<GetPage> appRouteFile = <GetPage>[
 
   ////////////Messaging Screen Part////////////
   GetPage(name: AppRoutes.chatScreen,page: () => ChatScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.directChatScreen,page: () => DirectChatScreen(),binding: AppBindings()),
 
 ];
