@@ -63,5 +63,12 @@ class AppRoutes {
   // static const joinedPlanDetailsScreen = '/joinedPlanDetailsScreen';
   static const editPlanScreen = '/editPlanScreen';
 
+  ////////////// Create Plan Screen Part ///////////////////////
+  static const createPlanScreen = '/createPlanScreen';
+
+  ////////////// Messaging Screen Part ///////////////////////
+  static const chatScreen = '/chatScreen';
+
+
 
 }

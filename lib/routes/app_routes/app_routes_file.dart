@@ -9,6 +9,7 @@ import '../../screens/BaseScreen/CreateProfileScreen/create_profile_screen.dart'
 import '../../screens/BaseScreen/NavBar/nav_bar.dart';
 import '../../screens/BaseScreen/OnboardingScreen/onboarding_screen.dart';
 import '../../screens/BaseScreen/SplashScreen/splash_screen.dart';
+import '../../screens/UserScreen/CreatePlanTabAllScreen/CreatePlanScreen/create_plan_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityDetailScreen/community_detail_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityScreen/community_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCommunityScreen/create_community_screen.dart';
@@ -38,6 +39,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/GroupDetailScree
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/one_to_one_meetup_details_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/one_to_one_meetup_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/vibe_screen.dart';
+import '../../screens/UserScreen/MessageTabAllScreen/ChatScreen/chat_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/created_plan_details_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/edit_plan_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/joined_plan_details_screen.dart';
@@ -110,5 +112,12 @@ List<GetPage> appRouteFile = <GetPage>[
   // GetPage(name: AppRoutes.joinedPlanDetailsScreen,page: () => JoinedPlanDetailsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.editPlanScreen,page: () => EditPlanScreen(),binding: AppBindings()),
 
+
+  ////////////My Plan Screen Part////////////
+  GetPage(name: AppRoutes.createPlanScreen,page: () => CreatePlanScreen(),binding: AppBindings()),
+
+
+  ////////////Messaging Screen Part////////////
+  GetPage(name: AppRoutes.chatScreen,page: () => ChatScreen(),binding: AppBindings()),
 
 ];

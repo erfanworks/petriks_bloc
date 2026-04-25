@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
-// ── Plan model ──
 class PlanModel {
   final String id, title, location, date, time, language, type, image, vibe;
   final int joined, total;
-  final String? tag;       // 'COMPLETED', 'OPEN', null
+  final String? tag;
   final bool isFree;
 
   const PlanModel({
@@ -27,14 +26,12 @@ class PlanModel {
 }
 
 class MyPlanController extends GetxController {
-  final selectedTab = 0.obs; // 0=Created, 1=Joined
+  final selectedTab = 0.obs;
 
-  // ── Auto-lock toggle (Edit Plan) ──
   final autoLock      = true.obs;
   final voteOnTime    = true.obs;
   final voteOnPlace   = true.obs;
 
-  // ── Edit Plan fields ──
   final titleController    = TextEditingController(text: 'Hang out at the park');
   final selectedActivity   = 'Coffee'.obs;
   final selectedDate       = 'Saturday, Nov 24'.obs;
@@ -43,7 +40,6 @@ class MyPlanController extends GetxController {
 
   final activities = ['Coffee', 'Sports', 'Art', 'Outdoors', 'Music'];
 
-  // ── Dummy created plans ──
   final createdPlans = <PlanModel>[
     const PlanModel(
       id: '1', title: 'Hang out at the park',
@@ -68,7 +64,6 @@ class MyPlanController extends GetxController {
     ),
   ];
 
-  // ── Dummy joined plans ──
   final joinedPlans = <PlanModel>[
     const PlanModel(
       id: '4', title: 'Hang out at the park',

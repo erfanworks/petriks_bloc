@@ -1,11 +1,11 @@
 class ConstString {
-
-
   /////////// Auth Part All String/////////
   static const letsGetStarted = 'Let’s get Started';
-  static const String onboardingHeadline    = 'Real friendships that improve your week';
-  static const String onboardingSubHeadline = 'Discover local plans and connect with people who share your vibe.';
-  static const String getStarted            = 'Get Started';
+  static const String onboardingHeadline =
+      'Real friendships that improve your week';
+  static const String onboardingSubHeadline =
+      'Discover local plans and connect with people who share your vibe.';
+  static const String getStarted = 'Get Started';
   static const signInToYour = 'Sign in to your';
   static const account = 'Account';
   static const enterEmailPassword = 'Enter your email and password to log in';
@@ -31,7 +31,8 @@ class ConstString {
   static const donTGetOtp = 'Dont get OTP?';
   static const resend = 'Resend';
   static const tellUsAboutYou = 'Tell us about you';
-  static const helpUsTailor = 'Help us tailor your experience with a few basic details.';
+  static const helpUsTailor =
+      'Help us tailor your experience with a few basic details.';
   static const fullName = 'Full Name';
   static const enterName = 'Enter name';
   static const continueA = 'Continue';
@@ -43,18 +44,22 @@ class ConstString {
   static const yourInterests = 'Your Interests';
   static const pickAFewWell = "Pick a few — we'll personalize your experience";
   static const whatLanguageTo = 'What languages do you speak?';
-  static const thisHelpsYouConnect = 'This helps you connect comfortably and find local communities that share your native tongue.';
+  static const thisHelpsYouConnect =
+      'This helps you connect comfortably and find local communities that share your native tongue.';
   static const preferredChat = 'Preferred Chat Language';
-  static const chooseYourPrimary = 'Choose your primary language for app notifications and chat translations.';
+  static const chooseYourPrimary =
+      'Choose your primary language for app notifications and chat translations.';
   static const howToYouPerfect = 'How do you prefer to meet?';
   static const whatsYourVibe = "What's your vibe?";
   static const wellMatchYouWithSimilar = "We'll match you with similar people";
   static const whenAreYouUsually = 'When are you usually free?';
   static const thisHelpsUs = 'This helps us suggest plans at the right time.';
   static const whatsYourMood = "What's your mood today?";
-  static const pickHowYour = "Pick how you're feeling. This helps us suggest the best plans for right now.";
+  static const pickHowYour =
+      "Pick how you're feeling. This helps us suggest the best plans for right now.";
   static const howFarWouldYou = 'How far would you travel?';
-  static const adjustYourRadius = 'Adjust your radius to find connections that fit your daily commute.';
+  static const adjustYourRadius =
+      'Adjust your radius to find connections that fit your daily commute.';
   static const currentLocation = 'Current Location';
   static const preferredTransport = 'Preferred Transport';
   static const maximumComment = 'Maximum Commute';
@@ -66,7 +71,8 @@ class ConstString {
   static const accessAllPlan = 'Access all plans and features';
   static const higherTrustWithOthers = 'Higher trust with others';
   static const betterVisibility = 'Better visibility in suggestions';
-  static const yourIdIsSecurely = 'Your ID is securely processed and never shared';
+  static const yourIdIsSecurely =
+      'Your ID is securely processed and never shared';
   static const uploadIdFor = 'Upload id for verification';
   static const addAProfilePhoto = 'Add a profile photo';
   static const profileWithPhotos = 'Profiles with photos feel more trustworthy';
@@ -75,7 +81,8 @@ class ConstString {
   static const uploadFromGallery = 'Upload from Gallery';
   static const pickFromYour = 'Pick from your photo library';
   static const addAShort = 'Add a short intro';
-  static const sayHelloAndShare = 'Say hello and share the kinds of plans you enjoy';
+  static const sayHelloAndShare =
+      'Say hello and share the kinds of plans you enjoy';
   static const rec = 'REC';
   static const appName = 'GoodNiva';
   static const searchHint = 'Search events, people, or groups';
@@ -126,18 +133,22 @@ class ConstString {
   static const stopSomeoneContacting = 'Stop someone from contacting you';
   static const supportContactHelp = 'Support / Contact Help';
   static const chatWithTeam = 'Chat with our dedicated team';
-  static const followGuidelines = 'Follow these guidelines to stay while meeting new people';
+  static const followGuidelines =
+      'Follow these guidelines to stay while meeting new people';
   static const whyReporting = 'Why are you reporting this user?';
   static const urgencyLevel = 'Urgency Level';
   static const submitReport = 'Submit Report';
   static const blockThisUser = 'Block This User?';
   static const whatHappensBlock = 'What happen when you block';
   static const mutualPrivacy = 'Mutual Privacy';
-  static const mutualPrivacyDesc = "You won't see each other's profiles or activities.";
+  static const mutualPrivacyDesc =
+      "You won't see each other's profiles or activities.";
   static const noContact = 'No Contact';
-  static const noContactDesc = "They won't be able to message you or join your plans.";
+  static const noContactDesc =
+      "They won't be able to message you or join your plans.";
   static const safeEnvironment = 'Safe Environment';
-  static const safeEnvironmentDesc = 'This helps maintain a comfortable space for everyone.';
+  static const safeEnvironmentDesc =
+      'This helps maintain a comfortable space for everyone.';
   static const block = 'Block';
   static const supportHelp = 'Support & Help';
   static const subject = 'Subject';
@@ -146,7 +157,8 @@ class ConstString {
   static const interactWith = 'Interact with participants and get live updates';
   static const viewProfile = 'View Profile';
   static const safetyFirst = 'Safety First';
-  static const verifyUserOnly = 'Verified users only. Please respect community guidelines and stay within public areas of the park.';
+  static const verifyUserOnly =
+      'Verified users only. Please respect community guidelines and stay within public areas of the park.';
   static const helpAndSafety = "Help & Safety";
   static const host = "Host";
   static const howAreYouFeeling = 'How are you feeling?';
@@ -176,7 +188,8 @@ class ConstString {
   static const helpUsUnderstand = 'Help us understand the issue';
   static const reporting = 'Reporting';
   static const reportSubmittedSuccess = 'Report submitted successfully';
-  static const reportSubmittedDesc = 'Thank you for helping keep the community safe. Our team will review this shortly.';
+  static const reportSubmittedDesc =
+      'Thank you for helping keep the community safe. Our team will review this shortly.';
   static const goBack = 'Go Back';
   static const communityCompetitions = 'Community competitions';
   static const groupsInCommunity = 'Groups in this community';
@@ -187,49 +200,59 @@ class ConstString {
   static const joinGroup = 'Join Group';
   static const joinAGroup = 'Join a Group';
   static const selectGroups = 'Select Groups';
-  static const chooseGroupParticipate = 'Choose a group where you want to participate';
+  static const chooseGroupParticipate =
+      'Choose a group where you want to participate';
   static const youReIn = "You're in!";
   static const goToCommunityChat = 'Go to Community Chat';
   static const backToDiscovery = 'Back to Discovery';
   static const groupDetails = "Group Details";
-  static const createGroup        = 'Create Group';
-  static const groupInformation   = 'Group Information';
-  static const groupInfoSubtitle  = 'Give your group a name and description';
-  static const groupName          = 'Group Name';
-  static const create             = 'Create';
-  static const createCommunity        = 'Create Community';
-  static const whatAreYouCreating     = 'What are you creating?';
-  static const chooseCategorySubtitle = 'Choose the category that best fits your vision. You can refine the details later.';
-  static const describeYourCommunity  = 'Describe your community';
-  static const describeCommunitySubtitle = 'Give your tribe an identity that stands out. You can always change this later.';
-  static const communityName          = 'Community Name';
-  static const giveYourGroupAName          = 'Give your group a name and description';
-  static const shortDescription       = 'Short Description';
-  static const shortDescriptionHint   = 'e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.';
-  static const uploadCoverPhoto       = 'Upload Cover Photo';
-  static const coverPhotoHint         = 'Recommended: 1600 × 900px. High-quality \nvisuals attract more members.';
-  static const setTheInterest         = 'Set the Interest';
-  static const setInterestSubtitle    = 'How would you describe the atmosphere of your community? This helps like-minded people find you.';
+  static const createGroup = 'Create Group';
+  static const groupInformation = 'Group Information';
+  static const groupInfoSubtitle = 'Give your group a name and description';
+  static const groupName = 'Group Name';
+  static const create = 'Create';
+  static const createCommunity = 'Create Community';
+  static const whatAreYouCreating = 'What are you creating?';
+  static const chooseCategorySubtitle =
+      'Choose the category that best fits your vision. You can refine the details later.';
+  static const describeYourCommunity = 'Describe your community';
+  static const describeCommunitySubtitle =
+      'Give your tribe an identity that stands out. You can always change this later.';
+  static const communityName = 'Community Name';
+  static const giveYourGroupAName = 'Give your group a name and description';
+  static const shortDescription = 'Short Description';
+  static const shortDescriptionHint =
+      'e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.';
+  static const uploadCoverPhoto = 'Upload Cover Photo';
+  static const coverPhotoHint =
+      'Recommended: 1600 × 900px. High-quality \nvisuals attract more members.';
+  static const setTheInterest = 'Set the Interest';
+  static const setInterestSubtitle =
+      'How would you describe the atmosphere of your community? This helps like-minded people find you.';
   static const createCompetitions = 'Create Competitions';
   static const chooseGroups = 'Choose groups';
   static const selectTwoGroups = 'Select two groups from your community';
   static const selectActivity = 'Select Activity';
-  static const selectActivitySubtitle = 'Select the activity for this competition.';
+  static const selectActivitySubtitle =
+      'Select the activity for this competition.';
   static const setMatchDetails = 'Set match details';
   static const competitionTitle = 'Competition Title';
   static const matchDate = 'Match Date';
   static const selectTime = 'Select Time';
   static const notes = 'Notes';
   static const finalReview = 'Final Review';
-  static const finalReviewSubtitle = 'Check all the details of your competition before going live. Everything looks ready for the pitch!';
+  static const finalReviewSubtitle =
+      'Check all the details of your competition before going live. Everything looks ready for the pitch!';
   static const publishCompetition = 'Publish Competition';
   static const continueText = 'Continue';
   static const youReAllSet = "You're all set!";
-  static const competitionScheduled = 'Your competition has been successfully scheduled.';
+  static const competitionScheduled =
+      'Your competition has been successfully scheduled.';
   static const viewCompetition = 'View Competition';
   static const backToCommunity = 'Back to community';
   static const youReAllIn = "You're all in! 🎉";
-  static const youReCompetitionHasBeen = "Your competition has been successfully scheduled.";
+  static const youReCompetitionHasBeen =
+      "Your competition has been successfully scheduled.";
   static const eventLogistics = 'Event Logistics';
   static const teamsRoster = 'Teams Roster';
   static const registerNow = 'Register Now';
@@ -241,37 +264,68 @@ class ConstString {
   static const finalScore = 'Final Score';
   static const editResult = 'Edit Result';
   static const backToHome = 'Back to home';
-  static const created              = 'Created';
-  static const editPlan             = 'Edit Plan';
-  static const joinedParticipants   = 'Joined Participants';
-  static const pollResult           = 'Poll Result';
-  static const timePoll             = 'Time Poll';
-  static const placePoll            = 'Place Poll';
-  static const voteLockSettings     = 'Vote & Lock settings';
-  static const enableAutoLock       = 'Enable Auto-Lock';
-  static const setTime              = 'Set Time';
-  static const planGroupChat        = 'Plan Group Chat';
-  static const openChat             = 'Open Chat';
-  static const chooseTime           = 'Choose Time';
-  static const choosePlace          = 'Choose Place';
-  static const joinToUnlockChat     = 'Join to unlock chat';
-  static const joinToUnlockSubtitle = 'Interact with participants and get live updates';
-  static const captain              = 'Captain';
-  static const safetySubtitle       = 'Verified users only. Please respect community guidelines and stay within public areas of the park.';
-  static const createAgain          = 'Create again';
+  static const created = 'Created';
+  static const editPlan = 'Edit Plan';
+  static const joinedParticipants = 'Joined Participants';
+  static const pollResult = 'Poll Result';
+  static const timePoll = 'Time Poll';
+  static const placePoll = 'Place Poll';
+  static const voteLockSettings = 'Vote & Lock settings';
+  static const enableAutoLock = 'Enable Auto-Lock';
+  static const setTime = 'Set Time';
+  static const planGroupChat = 'Plan Group Chat';
+  static const openChat = 'Open Chat';
+  static const chooseTime = 'Choose Time';
+  static const choosePlace = 'Choose Place';
+  static const joinToUnlockChat = 'Join to unlock chat';
+  static const joinToUnlockSubtitle =
+      'Interact with participants and get live updates';
+  static const captain = 'Captain';
+  static const safetySubtitle =
+      'Verified users only. Please respect community guidelines and stay within public areas of the park.';
+  static const createAgain = 'Create again';
   static const hereWhatPeopleShared = "Here's what people shared";
-  static const overallFeelings      = 'Overall Feelings';
-  static const whoJoined            = 'Who joined';
-  static const title                = 'Title';
-  static const activity             = 'Activity';
-  static const selectDate           = 'Select Date';
-  static const letPeopleVoteTime    = 'Let people vote on time';
-  static const voteTimeSubtitle     = 'Allow guests to suggest and vote on alternatives.';
-  static const pickAPlace           = 'Pick a place';
-  static const addLocation          = '+ Add location';
-  static const letPeopleVotePlace   = 'Let people vote on place';
-  static const votePlaceSubtitle    = 'Allow guests to suggest and vote on alternatives.';
-  static const saveChanges          = 'Save Changes';
-
+  static const overallFeelings = 'Overall Feelings';
+  static const whoJoined = 'Who joined';
+  static const title = 'Title';
+  static const activity = 'Activity';
+  static const selectDate = 'Select Date';
+  static const letPeopleVoteTime = 'Let people vote on time';
+  static const voteTimeSubtitle =
+      'Allow guests to suggest and vote on alternatives.';
+  static const pickAPlace = 'Pick a place';
+  static const addLocation = '+ Add location';
+  static const letPeopleVotePlace = 'Let people vote on place';
+  static const votePlaceSubtitle =
+      'Allow guests to suggest and vote on alternatives.';
+  static const saveChanges = 'Save Changes';
+  static const createPlan = 'Create Plan';
+  static const whatDoYouWantToDo = 'What do you want to do?';
+  static const letsGo = 'Let\'s go →';
+  static const pickAnActivity = 'Pick an activity';
+  static const whatsTheVibe = 'What\'s the vibe?';
+  static const groupSize = 'Group Size';
+  static const budget = 'Budget';
+  static const language = 'Language';
+  static const selectLanguage = 'Select language';
+  static const whenShouldItHappen = 'When should it happen?';
+  static const planTitle = 'Plan Title';
+  static const addCustomLocation = '+ Add custom location';
+  static const staySafe = 'Stay Safe';
+  static const staySafeSubtitle =
+      'For first-time meetups, we always recommend choosing a public place with plenty of people around.';
+  static const complete = 'Complete';
+  static const next = 'Next';
+  static const gender = 'Gender';
+  static const selectGender = 'Select gender';
+  static const selectYourAgeBand = 'Select your age band';
+  static const chat = 'Chat';
+  static const activeNow = 'Active Now';
+  static const typeAMessage = 'Type a message...';
+  static const fourParticipants = '4 participants';
+  static const groupOptions = 'Group Options';
+  static const muteNotifications = 'Mute Notifications';
+  static const leaveGroup = 'Leave Group';
+  static const groupA = 'GROUP A';
+  static const groupB = 'GROUP B';
 }
-
