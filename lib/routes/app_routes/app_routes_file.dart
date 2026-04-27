@@ -46,12 +46,16 @@ import '../../screens/UserScreen/MessageTabAllScreen/DirectChatScreen/direct_cha
 import '../../screens/UserScreen/MessageTabAllScreen/GroupPlanChatScreen/group_plan_chat_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/created_plan_details_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/edit_plan_screen.dart';
-import '../../screens/UserScreen/ProfileTabAllScreen/InviteFriendsScreen/invite_friends_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/ConnectionScreen/connection_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/ProfileScreen/profile_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/BlockUserScreen/block_user_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfileScreen/edit_profile_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/InviteFriendsScreen/invite_friends_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguagePreferenceScreen/language_preference_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/MeetPreferenceScreen/meet_preference_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/PrivacyPolicyScreen/privacy_policy_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SettingsScreen/settings_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TermsConditionScreen/terms_condition_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TravelTimeScreen/travel_time_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/VibeSocialEnergyScreen/vibe_social_energy_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SubscriptionScreen/subscription_screen.dart';
@@ -141,11 +145,15 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.profileScreen,page: () => ProfileScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.settingsScreen,page: () => SettingsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.subscriptionScreen,page: () => SubscriptionScreen(),binding: AppBindings()),
-  GetPage(name: AppRoutes.inviteFriendsScreen,page: () => InviteFriendsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.editProfileScreen,page: () => EditProfileScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.languagePreferenceScreen,page: () => LanguagePreferenceScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.travelTimeScreen,page: () => TravelTimeScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.vibeSocialEnergyScreen,page: () => VibeSocialEnergyScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.meetPreferenceScreen,page: () => MeetPreferenceScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.blockUserListScreen,page: () => BlockUserListScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.termsConditionScreen,page: () => TermsConditionScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.privacyPolicyScreen,page: () => PrivacyPolicyScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.inviteFriendsListScreen,page: () => InviteFriendsListScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.connectionScreen,page: () => ConnectionScreen(),binding: AppBindings()),
 
 ];

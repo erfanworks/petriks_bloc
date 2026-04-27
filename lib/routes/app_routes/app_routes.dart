@@ -1,4 +1,3 @@
-// import 'package:rimaiziza/utils/storage_service.dart';
 
 class AppRoutes {
   AppRoutes._();
@@ -84,7 +83,11 @@ class AppRoutes {
   static const travelTimeScreen = '/travelTimeScreen';
   static const vibeSocialEnergyScreen = '/vibeSocialEnergyScreen';
   static const meetPreferenceScreen = '/meetPreferenceScreen';
-
+  static const blockUserListScreen = '/blockUserListScreen';
+  static const termsConditionScreen = '/termsConditionScreen';
+  static const privacyPolicyScreen = '/privacyPolicyScreen';
+  static const inviteFriendsListScreen = '/inviteFriendsListScreen';
+  static const connectionScreen = '/connectionScreen';
 
 
 }

@@ -226,31 +226,38 @@ class UpcomingEventCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 14.w,
-                          vertical: 6.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFEDE9FF),
-                          borderRadius: BorderRadius.circular(20.r),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.person_add_alt_1_outlined,
-                              size: 13.sp,
-                              color: ConstColor.primaryColor,
+
+                      // ── Invite button — tap goes to invite screen, not event detail ──
+                      GestureDetector(
+                        onTap: () => controller.onInviteTap(item),
+                        child: AbsorbPointer(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 14.w,
+                              vertical: 6.h,
                             ),
-                            SizedBox(width: 4.w),
-                            CustomText(
-                              title: 'INVITE',
-                              textColor: ConstColor.primaryColor,
-                              textSize: 11.sp,
-                              fontWeight: FontWeight.w600,
-                              maxLine: 1,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFEDE9FF),
+                              borderRadius: BorderRadius.circular(20.r),
                             ),
-                          ],
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.person_add_alt_1_outlined,
+                                  size: 13.sp,
+                                  color: ConstColor.primaryColor,
+                                ),
+                                SizedBox(width: 4.w),
+                                CustomText(
+                                  title: 'INVITE',
+                                  textColor: ConstColor.primaryColor,
+                                  textSize: 11.sp,
+                                  fontWeight: FontWeight.w600,
+                                  maxLine: 1,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],

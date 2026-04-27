@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../Widget/text/custom_text.dart';
-import '../../../../constant/const_color.dart';
-import '../../../../constant/const_string.dart';
-import '../../../../widget/AppImage/app_image.dart';
-import '../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
-import '../../../../widget/GlobalAppBar/global_app_bar.dart';
-import '../ProfileScreen/Controller/profile_controller.dart';
+import '../../../../../Widget/text/custom_text.dart';
+import '../../../../../constant/const_color.dart';
+import '../../../../../constant/const_string.dart';
+import '../../../../../widget/AppImage/app_image.dart';
+import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
+import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+import '../../ProfileScreen/Controller/profile_controller.dart';
 
-class InviteFriendsScreen extends StatelessWidget {
-  const InviteFriendsScreen({super.key});
+class InviteFriendsListScreen extends StatelessWidget {
+  const InviteFriendsListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,8 @@ class InviteFriendsScreen extends StatelessWidget {
       body: Obx(() => ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
         itemCount: c.friends.length,
-        separatorBuilder: (_, _) => SizedBox(height: 10.h),
-        itemBuilder: (_, i) => _FriendTile(
-          friend: c.friends[i],
-          onInvite: () => c.onInviteFriend(i),
-        ),
+        separatorBuilder: (_, __) => SizedBox(height: 10.h),
+        itemBuilder: (_, i) => _FriendTile(friend: c.friends[i], onInvite: () => c.onInviteFriend(i)),
       )),
     );
   }
@@ -40,10 +37,8 @@ class _FriendTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-      decoration: BoxDecoration(
-        color: ConstColor.white, borderRadius: BorderRadius.circular(14.r),
-      ),
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
+      decoration: BoxDecoration(color: ConstColor.white, borderRadius: BorderRadius.circular(14.r)),
       child: Row(
         children: [
           ClipRRect(
@@ -55,21 +50,23 @@ class _FriendTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomText(title: friend.name, textSize: 14.sp,
-                    fontWeight: FontWeight.w600, textColor: ConstColor.black, maxLine: 1),
+                CustomText(title: friend.name,     textSize: 14.sp, fontWeight: FontWeight.w600, textColor: ConstColor.black, maxLine: 1),
                 SizedBox(height: 2.h),
-                CustomText(title: friend.username, textSize: 12.sp,
-                    textColor: ConstColor.grey, maxLine: 1),
+                CustomText(title: friend.username, textSize: 12.sp, textColor: ConstColor.grey,  maxLine: 1),
               ],
             ),
           ),
           Obx(() => CustomElevatedButton(
             onPressed: onInvite,
-            height: 36, width: 80, top: 0, buttonBorderRadius: 20,
-            color: friend.isInvited.value ? ConstColor.backgroundColor : ConstColor.primaryColor,
-            borderColor: friend.isInvited.value ? ConstColor.borderColor : null,
+            height: 36,
+            width: 80,
+            top: 0,
+            buttonBorderRadius: 20,
+            color: friend.isInvited.value ? ConstColor.boxColor : ConstColor.primaryColor,
             child: CustomText(
-              title: ConstString.invite, textSize: 13.sp, fontWeight: FontWeight.w600,
+              title: ConstString.invite,
+              textSize: 13.sp,
+              fontWeight: FontWeight.w600,
               textColor: friend.isInvited.value ? ConstColor.grey : ConstColor.white,
               maxLine: 1,
             ),

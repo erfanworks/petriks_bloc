@@ -97,7 +97,7 @@ class ConstString {
   static const open = 'OPEN';
   static const popular = 'POPULAR';
   static const freeEntry = 'Free Entry';
-  static const invite = 'INVITE';
+  static const invite = 'Invite';
   static const joined = 'Joined';
   static const newComerFriendly = 'New-Comer Friendly';
   static const nightOutFriendly = 'Night Out Party';
@@ -459,4 +459,20 @@ class ConstString {
   static const String unblockSheetDesc        = 'They will be able to message you and see your profile updates again';
   static const String blockedSince            = 'Blocked since ';
   static const joinFree = 'Join Free';
+  static const String termsAndCondition   = 'Terms & Condition';
+  static const String privacyPolicyText   = 'Privacy Policy';
+  static const String lastUpdated         = 'Last Updated: October 24, 2023';
+  static const String ourAgreement        = 'Our Agreement';
+  static const String ourAgreementDesc    = 'Welcome to GoodNiva. These Terms of Service constitute a legally binding agreement between you and our platform regarding your use of our event discovery services.';
+  static const String terms1Title         = '1. Acceptance of Terms';
+  static const String terms1Para1         = 'By accessing or using the GoodNiva mobile application or website, you agree to be bound by these Terms of Service and our Privacy Policy. If you do not agree to these terms, please do not use our platform.';
+  static const String terms1Para2         = 'We reserve the right to modify these terms at any time. Your continued use of the service following any changes indicates your acceptance of the updated terms.';
+  static const String terms2Title         = '2. User Eligibility';
+  static const String terms2Para1         = 'You must be at least 18 years old to create an account and use the full suite of GoodNiva services. Users between 13 and 18 years old may use the platform only with the direct supervision and consent of a parent or legal guardian.';
+  static const String terms2Bullet1       = 'Provide accurate and complete registration information.';
+  static const String connection          = 'Connection';
+  static const String followersTab        = 'Followers';
+  static const String followingTab        = 'Following';
+  static const String followingLabel      = 'Following';
+
 }

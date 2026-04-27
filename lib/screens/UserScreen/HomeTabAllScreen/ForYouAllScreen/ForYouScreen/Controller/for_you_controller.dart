@@ -134,4 +134,5 @@ class ForYouController extends GetxController {
   void onSeeAllPeople() => Get.toNamed('/all-people');
   void onSayHello(PersonItem person) {}
   void onEventTap(EventItem event) => Get.toNamed(AppRoutes.planDetailsScreen);
+  void onInviteTap(EventItem event) => Get.toNamed(AppRoutes.inviteFriendsListScreen, arguments: event);
 }

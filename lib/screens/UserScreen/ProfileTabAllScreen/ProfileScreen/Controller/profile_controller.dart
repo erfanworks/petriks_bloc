@@ -83,8 +83,8 @@ class ProfileController extends GetxController {
   void onSettingsTap()                  => Get.toNamed(AppRoutes.settingsScreen);
   void onManagePlan()                   => Get.toNamed(AppRoutes.subscriptionScreen);
   void onIntroVideoTap()                => Get.toNamed('/intro-video');
-  void onFollowersTap()                 => Get.toNamed('/followers');
-  void onFollowingTap()                 => Get.toNamed('/following');
+  void onFollowersTap()                 => Get.toNamed(AppRoutes.connectionScreen);
+  void onFollowingTap()                 => Get.toNamed(AppRoutes.connectionScreen);
   void onCommunityTap(CommunityModel c) => Get.toNamed('/community-detail', arguments: c);
 
   void onInviteFriend(int index) {

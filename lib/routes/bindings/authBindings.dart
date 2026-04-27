@@ -25,10 +25,13 @@ import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/Controller/home_con
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Controller/one_to_one_meetup_details_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/Controller/one_to_one_meetup_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/Controller/vibe_controller.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/ConnectionScreen/Controller/connection_controller.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/BlockUserScreen/Controller/block_user_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfileScreen/Controller/edit_profile_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguagePreferenceScreen/Controller/language_preference_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/MeetPreferenceScreen/Controller/meet_preference_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SettingsScreen/Controller/settings_controller.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TermsConditionScreen/Controller/terms_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TravelTimeScreen/Controller/travel_time_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/VibeSocialEnergyScreen/Controller/vibe_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SubscriptionScreen/Controller/subscription_controller.dart';
@@ -76,6 +79,9 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => TravelTimeController());
     Get.lazyPut(() => VibeSocialEnergyController());
     Get.lazyPut(() => MeetPreferenceController());
+    Get.lazyPut(() => BlockUserListController());
+    Get.lazyPut(() => TermsController());
+    Get.lazyPut(() => ConnectionController());
 
 
   }
