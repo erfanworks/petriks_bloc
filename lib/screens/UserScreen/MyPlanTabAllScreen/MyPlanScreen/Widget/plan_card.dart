@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -297,31 +299,34 @@ class _MetaRow extends StatelessWidget {
 class _InviteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-      decoration: BoxDecoration(
-        color: ConstColor.primaryColor.withAlpha(15),
-        borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(
-            color: ConstColor.primaryColor.withAlpha(60), width: 1),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SvgPicture.asset('assets/icons/invite_icon.svg',
-              width: 12.r,
-              height: 12.r,
-              colorFilter: const ColorFilter.mode(
-                  ConstColor.primaryColor, BlendMode.srcIn)),
-          SizedBox(width: 4.w),
-          CustomText(
-            title: ConstString.invite,
-            textSize: 11.sp,
-            fontWeight: FontWeight.w600,
-            textColor: ConstColor.primaryColor,
-            maxLine: 1,
-          ),
-        ],
+    return InkWell(
+      onTap: (){Get.toNamed(AppRoutes.inviteFriendsListScreen);},
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+        decoration: BoxDecoration(
+          color: ConstColor.primaryColor.withAlpha(15),
+          borderRadius: BorderRadius.circular(20.r),
+          border: Border.all(
+              color: ConstColor.primaryColor.withAlpha(60), width: 1),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset('assets/icons/invite_icon.svg',
+                width: 12.r,
+                height: 12.r,
+                colorFilter: const ColorFilter.mode(
+                    ConstColor.primaryColor, BlendMode.srcIn)),
+            SizedBox(width: 4.w),
+            CustomText(
+              title: ConstString.invite,
+              textSize: 11.sp,
+              fontWeight: FontWeight.w600,
+              textColor: ConstColor.primaryColor,
+              maxLine: 1,
+            ),
+          ],
+        ),
       ),
     );
   }

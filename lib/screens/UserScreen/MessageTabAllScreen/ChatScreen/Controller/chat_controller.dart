@@ -1,5 +1,8 @@
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+
+import '../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
 
 class ChatItem {
   final String id, name, lastMsg, time, avatar;
@@ -38,6 +41,8 @@ class ChatMessage {
 class ChatController extends GetxController {
   final selectedTab = 0.obs;
   final tabs = ['Direct', 'Plan', 'Group'];
+  final ImagePicker _picker = ImagePicker();
+  final RxString selectedChatImagePath = ''.obs;
 
   final List<ChatItem> chats = [
     const ChatItem(id: '1', name: 'Midnight Jazz Session',
@@ -103,6 +108,24 @@ class ChatController extends GetxController {
         text: 'Looking forward to it! How will we recognize each other?',
         time: '10:05 AM', isMe: true),
   ];
+  void pickChatImage() {
+    MediaPickerBottomSheet.show(
+      onCamera: () async {
+        final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+        if (photo != null) {
+          selectedChatImagePath.value = photo.path;
+          // TODO: Add logic to send this image in chat
+        }
+      },
+      onGallery: () async {
+        final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
+        if (photo != null) {
+          selectedChatImagePath.value = photo.path;
+          // TODO: Add logic to send this image in chat
+        }
+      },
+    );
+  }
 
   void switchTab(int i) => selectedTab.value = i;
 

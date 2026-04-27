@@ -15,7 +15,15 @@ class DirectChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final item = Get.arguments as ChatItem;
+    final ChatItem item = (Get.arguments as ChatItem?) ??
+        const ChatItem(
+          id: '0',
+          name: "John Lura",
+          lastMsg: "Dummy message",
+          time: "12:00 PM",
+          avatar: "assets/images/onboarding1_img.jpg",
+          unread: 0,
+        );
     final c = Get.find<ChatController>();
 
     return Scaffold(
@@ -199,14 +207,12 @@ class _ChatInputBar extends StatelessWidget {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      // TODO
-                    },
+                    onTap: () => Get.find<ChatController>().pickChatImage(),
                     child: SvgPicture.asset(
                       "assets/icons/add_icon.svg",
                       width: 25.w,
                       height: 25.h,
-                      colorFilter: ColorFilter.mode(
+                      colorFilter: const ColorFilter.mode(
                         ConstColor.textColor,
                         BlendMode.srcIn,
                       ),

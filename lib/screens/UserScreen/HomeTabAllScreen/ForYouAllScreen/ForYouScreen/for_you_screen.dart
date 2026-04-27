@@ -2,6 +2,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -120,7 +121,9 @@ class _InviteFriendsButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: GestureDetector(
-        onTap: controller.onInviteFriends,
+        onTap: (){
+          Get.toNamed(AppRoutes.inviteFriendsListScreen);
+        },
         child: DottedBorder(
           options: RoundedRectDottedBorderOptions(
             color: ConstColor.primaryDeepColor,

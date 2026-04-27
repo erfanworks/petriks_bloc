@@ -433,7 +433,21 @@ class _Step4WhenWhere extends StatelessWidget {
             label: ConstString.selectDate,
             value: c.selectedDate.value,
             icon: 'assets/icons/calender_icon.svg',
-            onTap: () {},
+            onTap: () async {
+              final picked = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime.now(),
+                lastDate: DateTime(2100),
+                builder: (ctx, child) => Theme(
+                  data: Theme.of(ctx).copyWith(
+                    colorScheme: ColorScheme.light(primary: ConstColor.primaryColor),
+                  ),
+                  child: child!,
+                ),
+              );
+              if (picked != null) c.onDateSelected(picked);
+            },
           )),
 
           SizedBox(height: 8.h),
@@ -443,7 +457,19 @@ class _Step4WhenWhere extends StatelessWidget {
           Obx(() => _DropdownField(
             value: c.selectedTime1.value,
             icon: 'assets/icons/clock_icon.svg',
-            onTap: () {},
+            onTap: () async {
+              final picked = await showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.now(),
+                builder: (ctx, child) => Theme(
+                  data: Theme.of(ctx).copyWith(
+                    colorScheme: ColorScheme.light(primary: ConstColor.primaryColor),
+                  ),
+                  child: child!,
+                ),
+              );
+              if (picked != null) c.onTimeSelected(picked);
+            },
           )),
           SizedBox(height: 10.h),
 

@@ -499,12 +499,12 @@ class _ChatInputBar extends StatelessWidget {
               child: Row(
                 children:[
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () => Get.find<ChatController>().pickChatImage(),
                     child: SvgPicture.asset(
                       "assets/icons/add_icon.svg",
                       width: 25.w,
                       height: 25.h,
-                      colorFilter: ColorFilter.mode(
+                      colorFilter: const ColorFilter.mode(
                         ConstColor.textColor,
                         BlendMode.srcIn,
                       ),

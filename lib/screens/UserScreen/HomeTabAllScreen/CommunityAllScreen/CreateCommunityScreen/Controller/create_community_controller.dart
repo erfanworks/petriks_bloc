@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+
+import '../../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
 
 class CreateCommunityController extends GetxController {
   final currentStep = 0.obs;
   static const totalSteps = 3;
 
-  // ── Step 1: Category ──
   final selectedCategory = ''.obs;
+
+
 
   final List<Map<String, dynamic>> categories = [
     {
@@ -38,6 +42,21 @@ class CreateCommunityController extends GetxController {
   // ── Step 2: Details ──
   final nameController = TextEditingController();
   final descController = TextEditingController();
+  final RxString coverPhotoPath = ''.obs;
+  final ImagePicker _picker = ImagePicker();
+
+  void pickCoverPhoto() {
+    MediaPickerBottomSheet.show(
+      onCamera: () async {
+        final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+        if (photo != null) coverPhotoPath.value = photo.path;
+      },
+      onGallery: () async {
+        final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
+        if (photo != null) coverPhotoPath.value = photo.path;
+      },
+    );
+  }
 
   // ── Step 3: Interests ──
   final selectedInterest = ''.obs;

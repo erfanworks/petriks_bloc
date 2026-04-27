@@ -87,6 +87,18 @@ class CreatePlanController extends GetxController {
     {'name': 'Blue Bottle Coffee', 'sub': '8 min away',  'image': 'assets/images/party_img.png'},
     {'name': 'Central Park',       'sub': '8 min walk',  'image': 'assets/images/location_img1.jpg'},
   ];
+  void onDateSelected(DateTime date) {
+    selectedDate.value = '${date.day} ${_month(date.month)}, ${date.year}';
+  }
+
+  void onTimeSelected(TimeOfDay time) {
+    final hour = time.hourOfPeriod == 0 ? 12 : time.hourOfPeriod;
+    final minute = time.minute.toString().padLeft(2, '0');
+    final period = time.period == DayPeriod.am ? 'AM' : 'PM';
+    selectedTime1.value = '$hour:$minute $period';
+  }
+
+  String _month(int m) => ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m];
 
   // Navigation
   void nextStep() {

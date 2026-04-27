@@ -3,6 +3,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -139,8 +140,8 @@ class JoinGroupScreen extends StatelessWidget {
           onPressed: () => JoinedSuccessDialog.show(
             context,
             communityName: 'Urban Athletes',
-            onGoToChat: () => Get.toNamed('/community-chat'),
-            onBackToDiscovery: () => Get.back(),
+            onGoToChat: () => Get.toNamed(AppRoutes.directChatScreen),
+            onBackToDiscovery: () => Get.toNamed(AppRoutes.groupDetailScreen),
           ),
           height: 50,
           top: 0,

@@ -6,14 +6,12 @@ import 'package:get/get.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
+import '../../../../../routes/app_routes/app_routes.dart';
 import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../Controller/my_plan_controller.dart';
 
-// ─────────────────────────────────────────
-// Shared Plan Info Header (used in both detail screens)
-// ─────────────────────────────────────────
 class PlanDetailHeader extends StatelessWidget {
   const PlanDetailHeader({super.key, required this.plan, this.statusTag});
 
@@ -99,7 +97,10 @@ class PlanDetailHeader extends StatelessWidget {
                   icon: 'assets/icons/language_icon.svg',
                   label: plan.language,
                 ),
-                _DetailRow(icon: 'assets/icons/person_group_icon.svg', label: plan.type),
+                _DetailRow(
+                  icon: 'assets/icons/person_group_icon.svg',
+                  label: plan.type,
+                ),
                 SizedBox(height: 8.h),
                 // Avatars + joined + invite
                 Row(
@@ -282,7 +283,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.h,),
+                  SizedBox(height: 20.h),
 
                   _SectionPad(
                     child: Column(
@@ -427,7 +428,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                           top: 0,
                           width: 100,
                           height: 36,
-                          onPressed: () => Get.toNamed('/plan-chat'),
+                          onPressed: () => Get.toNamed(AppRoutes.directChatScreen),
                           color: ConstColor.primaryColor,
                           buttonBorderRadius: 20,
                           child: CustomText(
@@ -452,7 +453,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
             child: CustomElevatedButton(
               top: 0,
               onPressed: c.goToEditPlan,
-              gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
+              gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
               buttonBorderRadius: 30,
               child: CustomText(
                 title: ConstString.editPlan,
@@ -555,7 +556,7 @@ class _ParticipantRow extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
       decoration: BoxDecoration(
         color: ConstColor.boxColor,
-        border: Border.all(color: ConstColor.borderColor,width: 1),
+        border: Border.all(color: ConstColor.borderColor, width: 1),
         borderRadius: BorderRadius.circular(32.r),
       ),
       child: Row(
@@ -856,6 +857,7 @@ class _PillBadge extends StatelessWidget {
     );
   }
 }
+
 class _SmallAvatarStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -927,33 +929,45 @@ class _CircleAvatar extends StatelessWidget {
     );
   }
 }
+
 class _InviteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(
-            color: ConstColor.primaryColor.withAlpha(60), width: 1),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SvgPicture.asset('assets/icons/invite_icon.svg',
+    return InkWell(
+      onTap: () {
+        Get.toNamed(AppRoutes.inviteFriendsListScreen);
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.r),
+          border: Border.all(
+            color: ConstColor.primaryColor.withAlpha(60),
+            width: 1,
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset(
+              'assets/icons/invite_icon.svg',
               width: 12.r,
               height: 12.r,
               colorFilter: const ColorFilter.mode(
-                  ConstColor.primaryColor, BlendMode.srcIn)),
-          SizedBox(width: 4.w),
-          CustomText(
-            title: ConstString.invite,
-            textSize: 11.sp,
-            fontWeight: FontWeight.w600,
-            textColor: ConstColor.primaryColor,
-            maxLine: 1,
-          ),
-        ],
+                ConstColor.primaryColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            SizedBox(width: 4.w),
+            CustomText(
+              title: ConstString.invite,
+              textSize: 11.sp,
+              fontWeight: FontWeight.w600,
+              textColor: ConstColor.primaryColor,
+              maxLine: 1,
+            ),
+          ],
+        ),
       ),
     );
   }

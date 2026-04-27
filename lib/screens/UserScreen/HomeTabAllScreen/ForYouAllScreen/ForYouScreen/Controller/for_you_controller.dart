@@ -129,7 +129,6 @@ class ForYouController extends GetxController {
   ].obs;
 
   // ---- Actions ----
-  void onInviteFriends() {}
   void onSeeAllEvents() => Get.toNamed('/all-events');
   void onSeeAllPeople() => Get.toNamed('/all-people');
   void onSayHello(PersonItem person) {}
