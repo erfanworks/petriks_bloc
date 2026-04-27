@@ -82,6 +82,7 @@ class AppRoutes {
   static const editProfileScreen = '/editProfileScreen';
   static const languagePreferenceScreen = '/languagePreferenceScreen';
   static const travelTimeScreen = '/travelTimeScreen';
+  static const vibeSocialEnergyScreen = '/vibeSocialEnergyScreen';
 
 
 

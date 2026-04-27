@@ -29,6 +29,7 @@ import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfi
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguagePreferenceScreen/Controller/language_preference_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SettingsScreen/Controller/settings_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TravelTimeScreen/Controller/travel_time_controller.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/VibeSocialEnergyScreen/Controller/vibe_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SubscriptionScreen/Controller/subscription_controller.dart';
 
 
@@ -72,6 +73,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => EditProfileController());
     Get.lazyPut(() => LanguagePreferenceController());
     Get.lazyPut(() => TravelTimeController());
+    Get.lazyPut(() => VibeSocialEnergyController());
 
 
   }

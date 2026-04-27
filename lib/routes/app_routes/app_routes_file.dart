@@ -52,6 +52,7 @@ import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfi
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguagePreferenceScreen/language_preference_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SettingsScreen/settings_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TravelTimeScreen/travel_time_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/VibeSocialEnergyScreen/vibe_social_energy_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SubscriptionScreen/subscription_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
@@ -143,5 +144,6 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.editProfileScreen,page: () => EditProfileScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.languagePreferenceScreen,page: () => LanguagePreferenceScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.travelTimeScreen,page: () => TravelTimeScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.vibeSocialEnergyScreen,page: () => VibeSocialEnergyScreen(),binding: AppBindings()),
 
 ];
