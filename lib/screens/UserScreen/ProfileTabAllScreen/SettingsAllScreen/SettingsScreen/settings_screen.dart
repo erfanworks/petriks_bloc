@@ -219,7 +219,7 @@ class _PrefsCard extends StatelessWidget {
           ),
           _Div(),
           _SvgTile(
-            icon: 'assets/icons/person_group_icon.svg',
+            icon: 'assets/icons/social_icon.svg',
             title: ConstString.meetPreference,
             subtitle: ConstString.meetPrefSub,
             onTap: c.onMeetPreferenceTap,
@@ -447,8 +447,8 @@ class _SvgTile extends StatelessWidget {
             _IconBox(
               child: SvgPicture.asset(
                 icon,
-                width: 18.w,
-                height: 18.h,
+                width: 20.w,
+                height: 20.h,
                 colorFilter: ColorFilter.mode(
                   ConstColor.primaryColor,
                   BlendMode.srcIn,

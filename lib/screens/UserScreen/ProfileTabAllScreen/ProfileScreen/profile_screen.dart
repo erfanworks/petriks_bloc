@@ -397,7 +397,7 @@ class _AboutSection extends StatelessWidget {
             children: [
               Expanded(
                 child: _AboutChip(
-                  icon: 'assets/icons/person_group_icon.svg',
+                  icon: 'assets/icons/social_icon.svg',
                   label: ConstString.preference,
                   value: c.preferenceLabel.value,
                 ),
@@ -447,8 +447,8 @@ class _AboutChip extends StatelessWidget {
         children: [
           SvgPicture.asset(
             icon,
-            width: 20.w,
-            height: 20.h,
+            width: 22.w,
+            height: 22.h,
             colorFilter: ColorFilter.mode(
               ConstColor.primaryColor,
               BlendMode.srcIn,

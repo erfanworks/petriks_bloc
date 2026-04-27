@@ -12,7 +12,7 @@ class SettingsController extends GetxController {
   void onLanguagePreferencesTap()  => Get.toNamed(AppRoutes.languagePreferenceScreen);
   void onTravelTimeTap()           => Get.toNamed(AppRoutes.travelTimeScreen);
   void onVibeSocialEnergyTap()     => Get.toNamed(AppRoutes.vibeSocialEnergyScreen);
-  void onMeetPreferenceTap()       => Get.toNamed('/meet-preference');
+  void onMeetPreferenceTap()       => Get.toNamed(AppRoutes.meetPreferenceScreen);
   void onBlockListTap()            => Get.toNamed('/block-list');
   void onTermsConditionTap()       => Get.toNamed('/terms-condition');
   void onPrivacyPolicyTap()        => Get.toNamed('/privacy-policy');

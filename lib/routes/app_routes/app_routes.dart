@@ -83,6 +83,7 @@ class AppRoutes {
   static const languagePreferenceScreen = '/languagePreferenceScreen';
   static const travelTimeScreen = '/travelTimeScreen';
   static const vibeSocialEnergyScreen = '/vibeSocialEnergyScreen';
+  static const meetPreferenceScreen = '/meetPreferenceScreen';
 
 
 

@@ -50,6 +50,7 @@ import '../../screens/UserScreen/ProfileTabAllScreen/InviteFriendsScreen/invite_
 import '../../screens/UserScreen/ProfileTabAllScreen/ProfileScreen/profile_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfileScreen/edit_profile_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguagePreferenceScreen/language_preference_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/MeetPreferenceScreen/meet_preference_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SettingsScreen/settings_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TravelTimeScreen/travel_time_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/VibeSocialEnergyScreen/vibe_social_energy_screen.dart';
@@ -145,5 +146,6 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.languagePreferenceScreen,page: () => LanguagePreferenceScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.travelTimeScreen,page: () => TravelTimeScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.vibeSocialEnergyScreen,page: () => VibeSocialEnergyScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.meetPreferenceScreen,page: () => MeetPreferenceScreen(),binding: AppBindings()),
 
 ];
