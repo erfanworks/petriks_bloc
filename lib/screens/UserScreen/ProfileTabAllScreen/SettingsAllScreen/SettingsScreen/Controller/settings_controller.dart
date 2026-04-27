@@ -10,7 +10,7 @@ class SettingsController extends GetxController {
   void onPersonalInformationTap()  => Get.toNamed(AppRoutes.editProfileScreen);
   // void onIdentityVerificationTap() => Get.toNamed('/identity-verification');
   void onLanguagePreferencesTap()  => Get.toNamed(AppRoutes.languagePreferenceScreen);
-  void onTravelTimeTap()           => Get.toNamed('/travel-time');
+  void onTravelTimeTap()           => Get.toNamed(AppRoutes.travelTimeScreen);
   void onVibeSocialEnergyTap()     => Get.toNamed('/vibe-social-energy');
   void onMeetPreferenceTap()       => Get.toNamed('/meet-preference');
   void onBlockListTap()            => Get.toNamed('/block-list');
@@ -25,28 +25,7 @@ class SettingsController extends GetxController {
 
 
 
-// ─── Travel Time Controller ───────────────────────────────────────────────────
-class TravelTimeController extends GetxController {
-  final currentLocation = '12/A Frisco, USA'.obs;
 
-  // Slider value in minutes (5–60, where 60 = Flexible)
-  final commuteMinutes = 15.0.obs;
-
-  // Label shown above slider
-  String get commuteLabel {
-    if (commuteMinutes.value >= 60) return 'Flexible';
-    return commuteMinutes.value.toInt().toString();
-  }
-
-  bool get isFlexible => commuteMinutes.value >= 60;
-
-  void onSliderChanged(double value) => commuteMinutes.value = value;
-
-  void onSave() async {
-    // TODO: API call to save travel time
-    Get.back();
-  }
-}
 
 // ─── Block User Model ─────────────────────────────────────────────────────────
 class BlockedUserModel {

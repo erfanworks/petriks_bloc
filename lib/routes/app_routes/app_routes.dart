@@ -81,6 +81,7 @@ class AppRoutes {
   static const inviteFriendsScreen = '/inviteFriendsScreen';
   static const editProfileScreen = '/editProfileScreen';
   static const languagePreferenceScreen = '/languagePreferenceScreen';
+  static const travelTimeScreen = '/travelTimeScreen';
 
 
 

@@ -46,12 +46,12 @@ import '../../screens/UserScreen/MessageTabAllScreen/DirectChatScreen/direct_cha
 import '../../screens/UserScreen/MessageTabAllScreen/GroupPlanChatScreen/group_plan_chat_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/created_plan_details_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/edit_plan_screen.dart';
-import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/joined_plan_details_screen.dart';
-import '../../screens/UserScreen/ProfileTabAllScreen/EditProfileScreen/edit_profile_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/InviteFriendsScreen/invite_friends_screen.dart';
-import '../../screens/UserScreen/ProfileTabAllScreen/LanguagePreferenceScreen/language_preference_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/ProfileScreen/profile_screen.dart';
-import '../../screens/UserScreen/ProfileTabAllScreen/SettingsScreen/settings_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfileScreen/edit_profile_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguagePreferenceScreen/language_preference_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SettingsScreen/settings_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TravelTimeScreen/travel_time_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SubscriptionScreen/subscription_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
@@ -142,5 +142,6 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.inviteFriendsScreen,page: () => InviteFriendsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.editProfileScreen,page: () => EditProfileScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.languagePreferenceScreen,page: () => LanguagePreferenceScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.travelTimeScreen,page: () => TravelTimeScreen(),binding: AppBindings()),
 
 ];

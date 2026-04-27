@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../Widget/text/custom_text.dart';
-import '../../../../constant/const_color.dart';
-import '../../../../constant/const_string.dart';
-import '../../../../widget/AppImage/app_image.dart';
-import '../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
-import '../../../../widget/GlobalAppBar/global_app_bar.dart';
+import '../../../../../Widget/text/custom_text.dart';
+import '../../../../../constant/const_color.dart';
+import '../../../../../constant/const_string.dart';
+import '../../../../../widget/AppImage/app_image.dart';
+import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
+import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+
 import 'Controller/edit_profile_controller.dart';
 
 class EditProfileScreen extends StatelessWidget {

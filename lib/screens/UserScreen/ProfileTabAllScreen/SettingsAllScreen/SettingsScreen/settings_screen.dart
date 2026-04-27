@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../../Widget/text/custom_text.dart';
-import '../../../../constant/const_color.dart';
-import '../../../../constant/const_string.dart';
-import '../../../../widget/AppImage/app_image.dart';
-import '../../../../widget/GlobalAppBar/global_app_bar.dart';
+import '../../../../../Widget/text/custom_text.dart';
+import '../../../../../constant/const_color.dart';
+import '../../../../../constant/const_string.dart';
+import '../../../../../widget/AppImage/app_image.dart';
+import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import 'Controller/settings_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
