@@ -80,6 +80,7 @@ class AppRoutes {
   static const subscriptionScreen = '/subscriptionScreen';
   static const inviteFriendsScreen = '/inviteFriendsScreen';
   static const editProfileScreen = '/editProfileScreen';
+  static const languagePreferenceScreen = '/languagePreferenceScreen';
 
 
 

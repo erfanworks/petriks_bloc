@@ -175,12 +175,12 @@ class _AccountCard extends StatelessWidget {
             title: ConstString.personalInformation,
             onTap: c.onPersonalInformationTap,
           ),
-          _Div(),
-          _Tile(
-            icon: Icons.shield_outlined,
-            title: ConstString.identityVerification,
-            onTap: c.onIdentityVerificationTap,
-          ),
+          // _Div(),
+          // _Tile(
+          //   icon: Icons.shield_outlined,
+          //   title: ConstString.identityVerification,
+          //   onTap: c.onIdentityVerificationTap,
+          // ),
         ],
       ),
     );

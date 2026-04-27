@@ -7,9 +7,9 @@ class SettingsController extends GetxController {
   final pushNotificationsEnabled = true.obs;
 
   void onEditProfileTap()          => Get.toNamed(AppRoutes.editProfileScreen);
-  void onPersonalInformationTap()  => Get.toNamed('/personal-information');
-  void onIdentityVerificationTap() => Get.toNamed('/identity-verification');
-  void onLanguagePreferencesTap()  => Get.toNamed('/language-preferences');
+  void onPersonalInformationTap()  => Get.toNamed(AppRoutes.editProfileScreen);
+  // void onIdentityVerificationTap() => Get.toNamed('/identity-verification');
+  void onLanguagePreferencesTap()  => Get.toNamed(AppRoutes.languagePreferenceScreen);
   void onTravelTimeTap()           => Get.toNamed('/travel-time');
   void onVibeSocialEnergyTap()     => Get.toNamed('/vibe-social-energy');
   void onMeetPreferenceTap()       => Get.toNamed('/meet-preference');
@@ -23,47 +23,11 @@ class SettingsController extends GetxController {
   }
 }
 
-// ─── Language Preference Controller ──────────────────────────────────────────
-class LanguagePreferenceController extends GetxController {
-  final allLanguages = const [
-    'English', 'Spanish', 'French', 'German',
-    'Mandarin', 'Japanese', 'Hindi', 'Arabic',
-    'Portuguese', 'Italian', '+ More',
-  ];
 
-  // Selected spoken languages (multi-select chips)
-  final selectedLanguages = <String>['English', 'Spanish'].obs;
-
-  // Selected chat language from dropdown
-  final selectedChatLanguage = RxString('');
-
-  // Dropdown open state
-  final isDropdownOpen = false.obs;
-
-  // Toggle a spoken language chip
-  void onLanguageToggle(String lang) {
-    if (selectedLanguages.contains(lang)) {
-      if (selectedLanguages.length > 1) selectedLanguages.remove(lang);
-    } else {
-      selectedLanguages.add(lang);
-    }
-  }
-
-  // Select chat language from dropdown
-  void onChatLanguageSelected(String lang) {
-    selectedChatLanguage.value = lang;
-    isDropdownOpen.value = false;
-  }
-
-  void onSave() async {
-    // TODO: API call to save language preferences
-    Get.back();
-  }
-}
 
 // ─── Travel Time Controller ───────────────────────────────────────────────────
 class TravelTimeController extends GetxController {
-  final currentLocation = '12/A Sanfrisco, USA'.obs;
+  final currentLocation = '12/A Frisco, USA'.obs;
 
   // Slider value in minutes (5–60, where 60 = Flexible)
   final commuteMinutes = 15.0.obs;

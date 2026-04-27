@@ -49,6 +49,7 @@ import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/e
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/joined_plan_details_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/EditProfileScreen/edit_profile_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/InviteFriendsScreen/invite_friends_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/LanguagePreferenceScreen/language_preference_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/ProfileScreen/profile_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsScreen/settings_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SubscriptionScreen/subscription_screen.dart';
@@ -140,5 +141,6 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.subscriptionScreen,page: () => SubscriptionScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.inviteFriendsScreen,page: () => InviteFriendsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.editProfileScreen,page: () => EditProfileScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.languagePreferenceScreen,page: () => LanguagePreferenceScreen(),binding: AppBindings()),
 
 ];
