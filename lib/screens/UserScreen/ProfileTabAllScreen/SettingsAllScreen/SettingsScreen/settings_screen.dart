@@ -289,10 +289,18 @@ class _NotifCard extends StatelessWidget {
               ),
             ),
             Obx(
-              () => Switch(
-                value: c.pushNotificationsEnabled.value,
-                onChanged: c.onPushNotificationToggle,
-                activeColor: ConstColor.primaryColor,
+                  () => Transform.scale(
+                scale: 0.8,
+                child: Switch(
+                  value: c.pushNotificationsEnabled.value,
+                  onChanged: c.onPushNotificationToggle,
+                    thumbColor: WidgetStateProperty.resolveWith((states) {
+                      if (states.contains(WidgetState.selected)) {
+                      return Colors.white;
+                    }
+                    return Colors.white;
+                  }),
+                ),
               ),
             ),
           ],
@@ -447,8 +455,8 @@ class _SvgTile extends StatelessWidget {
             _IconBox(
               child: SvgPicture.asset(
                 icon,
-                width: 20.w,
-                height: 20.h,
+                width: 16.w,
+                height: 16.h,
                 colorFilter: ColorFilter.mode(
                   ConstColor.primaryColor,
                   BlendMode.srcIn,

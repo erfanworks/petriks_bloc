@@ -18,6 +18,7 @@ class ConstString {
   static const privacyPolicy = 'Privacy Policy';
   static const donTHaveAccount = "Don't have an account?  ";
   static const signUp = 'Sign Up';
+  static const lockIn = 'Locks in: 2h 30m';
   static const continueWithPhoneTitle = 'Continue with phone';
   static const noWorries = 'No worries, we\'ll help you get back in.';
   static const phoneNumber = 'Phone Number';
@@ -457,4 +458,5 @@ class ConstString {
   static const String unblockPrefix           = 'Unblock ';
   static const String unblockSheetDesc        = 'They will be able to message you and see your profile updates again';
   static const String blockedSince            = 'Blocked since ';
+  static const joinFree = 'Join Free';
 }

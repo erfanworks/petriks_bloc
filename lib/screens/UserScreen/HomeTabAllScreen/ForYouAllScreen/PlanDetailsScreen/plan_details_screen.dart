@@ -12,6 +12,7 @@ import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+
 class PlanDetailsScreen extends StatelessWidget {
   const PlanDetailsScreen({super.key});
 
@@ -23,7 +24,7 @@ class PlanDetailsScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F5FA),
       appBar: GlobalAppBar(title: ConstString.planDetails),
       body: Obx(
-            () => SingleChildScrollView(
+        () => SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -75,21 +76,43 @@ class PlanDetailsScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 10.h),
-                          _DetailRow(icon: Icons.location_on_outlined, label: 'Central Park West, NYC'),
+                          _DetailRow(
+                            icon: Icons.location_on_outlined,
+                            label: 'Central Park West, NYC',
+                          ),
                           SizedBox(height: 6.h),
                           Row(
                             children: [
-                              Icon(Icons.calendar_today_outlined, size: 13.sp, color: ConstColor.primaryDeepColor),
+                              Icon(
+                                Icons.calendar_today_outlined,
+                                size: 13.sp,
+                                color: ConstColor.primaryDeepColor,
+                              ),
                               SizedBox(width: 6.w),
-                              CustomText(title: 'Saturday, 24 June', textColor: ConstColor.grey, textSize: 12.sp, maxLine: 1),
+                              CustomText(
+                                title: 'Saturday, 24 June',
+                                textColor: ConstColor.grey,
+                                textSize: 12.sp,
+                                maxLine: 1,
+                              ),
                               SizedBox(width: 10.w),
-                              _PillBadge(label: '👥 Chill Vibe', bgColor: const Color(0xFFEDE9FF), textColor: ConstColor.primaryColor),
+                              _PillBadge(
+                                label: '👥 Chill Vibe',
+                                bgColor: const Color(0xFFEDE9FF),
+                                textColor: ConstColor.primaryColor,
+                              ),
                             ],
                           ),
                           SizedBox(height: 6.h),
-                          _DetailRow(icon: Icons.language_rounded, label: 'English'),
+                          _DetailRow(
+                            icon: Icons.language_rounded,
+                            label: 'English',
+                          ),
                           SizedBox(height: 6.h),
-                          _DetailRow(icon: Icons.people_outline, label: 'Group Plan'),
+                          _DetailRow(
+                            icon: Icons.people_outline,
+                            label: 'Group Plan',
+                          ),
                           SizedBox(height: 12.h),
                           Row(
                             children: [
@@ -127,7 +150,7 @@ class PlanDetailsScreen extends StatelessWidget {
               SizedBox(height: 10.h),
 
               ...controller.locationVotes.map(
-                    (loc) => _LocationVoteCard(item: loc),
+                (loc) => _LocationVoteCard(item: loc),
               ),
 
               if (controller.hasJoined.value) ...[
@@ -142,8 +165,11 @@ class PlanDetailsScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.hourglass_bottom_rounded,
-                          color: ConstColor.primaryColor, size: 16.r),
+                      Icon(
+                        Icons.hourglass_bottom_rounded,
+                        color: ConstColor.primaryColor,
+                        size: 16.r,
+                      ),
                       SizedBox(width: 6.w),
                       CustomText(
                         title: 'Locks in: 2h 30m',
@@ -157,9 +183,35 @@ class PlanDetailsScreen extends StatelessWidget {
                 ),
               ],
 
-              SizedBox(height: 10.h),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 16.w),
+                padding: EdgeInsets.all(14.r),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF0EDFF),
+                  borderRadius: BorderRadius.circular(32.r),
+                  border: Border.all(color: ConstColor.borderColor, width: 1.5),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.timer_outlined,
+                      size: 16.sp,
+                      color: ConstColor.primaryColor,
+                    ),
+                    SizedBox(width: 6.w),
+                    CustomText(
+                      title: ConstString.lockIn,
+                      textColor: ConstColor.primaryColor,
+                      textSize: 13.sp,
+                      fontWeight: FontWeight.w700,
+                      maxLine: 1,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20.h),
 
-              // ---- Group Chat ----
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Row(
@@ -211,37 +263,43 @@ class PlanDetailsScreen extends StatelessWidget {
 
       // ---- Bottom Button ----
       bottomNavigationBar: Obx(
-            () => Padding(
+        () => Padding(
           padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
           child: controller.hasJoined.value
               ? CustomElevatedButton(
-            onPressed: controller.onConfirmAttendance,
-            height: 54,
-            top: 0,
-            buttonBorderRadius: 30,
-            gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-            child: CustomText(
-              title: ConstString.confirmAttendance,
-              textColor: Colors.white,
-              textSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
-            ),
-          )
+                  onPressed: controller.onConfirmAttendance,
+                  height: 54,
+                  top: 0,
+                  buttonBorderRadius: 30,
+                  gradient: [
+                    ConstColor.primaryDeepColor,
+                    ConstColor.primaryColor,
+                  ],
+                  child: CustomText(
+                    title: ConstString.confirmAttendance,
+                    textColor: Colors.white,
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    maxLine: 1,
+                  ),
+                )
               : CustomElevatedButton(
-            onPressed: controller.showJoinSheet,
-            height: 54,
-            top: 0,
-            buttonBorderRadius: 30,
-            gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-            child: CustomText(
-              title: ConstString.joinEvent,
-              textColor: Colors.white,
-              textSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
-            ),
-          ),
+                  onPressed: controller.showJoinSheet,
+                  height: 54,
+                  top: 0,
+                  buttonBorderRadius: 30,
+                  gradient: [
+                    ConstColor.primaryDeepColor,
+                    ConstColor.primaryColor,
+                  ],
+                  child: CustomText(
+                    title: ConstString.joinEvent,
+                    textColor: Colors.white,
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    maxLine: 1,
+                  ),
+                ),
         ),
       ),
     );
@@ -287,14 +345,21 @@ class _LocationVoteCard extends StatelessWidget {
                   bottom: 8.h,
                   left: 10.w,
                   child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 5.h,
+                    ),
                     // decoration: BoxDecoration(
                     //   color: ConstColor.primaryColor,
                     //   borderRadius: BorderRadius.circular(20.r),
                     // ),
                     child: Row(
                       children: [
-                        Icon(Icons.check_circle_rounded, color: Colors.white, size: 16.sp),
+                        Icon(
+                          Icons.check_circle_rounded,
+                          color: Colors.white,
+                          size: 16.sp,
+                        ),
                         SizedBox(width: 4.w),
                         CustomText(
                           title: 'Selected',
@@ -361,7 +426,9 @@ class _LocationVoteCard extends StatelessWidget {
                     value: item.votes / item.totalVotes,
                     minHeight: 5.h,
                     backgroundColor: const Color(0xFFEDE9FF),
-                    valueColor: AlwaysStoppedAnimation<Color>(ConstColor.primaryColor),
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      ConstColor.primaryColor,
+                    ),
                   ),
                 ),
               ],
@@ -373,7 +440,6 @@ class _LocationVoteCard extends StatelessWidget {
   }
 }
 
-
 // ---- Chat Locked ----
 class _ChatLocked extends StatelessWidget {
   @override
@@ -383,7 +449,7 @@ class _ChatLocked extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: ConstColor.borderColor,width: 1.5)
+        border: Border.all(color: ConstColor.borderColor, width: 1.5),
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -395,8 +461,7 @@ class _ChatLocked extends StatelessWidget {
               imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(
-                    vertical: 32.h, horizontal: 20.w),
+                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 20.w),
                 child: Column(
                   children: [
                     // Fake blurred chat rows
@@ -421,7 +486,7 @@ class _ChatLocked extends StatelessWidget {
                 Container(
                   width: 48.r,
                   height: 48.r,
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
                     boxShadow: [
@@ -444,7 +509,9 @@ class _ChatLocked extends StatelessWidget {
                 // Purple glow behind text
                 Container(
                   padding: EdgeInsets.symmetric(
-                      horizontal: 20.w, vertical: 10.h),
+                    horizontal: 20.w,
+                    vertical: 10.h,
+                  ),
                   decoration: BoxDecoration(
                     color: ConstColor.primaryColor.withAlpha(30),
                     borderRadius: BorderRadius.circular(12.r),
@@ -483,6 +550,7 @@ class _ChatLocked extends StatelessWidget {
 // ── Fake blurred chat bubble row ──
 class _FakeBlurRow extends StatelessWidget {
   const _FakeBlurRow({required this.width});
+
   final double width; // 0.0 to 1.0 fraction of screen width
 
   @override
@@ -639,7 +707,7 @@ class _HostCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: ConstColor.borderColor,width: 1.5)
+        border: Border.all(color: ConstColor.borderColor, width: 1.5),
       ),
       child: Row(
         children: [
@@ -674,7 +742,7 @@ class _HostCard extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: (){
+            onTap: () {
               Get.toNamed(AppRoutes.hostProfileScreen);
             },
             child: Container(
@@ -708,14 +776,18 @@ class _SafetyCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFFF0EDFF),
         borderRadius: BorderRadius.circular(32.r),
-          border: Border.all(color: ConstColor.borderColor,width: 1.5)
+        border: Border.all(color: ConstColor.borderColor, width: 1.5),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.shield_outlined, size: 16.sp, color: ConstColor.primaryColor),
+              Icon(
+                Icons.shield_outlined,
+                size: 16.sp,
+                color: ConstColor.primaryColor,
+              ),
               SizedBox(width: 6.w),
               CustomText(
                 title: ConstString.safetyFirst,
@@ -784,7 +856,10 @@ class _PillBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(color: ConstColor.primaryDeepColor.withAlpha(40), width: 1.5)
+        border: Border.all(
+          color: ConstColor.primaryDeepColor.withAlpha(40),
+          width: 1.5,
+        ),
       ),
       child: CustomText(
         title: label,
@@ -842,6 +917,7 @@ class _SmallAvatarStack extends StatelessWidget {
     );
   }
 }
+
 class _CircleAvatar extends StatelessWidget {
   final String path;
 

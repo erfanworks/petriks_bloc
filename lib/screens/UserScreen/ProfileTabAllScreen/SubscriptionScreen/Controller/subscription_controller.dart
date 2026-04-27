@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
+import 'package:petriks_flutter_app/constant/const_color.dart';
+
+import '../../../../../routes/app_routes/app_routes.dart';
 
 class PlanFeature {
   final String label;
@@ -31,6 +35,7 @@ class SubscriptionController extends GetxController {
   String get periodLabel => selectedTab.value == 0 ? '/ month' : '/ year';
 
   void onTabChanged(int index) => selectedTab.value = index;
+  void onJoinFree() => Get.offAllNamed(AppRoutes.navBar);
 
-  void onUpgradePremium() => Get.toNamed('/payment'); // TODO: in-app purchase
+  void onUpgradePremium() => AppSnackBar.message("Feature Update! \nThis feature will be available soon.",backgroundColor: ConstColor.primaryColor); // TODO
 }

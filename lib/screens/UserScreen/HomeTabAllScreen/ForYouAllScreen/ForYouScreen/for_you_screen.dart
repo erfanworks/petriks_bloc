@@ -21,14 +21,12 @@ class ForYouScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<ForYouController>();
 
-
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 20.h),
 
-          // ---- Featured Event Card ----
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: const FeaturedEventCard(),
@@ -36,19 +34,13 @@ class ForYouScreen extends StatelessWidget {
 
           SizedBox(height: 12.h),
 
-          // ---- Invite Friends ----
           _InviteFriendsButton(controller: controller),
 
           SizedBox(height: 20.h),
 
-          // ---- Easy Meetup Section ----
-          _SectionHeader(
-            title: ConstString.easyMeetup,
-            showSeeAll: false,
-          ),
+          _SectionHeader(title: ConstString.easyMeetup, showSeeAll: false),
 
           SizedBox(height: 12.h),
-          // ---- Easy Meetup Cards ----
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -71,10 +63,7 @@ class ForYouScreen extends StatelessWidget {
           //         EasyMeetupCard(item: controller.meetups[index]),
           //   ),
           // ),
-
           SizedBox(height: 20.h),
-
-          // ---- Upcoming Events ----
           _SectionHeader(
             title: ConstString.upcomingEvents,
             showSeeAll: true,
@@ -95,7 +84,6 @@ class ForYouScreen extends StatelessWidget {
 
           SizedBox(height: 24.h),
 
-          // ---- People You May Click With ----
           _SectionHeader(
             title: ConstString.peopleYouMayClick,
             showSeeAll: true,
@@ -107,7 +95,7 @@ class ForYouScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Obx(
-                  () => Row(
+              () => Row(
                 children: controller.people
                     .map((p) => Expanded(child: PeopleCard(item: p)))
                     .toList(),
@@ -122,7 +110,6 @@ class ForYouScreen extends StatelessWidget {
   }
 }
 
-// ---- Invite Friends Button ----
 class _InviteFriendsButton extends StatelessWidget {
   final ForYouController controller;
 
@@ -174,7 +161,6 @@ class _InviteFriendsButton extends StatelessWidget {
   }
 }
 
-// ---- Section Header ----
 class _SectionHeader extends StatelessWidget {
   final String title;
   final bool showSeeAll;
