@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-
-import '../../../../../Widget/text/custom_text.dart';
-import '../../../../../constant/const_color.dart';
-import '../../../../../widget/AppImage/app_image.dart';
+import '../../../../../../Widget/text/custom_text.dart';
+import '../../../../../../constant/const_color.dart';
+import '../../../../../../widget/AppImage/app_image.dart';
 import '../Controller/feed_controller.dart';
 
 class FeedPostCard extends StatelessWidget {

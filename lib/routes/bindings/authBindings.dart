@@ -7,7 +7,6 @@ import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/Communit
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCommunityScreen/Controller/create_community_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateGroup/Controller/create_group_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/Controller/my_community_detail_controller.dart';
-import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/FeedAllScreen/Controller/feed_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/HostProfileScreen/Controller/host_profile_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/GroupDetailScreen/Controller/group_details_controller.dart';
@@ -20,6 +19,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunitySc
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCompetitionScreen/Controller/create_competition_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityScreen/Controller/my_community_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/Controller/view_competition_controller.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/FeedScreen/Controller/feed_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/Controller/for_you_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/Controller/home_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Controller/one_to_one_meetup_details_controller.dart';

@@ -8,7 +8,7 @@ import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../CommunityAllScreen/CommunityScreen/community_screen.dart';
-import '../FeedAllScreen/feed_screen.dart';
+import '../FeedAllScreen/FeedScreen/feed_screen.dart';
 import '../ForYouAllScreen/ForYouScreen/for_you_screen.dart';
 import '../VibeAllScreen/VibeScreen/vibe_screen.dart';
 import 'Controller/home_controller.dart';
@@ -102,18 +102,27 @@ class _SearchBar extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(32.r),
               ),
-              child: Row(
-                children: [
-                  SizedBox(width: 12.w),
-                  Icon(Icons.search, color: ConstColor.grey, size: 20.sp),
-                  SizedBox(width: 8.w),
-                  CustomText(
-                    title: ConstString.searchHint,
-                    textColor: ConstColor.silverGray20,
-                    textSize: 13.sp,
-                    maxLine: 1,
+              child: TextField(
+                style: TextStyle(
+                  color: ConstColor.black,
+                  fontSize: 13.sp,
+                  fontFamily: 'Poppins',
+                  decorationThickness: 0,
+                ),
+                cursorColor: ConstColor.primaryColor,
+                decoration: InputDecoration(
+                  hintText: ConstString.searchHint,
+                  hintStyle: TextStyle(
+                    color: ConstColor.silverGray20,
+                    fontSize: 13.sp,
+                    fontFamily: 'Poppins',
                   ),
-                ],
+                  prefixIcon: Icon(Icons.search, color: ConstColor.grey, size: 20.sp),
+                  border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(vertical: 12.h),
+                ),
               ),
             ),
           ),

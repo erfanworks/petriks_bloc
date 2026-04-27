@@ -10,7 +10,6 @@ import '../../../../../../constant/const_color.dart';
 import '../../../../../../widget/AppImage/app_image.dart';
 import '../Controller/for_you_controller.dart';
 
-
 class UpcomingEventCard extends StatelessWidget {
   final EventItem item;
 
@@ -24,15 +23,15 @@ class UpcomingEventCard extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(24.r),boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha(40),
-            blurRadius: 10.r,
-            spreadRadius: 1.r,
-            offset: Offset(0, 4.h),
-          ),
-        ],
-
+          borderRadius: BorderRadius.circular(24.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(40),
+              blurRadius: 10.r,
+              spreadRadius: 1.r,
+              offset: Offset(0, 4.h),
+            ),
+          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,14 +86,15 @@ class UpcomingEventCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: ConstColor.silverGray20,
                       shape: BoxShape.circle,
-                      border: Border.all(color: ConstColor.grey,width: 1)
+                      border: Border.all(color: ConstColor.grey, width: 1),
                     ),
                     child: Center(
-                      child: SvgPicture.asset("assets/icons/book_mark_icon.svg",
+                      child: SvgPicture.asset(
+                        "assets/icons/book_mark_icon.svg",
                         width: 12.w,
                         height: 15.h,
                       ),
-                    )
+                    ),
                   ),
                 ),
               ],
@@ -150,7 +150,10 @@ class UpcomingEventCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: const Color(0xFFF0EDFF),
                       borderRadius: BorderRadius.circular(20.r),
-                        border: Border.all(color: ConstColor.borderColor,width: 1)
+                      border: Border.all(
+                        color: ConstColor.borderColor,
+                        width: 1,
+                      ),
                     ),
                     child: CustomText(
                       title: item.tag,
@@ -164,14 +167,20 @@ class UpcomingEventCard extends StatelessWidget {
                   SizedBox(height: 8.h),
 
                   // Location
-                  _InfoRow(icon: Icons.location_on_outlined, label: item.location),
+                  _InfoRow(
+                    icon: Icons.location_on_outlined,
+                    label: item.location,
+                  ),
                   SizedBox(height: 4.h),
 
                   // Date + Time
                   Row(
                     children: [
-                      Icon(Icons.calendar_today_outlined,
-                          size: 13.sp, color: ConstColor.primaryDeepColor),
+                      Icon(
+                        Icons.calendar_today_outlined,
+                        size: 13.sp,
+                        color: ConstColor.primaryDeepColor,
+                      ),
                       SizedBox(width: 4.w),
                       CustomText(
                         title: item.date,
@@ -180,8 +189,11 @@ class UpcomingEventCard extends StatelessWidget {
                         maxLine: 1,
                       ),
                       SizedBox(width: 8.w),
-                      Icon(Icons.access_time,
-                          size: 13.sp, color: ConstColor.primaryDeepColor),
+                      Icon(
+                        Icons.access_time,
+                        size: 13.sp,
+                        color: ConstColor.primaryDeepColor,
+                      ),
                       SizedBox(width: 4.w),
                       CustomText(
                         title: item.time,
@@ -200,8 +212,11 @@ class UpcomingEventCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.people_outline,
-                              size: 14.sp, color: ConstColor.primaryDeepColor),
+                          Icon(
+                            Icons.people_outline,
+                            size: 14.sp,
+                            color: ConstColor.primaryDeepColor,
+                          ),
                           SizedBox(width: 4.w),
                           CustomText(
                             title: item.joined,
@@ -222,8 +237,11 @@ class UpcomingEventCard extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.person_add_alt_1_outlined,
-                                size: 13.sp, color: ConstColor.primaryColor),
+                            Icon(
+                              Icons.person_add_alt_1_outlined,
+                              size: 13.sp,
+                              color: ConstColor.primaryColor,
+                            ),
                             SizedBox(width: 4.w),
                             CustomText(
                               title: 'INVITE',

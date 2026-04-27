@@ -23,3 +23,118 @@ class SettingsController extends GetxController {
   }
 }
 
+// ─── Language Preference Controller ──────────────────────────────────────────
+class LanguagePreferenceController extends GetxController {
+  final allLanguages = const [
+    'English', 'Spanish', 'French', 'German',
+    'Mandarin', 'Japanese', 'Hindi', 'Arabic',
+    'Portuguese', 'Italian', '+ More',
+  ];
+
+  // Selected spoken languages (multi-select chips)
+  final selectedLanguages = <String>['English', 'Spanish'].obs;
+
+  // Selected chat language from dropdown
+  final selectedChatLanguage = RxString('');
+
+  // Dropdown open state
+  final isDropdownOpen = false.obs;
+
+  // Toggle a spoken language chip
+  void onLanguageToggle(String lang) {
+    if (selectedLanguages.contains(lang)) {
+      if (selectedLanguages.length > 1) selectedLanguages.remove(lang);
+    } else {
+      selectedLanguages.add(lang);
+    }
+  }
+
+  // Select chat language from dropdown
+  void onChatLanguageSelected(String lang) {
+    selectedChatLanguage.value = lang;
+    isDropdownOpen.value = false;
+  }
+
+  void onSave() async {
+    // TODO: API call to save language preferences
+    Get.back();
+  }
+}
+
+// ─── Travel Time Controller ───────────────────────────────────────────────────
+class TravelTimeController extends GetxController {
+  final currentLocation = '12/A Sanfrisco, USA'.obs;
+
+  // Slider value in minutes (5–60, where 60 = Flexible)
+  final commuteMinutes = 15.0.obs;
+
+  // Label shown above slider
+  String get commuteLabel {
+    if (commuteMinutes.value >= 60) return 'Flexible';
+    return commuteMinutes.value.toInt().toString();
+  }
+
+  bool get isFlexible => commuteMinutes.value >= 60;
+
+  void onSliderChanged(double value) => commuteMinutes.value = value;
+
+  void onSave() async {
+    // TODO: API call to save travel time
+    Get.back();
+  }
+}
+
+// ─── Block User Model ─────────────────────────────────────────────────────────
+class BlockedUserModel {
+  final String image;
+  final String name;
+  final String blockedSince;
+
+  const BlockedUserModel({
+    required this.image,
+    required this.name,
+    required this.blockedSince,
+  });
+}
+
+// ─── Block User Controller ────────────────────────────────────────────────────
+class BlockUserController extends GetxController {
+  final blockedUsers = <BlockedUserModel>[
+    const BlockedUserModel(image: 'assets/images/person1_img.jpg', name: 'Elena Rodriguez',  blockedSince: 'Oct 12, 2023'),
+    const BlockedUserModel(image: 'assets/images/person2_img.jpg', name: 'Marcus Sterling',  blockedSince: 'Sep 04, 2023'),
+    const BlockedUserModel(image: 'assets/images/person3_img.jpg', name: 'Sarah Jenkins',    blockedSince: 'Aug 21, 2023'),
+    const BlockedUserModel(image: 'assets/images/person4_img.jpg', name: 'David Chen',       blockedSince: 'Jul 15, 2023'),
+  ].obs;
+
+  // Show unblock confirmation bottom sheet
+  void onUnblockTap(BlockedUserModel user) {
+    Get.bottomSheet(
+      _UnblockSheet(user: user, controller: this),
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      isScrollControlled: true,
+    );
+  }
+
+  // Confirm unblock — remove from list + API call
+  void onConfirmUnblock(BlockedUserModel user) async {
+    Get.back();
+    blockedUsers.remove(user);
+    // TODO: API call to unblock user
+  }
+}
+
+// ─── Unblock Bottom Sheet (UI only, lives here as private widget) ─────────────
+class _UnblockSheet extends StatelessWidget {
+  final BlockedUserModel user;
+  final BlockUserController controller;
+  const _UnblockSheet({required this.user, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    // Import these in the actual file — shown here for reference
+    return const SizedBox.shrink(); // replaced by full UI in block_user_screen.dart
+  }
+}

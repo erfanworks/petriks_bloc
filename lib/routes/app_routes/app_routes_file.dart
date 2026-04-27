@@ -25,7 +25,9 @@ import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunity
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/add_match_result_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/final_score_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/view_competition_screen.dart';
-import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/feed_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/CommentScreen/comment_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/CreatePostScreen/create_post_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/FeedScreen/feed_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/for_you_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/attendance_tips_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HelpCenterScreen/block_user_screen.dart';
@@ -93,6 +95,8 @@ List<GetPage> appRouteFile = <GetPage>[
 
   // Feed Screen
   GetPage(name: AppRoutes.feedScreen,page: () => FeedScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.createPostScreen,page: () => CreatePostScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.commentScreen,page: () => CommentScreen(),binding: AppBindings()),
 
   // Community Screen
   GetPage(name: AppRoutes.communityScreen,page: () => CommunityScreen(),binding: AppBindings()),

@@ -205,7 +205,6 @@ class VibeScreen extends StatelessWidget {
                     VibeEventCard(item: controller.events[index]),
               ),
 
-              // index 1 — 1:1 screen
               const OneToOneMeetupScreen(),
             ],
           )),

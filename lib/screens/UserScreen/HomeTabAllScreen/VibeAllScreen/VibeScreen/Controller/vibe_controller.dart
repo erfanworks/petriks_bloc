@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
-// ---- Vibe Event Model ----
 class VibeEventItem {
   final String image;
-  final String type; // 'Group' or '1:1 Meetup'
+  final String type;
   final String tag;
   final String title;
   final String language;
@@ -30,17 +29,14 @@ class VibeEventItem {
 }
 
 class VibeController extends GetxController {
-  // ---- Sub Tabs ----
   final vibeTabs = ['Group', '1:1 Meetup'];
   final selectedVibeTab = 0.obs;
 
-  // ---- Feeling Filter ----
   final feelingFilters = ['Quiet', 'Easy Going', 'Social', 'Lively'];
-  final selectedFeeling = 1.obs; // Easy Going default
+  final selectedFeeling = 1.obs;
 
-  // ---- Meet Filter ----
   final meetFilters = ['Everyone', 'Women', 'Men'];
-  final selectedMeet = 0.obs; // Everyone default
+  final selectedMeet = 0.obs;
 
   // ---- Events ----
   final List<VibeEventItem> events = [

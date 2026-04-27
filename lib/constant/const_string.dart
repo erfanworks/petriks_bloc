@@ -403,4 +403,14 @@ class ConstString {
   static const String defaultDob            = '12 Aug, 2026';
   static const String elenaRodriguez        = 'Elena Rodriguez';
   static const String elenaUsername         = 'Elena@1235';
+  static const String createPost       = 'Create Post';
+  static const String publicLabel      = 'Public';
+  static const String music            = 'Music';
+  static const String people           = 'People';
+  static const String camera           = 'Camera';
+  static const String gallery          = 'Gallery';
+  static const String post             = 'Post';
+  static const String comments         = 'Comments';
+  static const String reply            = 'Reply';
+  static const String addAComment      = 'Add a comment...';
 }

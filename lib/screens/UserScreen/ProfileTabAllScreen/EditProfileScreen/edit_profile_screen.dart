@@ -105,7 +105,7 @@ class _InputTile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(icon, size: 18.sp, color: ConstColor.grey),
+          Icon(icon, size: 18.sp, color: ConstColor.textColor),
           SizedBox(width: 10.w),
           Expanded(
             child: TextField(
@@ -138,7 +138,7 @@ class _ReadonlyTile extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Icon(icon, size: 18.sp, color: ConstColor.grey),
+            Icon(icon, size: 18.sp, color: ConstColor.textColor),
             SizedBox(width: 10.w),
             CustomText(title: value, textSize: 14.sp, textColor: ConstColor.black, maxLine: 1),
           ],
@@ -168,7 +168,7 @@ class _AgeBandGrid extends StatelessWidget {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 180),
             decoration: BoxDecoration(
-              color: selected ? ConstColor.primaryColor : ConstColor.backgroundColor,
+              color: selected ? ConstColor.primaryColor : ConstColor.black.withAlpha(10),
               borderRadius: BorderRadius.circular(30.r),
             ),
             child: Center(
@@ -191,9 +191,9 @@ class _SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
       decoration: BoxDecoration(
-        color: ConstColor.backgroundColor, borderRadius: BorderRadius.circular(12.r),
+        color: ConstColor.black.withAlpha(10), borderRadius: BorderRadius.circular(32.r),
       ),
       child: Row(
         children: [

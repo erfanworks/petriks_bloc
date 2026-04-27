@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
+import '../../VibeAllScreen/OneToOneMeetupScreen/Controller/one_to_one_meetup_controller.dart';
+import '../../VibeAllScreen/OneToOneMeetupScreen/Widget/one_to_one_meetup_card.dart';
 import 'Controller/for_you_controller.dart';
 import 'Widget/easy_meetup_card.dart';
 import 'Widget/featured_event_card.dart';
@@ -18,6 +20,7 @@ class ForYouScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<ForYouController>();
+
 
     return SingleChildScrollView(
       child: Column(
@@ -45,18 +48,29 @@ class ForYouScreen extends StatelessWidget {
           ),
 
           SizedBox(height: 12.h),
-
-          SizedBox(
-            height: 130.h,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              itemCount: controller.meetups.length,
-              separatorBuilder: (_, __) => SizedBox(width: 12.w),
-              itemBuilder: (_, index) =>
-                  EasyMeetupCard(item: controller.meetups[index]),
+          // ---- Easy Meetup Cards ----
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            itemCount: Get.find<OneToOneMeetupController>().meetups.length,
+            separatorBuilder: (_, _) => SizedBox(height: 16.h),
+            itemBuilder: (_, index) => OneToOneMeetupCard(
+              item: Get.find<OneToOneMeetupController>().meetups[index],
             ),
           ),
+
+          // SizedBox(
+          //   height: 130.h,
+          //   child: ListView.separated(
+          //     scrollDirection: Axis.horizontal,
+          //     padding: EdgeInsets.symmetric(horizontal: 16.w),
+          //     itemCount: controller.meetups.length,
+          //     separatorBuilder: (_, __) => SizedBox(width: 12.w),
+          //     itemBuilder: (_, index) =>
+          //         EasyMeetupCard(item: controller.meetups[index]),
+          //   ),
+          // ),
 
           SizedBox(height: 20.h),
 
