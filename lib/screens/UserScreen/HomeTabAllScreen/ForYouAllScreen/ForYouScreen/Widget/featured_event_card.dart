@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
@@ -14,127 +16,131 @@ class FeaturedEventCard extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          height: 190.h,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20.r),
-            gradient: const LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Color(0xFFD7CAFF), Color(0x1A9152A3), Color(0xFFD7CAFF)],
-            ),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // ---- Left: Floating Image Box ----
-              Padding(
-                padding: EdgeInsets.all(12.r),
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(14.r),
-                      child: AppImage(
-                        path: 'assets/images/party_img.png',
-                        width: 160.w,
-                        height: 160.h,
-                        fit: BoxFit.fitHeight,
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 15.h,
-                      left: 50.w,
-                      right: 6.w,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 6.w,
-                          vertical: 4.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF0C4AA),
-                          borderRadius: BorderRadius.circular(32.r),
-                        ),
-                        child: CustomText(
-                          title: ConstString.newComerFriendly,
-                          textColor: const Color(0xFF763302),
-                          textSize: 8.sp,
-                          fontWeight: FontWeight.w500,
-                          textAlign: TextAlign.center,
-                          maxLine: 1,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+        InkWell(
+          onTap: (){
+            Get.toNamed(AppRoutes.planDetailsScreen);
+          },
+          child: Container(
+            height: 190.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.r),
+              gradient: const LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Color(0xFFD7CAFF), Color(0x1A9152A3), Color(0xFFD7CAFF)],
               ),
-
-              // ---- Right: Event Info ----
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: 8.w,
-                    top: 16.h,
-                    bottom: 14.h,
-                    right: 16.w,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // ---- Left: Floating Image Box ----
+                Padding(
+                  padding: EdgeInsets.all(12.r),
+                  child: Stack(
+                    clipBehavior: Clip.none,
                     children: [
-                      // ---- Title ----
-                      CustomText(
-                        title: ConstString.nightOutFriendly,
-                        textColor: ConstColor.black,
-                        textSize: 18.sp,
-                        fontWeight: FontWeight.w700,
-                        maxLine: 1,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(14.r),
+                        child: AppImage(
+                          path: 'assets/images/party_img.png',
+                          width: 160.w,
+                          height: 160.h,
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
-
-                      SizedBox(height: 8.h),
-
-                      // ---- Info Rows ----
-                      _InfoRow(icon: Icons.language_rounded, label: 'English'),
-                      SizedBox(height: 5.h),
-                      _InfoRow(
-                        icon: Icons.location_on_outlined,
-                        label: 'Central Park West',
-                      ),
-                      SizedBox(height: 5.h),
-                      _InfoRow(
-                        icon: Icons.calendar_today_outlined,
-                        label: 'Saturday, 24 June',
-                      ),
-                      SizedBox(height: 5.h),
-                      _InfoRow(
-                        icon: Icons.access_time_rounded,
-                        label: '6:30 PM Today',
-                      ),
-
-                      const Spacer(),
-
-                      // ---- Avatars + Joined ----
-                      Row(
-                        children: [
-                          _AvatarStack(),
-                          SizedBox(width: 8.w),
-                          CustomText(
-                            title: '3/6 JOINED',
-                            textColor: ConstColor.primaryColor,
-                            textSize: 11.sp,
-                            fontWeight: FontWeight.w700,
+                      Positioned(
+                        bottom: 15.h,
+                        left: 50.w,
+                        right: 6.w,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 6.w,
+                            vertical: 4.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF0C4AA),
+                            borderRadius: BorderRadius.circular(32.r),
+                          ),
+                          child: CustomText(
+                            title: ConstString.newComerFriendly,
+                            textColor: const Color(0xFF763302),
+                            textSize: 8.sp,
+                            fontWeight: FontWeight.w500,
+                            textAlign: TextAlign.center,
                             maxLine: 1,
                           ),
-                        ],
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+          
+                // ---- Right: Event Info ----
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: 8.w,
+                      top: 16.h,
+                      bottom: 14.h,
+                      right: 16.w,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // ---- Title ----
+                        CustomText(
+                          title: ConstString.nightOutFriendly,
+                          textColor: ConstColor.black,
+                          textSize: 18.sp,
+                          fontWeight: FontWeight.w700,
+                          maxLine: 1,
+                        ),
+          
+                        SizedBox(height: 8.h),
+          
+                        // ---- Info Rows ----
+                        _InfoRow(icon: Icons.language_rounded, label: 'English'),
+                        SizedBox(height: 5.h),
+                        _InfoRow(
+                          icon: Icons.location_on_outlined,
+                          label: 'Central Park West',
+                        ),
+                        SizedBox(height: 5.h),
+                        _InfoRow(
+                          icon: Icons.calendar_today_outlined,
+                          label: 'Saturday, 24 June',
+                        ),
+                        SizedBox(height: 5.h),
+                        _InfoRow(
+                          icon: Icons.access_time_rounded,
+                          label: '6:30 PM Today',
+                        ),
+          
+                        const Spacer(),
+          
+                        // ---- Avatars + Joined ----
+                        Row(
+                          children: [
+                            _AvatarStack(),
+                            SizedBox(width: 8.w),
+                            CustomText(
+                              title: '3/6 JOINED',
+                              textColor: ConstColor.primaryColor,
+                              textSize: 11.sp,
+                              fontWeight: FontWeight.w700,
+                              maxLine: 1,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
 
-        // ---- POPULAR Badge — top right pill ----
         Positioned(
           top: -12.h,
           right: 5.w,

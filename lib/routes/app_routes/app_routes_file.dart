@@ -47,6 +47,7 @@ import '../../screens/UserScreen/MessageTabAllScreen/GroupPlanChatScreen/group_p
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/created_plan_details_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/edit_plan_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/ConnectionScreen/connection_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/NotificationScreen/notification_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/ProfileScreen/profile_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/BlockUserScreen/block_user_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfileScreen/edit_profile_screen.dart';
@@ -155,5 +156,6 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.privacyPolicyScreen,page: () => PrivacyPolicyScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.inviteFriendsListScreen,page: () => InviteFriendsListScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.connectionScreen,page: () => ConnectionScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.notificationScreen,page: () => NotificationScreen(),binding: AppBindings()),
 
 ];

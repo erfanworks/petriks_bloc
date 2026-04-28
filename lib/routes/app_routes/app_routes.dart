@@ -88,6 +88,7 @@ class AppRoutes {
   static const privacyPolicyScreen = '/privacyPolicyScreen';
   static const inviteFriendsListScreen = '/inviteFriendsListScreen';
   static const connectionScreen = '/connectionScreen';
+  static const notificationScreen = '/notificationScreen';
 
 
 }

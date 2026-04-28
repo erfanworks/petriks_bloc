@@ -16,10 +16,13 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<PhoneNumberVerifyOtpController>();
+    final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
+          // ── Background Image (unchanged) ──
           Positioned(
             top: 0,
             left: 0,
@@ -32,6 +35,7 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
             ),
           ),
 
+          // ── Gradient Overlay (unchanged) ──
           Positioned.fill(
             child: Container(
               decoration: const BoxDecoration(
@@ -51,176 +55,187 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
             ),
           ),
 
-          // ---- White card ----
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              margin: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 160.h),
-              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 28.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(32.r),
+          // ── Card — always centered, keyboard aware ──
+          Positioned.fill(
+            child: AnimatedPadding(
+              duration: const Duration(milliseconds: 200),
+              curve: Curves.easeOut,
+              padding: EdgeInsets.only(
+                bottom: keyboardHeight > 0 ? keyboardHeight + 16.h : 0,
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // ---- Logo ----
-                  Image.asset(
-                    "assets/images/app_logo.png",
-                    width: 50.r,
-                    height: 50.r,
-                  ),
-
-                  SizedBox(height: 12.h),
-
-                  // ---- Title ----
-                  CustomText(
-                    title: ConstString.verifyOtp,
-                    textColor: ConstColor.black,
-                    textSize: 24.sp,
-                    fontWeight: FontWeight.w700,
-                    textAlign: TextAlign.center,
-                    maxLine: 1,
-                  ),
-
-                  SizedBox(height: 6.h),
-
-                  // ---- Subtitle ----
-                  CustomText(
-                    title: ConstString.enterCodeSent,
-                    textColor: ConstColor.grey,
-                    textSize: 15.sp,
-                    textAlign: TextAlign.center,
-                    fontWeight: FontWeight.w400,
-                    maxLine: 2,
-                  ),
-
-                  SizedBox(height: 20.h),
-
-                  // ---- OTP Boxes ----
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(
-                      4,
-                      (index) => _OtpBox(
-                        controller: controller.otpControllers[index],
-                        focusNode: controller.otpFocusNodes[index],
-                        onChanged: (val) => controller.onOtpChanged(val, index),
-                      ),
+              child: Center(
+                child: SingleChildScrollView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 16.w),
+                    padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 28.h),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(32.r),
                     ),
-                  ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // ---- Logo ----
+                        Image.asset(
+                          "assets/images/app_logo.png",
+                          width: 50.r,
+                          height: 50.r,
+                        ),
 
-                  SizedBox(height: 10.h),
+                        SizedBox(height: 12.h),
 
-                  // ---- Code sent text ----
-                  CustomText(
-                    title: ConstString.codeHasBeenSent,
-                    textColor: ConstColor.grey,
-                    textSize: 14.sp,
-                    textAlign: TextAlign.center,
-                    fontWeight: FontWeight.w400,
-                    maxLine: 1,
-                  ),
+                        // ---- Title ----
+                        CustomText(
+                          title: ConstString.verifyOtp,
+                          textColor: ConstColor.black,
+                          textSize: 24.sp,
+                          fontWeight: FontWeight.w700,
+                          textAlign: TextAlign.center,
+                          maxLine: 1,
+                        ),
 
-                  SizedBox(height: 4.h),
+                        SizedBox(height: 6.h),
 
-                  // ---- Timer ----
-                  Obx(
-                    () => CustomText(
-                      title: controller.formattedTimer,
-                      textColor: ConstColor.primaryColor,
-                      textSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      textAlign: TextAlign.center,
-                      maxLine: 1,
-                    ),
-                  ),
+                        // ---- Subtitle ----
+                        CustomText(
+                          title: ConstString.enterCodeSent,
+                          textColor: ConstColor.grey,
+                          textSize: 15.sp,
+                          textAlign: TextAlign.center,
+                          fontWeight: FontWeight.w400,
+                          maxLine: 2,
+                        ),
 
-                  SizedBox(height: 16.h),
+                        SizedBox(height: 20.h),
 
-                  // ---- Verify Button ----
-                  Obx(
-                    () => CustomElevatedButton(
-                      onPressed: controller.isLoading.value
-                          ? null
-                          : controller.verifyOtp,
-                      top: 0,
-                      buttonBorderRadius: 30,
-                      gradient: const [
-                        ConstColor.primaryDeepColor,
-                        ConstColor.primaryColor
-                      ],
-                      child: controller.isLoading.value
-                          ? const CircularProgressIndicator(
+                        // ---- OTP Boxes ----
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: List.generate(
+                            4,
+                                (index) => _OtpBox(
+                              controller: controller.otpControllers[index],
+                              focusNode: controller.otpFocusNodes[index],
+                              onChanged: (val) => controller.onOtpChanged(val, index),
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(height: 10.h),
+
+                        // ---- Code sent text ----
+                        CustomText(
+                          title: ConstString.codeHasBeenSent,
+                          textColor: ConstColor.grey,
+                          textSize: 14.sp,
+                          textAlign: TextAlign.center,
+                          fontWeight: FontWeight.w400,
+                          maxLine: 1,
+                        ),
+
+                        SizedBox(height: 4.h),
+
+                        // ---- Timer ----
+                        Obx(
+                              () => CustomText(
+                            title: controller.formattedTimer,
+                            textColor: ConstColor.primaryColor,
+                            textSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            textAlign: TextAlign.center,
+                            maxLine: 1,
+                          ),
+                        ),
+
+                        SizedBox(height: 16.h),
+
+                        // ---- Verify Button ----
+                        Obx(
+                              () => CustomElevatedButton(
+                            onPressed: controller.isLoading.value
+                                ? null
+                                : controller.verifyOtp,
+                            top: 0,
+                            buttonBorderRadius: 30,
+                            gradient: const [
+                              ConstColor.primaryDeepColor,
+                              ConstColor.primaryColor,
+                            ],
+                            child: controller.isLoading.value
+                                ? const CircularProgressIndicator(
                               color: Colors.white,
                               strokeWidth: 2,
                             )
-                          : CustomText(
+                                : CustomText(
                               title: ConstString.verify,
                               textColor: Colors.white,
                               textSize: 15.sp,
                               fontWeight: FontWeight.w600,
                               maxLine: 1,
                             ),
-                    ),
-                  ),
+                          ),
+                        ),
 
-                  SizedBox(height: 12.h),
+                        SizedBox(height: 12.h),
 
-                  // ---- Don't get OTP ----
-                  CustomText(
-                    title: ConstString.donTGetOtp,
-                    textColor: ConstColor.black,
-                    textSize: 14.sp,
-                    textAlign: TextAlign.center,
-                    fontWeight: FontWeight.w400,
-                    maxLine: 1,
-                  ),
-
-                  SizedBox(height: 14.h),
-
-                  // ---- Resend ----
-                  Obx(
-                    () => GestureDetector(
-                      onTap: controller.canResend.value
-                          ? controller.resendOtp
-                          : null,
-                      child: CustomText(
-                        title: ConstString.resend,
-                        textColor: controller.canResend.value
-                            ? ConstColor.primaryColor
-                            : ConstColor.grey,
-                        textSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                        decoration: TextDecoration.underline,
-                        textAlign: TextAlign.center,
-                        maxLine: 1,
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(height: 12.h),
-
-                  // ---- Back to Sign Up ----
-                  GestureDetector(
-                    onTap: controller.goBack,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.arrow_back),
-                        SizedBox(width: 4.w,),
+                        // ---- Don't get OTP ----
                         CustomText(
-                          title: ConstString.backToSignUp,
+                          title: ConstString.donTGetOtp,
                           textColor: ConstColor.black,
                           textSize: 14.sp,
-                          fontWeight: FontWeight.w600,
                           textAlign: TextAlign.center,
+                          fontWeight: FontWeight.w400,
                           maxLine: 1,
+                        ),
+
+                        SizedBox(height: 14.h),
+
+                        // ---- Resend ----
+                        Obx(
+                              () => GestureDetector(
+                            onTap: controller.canResend.value
+                                ? controller.resendOtp
+                                : null,
+                            child: CustomText(
+                              title: ConstString.resend,
+                              textColor: controller.canResend.value
+                                  ? ConstColor.primaryColor
+                                  : ConstColor.grey,
+                              textSize: 14.sp,
+                              fontWeight: FontWeight.w400,
+                              decoration: TextDecoration.underline,
+                              textAlign: TextAlign.center,
+                              maxLine: 1,
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(height: 12.h),
+
+                        // ---- Back to Sign Up ----
+                        GestureDetector(
+                          onTap: controller.goBack,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(Icons.arrow_back),
+                              SizedBox(width: 4.w),
+                              CustomText(
+                                title: ConstString.backToSignUp,
+                                textColor: ConstColor.black,
+                                textSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                                textAlign: TextAlign.center,
+                                maxLine: 1,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
           ),
