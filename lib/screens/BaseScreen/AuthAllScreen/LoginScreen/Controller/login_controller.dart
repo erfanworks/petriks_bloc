@@ -20,10 +20,10 @@ class LoginController extends GetxController {
   }
 
   void openTerms() {
-    // TODO: open terms & conditions
+    Get.toNamed(AppRoutes.termsConditionScreen);
   }
 
   void openPrivacyPolicy() {
-    // TODO: open privacy policy
+    Get.toNamed(AppRoutes.privacyPolicyScreen);
   }
 }

@@ -174,7 +174,6 @@ class LoginScreen extends StatelessWidget {
 
                 SizedBox(height: 24.h),
 
-                // ---- Terms & Privacy ----
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 32.w),
                   child: RichText(

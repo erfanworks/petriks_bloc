@@ -64,7 +64,7 @@ class _FriendTile extends StatelessWidget {
             buttonBorderRadius: 20,
             color: friend.isInvited.value ? ConstColor.boxColor : ConstColor.primaryColor,
             child: CustomText(
-              title: ConstString.invite,
+              title: friend.isInvited.value ? ConstString.invited : ConstString.invite,
               textSize: 13.sp,
               fontWeight: FontWeight.w600,
               textColor: friend.isInvited.value ? ConstColor.grey : ConstColor.white,

@@ -24,6 +24,7 @@ class NotificationScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             _SectionLabel(title: ConstString.recentActivity),
             SizedBox(height: 10.h),
             _NotificationGroup(items: c.recentActivity),

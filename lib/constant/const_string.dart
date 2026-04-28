@@ -98,6 +98,7 @@ class ConstString {
   static const popular = 'POPULAR';
   static const freeEntry = 'Free Entry';
   static const invite = 'Invite';
+  static const invited = 'Invited';
   static const joined = 'Joined';
   static const newComerFriendly = 'New-Comer Friendly';
   static const nightOutFriendly = 'Night Out Party';
