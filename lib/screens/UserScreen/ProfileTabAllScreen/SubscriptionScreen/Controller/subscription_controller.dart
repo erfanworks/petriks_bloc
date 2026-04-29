@@ -31,7 +31,7 @@ class SubscriptionController extends GetxController {
     PlanFeature('Join unlimited plans'),
   ];
 
-  String get priceLabel  => selectedTab.value == 0 ? '\$9.99'  : '\$79.99';
+  String get priceLabel  => selectedTab.value == 0 ? '£9.99'  : '£79.99';
   String get periodLabel => selectedTab.value == 0 ? '/ month' : '/ year';
 
   void onTabChanged(int index) => selectedTab.value = index;

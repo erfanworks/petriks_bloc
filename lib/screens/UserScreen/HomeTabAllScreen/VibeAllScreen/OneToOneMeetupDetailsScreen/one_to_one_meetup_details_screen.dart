@@ -5,15 +5,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
-import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
-import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Controller/one_to_one_meetup_details_controller.dart' hide PlanDetailsController;
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Controller/one_to_one_meetup_details_controller.dart'
+    hide PlanDetailsController;
 
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../constant/const_string.dart';
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../widget/AppImage/app_image.dart';
+import '../../../../../Widget/app_snack_bar/app_snack_bar.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+
 class OneToOneMeetupDetailsScreen extends StatelessWidget {
   const OneToOneMeetupDetailsScreen({super.key});
 
@@ -25,7 +27,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F5FA),
       appBar: GlobalAppBar(title: ConstString.planDetails),
       body: Obx(
-            () => SingleChildScrollView(
+        () => SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -77,19 +79,38 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 10.h),
-                          _DetailRow(icon: Icons.location_on_outlined, label: 'Central Park West, NYC'),
+                          _DetailRow(
+                            icon: Icons.location_on_outlined,
+                            label: 'Central Park West, NYC',
+                          ),
                           SizedBox(height: 6.h),
                           Row(
                             children: [
-                              Icon(Icons.calendar_today_outlined, size: 13.sp, color: ConstColor.primaryDeepColor),
+                              Icon(
+                                Icons.calendar_today_outlined,
+                                size: 13.sp,
+                                color: ConstColor.primaryDeepColor,
+                              ),
                               SizedBox(width: 6.w),
-                              CustomText(title: 'Saturday, 24 June', textColor: ConstColor.grey, textSize: 12.sp, maxLine: 1),
+                              CustomText(
+                                title: 'Saturday, 24 June',
+                                textColor: ConstColor.grey,
+                                textSize: 12.sp,
+                                maxLine: 1,
+                              ),
                               SizedBox(width: 10.w),
-                              _PillBadge(label: '👥 Chill Vibe', bgColor: const Color(0xFFEDE9FF), textColor: ConstColor.primaryColor),
+                              _PillBadge(
+                                label: '👥 Chill Vibe',
+                                bgColor: const Color(0xFFEDE9FF),
+                                textColor: ConstColor.primaryColor,
+                              ),
                             ],
                           ),
                           SizedBox(height: 6.h),
-                          _DetailRow(icon: Icons.language_rounded, label: 'English'),
+                          _DetailRow(
+                            icon: Icons.language_rounded,
+                            label: 'English',
+                          ),
                           SizedBox(height: 6.h),
                         ],
                       ),
@@ -149,7 +170,10 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                               'assets/icons/location_icon.svg',
                               width: 18.r,
                               height: 18.r,
-                              colorFilter: ColorFilter.mode(ConstColor.white, BlendMode.srcIn),
+                              colorFilter: ColorFilter.mode(
+                                ConstColor.white,
+                                BlendMode.srcIn,
+                              ),
                             ),
                           ),
                         ),
@@ -176,7 +200,10 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                               'assets/icons/location_pin.svg',
                               width: 18.r,
                               height: 18.r,
-                              colorFilter: ColorFilter.mode(ConstColor.primaryColor, BlendMode.srcIn),
+                              colorFilter: ColorFilter.mode(
+                                ConstColor.primaryColor,
+                                BlendMode.srcIn,
+                              ),
                             ),
                           ),
                         ),
@@ -237,54 +264,90 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
           ),
         ),
       ),
-
-      // ---- Bottom Button ----
-      bottomNavigationBar: Obx(
-            () => Padding(
-          padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
-          child: controller.hasJoined.value
-              ? CustomElevatedButton(
-            onPressed: controller.onConfirmAttendance,
-            height: 48,
-            top: 0,
-            buttonBorderRadius: 30,
-            gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-            child: CustomText(
-              title: ConstString.confirmAttendance,
-              textColor: Colors.white,
-              textSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
-            ),
-          )
-              : CustomElevatedButton(
-            onPressed: controller.showJoinSheet,
-            height: 48,
-            top: 0,
-            buttonBorderRadius: 30,
-            gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-            child: CustomText(
-              title: ConstString.joinEvent,
-              textColor: Colors.white,
-              textSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
-            ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
+        child: CustomElevatedButton(
+          onPressed: () {
+            Get.back();
+            AppSnackBar.message(
+              "Success! \nYou have successfully joined the event",
+              backgroundColor: ConstColor.primaryColor,
+              seconds: 2,
+            );
+          },
+          height: 50,
+          top: 0,
+          buttonBorderRadius: 30,
+          gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+          child: CustomText(
+            title: ConstString.joinEvent,
+            textColor: Colors.white,
+            textSize: 15.sp,
+            fontWeight: FontWeight.w600,
+            maxLine: 1,
           ),
+
         ),
       ),
+      // ---- Bottom Button ----
+      // bottomNavigationBar: Obx(
+      //   () => Padding(
+      //     padding: EdgeInsets.fromLTRB(
+      //       16.w,
+      //       0,
+      //       16.w,
+      //       5.h + MediaQuery.of(context).padding.bottom,
+      //     ),
+      //     child: controller.hasJoined.value
+      //         ? CustomElevatedButton(
+      //             onPressed: controller.onConfirmAttendance,
+      //             height: 48,
+      //             top: 0,
+      //             buttonBorderRadius: 30,
+      //             gradient: [
+      //               ConstColor.primaryDeepColor,
+      //               ConstColor.primaryColor,
+      //             ],
+      //             child: CustomText(
+      //               title: ConstString.confirmAttendance,
+      //               textColor: Colors.white,
+      //               textSize: 15.sp,
+      //               fontWeight: FontWeight.w600,
+      //               maxLine: 1,
+      //             ),
+      //           )
+      //         : CustomElevatedButton(
+      //             onPressed: controller.showJoinSheet,
+      //             height: 48,
+      //             top: 0,
+      //             buttonBorderRadius: 30,
+      //             gradient: [
+      //               ConstColor.primaryDeepColor,
+      //               ConstColor.primaryColor,
+      //             ],
+      //             child: CustomText(
+      //               title: ConstString.joinEvent,
+      //               textColor: Colors.white,
+      //               textSize: 15.sp,
+      //               fontWeight: FontWeight.w600,
+      //               maxLine: 1,
+      //             ),
+      //           ),
+      //   ),
+      // ),
     );
   }
 }
+
 class _ChatLocked extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(color: ConstColor.borderColor,width: 1.5)
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: ConstColor.borderColor, width: 1.5),
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -296,8 +359,7 @@ class _ChatLocked extends StatelessWidget {
               imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(
-                    vertical: 32.h, horizontal: 20.w),
+                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 20.w),
                 child: Column(
                   children: [
                     // Fake blurred chat rows
@@ -322,7 +384,7 @@ class _ChatLocked extends StatelessWidget {
                 Container(
                   width: 48.r,
                   height: 48.r,
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
                     boxShadow: [
@@ -345,7 +407,9 @@ class _ChatLocked extends StatelessWidget {
                 // Purple glow behind text
                 Container(
                   padding: EdgeInsets.symmetric(
-                      horizontal: 20.w, vertical: 10.h),
+                    horizontal: 20.w,
+                    vertical: 10.h,
+                  ),
                   decoration: BoxDecoration(
                     color: ConstColor.primaryColor.withAlpha(30),
                     borderRadius: BorderRadius.circular(12.r),
@@ -384,6 +448,7 @@ class _ChatLocked extends StatelessWidget {
 // ── Fake blurred chat bubble row ──
 class _FakeBlurRow extends StatelessWidget {
   const _FakeBlurRow({required this.width});
+
   final double width; // 0.0 to 1.0 fraction of screen width
 
   @override
@@ -538,9 +603,9 @@ class _HostCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       padding: EdgeInsets.all(14.r),
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(24.r),
-          border: Border.all(color: ConstColor.borderColor,width: 1.5)
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24.r),
+        border: Border.all(color: ConstColor.borderColor, width: 1.5),
       ),
       child: Row(
         children: [
@@ -575,7 +640,7 @@ class _HostCard extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: (){
+            onTap: () {
               Get.toNamed(AppRoutes.hostProfileScreen);
             },
             child: Container(
@@ -607,16 +672,20 @@ class _SafetyCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16.w),
       padding: EdgeInsets.all(14.r),
       decoration: BoxDecoration(
-          color: const Color(0xFFF0EDFF),
-          borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(color: ConstColor.borderColor,width: 1.5)
+        color: const Color(0xFFF0EDFF),
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: ConstColor.borderColor, width: 1.5),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.shield_outlined, size: 16.sp, color: ConstColor.primaryColor),
+              Icon(
+                Icons.shield_outlined,
+                size: 16.sp,
+                color: ConstColor.primaryColor,
+              ),
               SizedBox(width: 6.w),
               CustomText(
                 title: ConstString.safetyFirst,
@@ -683,9 +752,12 @@ class _PillBadge extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
       decoration: BoxDecoration(
-          color: bgColor,
-          borderRadius: BorderRadius.circular(20.r),
-          border: Border.all(color: ConstColor.primaryDeepColor.withAlpha(40), width: 1.5)
+        color: bgColor,
+        borderRadius: BorderRadius.circular(20.r),
+        border: Border.all(
+          color: ConstColor.primaryDeepColor.withAlpha(40),
+          width: 1.5,
+        ),
       ),
       child: CustomText(
         title: label,
@@ -743,6 +815,7 @@ class _SmallAvatarStack extends StatelessWidget {
     );
   }
 }
+
 class _CircleAvatar extends StatelessWidget {
   final String path;
 

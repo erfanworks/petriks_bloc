@@ -39,7 +39,6 @@ class SubscriptionScreen extends StatelessWidget {
   }
 }
 
-// ─── Tab Bar ──────────────────────────────────────────────────────────────────
 class _TabBar extends StatelessWidget {
   final SubscriptionController c;
 

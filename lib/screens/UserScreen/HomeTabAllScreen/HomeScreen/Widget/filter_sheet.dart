@@ -31,12 +31,12 @@ class _FilterSheetState extends State<_FilterSheet> {
   bool isDropdownOpen = false;
 
   final List<String> cities = [
-    'New York',
-    'Los Angeles',
-    'Miami',
-    'San Francisco',
-    'Austin',
-    'Boston',
+    'London',
+    'Birmingham',
+    'Manchester',
+    'Glasgow',
+    'Leeds',
+    'Liverpool',
   ];
 
   @override

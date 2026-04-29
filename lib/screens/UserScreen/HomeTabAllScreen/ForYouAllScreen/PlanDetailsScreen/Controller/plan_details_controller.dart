@@ -123,11 +123,11 @@ class PlanDetailsController extends GetxController {
     Get.back();
   }
 
-  void onConfirmAttendance() => Get.back();
+  void onConfirmAttendance() => Get.toNamed(AppRoutes.howDidItGoScreen);
 
   // Review
   void onSelectVibe(int index) => selectedVibe.value = index;
-  void submitReview() => Get.toNamed(AppRoutes.helpCenterScreen);
+  void submitReview() => Get.toNamed(AppRoutes.navBar,);
   void planAgain() => Get.back();
 
   // Help Center Navigation

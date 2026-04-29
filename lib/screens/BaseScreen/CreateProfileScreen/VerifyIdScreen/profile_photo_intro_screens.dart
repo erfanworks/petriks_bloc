@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
+import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../widget/AppImage/app_image.dart';
 import '../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
@@ -18,6 +19,7 @@ class ProfilePhotoScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
+      appBar: GlobalAppBar(title: ConstString.addAProfilePhoto,),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

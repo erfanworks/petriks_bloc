@@ -11,7 +11,7 @@ class EditProfileController extends GetxController {
   final dateOfBirth        = '12 Aug, 2026'.obs;
   final selectedAgeBand    = '25 - 34'.obs;
   final searchLocationCtrl = TextEditingController();
-  final locationLabel      = 'San Francisco, CA — Based on your current location'.obs;
+  final locationLabel      = 'Covet Garden, Soho, Mayfair, Westminster (Big Ben).'.obs;
   final pickedAvatarPath   = ''.obs;
   final isSaving           = false.obs;
 

@@ -136,7 +136,6 @@ class PlanDetailsScreen extends StatelessWidget {
 
               SizedBox(height: 170.h),
 
-              // ---- Pick a Location ----
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: CustomText(
@@ -240,19 +239,16 @@ class PlanDetailsScreen extends StatelessWidget {
               ),
               SizedBox(height: 10.h),
 
-              // Chat locked or unlocked
               controller.hasJoined.value
                   ? _ChatUnlocked(controller: controller)
                   : _ChatLocked(),
 
               SizedBox(height: 16.h),
 
-              // ---- Host Profile ----
               _HostCard(),
 
               SizedBox(height: 12.h),
 
-              // ---- Safety First ----
               _SafetyCard(),
 
               SizedBox(height: 50.h),
@@ -261,45 +257,49 @@ class PlanDetailsScreen extends StatelessWidget {
         ),
       ),
 
-      // ---- Bottom Button ----
       bottomNavigationBar: Obx(
-        () => Padding(
-          padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
+            () => Padding(
+          padding: EdgeInsets.fromLTRB(
+            16.w,
+            0,
+            16.w,
+            5.h + MediaQuery.of(context).padding.bottom,
+          ),
           child: controller.hasJoined.value
               ? CustomElevatedButton(
-                  onPressed: controller.onConfirmAttendance,
-                  height: 54,
-                  top: 0,
-                  buttonBorderRadius: 30,
-                  gradient: [
-                    ConstColor.primaryDeepColor,
-                    ConstColor.primaryColor,
-                  ],
-                  child: CustomText(
-                    title: ConstString.confirmAttendance,
-                    textColor: Colors.white,
-                    textSize: 15.sp,
-                    fontWeight: FontWeight.w600,
-                    maxLine: 1,
-                  ),
-                )
+            onPressed: controller.onConfirmAttendance,
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: [
+              ConstColor.primaryDeepColor,
+              ConstColor.primaryColor,
+            ],
+            child: CustomText(
+              title: ConstString.confirmAttendance,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
+          )
               : CustomElevatedButton(
-                  onPressed: controller.showJoinSheet,
-                  height: 54,
-                  top: 0,
-                  buttonBorderRadius: 30,
-                  gradient: [
-                    ConstColor.primaryDeepColor,
-                    ConstColor.primaryColor,
-                  ],
-                  child: CustomText(
-                    title: ConstString.joinEvent,
-                    textColor: Colors.white,
-                    textSize: 15.sp,
-                    fontWeight: FontWeight.w600,
-                    maxLine: 1,
-                  ),
-                ),
+            onPressed: controller.showJoinSheet,
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: [
+              ConstColor.primaryDeepColor,
+              ConstColor.primaryColor,
+            ],
+            child: CustomText(
+              title: ConstString.joinEvent,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
+          ),
         ),
       ),
     );
@@ -440,7 +440,6 @@ class _LocationVoteCard extends StatelessWidget {
   }
 }
 
-// ---- Chat Locked ----
 class _ChatLocked extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -547,17 +546,15 @@ class _ChatLocked extends StatelessWidget {
   }
 }
 
-// ── Fake blurred chat bubble row ──
 class _FakeBlurRow extends StatelessWidget {
   const _FakeBlurRow({required this.width});
 
-  final double width; // 0.0 to 1.0 fraction of screen width
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // Avatar circle
         Container(
           width: 32.r,
           height: 32.r,
@@ -567,7 +564,6 @@ class _FakeBlurRow extends StatelessWidget {
           ),
         ),
         SizedBox(width: 8.w),
-        // Chat bubble
         Container(
           height: 20.h,
           width: MediaQuery.of(context).size.width * width - 80.w,
@@ -581,7 +577,6 @@ class _FakeBlurRow extends StatelessWidget {
   }
 }
 
-// ---- Chat Unlocked ----
 class _ChatUnlocked extends StatelessWidget {
   final PlanDetailsController controller;
 
@@ -599,7 +594,6 @@ class _ChatUnlocked extends StatelessWidget {
       child: Column(
         children: controller.chatMessages.map((msg) {
           if (msg.isMe) {
-            // ── My message: bubble left, avatar right ──
             return Padding(
               padding: EdgeInsets.only(bottom: 8.h, left: 40.w),
               child: Row(
@@ -650,7 +644,6 @@ class _ChatUnlocked extends StatelessWidget {
             );
           }
 
-          // ── Other message: no avatar, name top-left, time bottom-right ──
           return Padding(
             padding: EdgeInsets.only(bottom: 8.h, right: 40.w),
             child: Column(
@@ -697,7 +690,6 @@ class _ChatUnlocked extends StatelessWidget {
   }
 }
 
-// ---- Host Card ----
 class _HostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -766,7 +758,6 @@ class _HostCard extends StatelessWidget {
   }
 }
 
-// ---- Safety Card ----
 class _SafetyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

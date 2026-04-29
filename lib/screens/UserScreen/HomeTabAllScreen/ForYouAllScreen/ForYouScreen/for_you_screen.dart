@@ -39,7 +39,7 @@ class ForYouScreen extends StatelessWidget {
 
           SizedBox(height: 20.h),
 
-          _SectionHeader(title: ConstString.easyMeetup, showSeeAll: false),
+          _SectionHeader(title: ConstString.easyMeetup, showSeeAll: true),
 
           SizedBox(height: 12.h),
           ListView.separated(
@@ -124,39 +124,31 @@ class _InviteFriendsButton extends StatelessWidget {
         onTap: (){
           Get.toNamed(AppRoutes.inviteFriendsListScreen);
         },
-        child: DottedBorder(
-          options: RoundedRectDottedBorderOptions(
-            color: ConstColor.primaryDeepColor,
-            strokeWidth: 1.2,
-            dashPattern: const [10, 5],
-            radius: Radius.circular(32.r),
-            padding: EdgeInsets.zero,
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(vertical: 14.h),
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(30.r),
+            border: Border.all(color: ConstColor.primaryColor.withAlpha(50))
           ),
-          child: Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(vertical: 14.h),
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(30.r),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.person_add_alt_1_outlined,
-                  color: ConstColor.primaryColor,
-                  size: 22.sp,
-                ),
-                SizedBox(width: 8.w),
-                CustomText(
-                  title: ConstString.inviteFriends,
-                  textColor: ConstColor.primaryColor,
-                  textSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                  maxLine: 1,
-                ),
-              ],
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.person_add_alt_1_outlined,
+                color: ConstColor.primaryColor,
+                size: 22.sp,
+              ),
+              SizedBox(width: 8.w),
+              CustomText(
+                title: ConstString.inviteFriends,
+                textColor: ConstColor.primaryColor,
+                textSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                maxLine: 1,
+              ),
+            ],
           ),
         ),
       ),

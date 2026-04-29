@@ -34,7 +34,7 @@ class VerifyIdScreen extends StatelessWidget {
                     maxLine: 2,
                   ),
                   GestureDetector(
-                    onTap: () => Get.toNamed('/profile-photo'),
+                    onTap: () => Get.toNamed(AppRoutes.navBar),
                     child: CustomText(
                       title: ConstString.skip,
                       textSize: 16.sp,

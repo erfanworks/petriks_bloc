@@ -7,6 +7,11 @@ class ConstString {
       'Discover local plans and connect with people who share your vibe.';
   static const String getStarted = 'Get Started';
   static const signInToYour = 'Sign in to your';
+  static const String yourCommunityStartsHere = 'Your community starts here';
+  static const String hangoutPlan              = 'Hangout Plan';
+  static const String competition              = 'Competition';
+  static const String group                    = 'GROUP';
+  static const String oneToOne                 = '1-TO-1';
   static const account = 'Account';
   static const enterEmailPassword = 'Enter your email and password to log in';
   static const continueWithGoogle = 'Continue with Google';
@@ -108,7 +113,6 @@ class ConstString {
   static const pickALocation = 'Pick a location';
   static const location = 'Location';
   static const groupChat = 'Group Chat';
-  static const group = 'Group';
   static const view = 'View';
   static const joinEvent = 'Join Event';
   static const confirmAttendance = 'Confirm Attendance';

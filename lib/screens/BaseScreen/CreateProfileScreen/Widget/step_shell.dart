@@ -62,32 +62,33 @@ class StepShell extends StatelessWidget {
           ),
         ),
 
-        // ── Continue button (fixed bottom) ──
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-          child: CustomElevatedButton(
-            top: 0,
-            onPressed: continueEnabled
-                ? (onContinue ?? controller.nextStep)
-                : null,
-            color: continueEnabled
-                ? ConstColor.primaryColor
-                : ConstColor.primaryDeepColor,
-            buttonBorderRadius: 30,
-            child: CustomText(
-              title: ConstString.continueA,
-              textSize: 16.sp,
-              fontWeight: FontWeight.w500,
-              textColor: Colors.white,
-            ),
-          ),
+          child: Obx(() {
+            final enabled = controller.isCurrentStepValid;
+            return CustomElevatedButton(
+              top: 0,
+              onPressed: enabled
+                  ? (onContinue ?? controller.onNext)
+                  : controller.onNext,
+              color: enabled
+                  ? ConstColor.primaryColor
+                  : ConstColor.primaryColor.withAlpha(100),
+              buttonBorderRadius: 30,
+              child: CustomText(
+                title: ConstString.continueA,
+                textSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                textColor: Colors.white,
+              ),
+            );
+          }),
         ),
       ],
     );
   }
 }
 
-/// Reusable single-select card (Steps 4, 5, 6, 7)
 class SelectableOptionCard extends StatelessWidget {
   const SelectableOptionCard({
     super.key,
@@ -188,7 +189,6 @@ class SelectableOptionCard extends StatelessWidget {
               ],
             ),
           ),
-          // 'SELECTED' badge on top-right corner
           if (isSelected && showSelectedBadge)
             Positioned(
               top: -11,

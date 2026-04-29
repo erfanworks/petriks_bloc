@@ -25,6 +25,7 @@ class Step1BasicInfo extends StatelessWidget {
         children: [
           // ── Full Name ──
           CustomTextFormField(
+            onChanged: (_) => c.selectedAgeBand.refresh(),
             fromTitle: ConstString.fullName,
             textController: c.nameController,
             backgroundColor: ConstColor.boxColor,

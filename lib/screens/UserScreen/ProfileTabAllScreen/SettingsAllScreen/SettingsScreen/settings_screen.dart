@@ -136,7 +136,7 @@ class _AccountCard extends StatelessWidget {
                           ),
                           SizedBox(width: 2.w),
                           CustomText(
-                            title: 'New York, NY',
+                            title: 'Greenwich, Braxton.',
                             textSize: 14.sp,
                             textColor: ConstColor.grey,
                             maxLine: 1,

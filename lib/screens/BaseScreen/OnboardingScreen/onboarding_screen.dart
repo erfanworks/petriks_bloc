@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../../../Widget/text/custom_text.dart';
 import '../../../constant/const_color.dart';
 import '../../../constant/const_string.dart';
@@ -15,31 +14,20 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final OnboardingController controller = Get.put(OnboardingController());
-
     return Scaffold(
       backgroundColor: ConstColor.primaryColor,
       body: Column(
         children: [
-          Expanded(
-            flex: 6,
-            child: _MapSection(controller: controller),
-          ),
-
-          Expanded(
-            flex: 5,
-            child: _BottomCard(controller: controller),
-          ),
+          Expanded(flex: 6, child: _MapSection(controller: controller)),
+          Expanded(flex: 5, child: _BottomCard(controller: controller)),
         ],
       ),
     );
   }
 }
 
-
-// Map Section  (purple background + avatars)
 class _MapSection extends StatelessWidget {
   const _MapSection({required this.controller});
-
   final OnboardingController controller;
 
   @override
@@ -49,171 +37,335 @@ class _MapSection extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          // Scattered location pins (SVG)
-          ..._buildLocationPins(),
+          Positioned(
+            top: 52.h,
+            left: 0, right: 0,
+            child: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CustomText(
+                    title: ConstString.yourCommunityStartsHere,
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    textColor: Colors.white,
+                    maxLine: 1,
+                  ),
+                  SizedBox(width: 6.w),
+                  Text('👋', style: TextStyle(fontSize: 15.sp)),
+                ],
+              ),
+            ),
+          ),
 
-          // Scattered dot decorations
-          ..._buildDots(),
+          Positioned(
+            top: 100.h, left: 0, right: 0,
+            child: Center(
+              child: _DashedCircle(radius: 135.r, color: Colors.white.withAlpha(60)),
+            ),
+          ),
 
-          // Avatar bubbles positioned like the design
-          _AvatarBubble(
-            imagePath: "assets/images/onboarding1_img.jpg",
-            size: 72,
-            left: 40,
-            top: 60,
+          Positioned(
+            top: 145.h, left: 0, right: 0,
+            child: Center(
+              child: _DashedCircle(radius: 85.r, color: Colors.white.withAlpha(60)),
+            ),
           ),
-          _AvatarBubble(
-            imagePath: "assets/images/onboarding2_img.jpg",
-            size: 90,
-            left: 0,
-            right: 0,
-            top: 180,
-            centerHorizontal: true,
+
+          Positioned(
+            top: 195.h, left: 0, right: 0,
+            child: Center(
+              child: Container(
+                width: 70.r, height: 70.r,
+                decoration: BoxDecoration(
+                  color: Colors.white.withAlpha(40),
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white.withAlpha(80), width: 1.5),
+                ),
+                child: Icon(Icons.people_alt_outlined, color: Colors.white, size: 28.sp),
+              ),
+            ),
           ),
-          _AvatarBubble(
-            imagePath: "assets/images/onboarding3_img.jpg",
-            size: 66,
-            right: 30,
-            top: 95,
+
+          Positioned(
+            top: 188.h, right: 138,
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.only(left: 10.w),
+                child: Icon(Icons.location_on, color: Colors.white, size: 23.sp),
+              ),
+            ),
           ),
-          _AvatarBubble(
-            imagePath: "assets/images/onboarding4_img.jpg",
-            size: 52,
-            left: 75,
-            bottom: 120,
+
+          Positioned(
+            top: 245.h, right: 90.w,
+            child: Icon(Icons.location_on, color: Colors.white.withAlpha(120), size: 16.sp),
           ),
-          _AvatarBubble(
-            imagePath: "assets/images/onboarding5_img.jpg",
-            size: 58,
-            right: 95,
-            bottom: 50,
+
+          Positioned(
+            top: 170.h, right: 40.w,
+            child: _AvatarBubble(imagePath: 'assets/images/onboarding2_img.jpg', size: 56),
+          ),
+
+          Positioned(
+            top: 210.h, left: 78.w,
+            child: _AvatarBubble(imagePath: 'assets/images/onboarding1_img.jpg', size: 52),
+          ),
+
+          Positioned(
+            bottom: 55.h, left: 125.w,
+            child: _AvatarBubble(imagePath: 'assets/images/onboarding4_img.jpg', size: 50),
+          ),
+
+          Positioned(
+            top: 95.h, left: 20.w,
+            child: _GroupCard(),
+          ),
+
+          Positioned(
+            top: 110.h, right: 66.w,
+            child: _LocationCard(label: ConstString.hangoutPlan),
+          ),
+
+          Positioned(
+            bottom: 120.h, left: 16.w,
+            child: _LocationCard(label: ConstString.competition),
+          ),
+
+          // ── 1-TO-1 card — bottom right ──
+          Positioned(
+            bottom: 60.h, right: 16.w,
+            child: _OneTOOneCard(),
           ),
         ],
       ),
     );
   }
-
-  // Build scattered location pin icons
-  List<Widget> _buildLocationPins() {
-    final pins = [
-      _PinPosition(left: 150, top: 110),
-      _PinPosition(right: 130, top: 180),
-      _PinPosition(left: 50, top: 240),
-      _PinPosition(right: 50, bottom: 130),
-    ];
-
-    return pins.map((p) {
-      return Positioned(
-        left: p.left,
-        right: p.right,
-        top: p.top,
-        bottom: p.bottom,
-        child: SvgPicture.asset(
-          "assets/icons/location_icon.svg",
-          width: 18.w,
-          height: 18.h,
-          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
-        ),
-      );
-    }).toList();
-  }
-
-  // Build scattered white dot decorations
-  List<Widget> _buildDots() {
-    final dots = [
-      _PinPosition(right: 110, top: 280),
-      _PinPosition(left: 190, bottom: 100),
-      _PinPosition(left: 130, bottom: 240),
-      _PinPosition(left: 80, bottom: 50),
-    ];
-
-    return dots.map((d) {
-      return Positioned(
-        left: d.left,
-        right: d.right,
-        top: d.top,
-        bottom: d.bottom,
-        child: Container(
-          width: 6.r,
-          height: 6.r,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-        ),
-      );
-    }).toList();
-  }
 }
 
-// Avatar Bubble Widget
-class _AvatarBubble extends StatelessWidget {
-  const _AvatarBubble({
-    required this.imagePath,
-    required this.size,
-    this.left,
-    this.right,
-    this.top,
-    this.bottom,
-    this.centerHorizontal = false,
-  });
-
-  final String imagePath;
-  final double size;
-  final double? left;
-  final double? right;
-  final double? top;
-  final double? bottom;
-  final bool centerHorizontal;
+class _DashedCircle extends StatelessWidget {
+  final double radius;
+  final Color color;
+  const _DashedCircle({required this.radius, required this.color});
 
   @override
   Widget build(BuildContext context) {
-    final Widget bubble = Container(
-      width: size.r,
-      height: size.r,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: ConstColor.primaryColor.withAlpha(120), width: 3.r),
-        color: Colors.white,
-      ),
-      child: ClipOval(
-        child: AppImage(
-          path: imagePath,
-          fit: BoxFit.cover,
-          width: size.r,
-          height: size.r,
-        ),
-      ),
-    );
-
-    if (centerHorizontal) {
-      return Positioned(
-        top: top,
-        bottom: bottom,
-        left: 0,
-        right: 0,
-        child: Center(child: bubble),
-      );
-    }
-
-    return Positioned(
-      left: left?.w,
-      right: right?.w,
-      top: top?.h,
-      bottom: bottom?.h,
-      child: bubble,
+    return CustomPaint(
+      size: Size(radius * 2, radius * 2),
+      painter: _DashedCirclePainter(color: color),
     );
   }
 }
 
-// Bottom White Card
+class _DashedCirclePainter extends CustomPainter {
+  final Color color;
+  const _DashedCirclePainter({required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..strokeWidth = 1.2
+      ..style = PaintingStyle.stroke;
+
+    final center = Offset(size.width / 2, size.height / 2);
+    final radius = size.width / 2;
+    const dashCount = 28;
+    const dashAngle = 0.08;
+    const gapAngle = (3.14159 * 2 / dashCount) - dashAngle;
+
+    double angle = 0;
+    for (int i = 0; i < dashCount; i++) {
+      canvas.drawArc(
+        Rect.fromCircle(center: center, radius: radius),
+        angle,
+        dashAngle,
+        false,
+        paint,
+      );
+      angle += dashAngle + gapAngle;
+    }
+  }
+
+  @override
+  bool shouldRepaint(_DashedCirclePainter old) => false;
+}
+
+class _AvatarBubble extends StatelessWidget {
+  final String imagePath;
+  final double size;
+  const _AvatarBubble({required this.imagePath, required this.size});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size.r, height: size.r,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.white.withAlpha(180), width: 2.5),
+      ),
+      child: ClipOval(
+        child: AppImage(path: imagePath, fit: BoxFit.cover, width: size.r, height: size.r),
+      ),
+    );
+  }
+}
+
+class _GroupCard extends StatelessWidget {
+  const _GroupCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+      decoration: BoxDecoration(
+        color: Colors.white.withAlpha(60),
+        borderRadius: BorderRadius.circular(14.r),
+        border: Border.all(color: Colors.white.withAlpha(60), width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+            decoration: BoxDecoration(
+              color: ConstColor.yellow,
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+            child: CustomText(title: ConstString.group, textSize: 9.sp, fontWeight: FontWeight.w700, textColor: Colors.black, maxLine: 1),
+          ),
+          SizedBox(height: 6.h),
+          // Overlapping avatars
+          SizedBox(
+            height: 28.r,
+            width: 80.w,
+            child: Stack(
+              children: [
+                _SmallAvatar(path: 'assets/images/onboarding3_img.jpg', left: 0),
+                _SmallAvatar(path: 'assets/images/onboarding4_img.jpg', left: 18),
+                _SmallAvatar(path: 'assets/images/onboarding5_img.jpg', left: 36),
+                // +5 badge
+                Positioned(
+                  left: 54,
+                  child: Container(
+                    width: 28.r, height: 28.r,
+                    decoration: BoxDecoration(
+                      color: ConstColor.primaryColor,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 1.5),
+                    ),
+                    child: Center(
+                      child: CustomText(title: '+5', textSize: 8.sp, fontWeight: FontWeight.w700, textColor: Colors.white, maxLine: 1),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SmallAvatar extends StatelessWidget {
+  final String path;
+  final double left;
+  const _SmallAvatar({required this.path, required this.left});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: left,
+      child: Container(
+        width: 28.r, height: 28.r,
+        decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 1.5)),
+        child: ClipOval(child: AppImage(path: path, fit: BoxFit.cover, width: 28.r, height: 28.r)),
+      ),
+    );
+  }
+}
+
+class _LocationCard extends StatelessWidget {
+  final String label;
+  const _LocationCard({required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 7.h),
+      decoration: BoxDecoration(
+        color: Colors.white.withAlpha(60),
+        borderRadius: BorderRadius.circular(8.r),
+        border: Border.all(color: Colors.white.withAlpha(60), width: 1),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.location_on_outlined, color: Colors.white, size: 13.sp),
+          SizedBox(width: 4.w),
+          CustomText(title: label, textSize: 11.sp, fontWeight: FontWeight.w600, textColor: Colors.white, maxLine: 1),
+        ],
+      ),
+    );
+  }
+}
+
+// ─── 1-TO-1 Card ──────────────────────────────────────────────────────────────
+class _OneTOOneCard extends StatelessWidget {
+  const _OneTOOneCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 11.h),
+      decoration: BoxDecoration(
+        color: Colors.white.withAlpha(30),
+        borderRadius: BorderRadius.circular(14.r),
+        border: Border.all(color: Colors.white.withAlpha(60), width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 1-TO-1 badge
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+            decoration: BoxDecoration(
+              color: const Color(0xFF34D399),
+              borderRadius: BorderRadius.circular(6.r),
+            ),
+            child: CustomText(title: ConstString.oneToOne, textSize: 9.sp, fontWeight: FontWeight.w700, textColor: Color(0xFF022C22), maxLine: 1),
+          ),
+          SizedBox(height: 6.h),
+          Row(
+            children: [
+              // Two overlapping avatars
+              SizedBox(
+                width: 50.w, height: 28.r,
+                child: Stack(
+                  children: [
+                    _SmallAvatar(path: 'assets/images/onboarding2_img.jpg', left: 0),
+                    _SmallAvatar(path: 'assets/images/onboarding1_img.jpg', left: 18),
+                  ],
+                ),
+              ),
+              SizedBox(width: 6.w),
+              Icon(Icons.swap_horiz_rounded, color: Colors.white.withAlpha(150), size: 20.sp),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _BottomCard extends StatelessWidget {
   const _BottomCard({required this.controller});
-
   final OnboardingController controller;
 
   @override
   Widget build(BuildContext context) {
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -223,67 +375,56 @@ class _BottomCard extends StatelessWidget {
           topRight: Radius.circular(32.r),
         ),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 24.h),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset("assets/images/app_logo.png",
-              width: 60.r,
-              height: 60.r,
-          ),
-
-          SizedBox(height: 16.h),
-
-          // Headline text
-          CustomText(
-            title: ConstString.onboardingHeadline,
-            textSize: 30.sp,
-            fontWeight: FontWeight.w700,
-            textColor: ConstColor.black,
-            textAlign: TextAlign.center,
-            maxLine: 3,
-          ),
-
-          SizedBox(height: 12.h),
-
-          // Sub-headline text
-          CustomText(
-            title: ConstString.onboardingSubHeadline,
-            textSize: 16.sp,
-            fontWeight: FontWeight.w400,
-            textColor: ConstColor.textColor,
-            textAlign: TextAlign.center,
-            maxLine: 2,
-          ),
-
-          SizedBox(height: 24.h),
-          CustomElevatedButton(
-            gradient: const [
-              Color(0xFF5341CD),
-              ConstColor.primaryColor,
-            ],
-            top: 0,
-            onPressed: controller.onGetStarted,
-            buttonBorderRadius: 30,
-            child: CustomText(
-              title: ConstString.getStarted,
-              textSize: 16.sp,
-              fontWeight: FontWeight.w600,
-              textColor: Colors.white,
+      padding: EdgeInsets.fromLTRB(28.w, 24.h, 28.w, 24.h),
+      child: SingleChildScrollView(
+        physics: const NeverScrollableScrollPhysics(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/images/app_logo.png", width: 60.r, height: 60.r),
+            SizedBox(height: 16.h),
+            CustomText(
+              title: ConstString.onboardingHeadline,
+              textSize: 30.sp,
+              fontWeight: FontWeight.w700,
+              textColor: ConstColor.black,
+              textAlign: TextAlign.center,
+              maxLine: 3,
             ),
-          ),
-        ],
+            SizedBox(height: 12.h),
+            CustomText(
+              title: ConstString.onboardingSubHeadline,
+              textSize: 16.sp,
+              fontWeight: FontWeight.w400,
+              textColor: ConstColor.textColor,
+              textAlign: TextAlign.center,
+              maxLine: 2,
+            ),
+            SizedBox(height: 24.h),
+            CustomElevatedButton(
+              gradient: const [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+              top: 0,
+              onPressed: controller.onGetStarted,
+              buttonBorderRadius: 30,
+              child: CustomText(
+                title: ConstString.getStarted,
+                textSize: 16.sp,
+                fontWeight: FontWeight.w600,
+                textColor: Colors.white,
+              ),
+            ),
+            SizedBox(height: bottomPadding),
+          ],
+        ),
       ),
     );
   }
 }
 
-// Helper model for pin/dot positions
 class _PinPosition {
   final double? left;
   final double? right;
   final double? top;
   final double? bottom;
-
   _PinPosition({this.left, this.right, this.top, this.bottom});
 }

@@ -109,20 +109,28 @@ class MeetupGroupDetailsController extends GetxController {
   // ======= Actions =======
 
   // Plan Detail
-  void showJoinSheet() {
-    Get.bottomSheet(
-      const JoinConfirmationSheet(),
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-    );
-  }
+  // void showJoinSheet() {
+  //   Get.bottomSheet(
+  //     const JoinConfirmationSheet(),
+  //     isScrollControlled: true,
+  //     backgroundColor: Colors.transparent,
+  //   );
+  // }
 
   void confirmJoin() {
     hasJoined.value = true;
     Get.back();
   }
 
-  void onConfirmAttendance() => Get.back();
+  void onConfirmAttendance() {
+    Get.back();
+
+    Get.snackbar(
+      "Success",
+      "Attendance confirmed",
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  }
 
   // Review
   void onSelectVibe(int index) => selectedVibe.value = index;

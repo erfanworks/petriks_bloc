@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 
 import '../../../../../../constant/const_color.dart';
@@ -26,7 +27,7 @@ class HowDidItGoScreen extends StatelessWidget {
           children: [
             // ---- Help & Safety Button ----
             CustomElevatedButton(
-              onPressed: () => Get.toNamed('/help-center'),
+              onPressed: () => Get.toNamed(AppRoutes.helpCenterScreen),
               isOutLined: true,
               elevation: 0,
               outLineColour: ConstColor.primaryColor,

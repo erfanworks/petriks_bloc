@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
+import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
 
 import 'Controller/create_profile_controller.dart';
 import 'Steps/step1_basic_info.dart';
@@ -31,13 +32,18 @@ class CreateProfileScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
+      appBar: GlobalAppBar(onBack: () {
+        if (controller.currentStep.value > 0) {
+          controller.currentStep.value--;
+        } else {
+          Get.back();
+        }
+      },),
       body: SafeArea(
         child: Column(
           children: [
-            // ── Step progress bar ──
             _StepProgressBar(controller: controller),
 
-            // ── Step content ──
             Expanded(
               child: Obx(() => _steps[controller.currentStep.value]),
             ),
@@ -48,7 +54,6 @@ class CreateProfileScreen extends StatelessWidget {
   }
 }
 
-// ── Reusable step progress indicator ──
 class _StepProgressBar extends StatelessWidget {
   const _StepProgressBar({required this.controller});
   final CreateProfileController controller;
