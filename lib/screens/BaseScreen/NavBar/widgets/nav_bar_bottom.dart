@@ -14,13 +14,12 @@ class NavBarBottom extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onTap;
 
-  // ── Tab config ──
   static const _tabs = [
     {'label': 'HOME',    'icon': 'assets/icons/home_icon.svg'},
     {'label': 'MY PLAN', 'icon': 'assets/icons/my_plan_icon.svg'},
     {'label': '',        'icon': 'assets/icons/add_icon.svg'},
     {'label': 'MESSAGE', 'icon': 'assets/icons/message_icon.svg'},
-    {'label': 'PROFILE', 'icon': 'assets/icons/profile_icon.svg'},
+    {'label': 'PROFILE', 'icon': 'assets/icons/profile_icon2.svg'},
   ];
 
   @override
@@ -45,7 +44,6 @@ class NavBarBottom extends StatelessWidget {
       ),
       child: Row(
         children: List.generate(_tabs.length, (i) {
-          // ── Center + button ──
           if (i == 2) {
             return Expanded(
               child: GestureDetector(
@@ -77,7 +75,6 @@ class NavBarBottom extends StatelessWidget {
             );
           }
 
-          // ── Normal tab ──
           final isSelected = selectedIndex == i;
           return Expanded(
             child: InkWell(

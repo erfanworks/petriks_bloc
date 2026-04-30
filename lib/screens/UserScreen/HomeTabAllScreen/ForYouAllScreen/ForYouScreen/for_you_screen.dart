@@ -1,4 +1,3 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -10,7 +9,6 @@ import '../../../../../constant/const_string.dart';
 import '../../VibeAllScreen/OneToOneMeetupScreen/Controller/one_to_one_meetup_controller.dart';
 import '../../VibeAllScreen/OneToOneMeetupScreen/Widget/one_to_one_meetup_card.dart';
 import 'Controller/for_you_controller.dart';
-import 'Widget/easy_meetup_card.dart';
 import 'Widget/featured_event_card.dart';
 import 'Widget/people_card.dart';
 import 'Widget/upcoming_event_card.dart';
@@ -42,29 +40,25 @@ class ForYouScreen extends StatelessWidget {
           _SectionHeader(title: ConstString.easyMeetup, showSeeAll: true),
 
           SizedBox(height: 12.h),
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            itemCount: Get.find<OneToOneMeetupController>().meetups.length,
-            separatorBuilder: (_, _) => SizedBox(height: 16.h),
-            itemBuilder: (_, index) => OneToOneMeetupCard(
-              item: Get.find<OneToOneMeetupController>().meetups[index],
+
+          SizedBox(
+            height: 280.h,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.only(left: 16.w, right: 32.w),
+              itemCount: Get.find<OneToOneMeetupController>().meetups.length,
+              separatorBuilder: (_, _) => SizedBox(width: 12.w),
+              itemBuilder: (_, index) => SizedBox(
+                width: MediaQuery.of(context).size.width - 60.w,
+                child: OneToOneMeetupCard(
+                  item: Get.find<OneToOneMeetupController>().meetups[index],
+                ),
+              ),
             ),
           ),
 
-          // SizedBox(
-          //   height: 130.h,
-          //   child: ListView.separated(
-          //     scrollDirection: Axis.horizontal,
-          //     padding: EdgeInsets.symmetric(horizontal: 16.w),
-          //     itemCount: controller.meetups.length,
-          //     separatorBuilder: (_, __) => SizedBox(width: 12.w),
-          //     itemBuilder: (_, index) =>
-          //         EasyMeetupCard(item: controller.meetups[index]),
-          //   ),
-          // ),
           SizedBox(height: 20.h),
+
           _SectionHeader(
             title: ConstString.upcomingEvents,
             showSeeAll: true,
@@ -73,14 +67,18 @@ class ForYouScreen extends StatelessWidget {
 
           SizedBox(height: 12.h),
 
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            itemCount: controller.upcomingEvents.length,
-            separatorBuilder: (_, __) => SizedBox(height: 16.h),
-            itemBuilder: (_, index) =>
-                UpcomingEventCard(item: controller.upcomingEvents[index]),
+          SizedBox(
+            height: 420.h,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.only(left: 16.w, right: 32.w),
+              itemCount: controller.upcomingEvents.length,
+              separatorBuilder: (_, _) => SizedBox(width: 12.w),
+              itemBuilder: (_, index) => SizedBox(
+                width: MediaQuery.of(context).size.width - 60.w,
+                child: UpcomingEventCard(item: controller.upcomingEvents[index]),
+              ),
+            ),
           ),
 
           SizedBox(height: 24.h),
@@ -96,7 +94,7 @@ class ForYouScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Obx(
-              () => Row(
+                  () => Row(
                 children: controller.people
                     .map((p) => Expanded(child: PeopleCard(item: p)))
                     .toList(),
@@ -121,7 +119,7 @@ class _InviteFriendsButton extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: GestureDetector(
-        onTap: (){
+        onTap: () {
           Get.toNamed(AppRoutes.inviteFriendsListScreen);
         },
         child: Container(
@@ -130,7 +128,7 @@ class _InviteFriendsButton extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(30.r),
-            border: Border.all(color: ConstColor.primaryColor.withAlpha(50))
+            border: Border.all(color: ConstColor.primaryColor.withAlpha(50)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

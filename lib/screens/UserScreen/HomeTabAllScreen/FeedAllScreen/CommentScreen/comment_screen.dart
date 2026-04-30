@@ -34,7 +34,6 @@ class CommentScreen extends StatelessWidget {
   }
 }
 
-// ─── Comment Item ─────────────────────────────────────────────────────────────
 class _CommentItem extends StatelessWidget {
   final CommentModel comment;
   final int index;
@@ -54,11 +53,11 @@ class _CommentItem extends StatelessWidget {
             onLike: () => c.onLikeComment(index),
             onReply: () => c.onReplyComment(index),
           ),
-          if (comment.reply != null)
-            Padding(
-              padding: EdgeInsets.only(left: 44.w, top: 8.h),
-              child: _CommentCard(comment: comment.reply!, isReply: true, onLike: () {}, onReply: () {}),
-            ),
+          // if (comment.reply != null)
+          //   Padding(
+          //     padding: EdgeInsets.only(left: 44.w, top: 8.h),
+          //     child: _CommentCard(comment: comment.reply!, isReply: true, onLike: () {}, onReply: () {}),
+          //   ),
         ],
       ),
     );
@@ -103,15 +102,15 @@ class _CommentCard extends StatelessWidget {
           SizedBox(height: 10.h),
 
           // Like + Reply
-          Row(
-            children: [
-              _ActionBtn(icon: Icons.favorite_border_rounded, label: comment.likes.toString(), onTap: onLike),
-              if (!isReply) ...[
-                SizedBox(width: 16.w),
-                _ActionBtn(icon: Icons.reply_rounded, label: ConstString.reply, onTap: onReply),
-              ],
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     _ActionBtn(icon: Icons.favorite_border_rounded, label: comment.likes.toString(), onTap: onLike),
+          //     if (!isReply) ...[
+          //       SizedBox(width: 16.w),
+          //       _ActionBtn(icon: Icons.reply_rounded, label: ConstString.reply, onTap: onReply),
+          //     ],
+          //   ],
+          // ),
         ],
       ),
     );

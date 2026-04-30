@@ -39,6 +39,12 @@ class _FilterSheetState extends State<_FilterSheet> {
     'Liverpool',
   ];
 
+  final List<String> feelingFilters = ['Quiet', 'Easy Going', 'Social', 'Lively'];
+  int selectedFeeling = 1;
+
+  final List<String> meetFilters = ['Everyone', 'Women', 'Men'];
+  int selectedMeet = 0;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -80,7 +86,7 @@ class _FilterSheetState extends State<_FilterSheet> {
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
               decoration: BoxDecoration(
                 color: ConstColor.boxColor,
-                borderRadius: BorderRadius.circular(30.r),
+                borderRadius: BorderRadius.circular(16.r),
               ),
               child: Row(
                 children: [
@@ -88,9 +94,7 @@ class _FilterSheetState extends State<_FilterSheet> {
                     child: CustomText(
                       title: selectedCity ?? ConstString.selectCity,
                       textSize: 15.sp,
-                      textColor: selectedCity != null
-                          ? ConstColor.black
-                          : ConstColor.grey,
+                      textColor: selectedCity != null ? ConstColor.black : ConstColor.grey,
                       maxLine: 1,
                     ),
                   ),
@@ -121,39 +125,132 @@ class _FilterSheetState extends State<_FilterSheet> {
                 children: cities
                     .map(
                       (city) => GestureDetector(
-                        onTap: () => setState(() {
-                          selectedCity = city;
-                          isDropdownOpen = false;
-                        }),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16.w,
-                            vertical: 12.h,
+                    onTap: () => setState(() {
+                      selectedCity = city;
+                      isDropdownOpen = false;
+                    }),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: CustomText(
+                              title: city,
+                              textSize: 14.sp,
+                              textColor: ConstColor.black,
+                              maxLine: 1,
+                            ),
                           ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: CustomText(
-                                  title: city,
-                                  textSize: 14.sp,
-                                  textColor: ConstColor.black,
-                                  maxLine: 1,
-                                ),
-                              ),
-                              if (selectedCity == city)
-                                Icon(
-                                  Icons.check,
-                                  size: 16.sp,
-                                  color: ConstColor.primaryColor,
-                                ),
-                            ],
-                          ),
-                        ),
+                          if (selectedCity == city)
+                            Icon(Icons.check, size: 16.sp, color: ConstColor.primaryColor),
+                        ],
                       ),
-                    )
+                    ),
+                  ),
+                )
                     .toList(),
               ),
             ),
+
+          SizedBox(height: 20.h),
+
+          CustomText(
+            title: "How are you feeling?",
+            textColor: ConstColor.black,
+            textSize: 14.sp,
+            fontWeight: FontWeight.w600,
+            maxLine: 1,
+          ),
+          SizedBox(height: 10.h),
+
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.generate(
+                feelingFilters.length,
+                    (i) {
+                  final isSelected = selectedFeeling == i;
+                  return GestureDetector(
+                    onTap: () => setState(() => selectedFeeling = i),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      margin: EdgeInsets.only(right: 8.w),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                      decoration: BoxDecoration(
+                        color: isSelected ? ConstColor.primaryColor : Colors.white,
+                        borderRadius: BorderRadius.circular(20.r),
+                      ),
+                      child: CustomText(
+                        title: feelingFilters[i],
+                        textColor: isSelected ? Colors.white : ConstColor.textColor,
+                        textSize: 14.sp,
+                        fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                        maxLine: 1,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+
+          SizedBox(height: 20.h),
+
+          CustomText(
+            title: "Who would you like to meet?",
+            textColor: ConstColor.black,
+            textSize: 14.sp,
+            fontWeight: FontWeight.w600,
+            maxLine: 1,
+          ),
+          SizedBox(height: 10.h),
+
+          Container(
+            decoration: BoxDecoration(
+              color: ConstColor.borderColor.withAlpha(50),
+              borderRadius: BorderRadius.circular(30.r),
+            ),
+            padding: EdgeInsets.all(4.w),
+            child: Row(
+              children: List.generate(
+                meetFilters.length,
+                    (i) {
+                  final isSelected = selectedMeet == i;
+                  return Expanded(
+                    child: GestureDetector(
+                      onTap: () => setState(() => selectedMeet = i),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        padding: EdgeInsets.symmetric(vertical: 10.h),
+                        decoration: BoxDecoration(
+                          color: isSelected ? Colors.white : Colors.transparent,
+                          borderRadius: BorderRadius.circular(24.r),
+                          boxShadow: isSelected
+                              ? [
+                            BoxShadow(
+                              color: Colors.black.withAlpha(15),
+                              blurRadius: 8.r,
+                              offset: Offset(0, 2.h),
+                            )
+                          ]
+                              : [],
+                        ),
+                        child: Center(
+                          child: CustomText(
+                            title: meetFilters[i],
+                            textColor: isSelected ? ConstColor.primaryColor : ConstColor.textColor,
+                            textSize: 13.sp,
+                            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                            maxLine: 1,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
 
           SizedBox(height: 20.h),
 
@@ -203,7 +300,7 @@ class _FilterSheetState extends State<_FilterSheet> {
               ],
             ),
           ),
-          SizedBox(height: 20.h),
+          SizedBox(height: 24.h),
 
           Align(
             alignment: Alignment.centerRight,

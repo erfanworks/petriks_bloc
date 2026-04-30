@@ -34,13 +34,3 @@ class NavbarController extends GetxController {
     super.onInit();
   }
 }
-
-class _PlaceholderScreen extends StatelessWidget {
-  const _PlaceholderScreen({required this.label});
-  final String label;
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    body: Center(child: Text(label)),
-  );
-}

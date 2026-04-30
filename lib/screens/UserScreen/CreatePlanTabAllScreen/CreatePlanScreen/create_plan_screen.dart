@@ -14,13 +14,6 @@ import 'Controller/create_plan_controller.dart';
 class CreatePlanScreen extends StatelessWidget {
   const CreatePlanScreen({super.key});
 
-  static const _steps = [
-    _Step1PlanType(),
-    _Step2Activity(),
-    _Step3Vibe(),
-    _Step4WhenWhere(),
-  ];
-
   @override
   Widget build(BuildContext context) {
     final c = Get.put(CreatePlanController());
@@ -40,24 +33,46 @@ class CreatePlanScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Obx(() => _steps[c.currentStep.value]),
+            child: Obx(() {
+              if (c.currentStep.value == 0) {
+                return const _Step1PlanType();
+              }
+
+              if (c.selectedPlanType.value == 'Easy Start') {
+                if (c.currentStep.value == 1) return const _Step2Activity();
+                if (c.currentStep.value == 2) return const _Step3Vibe();
+                if (c.currentStep.value == 3) return const _Step4WhenWhere();
+              } else {
+                if (c.currentStep.value == 1) return const _Step3Vibe();
+                if (c.currentStep.value == 2) return const _Step4WhenWhere();
+              }
+
+              return const SizedBox.shrink();
+            }),
           ),
+
           Padding(
             padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
-            child: Obx(() => CustomElevatedButton(
-              height: 48,
-              top: 0,
-              onPressed: c.nextStep,
-              gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-              buttonBorderRadius: 30,
-              child: CustomText(
-                title: c.buttonLabel,
-                textSize: 15.sp,
-                fontWeight: FontWeight.w600,
-                textColor: Colors.white,
-                maxLine: 1,
-              ),
-            )),
+            child: Obx(() {
+              final isNextDisabled = !c.canProceed;
+
+              return CustomElevatedButton(
+                height: 48,
+                top: 0,
+                onPressed: isNextDisabled ? () {} : c.nextStep,
+                gradient: isNextDisabled
+                    ? [Colors.grey.shade400, Colors.grey.shade400]
+                    : [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+                buttonBorderRadius: 30,
+                child: CustomText(
+                  title: c.buttonLabel,
+                  textSize: 15.sp,
+                  fontWeight: FontWeight.w600,
+                  textColor: Colors.white,
+                  maxLine: 1,
+                ),
+              );
+            }),
           ),
         ],
       ),
@@ -65,7 +80,7 @@ class CreatePlanScreen extends StatelessWidget {
   }
 }
 
-// Step 1
+
 class _Step1PlanType extends StatelessWidget {
   const _Step1PlanType();
 
@@ -269,7 +284,7 @@ class _Step2Activity extends StatelessWidget {
   }
 }
 
-// Step 3 — What's the vibe?
+// Step 3
 class _Step3Vibe extends StatelessWidget {
   const _Step3Vibe();
 
@@ -441,7 +456,7 @@ class _Step4WhenWhere extends StatelessWidget {
                 lastDate: DateTime(2100),
                 builder: (ctx, child) => Theme(
                   data: Theme.of(ctx).copyWith(
-                    colorScheme: ColorScheme.light(primary: ConstColor.primaryColor),
+                    colorScheme: const ColorScheme.light(primary: ConstColor.primaryColor),
                   ),
                   child: child!,
                 ),
@@ -463,7 +478,7 @@ class _Step4WhenWhere extends StatelessWidget {
                 initialTime: TimeOfDay.now(),
                 builder: (ctx, child) => Theme(
                   data: Theme.of(ctx).copyWith(
-                    colorScheme: ColorScheme.light(primary: ConstColor.primaryColor),
+                    colorScheme: const ColorScheme.light(primary: ConstColor.primaryColor),
                   ),
                   child: child!,
                 ),
@@ -634,8 +649,8 @@ class _Step4WhenWhere extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(14.r),
             decoration: BoxDecoration(
-              color: Color(0xFFDBEAFE),
-              border: Border.all(color: Color(0xFF2563EB),width: 1),
+              color: const Color(0xFFDBEAFE),
+              border: Border.all(color: const Color(0xFF2563EB),width: 1),
               borderRadius: BorderRadius.circular(14.r),
             ),
             child: Row(
@@ -654,7 +669,7 @@ class _Step4WhenWhere extends StatelessWidget {
                         title: ConstString.staySafe,
                         textSize: 16.sp,
                         fontWeight: FontWeight.w700,
-                        textColor: Color(0xFF1E3A8A),
+                        textColor: const Color(0xFF1E3A8A),
                         maxLine: 1,
                       ),
                       SizedBox(height: 2.h),
@@ -678,7 +693,6 @@ class _Step4WhenWhere extends StatelessWidget {
   }
 }
 
-// Shared small widgets
 class _StepTitle extends StatelessWidget {
   const _StepTitle({required this.title});
   final String title;

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import '../../../../../constant/const_string.dart';
 
 class CreatePlanController extends GetxController {
   final currentStep = 0.obs;
-  static const totalSteps = 4;
 
-  //Step 1
   final selectedPlanType = ''.obs;
 
   final List<Map<String, dynamic>> planTypes = [
@@ -33,20 +31,8 @@ class CreatePlanController extends GetxController {
       'tagBg': const Color(0xFFEEEBFF),
       'showArrow': false,
     },
-    {
-      'label': 'Custom Plan',
-      'desc': 'Have a unique idea? Use our guided builder to set up your perfect meetup.',
-      'icon': 'assets/icons/custom_community_icon.svg',
-      'bgColor': const Color(0xFFE5F4FF),
-      'iconColor': const Color(0xFF0562FC),
-      'tag': 'GUIDED',
-      'tagColor': const Color(0xFF0562FC),
-      'tagBg': const Color(0xFFE5F4FF),
-      'showArrow': false,
-    },
   ];
 
-  //Step 2:
   final selectedActivity = ''.obs;
 
   final List<Map<String, String>> activities = [
@@ -58,7 +44,6 @@ class CreatePlanController extends GetxController {
     {'label': 'Just Chill', 'icon': 'assets/icons/chill_icon.svg'},
   ];
 
-  //Step 3
   final selectedVibe      = ''.obs;
   final selectedGroupSize = ''.obs;
   final selectedBudget    = ''.obs;
@@ -73,12 +58,10 @@ class CreatePlanController extends GetxController {
   final genders    = ['Male', 'Female', 'Non-binary', 'Prefer not to say'];
   final languages  = ['English', 'Spanish', 'French', 'German', 'Mandarin'];
 
-  // ── Step 4: When/Where ──
   final planTitleController = TextEditingController(text: 'Coffee Time');
   final selectedDate        = 'Saturday, Nov 24'.obs;
   final selectedTime1       = '07:00 PM'.obs;
-  final selectedTime2       = '08:00 PM'.obs;
-  final selectedLocation    = 0.obs; // index
+  final selectedLocation    = (-1).obs;
   final voteOnTime          = true.obs;
   final voteOnPlace         = true.obs;
   final autoLock            = true.obs;
@@ -87,6 +70,7 @@ class CreatePlanController extends GetxController {
     {'name': 'Blue Bottle Coffee', 'sub': '8 min away',  'image': 'assets/images/party_img.png'},
     {'name': 'Central Park',       'sub': '8 min walk',  'image': 'assets/images/location_img1.jpg'},
   ];
+
   void onDateSelected(DateTime date) {
     selectedDate.value = '${date.day} ${_month(date.month)}, ${date.year}';
   }
@@ -100,17 +84,62 @@ class CreatePlanController extends GetxController {
 
   String _month(int m) => ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m];
 
-  // Navigation
-  void nextStep() {
-    if (currentStep.value < totalSteps - 1) {
-      currentStep.value++;
+
+  bool get isLastStep {
+    if (selectedPlanType.value == 'Easy Start') {
+      return currentStep.value == 3;
     } else {
-      Get.back();
+      return currentStep.value == 2;
     }
   }
 
-  String get buttonLabel =>
-      currentStep.value == totalSteps - 1 ? ConstString.complete : ConstString.next;
+  bool get canProceed {
+    if (currentStep.value == 0) {
+      return selectedPlanType.value.isNotEmpty;
+    }
+
+    if (selectedPlanType.value == 'Easy Start') {
+      if (currentStep.value == 1) return selectedActivity.value.isNotEmpty;
+      if (currentStep.value == 2) {
+        return selectedVibe.value.isNotEmpty && selectedGroupSize.value.isNotEmpty &&
+            selectedBudget.value.isNotEmpty && selectedGender.value.isNotEmpty &&
+            selectedAgeBand.value.isNotEmpty && selectedLanguage.value.isNotEmpty;
+      }
+      if (currentStep.value == 3) {
+        return planTitleController.text.isNotEmpty && selectedLocation.value != -1;
+      }
+    } else {
+      if (currentStep.value == 1) {
+        return selectedVibe.value.isNotEmpty && selectedGroupSize.value.isNotEmpty &&
+            selectedBudget.value.isNotEmpty && selectedGender.value.isNotEmpty &&
+            selectedAgeBand.value.isNotEmpty && selectedLanguage.value.isNotEmpty;
+      }
+      if (currentStep.value == 2) {
+        return planTitleController.text.isNotEmpty && selectedLocation.value != -1;
+      }
+    }
+    return false;
+  }
+
+  String get buttonLabel => isLastStep ? ConstString.complete : ConstString.next;
+
+  void nextStep() {
+    if (!canProceed) return;
+
+    if (isLastStep) {
+      AppSnackBar.success("Success! \nYour plan has been created successfully.",seconds: 2);
+
+      currentStep.value = 0;
+
+      selectedPlanType.value = '';
+      selectedActivity.value = '';
+      selectedVibe.value = '';
+      selectedLocation.value = -1;
+
+    } else {
+      currentStep.value++;
+    }
+  }
 
   @override
   void onClose() {

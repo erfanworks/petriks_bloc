@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // ─── NEEDED FOR SYSTEM CHROME ───
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
@@ -10,6 +11,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
   await ScreenUtil.ensureScreenSize();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   runApp(const MainApp());
 }
 
@@ -24,14 +31,14 @@ class MainApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          themeMode: ThemeMode.light,
-          theme: ThemeData(
-            scaffoldBackgroundColor: ConstColor.backgroundColor,
-          ),
-          defaultTransition: Transition.noTransition,
-          getPages: appRouteFile,
-          initialRoute: AppRoutes.navBar
+            debugShowCheckedModeBanner: false,
+            themeMode: ThemeMode.light,
+            theme: ThemeData(
+              scaffoldBackgroundColor: ConstColor.backgroundColor,
+            ),
+            defaultTransition: Transition.noTransition,
+            getPages: appRouteFile,
+            initialRoute: AppRoutes.navBar
         );
       },
     );

@@ -137,7 +137,6 @@ class OneToOneMeetupCard extends StatelessWidget {
               ),
             ),
 
-            // ---- Event Image with overlays ----
             ClipRRect(
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(16.r),
@@ -145,15 +144,16 @@ class OneToOneMeetupCard extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  // Full image
-                  AppImage(
-                    path: item.eventImage,
-                    width: double.infinity,
-                    height: 210.h,
-                    fit: BoxFit.cover,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: AppImage(
+                      path: item.eventImage,
+                      width: double.infinity,
+                      height: 210.h,
+                      fit: BoxFit.cover,
+                    ),
                   ),
 
-                  // Tag badge — bottom left of image
                   Positioned(
                     bottom: 48.h,
                     left: 12.w,
