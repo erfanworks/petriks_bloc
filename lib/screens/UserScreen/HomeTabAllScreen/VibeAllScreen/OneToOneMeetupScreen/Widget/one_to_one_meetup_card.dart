@@ -11,8 +11,13 @@ import '../Controller/one_to_one_meetup_controller.dart';
 
 class OneToOneMeetupCard extends StatelessWidget {
   final OneToOneMeetupItem item;
+  final bool isCompact;
 
-  const OneToOneMeetupCard({super.key, required this.item});
+  const OneToOneMeetupCard({
+    super.key,
+    required this.item,
+    this.isCompact = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +42,10 @@ class OneToOneMeetupCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ---- Person Info ----
             Padding(
               padding: EdgeInsets.all(12.r),
               child: Row(
                 children: [
-                  // Person image with verified badge
                   Stack(
                     children: [
                       ClipRRect(
@@ -73,7 +76,6 @@ class OneToOneMeetupCard extends StatelessWidget {
 
                   SizedBox(width: 12.w),
 
-                  // Person name, language, distance
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +117,6 @@ class OneToOneMeetupCard extends StatelessWidget {
                     ),
                   ),
 
-                  // View Profile button
                   GestureDetector(
                     onTap: () => controller.onViewProfile(item),
                     child: Container(
@@ -137,116 +138,122 @@ class OneToOneMeetupCard extends StatelessWidget {
               ),
             ),
 
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(16.r),
-                bottomRight: Radius.circular(16.r),
-              ),
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: AppImage(
-                      path: item.eventImage,
-                      width: double.infinity,
-                      height: 210.h,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+            isCompact
+                ? Expanded(child: _EventImageSection(item: item))
+                : _EventImageSection(item: item),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
-                  Positioned(
-                    bottom: 48.h,
-                    left: 12.w,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFF3E0),
-                        borderRadius: BorderRadius.circular(20.r),
-                      ),
-                      child: CustomText(
-                        title: item.tag,
-                        textColor: const Color(0xFFFF9800),
-                        textSize: 10.sp,
-                        fontWeight: FontWeight.w600,
+class _EventImageSection extends StatelessWidget {
+  final OneToOneMeetupItem item;
+  const _EventImageSection({required this.item});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+        bottomLeft: Radius.circular(16.r),
+        bottomRight: Radius.circular(16.r),
+      ),
+      child: Stack(
+        children: [
+          AppImage(
+            path: item.eventImage,
+            width: double.infinity,
+            height: 210.h,
+            fit: BoxFit.cover,
+          ),
+
+          Positioned(
+            bottom: 48.h,
+            left: 12.w,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFF3E0),
+                borderRadius: BorderRadius.circular(20.r),
+              ),
+              child: CustomText(
+                title: item.tag,
+                textColor: const Color(0xFFFF9800),
+                textSize: 10.sp,
+                fontWeight: FontWeight.w600,
+                maxLine: 1,
+              ),
+            ),
+          ),
+
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+              decoration: const BoxDecoration(color: Colors.white),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        title: item.eventTitle,
+                        textColor: ConstColor.black,
+                        textSize: 15.sp,
+                        fontWeight: FontWeight.w700,
                         maxLine: 1,
                       ),
-                    ),
+                      if (item.isFreeEntry)
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEDE9FF),
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                          child: CustomText(
+                            title: ConstString.freeEntry,
+                            textColor: ConstColor.primaryColor,
+                            textSize: 10.sp,
+                            fontWeight: FontWeight.w600,
+                            maxLine: 1,
+                          ),
+                        ),
+                    ],
                   ),
-
-                  // Event details overlay — bottom
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                  SizedBox(height: 5.h),
+                  Row(
+                    children: [
+                      Icon(Icons.location_on_outlined, size: 12.sp, color: ConstColor.grey),
+                      SizedBox(width: 4.w),
+                      CustomText(
+                        title: item.location,
+                        textColor: ConstColor.primaryColor,
+                        textSize: 11.sp,
+                        maxLine: 1,
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(
-                                title: item.eventTitle,
-                                textColor: ConstColor.black,
-                                textSize: 15.sp,
-                                fontWeight: FontWeight.w700,
-                                maxLine: 1,
-                              ),
-                              if (item.isFreeEntry)
-                                Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFEDE9FF),
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: CustomText(
-                                    title: ConstString.freeEntry,
-                                    textColor: ConstColor.primaryColor,
-                                    textSize: 10.sp,
-                                    fontWeight: FontWeight.w600,
-                                    maxLine: 1,
-                                  ),
-                                ),
-                            ],
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              Icon(Icons.location_on_outlined, size: 12.sp, color: ConstColor.grey),
-                              SizedBox(width: 4.w),
-                              CustomText(
-                                title: item.location,
-                                textColor: ConstColor.primaryColor,
-                                textSize: 11.sp,
-                                maxLine: 1,
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 3.h),
-                          Row(
-                            children: [
-                              Icon(Icons.calendar_today_outlined, size: 12.sp, color: ConstColor.primaryColor),
-                              SizedBox(width: 4.w),
-                              CustomText(title: item.date, textColor: ConstColor.grey, textSize: 11.sp, maxLine: 1),
-                              SizedBox(width: 8.w),
-                              Icon(Icons.access_time_rounded, size: 12.sp, color: ConstColor.primaryColor),
-                              SizedBox(width: 4.w),
-                              CustomText(title: item.time, textColor: ConstColor.grey, textSize: 11.sp, maxLine: 1),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+                    ],
+                  ),
+                  SizedBox(height: 3.h),
+                  Row(
+                    children: [
+                      Icon(Icons.calendar_today_outlined, size: 12.sp, color: ConstColor.primaryColor),
+                      SizedBox(width: 4.w),
+                      CustomText(title: item.date, textColor: ConstColor.grey, textSize: 11.sp, maxLine: 1),
+                      SizedBox(width: 8.w),
+                      Icon(Icons.access_time_rounded, size: 12.sp, color: ConstColor.primaryColor),
+                      SizedBox(width: 4.w),
+                      CustomText(title: item.time, textColor: ConstColor.grey, textSize: 11.sp, maxLine: 1),
+                    ],
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

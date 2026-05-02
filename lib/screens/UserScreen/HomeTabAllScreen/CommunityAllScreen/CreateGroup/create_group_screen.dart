@@ -55,7 +55,6 @@ class CreateGroupScreen extends StatelessWidget {
             SizedBox(height: 4.h),
             SizedBox(height: 16.h),
 
-            // ── Upload Cover Photo ──
             CustomText(
               title: ConstString.shortDescription,
               textSize: 16.sp,
@@ -64,7 +63,6 @@ class CreateGroupScreen extends StatelessWidget {
               maxLine: 1,
             ),
             SizedBox(height: 4.h),
-            // ── Short Description ──
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
@@ -97,7 +95,6 @@ class CreateGroupScreen extends StatelessWidget {
 
             SizedBox(height: 16.h),
 
-            // ── Upload Cover Photo ──
             CustomText(
               title: ConstString.uploadCoverPhoto,
               textSize: 16.sp,
@@ -107,7 +104,6 @@ class CreateGroupScreen extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
 
-            // ─── Description Image Picker ───
             Obx(() {
               final hasImage = c.descriptionPhotoPath.value.isNotEmpty;
 
@@ -123,7 +119,7 @@ class CreateGroupScreen extends StatelessWidget {
                   ),
                   child: Container(
                     width: double.infinity,
-                    height: 150.h, // Height kept matching the cover photo design
+                    height: 150.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(14.r),
                     ),
@@ -131,7 +127,6 @@ class CreateGroupScreen extends StatelessWidget {
                         ? Stack(
                       fit: StackFit.expand,
                       children: [
-                        // ─── The Picked Image ───
                         ClipRRect(
                           borderRadius: BorderRadius.circular(14.r),
                           child: Image.file(
@@ -140,7 +135,6 @@ class CreateGroupScreen extends StatelessWidget {
                           ),
                         ),
 
-                        // ─── Edit Icon (Top Right) ───
                         Positioned(
                           top: 8.h,
                           right: 8.w,
@@ -192,7 +186,7 @@ class CreateGroupScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 10.h),
                         CustomText(
-                          title: "Upload Description Photo", // Adjust text as needed
+                          title: "Upload Description Photo",
                           textSize: 12.sp,
                           textColor: ConstColor.iconColor,
                           textAlign: TextAlign.center,

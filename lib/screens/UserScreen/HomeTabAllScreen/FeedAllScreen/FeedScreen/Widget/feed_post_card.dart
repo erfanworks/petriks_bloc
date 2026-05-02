@@ -33,7 +33,6 @@ class FeedPostCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ---- User Row ----
           Padding(
             padding: EdgeInsets.fromLTRB(16.w, 14.h, 16.w, 10.h),
             child: Row(
@@ -76,7 +75,7 @@ class FeedPostCard extends StatelessWidget {
             ),
           ),
 
-          // ---- Post Image ----
+
           if (post.postImage != null)
             Stack(
               children: [
@@ -119,7 +118,7 @@ class FeedPostCard extends StatelessWidget {
               ],
             ),
 
-          // ---- Post Content ----
+
           Padding(
             padding: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 8.h),
             child: CustomText(

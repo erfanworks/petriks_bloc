@@ -182,7 +182,6 @@ class _PostInputArea extends StatelessWidget {
   }
 }
 
-// ─── Picked Image Preview ─────────────────────────────────────────────────────
 class _PickedImagePreview extends StatelessWidget {
   final FeedController c;
   const _PickedImagePreview({required this.c});
@@ -214,7 +213,6 @@ class _PickedImagePreview extends StatelessWidget {
   }
 }
 
-// ─── Bottom Actions ───────────────────────────────────────────────────────────
 class _BottomActions extends StatelessWidget {
   final FeedController c;
   const _BottomActions({required this.c});
@@ -222,7 +220,12 @@ class _BottomActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 24.h),
+      padding: EdgeInsets.fromLTRB(
+        16.w,
+        0,
+        16.w,
+        5.h + MediaQuery.of(context).padding.bottom,
+      ),
       decoration: BoxDecoration(color: ConstColor.white, border: Border(top: BorderSide(color: ConstColor.borderColor))),
       child: Column(
         mainAxisSize: MainAxisSize.min,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 
+import '../../../../../../routes/app_routes/app_routes.dart';
 import '../../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
 
 class CreateCommunityController extends GetxController {
@@ -9,8 +11,6 @@ class CreateCommunityController extends GetxController {
   static const totalSteps = 3;
 
   final selectedCategory = ''.obs;
-
-
 
   final List<Map<String, dynamic>> categories = [
     {
@@ -39,11 +39,15 @@ class CreateCommunityController extends GetxController {
     },
   ];
 
-  // ── Step 2: Details ──
+  //Step 2
   final nameController = TextEditingController();
   final descController = TextEditingController();
+  final nameText = ''.obs;
+  final descText = ''.obs;
+
   final RxString coverPhotoPath = ''.obs;
   final ImagePicker _picker = ImagePicker();
+
 
   void pickCoverPhoto() {
     MediaPickerBottomSheet.show(
@@ -58,7 +62,7 @@ class CreateCommunityController extends GetxController {
     );
   }
 
-  // ── Step 3: Interests ──
+  //Step 3
   final selectedInterest = ''.obs;
 
   final List<Map<String, String>> interests = [
@@ -73,12 +77,38 @@ class CreateCommunityController extends GetxController {
   void selectCategory(String label) => selectedCategory.value = label;
   void selectInterest(String label)  => selectedInterest.value = label;
 
+  bool get canProceed {
+    if (currentStep.value == 0) {
+      return selectedCategory.value.isNotEmpty;
+    } else if (currentStep.value == 1) {
+      return nameText.value.trim().isNotEmpty &&
+          descText.value.trim().isNotEmpty &&
+          coverPhotoPath.value.isNotEmpty;
+    } else if (currentStep.value == 2) {
+      return selectedInterest.value.isNotEmpty;
+    }
+    return false;
+  }
+
   void nextStep() {
+    if (!canProceed) return; // Prevent action if fields are missing
+
     if (currentStep.value < totalSteps - 1) {
       currentStep.value++;
     } else {
-      // TODO: submit
-      Get.back();
+      AppSnackBar.success("Success! \nCommunity Created Successfully",seconds: 3);
+
+
+      currentStep.value = 0;
+      selectedCategory.value = '';
+      selectedInterest.value = '';
+      coverPhotoPath.value = '';
+      nameController.clear();
+      descController.clear();
+      nameText.value = '';
+      descText.value = '';
+
+      Get.offAllNamed(AppRoutes.navBar);
     }
   }
 

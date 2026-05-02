@@ -110,6 +110,17 @@ class ForYouController extends GetxController {
       isFreeEntry: true,
       isOpen: true,
     ),
+    const EventItem(
+      image: 'assets/images/party_img.png',
+      title: 'Hang out at the park',
+      tag: '🌿 Nature Walk',
+      location: 'Central Park West, NYC',
+      date: 'Saturday, 24 June',
+      time: '6:30 PM Today',
+      joined: '3/6 joined',
+      isFreeEntry: true,
+      isOpen: true,
+    ),
   ];
 
   // ---- People ----

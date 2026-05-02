@@ -160,6 +160,7 @@ class FeedController extends GetxController {
   void onFeeling() => Get.toNamed('/feeling');
 
   void onSubmitPost() async {
+    Get.back();
     if (postController.value.trim().isEmpty && pickedImagePath.value.isEmpty) return;
     try {
       isPostLoading.value = true;

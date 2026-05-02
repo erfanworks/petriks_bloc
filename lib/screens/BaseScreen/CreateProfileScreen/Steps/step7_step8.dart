@@ -103,7 +103,6 @@ class Step8Travel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Current Location ──
           CustomText(
             title: ConstString.currentLocation,
             textSize: 16.sp,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
@@ -89,6 +90,7 @@ class FeaturedEventCard extends StatelessWidget {
                       children: [
                         // ---- Title ----
                         CustomText(
+                          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                           title: ConstString.nightOutFriendly,
                           textColor: ConstColor.black,
                           textSize: 18.sp,

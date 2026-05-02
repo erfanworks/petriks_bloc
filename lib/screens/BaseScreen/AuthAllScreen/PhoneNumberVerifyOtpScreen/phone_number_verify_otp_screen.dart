@@ -204,9 +204,9 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                                   : ConstColor.grey,
                               textSize: 14.sp,
                               fontWeight: FontWeight.w400,
-                              decoration: TextDecoration.underline,
                               textAlign: TextAlign.center,
                               maxLine: 1,
+                              decorationStyle: TextDecoration.underline
                             ),
                           ),
                         ),

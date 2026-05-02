@@ -50,8 +50,10 @@ class ForYouScreen extends StatelessWidget {
               separatorBuilder: (_, _) => SizedBox(width: 12.w),
               itemBuilder: (_, index) => SizedBox(
                 width: MediaQuery.of(context).size.width - 60.w,
-                child: OneToOneMeetupCard(
+                child:
+                OneToOneMeetupCard(
                   item: Get.find<OneToOneMeetupController>().meetups[index],
+                  isCompact: true,
                 ),
               ),
             ),

@@ -506,4 +506,5 @@ class ConstString {
   static const String notification = 'Notification';
   static const recentActivity  = 'Recent Activity';
   static const yesterday       = 'Yesterday';
+  static const String whatWouldYouLikeToCreate = 'What would you like to create?';
 }

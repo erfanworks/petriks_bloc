@@ -117,29 +117,28 @@ class _CommentCard extends StatelessWidget {
   }
 }
 
-class _ActionBtn extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-  const _ActionBtn({required this.icon, required this.label, required this.onTap});
+// class _ActionBtn extends StatelessWidget {
+//   final IconData icon;
+//   final String label;
+//   final VoidCallback onTap;
+//   const _ActionBtn({required this.icon, required this.label, required this.onTap});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: onTap,
+//       child: Row(
+//         mainAxisSize: MainAxisSize.min,
+//         children: [
+//           Icon(icon, size: 16.sp, color: ConstColor.grey),
+//           SizedBox(width: 4.w),
+//           CustomText(title: label, textSize: 12.sp, textColor: ConstColor.grey, maxLine: 1),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 16.sp, color: ConstColor.grey),
-          SizedBox(width: 4.w),
-          CustomText(title: label, textSize: 12.sp, textColor: ConstColor.grey, maxLine: 1),
-        ],
-      ),
-    );
-  }
-}
-
-// ─── Comment Input Bar ────────────────────────────────────────────────────────
 class _CommentInputBar extends StatelessWidget {
   final FeedController c;
   const _CommentInputBar({required this.c});

@@ -1,20 +1,20 @@
 import 'dart:io';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
-import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/CustomTextFormField/custom_text_form_field.dart';
+import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import 'Controller/create_community_controller.dart';
 
-class CreateCommunityScreen extends StatelessWidget {
-  const CreateCommunityScreen({super.key});
+class CreateCommunityScreen  extends StatelessWidget {
+  const CreateCommunityScreen ({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,16 @@ class CreateCommunityScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,
-      appBar: GlobalAppBar(title: ConstString.createCommunity),
+      appBar: GlobalAppBar(
+        title: ConstString.createCommunity,
+        onBack: () {
+          if (c.currentStep.value > 0) {
+            c.currentStep.value--;
+          } else {
+            Get.back();
+          }
+        },
+      ),
       body: Column(
         children: [
           Expanded(
@@ -45,14 +54,15 @@ class CreateCommunityScreen extends StatelessWidget {
 
           Padding(
             padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
-            child: Obx(
-              () => CustomElevatedButton(
+            child: Obx(() {
+              final isNextDisabled = !c.canProceed;
+
+              return CustomElevatedButton(
                 top: 0,
-                onPressed: c.nextStep,
-                gradient: [
-                  ConstColor.primaryDeepColor,
-                  ConstColor.primaryColor,
-                ],
+                onPressed: isNextDisabled ? () {} : c.nextStep,
+                gradient: isNextDisabled
+                    ? [ConstColor.primaryDeepColor.withAlpha(60),ConstColor.primaryDeepColor.withAlpha(60)]
+                    : [ConstColor.primaryDeepColor, ConstColor.primaryColor],
                 buttonBorderRadius: 30,
                 child: CustomText(
                   title: c.buttonLabel,
@@ -61,8 +71,8 @@ class CreateCommunityScreen extends StatelessWidget {
                   textColor: Colors.white,
                   maxLine: 1,
                 ),
-              ),
-            ),
+              );
+            }),
           ),
         ],
       ),
@@ -70,7 +80,7 @@ class CreateCommunityScreen extends StatelessWidget {
   }
 }
 
-// Step 1
+
 class _Step1Category extends StatelessWidget {
   const _Step1Category({required this.c});
 
@@ -87,7 +97,7 @@ class _Step1Category extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         Obx(
-          () => Column(
+              () => Column(
             children: c.categories.map((cat) {
               final selected = c.selectedCategory.value == cat['label'];
               return GestureDetector(
@@ -109,7 +119,6 @@ class _Step1Category extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Icon + GUIDED tag row
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -181,7 +190,6 @@ class _Step1Category extends StatelessWidget {
   }
 }
 
-// Step 2
 class _Step2Details extends StatelessWidget {
   const _Step2Details({required this.c});
 
@@ -198,11 +206,11 @@ class _Step2Details extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
 
-        // ── Community Name ──
         CustomTextFormField(
           fromTitle: ConstString.communityName,
           textController: c.nameController,
           hintText: const SizedBox.shrink(),
+          onChanged: (val) => c.nameText.value = val,
           prefixIcon: Padding(
             padding: EdgeInsets.all(12.r),
             child: SvgPicture.asset(
@@ -215,17 +223,11 @@ class _Step2Details extends StatelessWidget {
               ),
             ),
           ),
-          // suffixIcon: Padding(
-          //   padding: EdgeInsets.all(12.r),
-          //   child: Icon(Icons.keyboard_arrow_down_rounded,
-          //       color: ConstColor.iconColor, size: 20.r),
-          // ),
         ),
 
         SizedBox(height: 4.h),
         SizedBox(height: 16.h),
 
-        // ── Upload Cover Photo ──
         CustomText(
           title: ConstString.shortDescription,
           textSize: 16.sp,
@@ -234,25 +236,26 @@ class _Step2Details extends StatelessWidget {
           maxLine: 1,
         ),
         SizedBox(height: 4.h),
-        // ── Short Description ──
+
         Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
           decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16.r),
-            border: Border.all(color: ConstColor.borderColor,width: 1)
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16.r),
+              border: Border.all(color: ConstColor.borderColor, width: 1)
           ),
           child: TextField(
+            controller: c.descController,
+            onChanged: (val) => c.descText.value = val,
             maxLines: 8,
             style: TextStyle(
-              fontSize: 10.sp,
-              color: ConstColor.silverGray20,
+              fontSize: 14.sp,
+              color: ConstColor.black,
               fontWeight: FontWeight.w400,
             ),
             decoration: InputDecoration(
-              hintText:
-                  "e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.",
+              hintText: "e.g., A community for weekly football meetups...",
               hintMaxLines: 3,
               hintStyle: TextStyle(
                 color: ConstColor.textColor.withAlpha(150),
@@ -268,7 +271,6 @@ class _Step2Details extends StatelessWidget {
 
         SizedBox(height: 16.h),
 
-        // ── Upload Cover Photo ──
         CustomText(
           title: ConstString.uploadCoverPhoto,
           textSize: 16.sp,
@@ -278,7 +280,6 @@ class _Step2Details extends StatelessWidget {
         ),
         SizedBox(height: 8.h),
 
-        // ─── Upload Cover Photo ───
         Obx(() {
           final hasImage = c.coverPhotoPath.value.isNotEmpty;
 
@@ -378,7 +379,6 @@ class _Step2Details extends StatelessWidget {
   }
 }
 
-// Step 3
 class _Step3Interests extends StatelessWidget {
   const _Step3Interests({required this.c});
 
@@ -395,7 +395,7 @@ class _Step3Interests extends StatelessWidget {
         ),
         SizedBox(height: 16.h),
         Obx(
-          () => GridView.count(
+              () => GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -465,7 +465,6 @@ class _Step3Interests extends StatelessWidget {
   }
 }
 
-// ── Reusable step header ──
 class _StepHeader extends StatelessWidget {
   const _StepHeader({required this.title, required this.subtitle});
 

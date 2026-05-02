@@ -449,7 +449,12 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
+            padding: EdgeInsets.fromLTRB(
+              16.w,
+              0,
+              16.w,
+              5.h + MediaQuery.of(context).padding.bottom,
+            ),
             child: CustomElevatedButton(
               top: 0,
               onPressed: c.goToEditPlan,

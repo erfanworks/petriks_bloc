@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 class HostProfileController extends GetxController {
   // ── Report state ──
@@ -93,7 +94,7 @@ class HostProfileController extends GetxController {
   // ── Actions ──
   void toggleFollow() => isFollowing.value = !isFollowing.value;
 
-  void onMessage() => Get.toNamed('/message');
+  void onMessage() => Get.toNamed(AppRoutes.directChatScreen);
 
   void selectReason(String reason) => selectedReason.value = reason;
 

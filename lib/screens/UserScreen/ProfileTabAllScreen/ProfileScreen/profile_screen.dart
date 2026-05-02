@@ -301,14 +301,14 @@ class _PremiumBanner extends StatelessWidget {
           GestureDetector(
             onTap: c.onManagePlan,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
               decoration: BoxDecoration(
                 color: ConstColor.white,
                 borderRadius: BorderRadius.circular(20.r),
               ),
               child: CustomText(
                 title: ConstString.manage,
-                textSize: 14.sp,
+                textSize: 12.sp,
                 fontWeight: FontWeight.w500,
                 textColor: ConstColor.primaryColor,
                 maxLine: 1,

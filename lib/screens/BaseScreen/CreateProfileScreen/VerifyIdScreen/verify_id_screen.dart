@@ -6,7 +6,6 @@ import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../Widget/text/custom_text.dart';
-import '../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 
 class VerifyIdScreen extends StatelessWidget {
   const VerifyIdScreen({super.key});
@@ -34,7 +33,7 @@ class VerifyIdScreen extends StatelessWidget {
                     maxLine: 2,
                   ),
                   GestureDetector(
-                    onTap: () => Get.toNamed(AppRoutes.navBar),
+                    onTap: () => Get.toNamed(AppRoutes.subscriptionScreen),
                     child: CustomText(
                       title: ConstString.skip,
                       textSize: 16.sp,
@@ -136,7 +135,7 @@ class VerifyIdScreen extends StatelessWidget {
                     // ── Upload card ──
                     GestureDetector(
                       onTap: () {
-                        // TODO: file picker
+                        Get.toNamed(AppRoutes.profilePhotoScreen);
                       },
                       child: _InfoCard(
                         child: Row(
@@ -189,25 +188,25 @@ class VerifyIdScreen extends StatelessWidget {
             ),
 
             // ── Continue ──
-            Padding(
-              padding:
-              EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-              child: CustomElevatedButton(
-                top: 0,
-                onPressed: () => Get.toNamed(AppRoutes.profilePhotoScreen),
-                gradient: [
-                  ConstColor.primaryDeepColor,
-                  ConstColor.primaryColor,
-                ],
-                buttonBorderRadius: 30,
-                child: CustomText(
-                  title: ConstString.continueA,
-                  textSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                  textColor: Colors.white,
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding:
+            //   EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+            //   child: CustomElevatedButton(
+            //     top: 0,
+            //     onPressed: () => Get.toNamed(AppRoutes.profilePhotoScreen),
+            //     gradient: [
+            //       ConstColor.primaryDeepColor,
+            //       ConstColor.primaryColor,
+            //     ],
+            //     buttonBorderRadius: 30,
+            //     child: CustomText(
+            //       title: ConstString.continueA,
+            //       textSize: 16.sp,
+            //       fontWeight: FontWeight.w600,
+            //       textColor: Colors.white,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

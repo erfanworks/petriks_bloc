@@ -148,7 +148,7 @@ class CreateProfileController extends GetxController {
   ];
 
   // Step 8
-  final currentLocation = '12/A Sanfrisco, USA'.obs;
+  final currentLocation = 'London, United Kingdom'.obs;
   final selectedTransport = 'Driving'.obs;
   final commuteMinutes = 15.0.obs;
 

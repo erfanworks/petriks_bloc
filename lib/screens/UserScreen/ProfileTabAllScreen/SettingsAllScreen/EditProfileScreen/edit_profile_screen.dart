@@ -258,7 +258,12 @@ class _SaveBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 24.h),
+      padding: EdgeInsets.fromLTRB(
+        16.w,
+        0,
+        16.w,
+        5.h + MediaQuery.of(context).padding.bottom,
+      ),
       color: ConstColor.white,
       child: Obx(() => CustomElevatedButton(
         onPressed: c.isSaving.value ? null : c.onSave,

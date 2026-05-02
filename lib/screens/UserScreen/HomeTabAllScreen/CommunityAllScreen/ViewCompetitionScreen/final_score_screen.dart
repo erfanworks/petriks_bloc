@@ -110,66 +110,72 @@ class FinalScoreScreen extends StatelessWidget {
       //   ),
       // ),
       bottomNavigationBar: Obx(
-            () => Padding(
+        () => Padding(
           padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
           child: c.isRegistered.value
               ? Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Mark as completed
-              CustomElevatedButton(
-                onPressed: c.backToHome,
-                height: 48,
-                top: 0,
-                bottom: 10,
-                buttonBorderRadius: 30,
-                gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-                child: CustomText(
-                  title: ConstString.backToHome,
-                  textColor: Colors.white,
-                  textSize: 15.sp,
-                  fontWeight: FontWeight.w600,
-                  maxLine: 1,
-                ),
-              ),
-              // Edit competition
-              CustomElevatedButton(
-                onPressed: c.onEditCompetition,
-                height: 48,
-                top: 0,
-                elevation: 0,
-                buttonBorderRadius: 30,
-                isOutLined: true,
-                outLineColour: ConstColor.grey,
-                icon: Icon(
-                  Icons.edit_outlined,
-                  size: 16.sp,
-                  color: ConstColor.black,
-                ),
-                child: CustomText(
-                  title: ConstString.editCompetition,
-                  textColor: ConstColor.black,
-                  textSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                  maxLine: 1,
-                ),
-              ),
-            ],
-          )
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Mark as completed
+                    CustomElevatedButton(
+                      onPressed: c.backToHome,
+                      height: 48,
+                      top: 0,
+                      bottom: 10,
+                      buttonBorderRadius: 30,
+                      gradient: const [
+                        ConstColor.primaryDeepColor,
+                        ConstColor.primaryColor,
+                      ],
+                      child: CustomText(
+                        title: ConstString.backToHome,
+                        textColor: Colors.white,
+                        textSize: 15.sp,
+                        fontWeight: FontWeight.w600,
+                        maxLine: 1,
+                      ),
+                    ),
+                    // Edit competition
+                    CustomElevatedButton(
+                      onPressed: c.onEditCompetition,
+                      height: 48,
+                      top: 0,
+                      elevation: 0,
+                      buttonBorderRadius: 30,
+                      isOutLined: true,
+                      outLineColour: ConstColor.grey,
+                      icon: Icon(
+                        Icons.edit_outlined,
+                        size: 16.sp,
+                        color: ConstColor.black,
+                      ),
+                      child: CustomText(
+                        title: ConstString.editCompetition,
+                        textColor: ConstColor.black,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        maxLine: 1,
+                      ),
+                    ),
+                  ],
+                )
               : CustomElevatedButton(
-            onPressed: c.onRegister,
-            height: 48,
-            top: 0,
-            buttonBorderRadius: 30,
-            gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-            child: CustomText(
-              title: ConstString.registerNow,
-              textColor: Colors.white,
-              textSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
-            ),
-          ),
+                  onPressed: c.onRegister,
+                  height: 48,
+                  top: 0,
+                  buttonBorderRadius: 30,
+                  gradient: const [
+                    ConstColor.primaryDeepColor,
+                    ConstColor.primaryColor,
+                  ],
+                  child: CustomText(
+                    title: ConstString.registerNow,
+                    textColor: Colors.white,
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    maxLine: 1,
+                  ),
+                ),
         ),
       ),
     );
@@ -234,8 +240,8 @@ class _OwnerNoteCard extends StatelessWidget {
                 '"Incredible intensity from both sides today. Group A\'s defensive transition was the deciding factor in the second half. Big shoutout to everyone for keeping the energy high and respectful. See you at the next one!"',
             textColor: ConstColor.textColor,
             textSize: 12.sp,
-            fontStyle: FontStyle.italic,
             maxLine: 8,
+            fontStyle: FontStyle.italic,
           ),
         ],
       ),

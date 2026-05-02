@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomText extends StatelessWidget {
   final String title;
   final Color textColor;
   final FontWeight? fontWeight;
   final double textSize;
-  final bool fontPoppins;
+  final String? fontFamily;
   final double top;
   final double right;
   final double left;
@@ -14,9 +15,9 @@ class CustomText extends StatelessWidget {
   final int maxLine;
   final double? textHeight;
   final double? letterSpacing;
-  final FontStyle? fontStyle;
-  final TextDecoration? decoration;
   final TextOverflow? overflow;
+  final TextDecoration? decorationStyle;
+  final FontStyle? fontStyle;
 
   const CustomText({
     super.key,
@@ -24,7 +25,7 @@ class CustomText extends StatelessWidget {
     this.textColor = const Color(0xFF363636),
     this.fontWeight,
     this.textSize = 14,
-    this.fontPoppins = false,
+    this.fontFamily,
     this.top = 0,
     this.right = 0,
     this.left = 0,
@@ -33,15 +34,20 @@ class CustomText extends StatelessWidget {
     this.maxLine = 2,
     this.textHeight,
     this.letterSpacing,
-    this.fontStyle = FontStyle.normal,
-    this.decoration,
     this.overflow,
+    this.decorationStyle,
+    this.fontStyle,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: top, left: left, right: right, bottom: bottom),
+      padding: EdgeInsets.only(
+        top: top,
+        left: left,
+        right: right,
+        bottom: bottom,
+      ),
       child: Text(
         title,
         textAlign: textAlign,
@@ -49,14 +55,15 @@ class CustomText extends StatelessWidget {
         overflow: overflow ?? TextOverflow.ellipsis,
         style: TextStyle(
           height: textHeight,
-          fontFamily: 'Roboto',
+          fontFamily: fontFamily ?? GoogleFonts.inter().fontFamily,
           fontSize: textSize,
           fontWeight: fontWeight,
           color: textColor,
           letterSpacing: letterSpacing,
-          fontStyle: fontStyle,
-          decoration: decoration,
           decorationColor: textColor,
+          fontStyle: fontStyle ?? FontStyle.normal,
+          decoration: decorationStyle ?? TextDecoration.none
+
         ),
       ),
     );

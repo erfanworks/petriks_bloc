@@ -148,7 +148,12 @@ class _SaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: ConstColor.backgroundColor,
-      padding: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 24.h),
+      padding: EdgeInsets.fromLTRB(
+        16.w,
+        0,
+        16.w,
+        5.h + MediaQuery.of(context).padding.bottom,
+      ),
       child: CustomElevatedButton(
         onPressed: onSave,
         gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],

@@ -38,7 +38,7 @@ class SettingsScreen extends StatelessWidget {
             SizedBox(height: 8.h),
             _Label(ConstString.appInfo),
             _AppInfoCard(c: c),
-            SizedBox(height: 24.h),
+            SizedBox(height: 50.h),
           ],
         ),
       ),
@@ -137,7 +137,7 @@ class _AccountCard extends StatelessWidget {
                           SizedBox(width: 2.w),
                           CustomText(
                             title: 'Greenwich, Braxton.',
-                            textSize: 14.sp,
+                            textSize: 12.sp,
                             textColor: ConstColor.grey,
                             maxLine: 1,
                           ),
