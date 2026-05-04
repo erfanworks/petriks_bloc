@@ -8,7 +8,6 @@ import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
 import '../../../../Widget/text/custom_text.dart';
 
-// ─── Call this to show the sheet ─────────────────────────────────────────────
 void showCreateOptionsSheet() {
   Get.bottomSheet(
     const _CreateOptionsSheet(),
@@ -18,7 +17,6 @@ void showCreateOptionsSheet() {
   );
 }
 
-// ─── Bottom Sheet UI ──────────────────────────────────────────────────────────
 class _CreateOptionsSheet extends StatelessWidget {
   const _CreateOptionsSheet();
 
@@ -33,7 +31,6 @@ class _CreateOptionsSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Handle bar
           Container(
             width: 40.w,
             height: 4.h,
@@ -54,10 +51,8 @@ class _CreateOptionsSheet extends StatelessWidget {
           ),
           SizedBox(height: 20.h),
 
-          // Options row
           Row(
             children: [
-              // Create Plan
               Expanded(
                 child: _OptionCard(
                   icon: 'assets/icons/create_plan_icon.svg',

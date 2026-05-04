@@ -41,7 +41,6 @@ class SupportHelpScreen extends StatelessWidget {
 
           SizedBox(height: 8.h),
 
-          // ─── Big Box with TextField ──────────────────
           Container(
             width: double.infinity,
             height: 180.h,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
 import '../../../../widget/AppImage/app_image.dart';
@@ -31,6 +32,7 @@ class ChatScreen extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     textColor: ConstColor.black,
                     maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   Icon(
                     Icons.search_rounded,

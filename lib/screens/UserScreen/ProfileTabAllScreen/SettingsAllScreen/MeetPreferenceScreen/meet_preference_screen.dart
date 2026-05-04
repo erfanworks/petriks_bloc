@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/widget/CustomElevatedButton/custom_elevated_button.dart';
 
@@ -97,6 +98,7 @@ class _MeetCard extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         textColor: ConstColor.black,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                       ),
                       SizedBox(height: 4.h),
                       CustomText(

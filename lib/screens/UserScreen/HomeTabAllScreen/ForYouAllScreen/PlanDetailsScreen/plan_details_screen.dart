@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 
@@ -67,6 +68,7 @@ class PlanDetailsScreen extends StatelessWidget {
                                 textSize: 20.sp,
                                 fontWeight: FontWeight.w700,
                                 maxLine: 1,
+                                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                               ),
                               _PillBadge(
                                 label: ConstString.freeEntry,
@@ -124,6 +126,7 @@ class PlanDetailsScreen extends StatelessWidget {
                                 textSize: 12.sp,
                                 fontWeight: FontWeight.w600,
                                 maxLine: 1,
+                                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                               ),
                             ],
                           ),
@@ -144,6 +147,7 @@ class PlanDetailsScreen extends StatelessWidget {
                   textSize: 18.sp,
                   fontWeight: FontWeight.w700,
                   maxLine: 1,
+                  fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                 ),
               ),
               SizedBox(height: 10.h),
@@ -222,6 +226,7 @@ class PlanDetailsScreen extends StatelessWidget {
                       textSize: 16.sp,
                       fontWeight: FontWeight.w700,
                       maxLine: 1,
+                      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                     ),
                     if (controller.hasJoined.value)
                       GestureDetector(
@@ -306,7 +311,6 @@ class PlanDetailsScreen extends StatelessWidget {
   }
 }
 
-// ---- Location Vote Card ----
 class _LocationVoteCard extends StatelessWidget {
   final LocationVoteItem item;
 
@@ -453,7 +457,6 @@ class _ChatLocked extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          // ── Blurred background content ──
           ClipRRect(
             borderRadius: BorderRadius.circular(16.r),
             child: ImageFiltered(
@@ -463,7 +466,6 @@ class _ChatLocked extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 20.w),
                 child: Column(
                   children: [
-                    // Fake blurred chat rows
                     _FakeBlurRow(width: 0.7),
                     SizedBox(height: 10.h),
                     _FakeBlurRow(width: 0.5),
@@ -475,13 +477,11 @@ class _ChatLocked extends StatelessWidget {
             ),
           ),
 
-          // ── Lock overlay ──
           Padding(
             padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 20.w),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Lock icon circle
                 Container(
                   width: 48.r,
                   height: 48.r,
@@ -505,7 +505,6 @@ class _ChatLocked extends StatelessWidget {
                 ),
                 SizedBox(height: 10.h),
 
-                // Purple glow behind text
                 Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: 20.w,

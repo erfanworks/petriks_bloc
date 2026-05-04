@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../constant/const_color.dart';
@@ -96,6 +97,7 @@ class LoginScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                   textAlign: TextAlign.center,
                   maxLine: 2,
+                  fontFamily: GoogleFonts.montserrat().fontFamily,
                 ),
 
                 SizedBox(height: 12.h),
@@ -124,6 +126,7 @@ class LoginScreen extends StatelessWidget {
                               textSize: 14.sp,
                               fontWeight: FontWeight.w600,
                               maxLine: 1,
+                              fontFamily: GoogleFonts.montserrat().fontFamily,
                             ),
                           ],
                         ),
@@ -148,6 +151,7 @@ class LoginScreen extends StatelessWidget {
                               textSize: 14.sp,
                               fontWeight: FontWeight.w600,
                               maxLine: 1,
+                              fontFamily: GoogleFonts.montserrat().fontFamily,
                             ),
                           ],
                         ),
@@ -166,6 +170,7 @@ class LoginScreen extends StatelessWidget {
                           textSize: 15.sp,
                           fontWeight: FontWeight.w600,
                           maxLine: 1,
+                          fontFamily: GoogleFonts.montserrat().fontFamily,
                         ),
                       ),
                     ],
@@ -182,7 +187,7 @@ class LoginScreen extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12.sp,
-                        fontFamily: 'Roboto',
+                        fontFamily: GoogleFonts.montserrat().fontFamily,
                       ),
                       children: [
                         TextSpan(text: ConstString.byContinuing),
@@ -224,6 +229,7 @@ class LoginScreen extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       textSize: 12.sp,
                       maxLine: 1,
+                      fontFamily: GoogleFonts.montserrat().fontFamily,
                     ),
                     GestureDetector(
                       onTap: controller.goToSignUp,
@@ -233,6 +239,7 @@ class LoginScreen extends StatelessWidget {
                         textSize: 13.sp,
                         fontWeight: FontWeight.w600,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.montserrat().fontFamily,
                       ),
                     ),
                   ],

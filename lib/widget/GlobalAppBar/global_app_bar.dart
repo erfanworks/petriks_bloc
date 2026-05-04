@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../constant/const_color.dart';
 import '../text/custom_text.dart';
@@ -83,6 +84,7 @@ class GlobalAppBar extends StatelessWidget implements PreferredSizeWidget {
                       textSize: titleSize ?? 18.sp,
                       fontWeight: FontWeight.w600,
                       maxLine: 1,
+                      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                     ),
 
                   if (subTitle != null) ...[

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
@@ -37,33 +38,53 @@ class ForYouScreen extends StatelessWidget {
 
           SizedBox(height: 20.h),
 
-          _SectionHeader(title: ConstString.easyMeetup, showSeeAll: true),
+          _SectionHeader(title: ConstString.easyMeetup, showSeeAll: false),
 
           SizedBox(height: 12.h),
 
-          SizedBox(
-            height: 280.h,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.only(left: 16.w, right: 32.w),
-              itemCount: Get.find<OneToOneMeetupController>().meetups.length,
-              separatorBuilder: (_, _) => SizedBox(width: 12.w),
-              itemBuilder: (_, index) => SizedBox(
-                width: MediaQuery.of(context).size.width - 60.w,
-                child:
-                OneToOneMeetupCard(
-                  item: Get.find<OneToOneMeetupController>().meetups[index],
-                  isCompact: true,
-                ),
-              ),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            itemCount: Get.find<OneToOneMeetupController>().meetups.length,
+            separatorBuilder: (_, _) => SizedBox(height: 16.h),
+            itemBuilder: (_, index) => OneToOneMeetupCard(
+              item: Get.find<OneToOneMeetupController>().meetups[index],
             ),
           ),
 
           SizedBox(height: 20.h),
+          _SectionHeader(
+            title: ConstString.peopleYouMayClick,
+            showSeeAll: false,
+            onSeeAll: controller.onSeeAllPeople,
+          ),
+
+          SizedBox(height: 12.h),
+          SizedBox(
+            height: 240.h,
+            child: Obx(
+                  () => ListView.separated(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.only(left: 16.w, right: 22.w),
+                itemCount: controller.people.length,
+                separatorBuilder: (_, _) => SizedBox(width: 5.w),
+                itemBuilder: (_, index) {
+                  return SizedBox(
+                    width: MediaQuery.of(context).size.width / 2.3,
+                    child: PeopleCard(
+                      item: controller.people[index],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          SizedBox(height: 24.h),
 
           _SectionHeader(
             title: ConstString.upcomingEvents,
-            showSeeAll: true,
+            showSeeAll: false,
             onSeeAll: controller.onSeeAllEvents,
           ),
 
@@ -78,31 +99,16 @@ class ForYouScreen extends StatelessWidget {
               separatorBuilder: (_, _) => SizedBox(width: 12.w),
               itemBuilder: (_, index) => SizedBox(
                 width: MediaQuery.of(context).size.width - 60.w,
-                child: UpcomingEventCard(item: controller.upcomingEvents[index]),
+                child: UpcomingEventCard(
+                  item: controller.upcomingEvents[index],
+                ),
               ),
             ),
           ),
 
-          SizedBox(height: 24.h),
 
-          _SectionHeader(
-            title: ConstString.peopleYouMayClick,
-            showSeeAll: true,
-            onSeeAll: controller.onSeeAllPeople,
-          ),
 
-          SizedBox(height: 12.h),
 
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
-            child: Obx(
-                  () => Row(
-                children: controller.people
-                    .map((p) => Expanded(child: PeopleCard(item: p)))
-                    .toList(),
-              ),
-            ),
-          ),
 
           SizedBox(height: 24.h),
         ],
@@ -180,6 +186,7 @@ class _SectionHeader extends StatelessWidget {
             textSize: 18.sp,
             fontWeight: FontWeight.w700,
             maxLine: 1,
+            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
           ),
           if (showSeeAll)
             GestureDetector(
@@ -190,6 +197,7 @@ class _SectionHeader extends StatelessWidget {
                 textSize: 14.sp,
                 fontWeight: FontWeight.w500,
                 maxLine: 1,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
             ),
         ],

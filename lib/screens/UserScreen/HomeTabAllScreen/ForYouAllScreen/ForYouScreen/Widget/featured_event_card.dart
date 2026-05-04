@@ -18,7 +18,7 @@ class FeaturedEventCard extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         InkWell(
-          onTap: (){
+          onTap: () {
             Get.toNamed(AppRoutes.planDetailsScreen);
           },
           child: Container(
@@ -28,13 +28,16 @@ class FeaturedEventCard extends StatelessWidget {
               gradient: const LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Color(0xFFD7CAFF), Color(0x1A9152A3), Color(0xFFD7CAFF)],
+                colors: [
+                  Color(0xFFD7CAFF),
+                  Color(0x1A9152A3),
+                  Color(0xFFD7CAFF),
+                ],
               ),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // ---- Left: Floating Image Box ----
                 Padding(
                   padding: EdgeInsets.all(12.r),
                   child: Stack(
@@ -75,7 +78,7 @@ class FeaturedEventCard extends StatelessWidget {
                     ],
                   ),
                 ),
-          
+
                 // ---- Right: Event Info ----
                 Expanded(
                   child: Padding(
@@ -88,20 +91,22 @@ class FeaturedEventCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // ---- Title ----
                         CustomText(
-                          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                           title: ConstString.nightOutFriendly,
                           textColor: ConstColor.black,
                           textSize: 18.sp,
                           fontWeight: FontWeight.w700,
                           maxLine: 1,
+                          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                         ),
-          
+
                         SizedBox(height: 8.h),
-          
+
                         // ---- Info Rows ----
-                        _InfoRow(icon: Icons.language_rounded, label: 'English'),
+                        _InfoRow(
+                          icon: Icons.language_rounded,
+                          label: 'English',
+                        ),
                         SizedBox(height: 5.h),
                         _InfoRow(
                           icon: Icons.location_on_outlined,
@@ -117,9 +122,9 @@ class FeaturedEventCard extends StatelessWidget {
                           icon: Icons.access_time_rounded,
                           label: '6:30 PM Today',
                         ),
-          
+
                         const Spacer(),
-          
+
                         // ---- Avatars + Joined ----
                         Row(
                           children: [

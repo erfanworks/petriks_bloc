@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+import '../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
 
 class VerifyIdController extends GetxController {
   final selectedIdImage    = Rx<File?>(null);
@@ -45,6 +46,18 @@ class VerifyIdController extends GetxController {
   }
 
   void _showSnackBar(String message) {
-    AppSnackBar.message(message,backgroundColor: ConstColor.primaryColor,seconds: 2);
+    AppSnackBar.message(message, backgroundColor: ConstColor.primaryColor, seconds: 2);
+  }
+
+  void pickIdFromCamera() async {
+    final xFile = await _picker.pickImage(source: ImageSource.camera, imageQuality: 85);
+    if (xFile != null) selectedIdImage.value = File(xFile.path);
+  }
+
+  void onIdUploadTap() {
+    MediaPickerBottomSheet.show(
+      onCamera: () => pickIdFromCamera(),
+      onGallery: () => pickIdFromGallery(),
+    );
   }
 }

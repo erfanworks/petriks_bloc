@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
@@ -77,6 +78,7 @@ class _ReportFormView extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 textColor: ConstColor.black,
                 maxLine: 1,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
               GestureDetector(
                 onTap: () => Get.back(),
@@ -326,6 +328,7 @@ class _SuccessView extends StatelessWidget {
             textColor: ConstColor.black,
             textAlign: TextAlign.center,
             maxLine: 2,
+            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
           ),
           SizedBox(height: 8.h),
           CustomText(

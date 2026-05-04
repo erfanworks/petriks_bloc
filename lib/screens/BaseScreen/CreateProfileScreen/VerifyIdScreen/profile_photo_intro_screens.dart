@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
@@ -33,8 +34,9 @@ class ProfilePhotoScreen extends StatelessWidget {
                     title: ConstString.addAProfilePhoto,
                     textSize: 26.sp,
                     fontWeight: FontWeight.w700,
-                    textColor: ConstColor.textColor,
+                    textColor: ConstColor.black,
                     maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   SizedBox(height: 4.h),
                   CustomText(
@@ -111,6 +113,7 @@ class ProfilePhotoScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 textColor: ConstColor.textColor,
                                 maxLine: 1,
+                                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                               ),
                               SizedBox(height: 2.h),
                               CustomText(
@@ -197,6 +200,7 @@ class ProfilePhotoScreen extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             textColor: ConstColor.textColor,
                             maxLine: 1,
+                            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                           ),
                           SizedBox(height: 2.h),
                           CustomText(

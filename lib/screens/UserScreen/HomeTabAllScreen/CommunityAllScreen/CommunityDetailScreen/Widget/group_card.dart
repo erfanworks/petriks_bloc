@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
@@ -50,6 +51,7 @@ class GroupCard extends StatelessWidget {
                         textSize: 18.sp,
                         fontWeight: FontWeight.w700,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                       ),
                       CustomText(
                         title:

@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
@@ -62,7 +63,6 @@ class CommunityCard extends StatelessWidget {
             ],
           ),
 
-          // ---- Info ----
           Padding(
             padding: EdgeInsets.all(14.r),
             child: Column(
@@ -77,6 +77,7 @@ class CommunityCard extends StatelessWidget {
                       textSize: 20.sp,
                       fontWeight: FontWeight.w700,
                       maxLine: 1,
+                      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                     ),
                     Row(
                       children: [

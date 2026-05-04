@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 
 import '../../../../../../Widget/text/custom_text.dart';
@@ -40,9 +42,21 @@ class VSBanner extends StatelessWidget {
                 children: [
                   _TeamCircle(),
                   SizedBox(height: 8.h),
-                  CustomText(title: 'Group A', textColor: Colors.white, textSize: 15.sp, fontWeight: FontWeight.w700, maxLine: 1),
+                  CustomText(
+                    title: 'Group A',
+                    textColor: Colors.white,
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w700,
+                    maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                  ),
                   if (showWinner)
-                    CustomText(title: 'Winners', textColor: Colors.white, textSize: 10.sp, maxLine: 1),
+                    CustomText(
+                      title: 'Winners',
+                      textColor: Colors.white,
+                      textSize: 10.sp,
+                      maxLine: 1,
+                    ),
                 ],
               ),
 
@@ -57,8 +71,20 @@ class VSBanner extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomText(title: 'VS', textColor: Colors.white, textSize: 18.sp, fontWeight: FontWeight.w800, maxLine: 1),
-                    CustomText(title: 'FINALS', textColor: Colors.white, textSize: 10.sp, fontWeight: FontWeight.w600, maxLine: 1),
+                    CustomText(
+                      title: 'VS',
+                      textColor: Colors.white,
+                      textSize: 18.sp,
+                      fontWeight: FontWeight.w800,
+                      maxLine: 1,
+                    ),
+                    CustomText(
+                      title: 'FINALS',
+                      textColor: Colors.white,
+                      textSize: 10.sp,
+                      fontWeight: FontWeight.w600,
+                      maxLine: 1,
+                    ),
                   ],
                 ),
               ),
@@ -68,9 +94,21 @@ class VSBanner extends StatelessWidget {
                 children: [
                   _TeamCircle(),
                   SizedBox(height: 8.h),
-                  CustomText(title: 'Group B', textColor: Colors.white, textSize: 15.sp, fontWeight: FontWeight.w700, maxLine: 1),
+                  CustomText(
+                    title: 'Group B',
+                    textColor: Colors.white,
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w700,
+                    maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                  ),
                   if (showWinner)
-                    CustomText(title: 'Runner Up', textColor: Colors.white, textSize: 10.sp, maxLine: 1),
+                    CustomText(
+                      title: 'Runner Up',
+                      textColor: Colors.white,
+                      textSize: 10.sp,
+                      maxLine: 1,
+                    ),
                 ],
               ),
             ],
@@ -80,6 +118,7 @@ class VSBanner extends StatelessWidget {
     );
   }
 }
+
 class _TeamCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -91,7 +130,11 @@ class _TeamCircle extends StatelessWidget {
         color: Colors.white.withAlpha(30),
         border: Border.all(color: Colors.white.withAlpha(80), width: 2.w),
       ),
-      child: Icon(Icons.sports_soccer_rounded, color: Colors.white, size: 28.sp),
+      child: Icon(
+        Icons.sports_soccer_rounded,
+        color: Colors.white,
+        size: 28.sp,
+      ),
     );
   }
 }

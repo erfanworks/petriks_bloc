@@ -1,8 +1,8 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
@@ -29,7 +29,6 @@ class PlanDetailHeader extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Cover image
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
             child: AppImage(
@@ -44,7 +43,6 @@ class PlanDetailHeader extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Title + Free/Status
                 Row(
                   children: [
                     Expanded(
@@ -54,6 +52,7 @@ class PlanDetailHeader extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         textColor: ConstColor.black,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                       ),
                     ),
                     if (statusTag != null)
@@ -102,7 +101,6 @@ class PlanDetailHeader extends StatelessWidget {
                   label: plan.type,
                 ),
                 SizedBox(height: 8.h),
-                // Avatars + joined + invite
                 Row(
                   children: [
                     _StackedAvatars(),

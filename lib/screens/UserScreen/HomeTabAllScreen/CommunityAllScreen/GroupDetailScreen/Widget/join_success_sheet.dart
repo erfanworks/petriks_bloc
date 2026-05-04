@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
@@ -46,7 +47,6 @@ class JoinedSuccessDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // ── Check circle ──
             Container(
               width: 70.r,
               height: 70.r,
@@ -70,7 +70,6 @@ class JoinedSuccessDialog extends StatelessWidget {
 
             SizedBox(height: 16.h),
 
-            // ── Title ──
             CustomText(
               title: "You're in! 🎉",
               textSize: 20.sp,
@@ -78,11 +77,11 @@ class JoinedSuccessDialog extends StatelessWidget {
               textColor: ConstColor.black,
               textAlign: TextAlign.center,
               maxLine: 1,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
 
             SizedBox(height: 8.h),
 
-            // ── Subtitle with bold community name ──
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
@@ -111,7 +110,6 @@ class JoinedSuccessDialog extends StatelessWidget {
 
             SizedBox(height: 20.h),
 
-            // ── Go to Community Chat button ──
             CustomElevatedButton(
               top: 0,
               onPressed: onGoToChat,
@@ -135,7 +133,6 @@ class JoinedSuccessDialog extends StatelessWidget {
               ),
             ),
 
-            // ── Back to Discovery ──
             CustomElevatedButton(
               top: 8,
               onPressed: onBackToDiscovery,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 
@@ -78,8 +79,9 @@ class Step3Languages extends StatelessWidget {
             title: ConstString.preferredChat,
             textSize: 20.sp,
             fontWeight: FontWeight.w700,
-            textColor: ConstColor.textColor,
+            textColor: ConstColor.black,
             maxLine: 1,
+            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
           ),
           SizedBox(height: 4.h),
           CustomText(

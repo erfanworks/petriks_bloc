@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../Widget/text/custom_text.dart';
+import '../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
+import 'Widget/upload_id_card.dart';
 
 class VerifyIdScreen extends StatelessWidget {
   const VerifyIdScreen({super.key});
@@ -29,8 +32,9 @@ class VerifyIdScreen extends StatelessWidget {
                     title: ConstString.verifyYourId,
                     textSize: 24.sp,
                     fontWeight: FontWeight.w700,
-                    textColor: ConstColor.textColor,
+                    textColor: ConstColor.black,
                     maxLine: 2,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   GestureDetector(
                     onTap: () => Get.toNamed(AppRoutes.subscriptionScreen),
@@ -40,6 +44,7 @@ class VerifyIdScreen extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       textColor: ConstColor.primaryColor,
                       maxLine: 1,
+                      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                     ),
                   ),
                 ],
@@ -62,7 +67,6 @@ class VerifyIdScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Column(
                   children: [
-                    // ── Why verify card ──
                     _InfoCard(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,6 +77,7 @@ class VerifyIdScreen extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             textColor: ConstColor.textColor,
                             maxLine: 1,
+                            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                           ),
                           SizedBox(height: 12.h),
                           ...[
@@ -133,80 +138,82 @@ class VerifyIdScreen extends StatelessWidget {
                     SizedBox(height: 14.h),
 
                     // ── Upload card ──
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(AppRoutes.profilePhotoScreen);
-                      },
-                      child: _InfoCard(
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 48.r,
-                              height: 48.r,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF6C5CE7).withAlpha(30),
-                                shape: BoxShape.circle,
-                              ),
-                              child: Center(
-                                child: SvgPicture.asset(
-                                  'assets/icons/gellary_icon.svg',
-                                  width: 22.r,
-                                  height: 22.r,
-                                  colorFilter: const ColorFilter.mode(
-                                      ConstColor.primaryColor, BlendMode.srcIn),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 14.w),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CustomText(
-                                  title: ConstString.uploadIdFor,
-                                  textSize: 16.sp,
-                                  fontWeight: FontWeight.w700,
-                                  textColor: const Color(0xFF1A1A2E),
-                                  maxLine: 1,
-                                ),
-                                SizedBox(height: 2.h),
-                                CustomText(
-                                  title: 'PDF, PNG, Zip',
-                                  textSize: 14.sp,
-                                  fontWeight: FontWeight.w400,
-                                  textColor: ConstColor.grey,
-                                  maxLine: 1,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    UploadIdCard(),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     Get.toNamed(AppRoutes.profilePhotoScreen);
+                    //   },
+                    //   child: _InfoCard(
+                    //     child: Row(
+                    //       children: [
+                    //         Container(
+                    //           width: 48.r,
+                    //           height: 48.r,
+                    //           decoration: BoxDecoration(
+                    //             color: const Color(0xFF6C5CE7).withAlpha(30),
+                    //             shape: BoxShape.circle,
+                    //           ),
+                    //           child: Center(
+                    //             child: SvgPicture.asset(
+                    //               'assets/icons/gellary_icon.svg',
+                    //               width: 22.r,
+                    //               height: 22.r,
+                    //               colorFilter: const ColorFilter.mode(
+                    //                   ConstColor.primaryColor, BlendMode.srcIn),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         SizedBox(width: 14.w),
+                    //         Column(
+                    //           crossAxisAlignment: CrossAxisAlignment.start,
+                    //           children: [
+                    //             CustomText(
+                    //               title: ConstString.uploadIdFor,
+                    //               textSize: 16.sp,
+                    //               fontWeight: FontWeight.w700,
+                    //               textColor: const Color(0xFF1A1A2E),
+                    //               maxLine: 1,
+                    //               fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                    //             ),
+                    //             SizedBox(height: 2.h),
+                    //             CustomText(
+                    //               title: 'PDF, PNG, Zip',
+                    //               textSize: 14.sp,
+                    //               fontWeight: FontWeight.w400,
+                    //               textColor: ConstColor.grey,
+                    //               maxLine: 1,
+                    //             ),
+                    //           ],
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
             ),
 
             // ── Continue ──
-            // Padding(
-            //   padding:
-            //   EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-            //   child: CustomElevatedButton(
-            //     top: 0,
-            //     onPressed: () => Get.toNamed(AppRoutes.profilePhotoScreen),
-            //     gradient: [
-            //       ConstColor.primaryDeepColor,
-            //       ConstColor.primaryColor,
-            //     ],
-            //     buttonBorderRadius: 30,
-            //     child: CustomText(
-            //       title: ConstString.continueA,
-            //       textSize: 16.sp,
-            //       fontWeight: FontWeight.w600,
-            //       textColor: Colors.white,
-            //     ),
-            //   ),
-            // ),
+            Padding(
+              padding:
+              EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+              child: CustomElevatedButton(
+                top: 0,
+                onPressed: () => Get.toNamed(AppRoutes.profilePhotoScreen),
+                gradient: [
+                  ConstColor.primaryDeepColor,
+                  ConstColor.primaryColor,
+                ],
+                buttonBorderRadius: 30,
+                child: CustomText(
+                  title: ConstString.continueA,
+                  textSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                  textColor: Colors.white,
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
 import '../../../../widget/AppImage/app_image.dart';
@@ -276,6 +277,7 @@ class _Step2Activity extends StatelessWidget {
                         textColor: ConstColor.black,
                         textAlign: TextAlign.center,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                       ),
                     ],
                   ),
@@ -709,6 +711,7 @@ class _StepTitle extends StatelessWidget {
     fontWeight: FontWeight.w700,
     textColor: ConstColor.black,
     maxLine: 2,
+    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
   );
 }
 
@@ -723,6 +726,7 @@ class _FieldLabel extends StatelessWidget {
     fontWeight: FontWeight.w600,
     textColor: ConstColor.black,
     maxLine: 1,
+    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
   );
 }
 

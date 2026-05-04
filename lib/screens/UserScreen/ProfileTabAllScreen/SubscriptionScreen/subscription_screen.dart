@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../constant/const_color.dart';
@@ -113,7 +114,6 @@ class _Tab extends StatelessWidget {
   }
 }
 
-// ─── Plan Card ────────────────────────────────────────────────────────────────
 class _PlanCard extends StatelessWidget {
   final SubscriptionController c;
   final bool isPremium;
@@ -177,6 +177,7 @@ class _PlanCard extends StatelessWidget {
                                 ? ConstColor.primaryColor
                                 : ConstColor.black,
                             maxLine: 1,
+                            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                           ),
                           SizedBox(height: 4.h),
                           CustomText(
@@ -201,6 +202,7 @@ class _PlanCard extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                               textColor: ConstColor.black,
                               maxLine: 1,
+                              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                             ),
                             CustomText(
                               title: c.periodLabel,
@@ -214,10 +216,11 @@ class _PlanCard extends StatelessWidget {
                     else
                       CustomText(
                         title: ConstString.free,
-                        textSize: 22.sp,
-                        fontWeight: FontWeight.w700,
+                        textSize: 24.sp,
+                        fontWeight: FontWeight.w800,
                         textColor: ConstColor.black,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                       ),
                   ],
                 ),

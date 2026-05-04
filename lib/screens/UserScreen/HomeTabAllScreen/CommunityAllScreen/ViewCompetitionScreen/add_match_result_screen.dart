@@ -4,12 +4,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
-import '../../../../../widget/CustomTextFormField/custom_text_form_field.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import 'Controller/view_competition_controller.dart';
 import 'Widget/vs_banner.dart';
@@ -29,18 +29,17 @@ class AddMatchResultScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ---- VS Banner ----
             VSBanner(showWinner: false),
 
             SizedBox(height: 24.h),
 
-            // ---- Select Winner ----
             CustomText(
               title: ConstString.selectWinner,
               textColor: ConstColor.black,
               textSize: 18.sp,
               fontWeight: FontWeight.w700,
               maxLine: 1,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
 
             SizedBox(height: 12.h),
@@ -195,6 +194,7 @@ class _WinnerCard extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 textAlign: TextAlign.center,
                 maxLine: 1,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
               SizedBox(height: 2.h),
               CustomText(

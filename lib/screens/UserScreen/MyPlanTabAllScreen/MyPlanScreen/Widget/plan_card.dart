@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
@@ -71,7 +72,6 @@ class PlanCard extends StatelessWidget {
                           : const Color(0xFF1A8A4A),
                     ),
                   ),
-                // Bookmark (completed)
                 if (plan.tag == 'COMPLETED')
                   Positioned(
                     top: 10.h,
@@ -87,7 +87,6 @@ class PlanCard extends StatelessWidget {
                           size: 16.r, color: ConstColor.iconColor),
                     ),
                   ),
-                // New-Comer label bottom-left
                 Positioned(
                   bottom: 8.h,
                   left: 10.w,
@@ -100,13 +99,11 @@ class PlanCard extends StatelessWidget {
               ],
             ),
 
-            // ── Info ──
             Padding(
               padding: EdgeInsets.all(12.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title + Free Entry
                   Row(
                     children: [
                       Expanded(
@@ -116,6 +113,7 @@ class PlanCard extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           textColor: ConstColor.black,
                           maxLine: 1,
+                          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                         ),
                       ),
                       _FreeTag(),
@@ -230,6 +228,7 @@ class _FreeTag extends StatelessWidget {
         fontWeight: FontWeight.w600,
         textColor: ConstColor.primaryColor,
         maxLine: 1,
+        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 
 import '../../../../../../Widget/text/custom_text.dart';
@@ -36,7 +37,6 @@ class UpcomingEventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ---- Event Image ----
             Stack(
               children: [
                 ClipRRect(
@@ -100,7 +100,6 @@ class UpcomingEventCard extends StatelessWidget {
               ],
             ),
 
-            // ---- Event Details ----
             Padding(
               padding: EdgeInsets.all(12.r),
               child: Column(
@@ -116,6 +115,7 @@ class UpcomingEventCard extends StatelessWidget {
                           textSize: 20.sp,
                           fontWeight: FontWeight.w700,
                           maxLine: 1,
+                          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                         ),
                       ),
                       if (item.isFreeEntry)

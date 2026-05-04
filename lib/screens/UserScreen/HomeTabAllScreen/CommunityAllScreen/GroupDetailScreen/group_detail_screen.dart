@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
@@ -59,7 +60,6 @@ class GroupDetailScreen extends StatelessWidget {
                   child: _TagBadge(label: 'FITNESS'),
                 ),
 
-                // ─── Text & Details ───
                 Positioned(
                   bottom: 16.h,
                   left: 16.w,
@@ -72,6 +72,7 @@ class GroupDetailScreen extends StatelessWidget {
                         textSize: 24.sp,
                         fontWeight: FontWeight.w700,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                       ),
                       Row(
                         children: [
@@ -108,6 +109,7 @@ class GroupDetailScreen extends StatelessWidget {
                     textSize: 20.sp,
                     fontWeight: FontWeight.w700,
                     maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   SizedBox(height: 8.h),
                   CustomText(
@@ -123,7 +125,6 @@ class GroupDetailScreen extends StatelessWidget {
 
             SizedBox(height: 12.h),
 
-            // ---- Group Progress Stats ----
             _Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,6 +135,7 @@ class GroupDetailScreen extends StatelessWidget {
                     textSize: 15.sp,
                     fontWeight: FontWeight.w700,
                     maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   SizedBox(height: 14.h),
                   Row(
@@ -177,7 +179,6 @@ class GroupDetailScreen extends StatelessWidget {
 
             SizedBox(height: 20.h),
 
-            // ---- Competitions ----
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: CustomText(
@@ -186,6 +187,7 @@ class GroupDetailScreen extends StatelessWidget {
                 textSize: 20.sp,
                 fontWeight: FontWeight.w700,
                 maxLine: 1,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
             ),
             SizedBox(height: 10.h),
@@ -243,97 +245,7 @@ class _TagBadge extends StatelessWidget {
     );
   }
 }
-class _CompetitionBanner extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w),
-      padding: EdgeInsets.all(16.r),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF312E81), Color(0xFF3730A3)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(16.r),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 5.h),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF97316),
-                borderRadius: BorderRadius.circular(20.r),
-              ),
-              child: CustomText(
-                title: 'Upcoming',
-                textColor: Colors.white,
-                textSize: 10.sp,
-                fontWeight: FontWeight.w700,
-                maxLine: 1,
-              ),
-            ),
-          ),
-          CustomText(
-            title: 'SUMMER SPRINT LEAGUE',
-            textColor: Colors.white.withAlpha(180),
-            textSize: 12.sp,
-            fontWeight: FontWeight.w600,
-            maxLine: 1,
-          ),
-          SizedBox(height: 4.h),
-          CustomText(
-            title: 'Runners vs Sprinters',
-            textColor: Colors.white,
-            textSize: 30.sp,
-            fontWeight: FontWeight.w800,
-            maxLine: 2,
-          ),
-          SizedBox(height: 10.h),
-          Row(
-            children: [
-              _BannerInfo(label: 'DATE', value: 'Oct 24'),
-              SizedBox(width: 24.w),
-              _BannerInfo(label: 'VENUE', value: 'Central Plaza'),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-class _BannerInfo extends StatelessWidget {
-  final String label;
-  final String value;
 
-  const _BannerInfo({required this.label, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CustomText(
-          title: label,
-          textColor: Colors.white.withAlpha(160),
-          fontWeight: FontWeight.w700,
-          textSize: 10.sp,
-          maxLine: 1,
-        ),
-        CustomText(
-          title: value,
-          textColor: Colors.white,
-          textSize: 16.sp,
-          fontWeight: FontWeight.w700,
-          maxLine: 1,
-        ),
-      ],
-    );
-  }
-}
 class _CompetitionListItem extends StatelessWidget {
   final CompetitionItem item;
 

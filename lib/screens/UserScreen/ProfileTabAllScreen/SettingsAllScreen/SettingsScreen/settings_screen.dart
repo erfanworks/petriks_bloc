@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -61,6 +62,7 @@ class _Label extends StatelessWidget {
         fontWeight: FontWeight.w700,
         textColor: ConstColor.black,
         maxLine: 1,
+        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
       ),
     );
   }

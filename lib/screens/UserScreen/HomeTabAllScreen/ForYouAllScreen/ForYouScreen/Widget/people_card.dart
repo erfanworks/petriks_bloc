@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
@@ -25,7 +26,6 @@ class PeopleCard extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // ---- Person Image ----
           ClipRRect(
             borderRadius: BorderRadius.circular(16.r),
             child: AppImage(
@@ -36,7 +36,6 @@ class PeopleCard extends StatelessWidget {
             ),
           ),
 
-          // ---- Bottom gradient overlay ----
           Positioned(
             bottom: 0,
             left: 0,
@@ -66,6 +65,7 @@ class PeopleCard extends StatelessWidget {
                     textSize: 14.sp,
                     fontWeight: FontWeight.w700,
                     maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   SizedBox(height: 2.h),
                   CustomText(

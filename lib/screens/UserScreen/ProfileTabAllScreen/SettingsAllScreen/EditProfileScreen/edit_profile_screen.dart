@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -31,17 +32,22 @@ class EditProfileScreen extends StatelessWidget {
                   // Full Name
                   _FieldLabel(ConstString.fullName),
                   SizedBox(height: 6.h),
-                  _InputTile(icon: Icons.person_outline_rounded, ctrl: c.fullNameController),
+                  _InputTile(
+                    icon: Icons.person_outline_rounded,
+                    ctrl: c.fullNameController,
+                  ),
                   SizedBox(height: 16.h),
 
                   // Date of Birth
                   _FieldLabel(ConstString.dateOfBirth),
                   SizedBox(height: 6.h),
-                  Obx(() => _ReadonlyTile(
-                    icon: Icons.calendar_today_outlined,
-                    value: c.dateOfBirth.value,
-                    onTap: () => c.onDateOfBirthTap(context),
-                  )),
+                  Obx(
+                    () => _ReadonlyTile(
+                      icon: Icons.calendar_today_outlined,
+                      value: c.dateOfBirth.value,
+                      onTap: () => c.onDateOfBirthTap(context),
+                    ),
+                  ),
                   SizedBox(height: 16.h),
 
                   // Age Band
@@ -59,13 +65,21 @@ class EditProfileScreen extends StatelessWidget {
                   SizedBox(height: 8.h),
                   Row(
                     children: [
-                      Icon(Icons.near_me_outlined, size: 14.sp, color: ConstColor.primaryColor),
+                      Icon(
+                        Icons.near_me_outlined,
+                        size: 14.sp,
+                        color: ConstColor.primaryColor,
+                      ),
                       SizedBox(width: 6.w),
                       Expanded(
-                        child: Obx(() => CustomText(
-                          title: c.locationLabel.value,
-                          textSize: 12.sp, textColor: ConstColor.grey, maxLine: 2,
-                        )),
+                        child: Obx(
+                          () => CustomText(
+                            title: c.locationLabel.value,
+                            textSize: 12.sp,
+                            textColor: ConstColor.grey,
+                            maxLine: 2,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -83,18 +97,26 @@ class EditProfileScreen extends StatelessWidget {
 
 class _FieldLabel extends StatelessWidget {
   final String text;
+
   const _FieldLabel(this.text);
 
   @override
   Widget build(BuildContext context) {
-    return CustomText(title: text, textSize: 14.sp,
-        fontWeight: FontWeight.w600, textColor: ConstColor.black, maxLine: 1);
+    return CustomText(
+      title: text,
+      textSize: 14.sp,
+      fontWeight: FontWeight.w600,
+      textColor: ConstColor.black,
+      maxLine: 1,
+      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+    );
   }
 }
 
 class _InputTile extends StatelessWidget {
   final IconData icon;
   final TextEditingController ctrl;
+
   const _InputTile({required this.icon, required this.ctrl});
 
   @override
@@ -102,7 +124,8 @@ class _InputTile extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
       decoration: BoxDecoration(
-        color: ConstColor.backgroundColor, borderRadius: BorderRadius.circular(12.r),
+        color: ConstColor.backgroundColor,
+        borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
         children: [
@@ -111,8 +134,15 @@ class _InputTile extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: ctrl,
-              style: TextStyle(fontSize: 14.sp, color: ConstColor.black, fontFamily: 'Roboto'),
-              decoration: const InputDecoration(border: InputBorder.none, isDense: true),
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: ConstColor.black,
+                fontFamily: 'Roboto',
+              ),
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                isDense: true,
+              ),
               cursorColor: ConstColor.primaryColor,
             ),
           ),
@@ -126,7 +156,12 @@ class _ReadonlyTile extends StatelessWidget {
   final IconData icon;
   final String value;
   final VoidCallback onTap;
-  const _ReadonlyTile({required this.icon, required this.value, required this.onTap});
+
+  const _ReadonlyTile({
+    required this.icon,
+    required this.value,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -135,13 +170,19 @@ class _ReadonlyTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
         decoration: BoxDecoration(
-          color: ConstColor.backgroundColor, borderRadius: BorderRadius.circular(12.r),
+          color: ConstColor.backgroundColor,
+          borderRadius: BorderRadius.circular(12.r),
         ),
         child: Row(
           children: [
             Icon(icon, size: 18.sp, color: ConstColor.textColor),
             SizedBox(width: 10.w),
-            CustomText(title: value, textSize: 14.sp, textColor: ConstColor.black, maxLine: 1),
+            CustomText(
+              title: value,
+              textSize: 14.sp,
+              textColor: ConstColor.black,
+              maxLine: 1,
+            ),
           ],
         ),
       ),
@@ -151,42 +192,51 @@ class _ReadonlyTile extends StatelessWidget {
 
 class _AgeBandGrid extends StatelessWidget {
   final EditProfileController c;
+
   const _AgeBandGrid({required this.c});
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => GridView.count(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisCount: 2,
-      mainAxisSpacing: 10.h,
-      crossAxisSpacing: 10.w,
-      childAspectRatio: 3.2,
-      children: c.ageBands.map((band) {
-        final selected = c.selectedAgeBand.value == band;
-        return GestureDetector(
-          onTap: () => c.onAgeBandSelected(band),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
-            decoration: BoxDecoration(
-              color: selected ? ConstColor.primaryColor : ConstColor.black.withAlpha(10),
-              borderRadius: BorderRadius.circular(30.r),
-            ),
-            child: Center(
-              child: CustomText(
-                title: band, textSize: 14.sp, fontWeight: FontWeight.w500,
-                textColor: selected ? ConstColor.white : ConstColor.grey, maxLine: 1,
+    return Obx(
+      () => GridView.count(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: 2,
+        mainAxisSpacing: 10.h,
+        crossAxisSpacing: 10.w,
+        childAspectRatio: 3.2,
+        children: c.ageBands.map((band) {
+          final selected = c.selectedAgeBand.value == band;
+          return GestureDetector(
+            onTap: () => c.onAgeBandSelected(band),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 180),
+              decoration: BoxDecoration(
+                color: selected
+                    ? ConstColor.primaryColor
+                    : ConstColor.black.withAlpha(10),
+                borderRadius: BorderRadius.circular(30.r),
+              ),
+              child: Center(
+                child: CustomText(
+                  title: band,
+                  textSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  textColor: selected ? ConstColor.white : ConstColor.grey,
+                  maxLine: 1,
+                ),
               ),
             ),
-          ),
-        );
-      }).toList(),
-    ));
+          );
+        }).toList(),
+      ),
+    );
   }
 }
 
 class _SearchField extends StatelessWidget {
   final EditProfileController c;
+
   const _SearchField({required this.c});
 
   @override
@@ -194,7 +244,8 @@ class _SearchField extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
       decoration: BoxDecoration(
-        color: ConstColor.black.withAlpha(10), borderRadius: BorderRadius.circular(32.r),
+        color: ConstColor.black.withAlpha(10),
+        borderRadius: BorderRadius.circular(32.r),
       ),
       child: Row(
         children: [
@@ -203,11 +254,20 @@ class _SearchField extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: c.searchLocationCtrl,
-              style: TextStyle(fontSize: 14.sp, color: ConstColor.black, fontFamily: 'Roboto'),
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: ConstColor.black,
+                fontFamily: 'Roboto',
+              ),
               decoration: InputDecoration(
                 hintText: ConstString.searchLocation,
-                hintStyle: TextStyle(fontSize: 14.sp, color: ConstColor.grey, fontFamily: 'Roboto'),
-                border: InputBorder.none, isDense: true,
+                hintStyle: TextStyle(
+                  fontSize: 14.sp,
+                  color: ConstColor.grey,
+                  fontFamily: 'Roboto',
+                ),
+                border: InputBorder.none,
+                isDense: true,
               ),
               cursorColor: ConstColor.primaryColor,
             ),
@@ -227,23 +287,40 @@ class _MapPlaceholder extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(14.r),
-          child: AppImage(path: 'assets/images/map_img.png',
-              width: double.infinity, height: 160.h, fit: BoxFit.cover),
+          child: AppImage(
+            path: 'assets/images/map_img.png',
+            width: double.infinity,
+            height: 160.h,
+            fit: BoxFit.cover,
+          ),
         ),
         Positioned.fill(
           child: Center(
-            child: Icon(Icons.location_pin, size: 36.sp, color: ConstColor.primaryColor),
+            child: Icon(
+              Icons.location_pin,
+              size: 36.sp,
+              color: ConstColor.primaryColor,
+            ),
           ),
         ),
         Positioned(
-          bottom: 10.h, right: 10.w,
+          bottom: 10.h,
+          right: 10.w,
           child: Container(
-            width: 34.w, height: 34.h,
+            width: 34.w,
+            height: 34.h,
             decoration: BoxDecoration(
-              color: ConstColor.white, shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 6)],
+              color: ConstColor.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 6),
+              ],
             ),
-            child: Icon(Icons.my_location_rounded, size: 16.sp, color: ConstColor.primaryColor),
+            child: Icon(
+              Icons.my_location_rounded,
+              size: 16.sp,
+              color: ConstColor.primaryColor,
+            ),
           ),
         ),
       ],
@@ -253,6 +330,7 @@ class _MapPlaceholder extends StatelessWidget {
 
 class _SaveBtn extends StatelessWidget {
   final EditProfileController c;
+
   const _SaveBtn({required this.c});
 
   @override
@@ -265,15 +343,30 @@ class _SaveBtn extends StatelessWidget {
         5.h + MediaQuery.of(context).padding.bottom,
       ),
       color: ConstColor.white,
-      child: Obx(() => CustomElevatedButton(
-        onPressed: c.isSaving.value ? null : c.onSave,
-        height: 52, top: 0, buttonBorderRadius: 30,
-        child: c.isSaving.value
-            ? SizedBox(width: 20.w, height: 20.h,
-            child: CircularProgressIndicator(color: ConstColor.white, strokeWidth: 2))
-            : CustomText(title: ConstString.save, textSize: 16.sp,
-            fontWeight: FontWeight.w600, textColor: ConstColor.white, maxLine: 1),
-      )),
+      child: Obx(
+        () => CustomElevatedButton(
+          onPressed: c.isSaving.value ? null : c.onSave,
+          height: 52,
+          top: 0,
+          buttonBorderRadius: 30,
+          child: c.isSaving.value
+              ? SizedBox(
+                  width: 20.w,
+                  height: 20.h,
+                  child: CircularProgressIndicator(
+                    color: ConstColor.white,
+                    strokeWidth: 2,
+                  ),
+                )
+              : CustomText(
+                  title: ConstString.save,
+                  textSize: 16.sp,
+                  fontWeight: FontWeight.w600,
+                  textColor: ConstColor.white,
+                  maxLine: 1,
+                ),
+        ),
+      ),
     );
   }
 }

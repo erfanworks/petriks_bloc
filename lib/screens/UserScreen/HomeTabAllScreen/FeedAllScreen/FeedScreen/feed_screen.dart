@@ -29,7 +29,7 @@ class FeedScreen extends StatelessWidget {
               border: Border.all(color: ConstColor.borderColor.withAlpha(80), width: 1),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withAlpha(10), // Very light shadow
+                  color: Colors.black.withAlpha(10),
                   blurRadius: 12.r,
                   offset: Offset(0, 2.h),
                 ),
@@ -39,7 +39,6 @@ class FeedScreen extends StatelessWidget {
               onTap: controller.onCreatePost,
               child: Column(
                 children: [
-                  // ─── Top Section: Profile Pic & TextField ───
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Row(
@@ -109,7 +108,7 @@ class FeedScreen extends StatelessWidget {
                         ),
                         Expanded(
                           child: _ActionChip(
-                            icon: Icons.people, // Filled icon matches image
+                            icon: Icons.people,
                             iconColor: const Color(0xFF3B82F6),
                             label: ConstString.tagFriends,
                             onTap: controller.onTagFriends,
@@ -117,7 +116,7 @@ class FeedScreen extends StatelessWidget {
                         ),
                         Expanded(
                           child: _ActionChip(
-                            icon: Icons.emoji_emotions, // Filled icon matches image
+                            icon: Icons.emoji_emotions,
                             iconColor: const Color(0xFFFBBF24),
                             label: ConstString.feeling,
                             onTap: controller.onFeeling,
@@ -133,7 +132,6 @@ class FeedScreen extends StatelessWidget {
 
           SizedBox(height: 18.h),
 
-          // ---- Feed Posts ----
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

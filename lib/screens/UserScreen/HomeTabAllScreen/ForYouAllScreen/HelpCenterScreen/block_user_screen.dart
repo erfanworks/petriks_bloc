@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -32,6 +33,7 @@ class BlockUserScreen extends StatelessWidget {
               textSize: 16.sp,
               fontWeight: FontWeight.w700,
               maxLine: 1,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
             SizedBox(height: 14.h),
 
@@ -185,6 +187,7 @@ class _BlockInfoCard extends StatelessWidget {
                   textSize: 16.sp,
                   fontWeight: FontWeight.w600,
                   maxLine: 1,
+                  fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                 ),
                 SizedBox(height: 3.h),
                 CustomText(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 
@@ -10,6 +11,7 @@ import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/CustomTextFormField/custom_text_form_field.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+
 class HowDidItGoScreen extends StatelessWidget {
   const HowDidItGoScreen({super.key});
 
@@ -25,7 +27,6 @@ class HowDidItGoScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ---- Help & Safety Button ----
             CustomElevatedButton(
               onPressed: () => Get.toNamed(AppRoutes.helpCenterScreen),
               isOutLined: true,
@@ -45,19 +46,19 @@ class HowDidItGoScreen extends StatelessWidget {
 
             SizedBox(height: 20.h),
 
-            // ---- Did meetup happen ----
             CustomText(
               title: ConstString.didMeetupHappen,
               textColor: ConstColor.black,
               textSize: 18.sp,
               fontWeight: FontWeight.w600,
               maxLine: 1,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
 
             SizedBox(height: 12.h),
 
             Obx(
-                  () => Row(
+              () => Row(
                 children: [
                   _MeetupHappenedCard(
                     label: ConstString.yesItWasGreat,
@@ -78,13 +79,13 @@ class HowDidItGoScreen extends StatelessWidget {
 
             SizedBox(height: 24.h),
 
-            // ---- How was the experience ----
             CustomText(
               title: ConstString.howWasExperience,
               textColor: ConstColor.black,
               textSize: 18.sp,
               fontWeight: FontWeight.w600,
               maxLine: 1,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
             SizedBox(height: 4.h),
             CustomText(
@@ -97,20 +98,19 @@ class HowDidItGoScreen extends StatelessWidget {
 
             SizedBox(height: 14.h),
 
-            // ---- Vibe Selector ----
             Container(
               padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 8.w),
               decoration: BoxDecoration(
                 color: ConstColor.black.withAlpha(10),
                 borderRadius: BorderRadius.circular(24.r),
-                border: Border.all(color: ConstColor.silverGray20,width: 1)
+                border: Border.all(color: ConstColor.silverGray20, width: 1),
               ),
               child: Obx(
-                    () => Row(
+                () => Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: List.generate(
                     controller.vibes.length,
-                        (i) => GestureDetector(
+                    (i) => GestureDetector(
                       onTap: () => controller.onSelectVibe(i),
                       child: Column(
                         children: [
@@ -120,10 +120,13 @@ class HowDidItGoScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: controller.selectedVibe.value == i
-                              ? ConstColor.primaryColor.withAlpha(10)
-                              : ConstColor.white,
+                                  ? ConstColor.primaryColor.withAlpha(10)
+                                  : ConstColor.white,
                               border: controller.selectedVibe.value == i
-                                  ? Border.all(color: ConstColor.primaryColor, width: 1.5.w)
+                                  ? Border.all(
+                                      color: ConstColor.primaryColor,
+                                      width: 1.5.w,
+                                    )
                                   : null,
                             ),
                             child: Center(
@@ -156,13 +159,13 @@ class HowDidItGoScreen extends StatelessWidget {
 
             SizedBox(height: 24.h),
 
-            // ---- Standout Moments ----
             CustomText(
               title: ConstString.anyStandoutMoments,
               textColor: ConstColor.black,
               textSize: 18.sp,
               fontWeight: FontWeight.w600,
               maxLine: 1,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
 
             SizedBox(height: 10.h),
@@ -173,7 +176,8 @@ class HowDidItGoScreen extends StatelessWidget {
               backgroundColor: ConstColor.grey.withAlpha(15),
               keyboardType: TextInputType.text,
               hintText: CustomText(
-                title: 'The music was perfect, or maybe the conversation flowed...',
+                title:
+                    'The music was perfect, or maybe the conversation flowed...',
                 textColor: ConstColor.grey,
                 textSize: 13.sp,
                 maxLine: 3,
@@ -183,7 +187,6 @@ class HowDidItGoScreen extends StatelessWidget {
 
             SizedBox(height: 24.h),
 
-            // ---- Plan Again ----
             CustomElevatedButton(
               onPressed: controller.planAgain,
               isOutLined: true,
@@ -193,7 +196,11 @@ class HowDidItGoScreen extends StatelessWidget {
               top: 0,
               bottom: 12,
               buttonBorderRadius: 25,
-              icon: Icon(Icons.refresh_rounded, color: ConstColor.primaryColor, size: 18.sp),
+              icon: Icon(
+                Icons.refresh_rounded,
+                color: ConstColor.primaryColor,
+                size: 18.sp,
+              ),
               child: CustomText(
                 title: ConstString.planAgain,
                 textColor: ConstColor.primaryColor,
@@ -203,13 +210,15 @@ class HowDidItGoScreen extends StatelessWidget {
               ),
             ),
 
-            // ---- Submit ----
             CustomElevatedButton(
               onPressed: controller.submitReview,
               height: 54,
               top: 0,
               buttonBorderRadius: 30,
-              gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
+              gradient: const [
+                ConstColor.primaryDeepColor,
+                ConstColor.primaryColor,
+              ],
               child: CustomText(
                 title: ConstString.submit,
                 textColor: Colors.white,
@@ -264,7 +273,9 @@ class _MeetupHappenedCard extends StatelessWidget {
               SizedBox(height: 6.h),
               CustomText(
                 title: label,
-                textColor: isSelected ? ConstColor.primaryColor : ConstColor.black,
+                textColor: isSelected
+                    ? ConstColor.primaryColor
+                    : ConstColor.black,
                 textSize: 15.sp,
                 fontWeight: FontWeight.w500,
                 textAlign: TextAlign.center,

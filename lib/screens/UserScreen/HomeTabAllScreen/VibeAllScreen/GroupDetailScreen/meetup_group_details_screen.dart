@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/GroupDetailScreen/Controller/group_details_controller.dart';
@@ -66,6 +67,7 @@ class MeetupGroupDetailsScreen extends StatelessWidget {
                                 textSize: 20.sp,
                                 fontWeight: FontWeight.w700,
                                 maxLine: 1,
+                                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                               ),
                               _PillBadge(
                                 label: ConstString.freeEntry,
@@ -135,7 +137,6 @@ class MeetupGroupDetailsScreen extends StatelessWidget {
 
               SizedBox(height: 170.h),
 
-              // ---- Pick a Location ----
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: CustomText(
@@ -144,6 +145,7 @@ class MeetupGroupDetailsScreen extends StatelessWidget {
                   textSize: 18.sp,
                   fontWeight: FontWeight.w700,
                   maxLine: 1,
+                  fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                 ),
               ),
               SizedBox(height: 10.h),
@@ -184,7 +186,6 @@ class MeetupGroupDetailsScreen extends StatelessWidget {
 
               SizedBox(height: 10.h),
 
-              // ---- Group Chat ----
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Row(
@@ -864,6 +865,7 @@ class _PillBadge extends StatelessWidget {
         textSize: 12.sp,
         fontWeight: FontWeight.w600,
         maxLine: 1,
+        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
       ),
     );
   }

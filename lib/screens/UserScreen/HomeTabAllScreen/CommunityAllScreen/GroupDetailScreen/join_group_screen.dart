@@ -3,6 +3,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
@@ -53,7 +54,7 @@ class JoinGroupScreen extends StatelessWidget {
                   () => ListView.separated(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 itemCount: c.joinableGroups.length,
-                separatorBuilder: (_, __) => SizedBox(height: 10.h),
+                separatorBuilder: (_, _) => SizedBox(height: 10.h),
                 itemBuilder: (_, i) {
                   final group = c.joinableGroups[i];
                   return Obx(
@@ -86,6 +87,7 @@ class JoinGroupScreen extends StatelessWidget {
                                     textSize: 14.sp,
                                     fontWeight: FontWeight.w700,
                                     maxLine: 1,
+                                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                                   ),
                                   SizedBox(height: 2.h),
                                   CustomText(
@@ -146,7 +148,7 @@ class JoinGroupScreen extends StatelessWidget {
             context,
             communityName: 'Urban Athletes',
             onGoToChat: () => Get.toNamed(AppRoutes.directChatScreen),
-            onBackToDiscovery: () => Get.toNamed(AppRoutes.groupDetailScreen),
+            onBackToDiscovery: () => Get.toNamed(AppRoutes.navBar),
           ),
           height: 50,
           top: 0,

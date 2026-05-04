@@ -118,7 +118,7 @@ class CreateCompetitionController extends GetxController {
           Get.toNamed(AppRoutes.viewCompetitionScreen);
         },
         onBackToCommunity: () {
-          Get.toNamed(AppRoutes.communityDetailScreen);
+          Get.toNamed(AppRoutes.navBar);
         },
       ),
       barrierDismissible: true,

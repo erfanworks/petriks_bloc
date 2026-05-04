@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 
 import '../../../../../../Widget/text/custom_text.dart';
@@ -79,6 +80,7 @@ class CompetitionSuccessDialog extends StatelessWidget {
               textColor: ConstColor.black,
               textAlign: TextAlign.center,
               maxLine: 1,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
 
             SizedBox(height: 8.h),

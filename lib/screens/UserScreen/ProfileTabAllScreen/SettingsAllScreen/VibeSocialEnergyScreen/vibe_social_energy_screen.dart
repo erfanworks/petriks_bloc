@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
@@ -18,24 +19,29 @@ class VibeSocialEnergyScreen extends StatelessWidget {
     final c = Get.find<VibeSocialEnergyController>();
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,
-      appBar: GlobalAppBar(title: ConstString.vibeSocialEnergyTitle, showBack: true),
+      appBar: GlobalAppBar(
+        title: ConstString.vibeSocialEnergyTitle,
+        showBack: true,
+      ),
       body: Column(
         children: [
           Expanded(
-            child: Obx(() => ListView.separated(
-              padding: EdgeInsets.all(16.r),
-              itemCount: c.options.length,
-              separatorBuilder: (_, _) => SizedBox(height: 12.h),
-              itemBuilder: (_, i) {
-                final opt = c.options[i];
-                final isSelected = c.selectedVibe.value == opt.title;
-                return _VibeCard(
-                  option: opt,
-                  isSelected: isSelected,
-                  onTap: () => c.onVibeSelected(opt.title),
-                );
-              },
-            )),
+            child: Obx(
+              () => ListView.separated(
+                padding: EdgeInsets.all(16.r),
+                itemCount: c.options.length,
+                separatorBuilder: (_, _) => SizedBox(height: 12.h),
+                itemBuilder: (_, i) {
+                  final opt = c.options[i];
+                  final isSelected = c.selectedVibe.value == opt.title;
+                  return _VibeCard(
+                    option: opt,
+                    isSelected: isSelected,
+                    onTap: () => c.onVibeSelected(opt.title),
+                  );
+                },
+              ),
+            ),
           ),
           _SaveButton(onSave: c.onSave),
         ],
@@ -48,7 +54,12 @@ class _VibeCard extends StatelessWidget {
   final VibeOption option;
   final bool isSelected;
   final VoidCallback onTap;
-  const _VibeCard({required this.option, required this.isSelected, required this.onTap});
+
+  const _VibeCard({
+    required this.option,
+    required this.isSelected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +92,10 @@ class _VibeCard extends StatelessWidget {
                   option.icon,
                   width: 20.w,
                   height: 20.h,
-                  colorFilter: ColorFilter.mode(ConstColor.primaryColor, BlendMode.srcIn),
+                  colorFilter: ColorFilter.mode(
+                    ConstColor.primaryColor,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
@@ -90,9 +104,21 @@ class _VibeCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(title: option.title, textSize: 17.sp, fontWeight: FontWeight.w700, textColor: ConstColor.black, maxLine: 1),
+                  CustomText(
+                    title: option.title,
+                    textSize: 17.sp,
+                    fontWeight: FontWeight.w700,
+                    textColor: ConstColor.black,
+                    maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                  ),
                   SizedBox(height: 4.h),
-                  CustomText(title: option.description, textSize: 14.sp, textColor: ConstColor.grey, maxLine: 3),
+                  CustomText(
+                    title: option.description,
+                    textSize: 14.sp,
+                    textColor: ConstColor.grey,
+                    maxLine: 3,
+                  ),
                 ],
               ),
             ),
@@ -105,6 +131,7 @@ class _VibeCard extends StatelessWidget {
 
 class _SaveButton extends StatelessWidget {
   final VoidCallback onSave;
+
   const _SaveButton({required this.onSave});
 
   @override
@@ -119,11 +146,17 @@ class _SaveButton extends StatelessWidget {
       ),
       child: CustomElevatedButton(
         onPressed: onSave,
-        gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
+        gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
         height: 48,
         top: 0,
         buttonBorderRadius: 30,
-        child: CustomText(title: ConstString.save, textSize: 16.sp, fontWeight: FontWeight.w600, textColor: ConstColor.white, maxLine: 1),
+        child: CustomText(
+          title: ConstString.save,
+          textSize: 16.sp,
+          fontWeight: FontWeight.w600,
+          textColor: ConstColor.white,
+          maxLine: 1,
+        ),
       ),
     );
   }

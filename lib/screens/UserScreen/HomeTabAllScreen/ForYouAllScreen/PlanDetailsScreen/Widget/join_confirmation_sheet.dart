@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Controller/one_to_one_meetup_details_controller.dart';
 
@@ -56,7 +57,6 @@ class JoinConfirmationSheet extends StatelessWidget {
 
           SizedBox(height: 16.h),
 
-          // ---- Title ----
           CustomText(
             title: ConstString.joinThisPlan,
             textColor: ConstColor.black,
@@ -64,6 +64,7 @@ class JoinConfirmationSheet extends StatelessWidget {
             fontWeight: FontWeight.w700,
             textAlign: TextAlign.center,
             maxLine: 1,
+            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
           ),
 
           SizedBox(height: 12.h),

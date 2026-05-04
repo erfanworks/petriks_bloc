@@ -15,6 +15,7 @@ import 'package:petriks_flutter_app/screens/UserScreen/ProfileTabAllScreen/Profi
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/Controller/phone_login_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Controller/phone_number_verify_otp_controller.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/Controller/create_profile_controller.dart';
+import '../../screens/BaseScreen/CreateProfileScreen/VerifyIdScreen/Controller/verify_id_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityScreen/Controller/community_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCompetitionScreen/Controller/create_competition_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityScreen/Controller/my_community_controller.dart';
@@ -84,6 +85,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => TermsController());
     Get.lazyPut(() => ConnectionController());
     Get.lazyPut(() => NotificationController());
+    Get.lazyPut(() => VerifyIdController());
 
 
   }

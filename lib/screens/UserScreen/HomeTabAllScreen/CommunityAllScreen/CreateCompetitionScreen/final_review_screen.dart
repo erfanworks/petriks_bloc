@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -13,7 +11,6 @@ import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import 'Controller/create_competition_controller.dart';
-import 'Widget/competition_success_sheet.dart';
 
 class FinalReviewScreen extends StatelessWidget {
   const FinalReviewScreen({super.key});
@@ -37,6 +34,7 @@ class FinalReviewScreen extends StatelessWidget {
               textSize: 24.sp,
               fontWeight: FontWeight.w700,
               maxLine: 1,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
             SizedBox(height: 6.h),
             CustomText(
@@ -109,6 +107,7 @@ class FinalReviewScreen extends StatelessWidget {
                               textSize: 20.sp,
                               fontWeight: FontWeight.w600,
                               maxLine: 1,
+                              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                             ),
                             Container(
                               width: 34.w,
@@ -140,6 +139,7 @@ class FinalReviewScreen extends StatelessWidget {
                           textSize: 16.sp,
                           fontWeight: FontWeight.w600,
                           maxLine: 1,
+                          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                         ),
                         SizedBox(height: 14.h),
 

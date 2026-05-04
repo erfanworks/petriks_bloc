@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 
@@ -65,6 +66,7 @@ class Step7Mood extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       textColor: const Color(0xFF1A1A2E),
                       maxLine: 1,
+                      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                     ),
                   ),
                   if (selected)

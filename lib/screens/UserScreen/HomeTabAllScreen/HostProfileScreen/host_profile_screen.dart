@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
 import '../../../../widget/AppImage/app_image.dart';
@@ -35,7 +36,6 @@ class HostProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ── Section 1: Header ──
             _SectionCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +117,7 @@ class HostProfileScreen extends StatelessWidget {
                   SizedBox(height: 12.h),
                   Wrap(
                     spacing: 10.w,
-                    runSpacing: 10.h,
+                    runSpacing: 8.h,
                     children: c.badges
                         .map((b) => _BadgeCard(
                       label: b['label']!,
@@ -132,7 +132,6 @@ class HostProfileScreen extends StatelessWidget {
 
             SizedBox(height: 10.h),
 
-            // ── Section 6: Community Indicators ──
             _SectionCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,7 +151,6 @@ class HostProfileScreen extends StatelessWidget {
 
             SizedBox(height: 10.h),
 
-            // ── Section 7: Plans ──
             _SectionCard(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -251,6 +249,7 @@ class _SectionTitle extends StatelessWidget {
       fontWeight: FontWeight.w700,
       textColor: ConstColor.black,
       maxLine: 1,
+      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
     );
   }
 }
@@ -264,7 +263,6 @@ class _ProfileHeader extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Avatar with verified badge
         Stack(
           children: [
             ClipOval(
@@ -298,7 +296,6 @@ class _ProfileHeader extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Verified badge + name row
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -309,6 +306,7 @@ class _ProfileHeader extends StatelessWidget {
                       fontWeight: FontWeight.w800,
                       textColor: ConstColor.black,
                       maxLine: 1,
+                      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                     ),
                   ),
                   Container(

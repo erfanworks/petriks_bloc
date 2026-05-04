@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -26,7 +27,6 @@ class CommunityDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20.h),
-            // ---- Hero Image ----
             Stack(
               children: [
                 Padding(
@@ -58,6 +58,7 @@ class CommunityDetailScreen extends StatelessWidget {
                         textSize: 24.sp,
                         fontWeight: FontWeight.w700,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                       ),
                       Row(
                         children: [
@@ -84,7 +85,6 @@ class CommunityDetailScreen extends StatelessWidget {
 
             SizedBox(height: 16.h),
 
-            // ---- About ----
             _Card(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,6 +95,7 @@ class CommunityDetailScreen extends StatelessWidget {
                     textSize: 18.sp,
                     fontWeight: FontWeight.w700,
                     maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   SizedBox(height: 8.h),
                   CustomText(
@@ -110,7 +111,6 @@ class CommunityDetailScreen extends StatelessWidget {
 
             SizedBox(height: 12.h),
 
-            // ---- Community Competitions ----
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: CustomText(
@@ -119,6 +119,7 @@ class CommunityDetailScreen extends StatelessWidget {
                 textSize: 20.sp,
                 fontWeight: FontWeight.w700,
                 maxLine: 1,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
             ),
             SizedBox(height: 10.h),
@@ -126,7 +127,6 @@ class CommunityDetailScreen extends StatelessWidget {
 
             SizedBox(height: 20.h),
 
-            // ---- Groups ----
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
@@ -138,6 +138,7 @@ class CommunityDetailScreen extends StatelessWidget {
                     textSize: 20.sp,
                     fontWeight: FontWeight.w700,
                     maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   GestureDetector(
                     onTap: () {},
@@ -167,7 +168,6 @@ class CommunityDetailScreen extends StatelessWidget {
 
             SizedBox(height: 20.h),
 
-            // ---- Group Progress ----
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: CustomText(
@@ -176,6 +176,7 @@ class CommunityDetailScreen extends StatelessWidget {
                 textSize: 20.sp,
                 fontWeight: FontWeight.w700,
                 maxLine: 1,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
             ),
             SizedBox(height: 10.h),
@@ -311,9 +312,10 @@ class _CompetitionBanner extends StatelessWidget {
           CustomText(
             title: 'Runners vs Sprinters',
             textColor: Colors.white,
-            textSize: 30.sp,
+            textSize: 28.sp,
             fontWeight: FontWeight.w800,
             maxLine: 2,
+            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
           ),
           SizedBox(height: 10.h),
           Row(

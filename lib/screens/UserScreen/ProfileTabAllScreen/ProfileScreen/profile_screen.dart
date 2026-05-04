@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../constant/const_color.dart';
@@ -17,7 +18,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = Get.find<ProfileController>();
     return Scaffold(
-      // backgroundColor: ConstColor.backgroundColor,
       appBar: GlobalAppBar(
         title: ConstString.profile,
         showBack: false,
@@ -117,6 +117,7 @@ class _TopCard extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                         textColor: ConstColor.black,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                       ),
                     ),
                     SizedBox(height: 4.h),
@@ -753,6 +754,7 @@ class _SectionTitle extends StatelessWidget {
       fontWeight: FontWeight.w700,
       textColor: ConstColor.black,
       maxLine: 1,
+      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
     );
   }
 }

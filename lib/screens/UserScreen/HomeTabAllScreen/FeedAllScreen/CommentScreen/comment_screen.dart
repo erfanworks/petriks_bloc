@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -21,11 +22,14 @@ class CommentScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Obx(() => ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-              itemCount: c.comments.length,
-              itemBuilder: (_, i) => _CommentItem(comment: c.comments[i], index: i, c: c),
-            )),
+            child: Obx(
+              () => ListView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                itemCount: c.comments.length,
+                itemBuilder: (_, i) =>
+                    _CommentItem(comment: c.comments[i], index: i, c: c),
+              ),
+            ),
           ),
           _CommentInputBar(c: c),
         ],
@@ -38,7 +42,12 @@ class _CommentItem extends StatelessWidget {
   final CommentModel comment;
   final int index;
   final FeedController c;
-  const _CommentItem({required this.comment, required this.index, required this.c});
+
+  const _CommentItem({
+    required this.comment,
+    required this.index,
+    required this.c,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +73,17 @@ class _CommentItem extends StatelessWidget {
   }
 }
 
-// ─── Comment Card ─────────────────────────────────────────────────────────────
 class _CommentCard extends StatelessWidget {
   final CommentModel comment;
   final bool isReply;
   final VoidCallback onLike, onReply;
-  const _CommentCard({required this.comment, required this.isReply, required this.onLike, required this.onReply});
+
+  const _CommentCard({
+    required this.comment,
+    required this.isReply,
+    required this.onLike,
+    required this.onReply,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +92,13 @@ class _CommentCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: ConstColor.white,
         borderRadius: BorderRadius.circular(12.r),
-        boxShadow: [BoxShadow(color: Colors.black.withAlpha(10), blurRadius: 8, offset: const Offset(0, 2))],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(10),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,17 +108,41 @@ class _CommentCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(20.r),
-                child: AppImage(path: comment.userImage, width: 36.w, height: 36.h, fit: BoxFit.cover),
+                child: AppImage(
+                  path: comment.userImage,
+                  width: 36.w,
+                  height: 36.h,
+                  fit: BoxFit.cover,
+                ),
               ),
               SizedBox(width: 10.w),
-              Expanded(child: CustomText(title: comment.userName, textSize: 13.sp, fontWeight: FontWeight.w600, textColor: ConstColor.black, maxLine: 1)),
-              CustomText(title: comment.timeAgo, textSize: 11.sp, textColor: ConstColor.grey, maxLine: 1),
+              Expanded(
+                child: CustomText(
+                  title: comment.userName,
+                  textSize: 13.sp,
+                  fontWeight: FontWeight.w600,
+                  textColor: ConstColor.black,
+                  maxLine: 1,
+                  fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                ),
+              ),
+              CustomText(
+                title: comment.timeAgo,
+                textSize: 11.sp,
+                textColor: ConstColor.grey,
+                maxLine: 1,
+              ),
             ],
           ),
           SizedBox(height: 8.h),
 
           // Content
-          CustomText(title: comment.content, textSize: 13.sp, textColor: ConstColor.black, maxLine: 5),
+          CustomText(
+            title: comment.content,
+            textSize: 13.sp,
+            textColor: ConstColor.black,
+            maxLine: 5,
+          ),
           SizedBox(height: 10.h),
 
           // Like + Reply
@@ -141,30 +185,49 @@ class _CommentCard extends StatelessWidget {
 
 class _CommentInputBar extends StatelessWidget {
   final FeedController c;
+
   const _CommentInputBar({required this.c});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.fromLTRB(16.w, 10.h, 16.w, 24.h),
-      decoration: BoxDecoration(color: ConstColor.white, border: Border(top: BorderSide(color: ConstColor.borderColor))),
+      decoration: BoxDecoration(
+        color: ConstColor.white,
+        border: Border(top: BorderSide(color: ConstColor.borderColor)),
+      ),
       child: Row(
         children: [
           Expanded(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-              decoration: BoxDecoration(color: ConstColor.backgroundColor, borderRadius: BorderRadius.circular(30.r)),
+              decoration: BoxDecoration(
+                color: ConstColor.backgroundColor,
+                borderRadius: BorderRadius.circular(30.r),
+              ),
               child: Row(
                 children: [
-                  Icon(Icons.sentiment_satisfied_alt_outlined, size: 20.sp, color: ConstColor.grey),
+                  Icon(
+                    Icons.sentiment_satisfied_alt_outlined,
+                    size: 20.sp,
+                    color: ConstColor.grey,
+                  ),
                   SizedBox(width: 10.w),
                   Expanded(
                     child: TextField(
                       onChanged: c.onCommentChanged,
-                      style: TextStyle(fontSize: 13.sp, color: ConstColor.black, fontFamily: 'Roboto'),
+                      style: TextStyle(
+                        fontSize: 13.sp,
+                        color: ConstColor.black,
+                        fontFamily: 'Roboto',
+                      ),
                       decoration: InputDecoration(
                         hintText: ConstString.addAComment,
-                        hintStyle: TextStyle(fontSize: 13.sp, color: ConstColor.grey, fontFamily: 'Roboto'),
+                        hintStyle: TextStyle(
+                          fontSize: 13.sp,
+                          color: ConstColor.grey,
+                          fontFamily: 'Roboto',
+                        ),
                         border: InputBorder.none,
                         isDense: true,
                         contentPadding: EdgeInsets.zero,
@@ -177,17 +240,32 @@ class _CommentInputBar extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10.w),
-          Obx(() => GestureDetector(
-            onTap: c.isSendingComment.value ? null : c.onSendComment,
-            child: Container(
-              width: 44.w,
-              height: 44.h,
-              decoration: BoxDecoration(color: ConstColor.primaryColor, shape: BoxShape.circle),
-              child: c.isSendingComment.value
-                  ? Padding(padding: EdgeInsets.all(12.r), child: CircularProgressIndicator(color: ConstColor.white, strokeWidth: 2))
-                  : Icon(Icons.send_rounded, color: ConstColor.white, size: 18.sp),
+          Obx(
+            () => GestureDetector(
+              onTap: c.isSendingComment.value ? null : c.onSendComment,
+              child: Container(
+                width: 44.w,
+                height: 44.h,
+                decoration: BoxDecoration(
+                  color: ConstColor.primaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: c.isSendingComment.value
+                    ? Padding(
+                        padding: EdgeInsets.all(12.r),
+                        child: CircularProgressIndicator(
+                          color: ConstColor.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                    : Icon(
+                        Icons.send_rounded,
+                        color: ConstColor.white,
+                        size: 18.sp,
+                      ),
+              ),
             ),
-          )),
+          ),
         ],
       ),
     );

@@ -56,7 +56,6 @@ class CreateProfileController extends GetxController {
     'Arabic',
     'Portuguese',
     'Italian',
-    '+ More',
   ];
   final List<String> chatLanguages = [
     'English',
@@ -64,6 +63,11 @@ class CreateProfileController extends GetxController {
     'French',
     'German',
     'Mandarin',
+    'Japanese',
+    'Hindi',
+    'Arabic',
+    'Portuguese',
+    'Italian',
   ];
 
   // Step 4

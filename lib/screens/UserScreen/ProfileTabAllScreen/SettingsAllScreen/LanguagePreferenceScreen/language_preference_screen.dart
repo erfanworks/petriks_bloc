@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -65,13 +66,13 @@ class LanguagePreferenceScreen extends StatelessWidget {
                   )),
                   SizedBox(height: 28.h),
 
-                  // ── Preferred Chat Language ──
                   CustomText(
                     title: ConstString.preferredChatLanguage,
                     textSize: 18.sp,
                     fontWeight: FontWeight.w700,
                     textColor: ConstColor.black,
                     maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   SizedBox(height: 6.h),
                   CustomText(
@@ -82,7 +83,6 @@ class LanguagePreferenceScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 14.h),
 
-                  // ── Dropdown ──
                   Obx(() => GestureDetector(
                     onTap: () => c.isDropdownOpen.value = !c.isDropdownOpen.value,
                     child: Container(

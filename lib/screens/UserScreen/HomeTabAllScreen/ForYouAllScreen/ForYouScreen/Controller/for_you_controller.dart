@@ -126,7 +126,7 @@ class ForYouController extends GetxController {
   // ---- People ----
   final RxList<PersonItem> people = <PersonItem>[
     const PersonItem(
-      image: 'assets/images/person1_img.jpg',
+      image: 'assets/images/onboarding2_img.jpg',
       name: 'Maya Sen',
       bio: 'Plant lover, Tea drinker',
       distance: '0.8 km away',
@@ -137,12 +137,18 @@ class ForYouController extends GetxController {
       bio: 'Plant lover, Tea drinker',
       distance: '0.8 km away',
     ),
+    const PersonItem(
+      image: 'assets/images/person1_img.jpg',
+      name: 'Maya Sen',
+      bio: 'Plant lover, Tea drinker',
+      distance: '0.8 km away',
+    ),
   ].obs;
 
   // ---- Actions ----
   void onSeeAllEvents() => Get.toNamed('/all-events');
   void onSeeAllPeople() => Get.toNamed('/all-people');
-  void onSayHello(PersonItem person) {}
+  void onSayHello(PersonItem person) {Get.toNamed(AppRoutes.hostProfileScreen);}
   void onEventTap(EventItem event) => Get.toNamed(AppRoutes.planDetailsScreen);
   void onInviteTap(EventItem event) => Get.toNamed(AppRoutes.inviteFriendsListScreen, arguments: event);
 }

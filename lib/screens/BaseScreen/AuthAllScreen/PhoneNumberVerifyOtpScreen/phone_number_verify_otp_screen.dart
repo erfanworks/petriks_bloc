@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../constant/const_color.dart';
@@ -93,6 +94,7 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           textAlign: TextAlign.center,
                           maxLine: 1,
+                          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                         ),
 
                         SizedBox(height: 6.h),
@@ -127,11 +129,12 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                         // ---- Code sent text ----
                         CustomText(
                           title: ConstString.codeHasBeenSent,
-                          textColor: ConstColor.grey,
+                          textColor: ConstColor.textColor,
                           textSize: 14.sp,
                           textAlign: TextAlign.center,
                           fontWeight: FontWeight.w400,
                           maxLine: 1,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
                         ),
 
                         SizedBox(height: 4.h),
@@ -187,6 +190,7 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                           textAlign: TextAlign.center,
                           fontWeight: FontWeight.w400,
                           maxLine: 1,
+                          fontFamily: GoogleFonts.poppins().fontFamily,
                         ),
 
                         SizedBox(height: 14.h),
@@ -206,7 +210,8 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                               textAlign: TextAlign.center,
                               maxLine: 1,
-                              decorationStyle: TextDecoration.underline
+                              decorationStyle: TextDecoration.underline,
+                              fontFamily: GoogleFonts.poppins().fontFamily,
                             ),
                           ),
                         ),

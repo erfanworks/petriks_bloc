@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
@@ -62,7 +63,6 @@ class AttendanceTipsScreen extends StatelessWidget {
   }
 }
 
-// ---- Tip Data Model ----
 class _TipData {
   final String icon;
   final Color iconColor;
@@ -120,7 +120,6 @@ class _TipCard extends StatelessWidget {
 
           SizedBox(width: 14.w),
 
-          // ---- Text ----
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,6 +130,7 @@ class _TipCard extends StatelessWidget {
                   textSize: 16.sp,
                   fontWeight: FontWeight.w600,
                   maxLine: 1,
+                  fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                 ),
                 SizedBox(height: 4.h),
                 CustomText(

@@ -35,7 +35,6 @@ class ReportProblemScreen extends StatelessWidget {
             ),
             SizedBox(height: 12.h),
 
-            // ---- Reasons ----
             ...controller.reportReasons.map(
                   (reason) => Obx(
                     () => GestureDetector(

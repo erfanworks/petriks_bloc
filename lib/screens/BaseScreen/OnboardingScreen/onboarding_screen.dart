@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../Widget/text/custom_text.dart';
 import '../../../constant/const_color.dart';
 import '../../../constant/const_string.dart';
@@ -311,7 +312,6 @@ class _LocationCard extends StatelessWidget {
   }
 }
 
-// ─── 1-TO-1 Card ──────────────────────────────────────────────────────────────
 class _OneTOOneCard extends StatelessWidget {
   const _OneTOOneCard();
 
@@ -390,6 +390,7 @@ class _BottomCard extends StatelessWidget {
               textColor: ConstColor.black,
               textAlign: TextAlign.center,
               maxLine: 3,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
             SizedBox(height: 12.h),
             CustomText(

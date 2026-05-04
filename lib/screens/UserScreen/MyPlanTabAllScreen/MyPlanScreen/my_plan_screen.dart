@@ -21,7 +21,6 @@ class MyPlanScreen extends StatelessWidget {
       appBar: GlobalAppBar(title: ConstString.myPlan, showBack: false),
       body: Column(
         children: [
-          // ── Tab toggle ──
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
             child: Obx(() => Container(

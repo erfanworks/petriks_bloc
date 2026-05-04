@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -169,6 +170,7 @@ class _Step1Category extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         textColor: ConstColor.black,
                         maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                       ),
                       SizedBox(height: 4.h),
                       CustomText(
@@ -481,6 +483,7 @@ class _StepHeader extends StatelessWidget {
           fontWeight: FontWeight.w700,
           textColor: ConstColor.black,
           maxLine: 2,
+          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
         ),
         SizedBox(height: 6.h),
         CustomText(

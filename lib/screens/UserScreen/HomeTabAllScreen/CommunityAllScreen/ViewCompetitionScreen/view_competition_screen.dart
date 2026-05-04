@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
@@ -35,6 +36,7 @@ class ViewCompetitionScreen extends StatelessWidget {
                 textSize: 20.sp,
                 fontWeight: FontWeight.w700,
                 maxLine: 1,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
             ),
 
@@ -208,6 +210,7 @@ class _CompetitionBanner extends StatelessWidget {
                 textSize: 28.sp,
                 fontWeight: FontWeight.w800,
                 maxLine: 1,
+                fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
               ),
               SizedBox(height: 12.h),
               Row(

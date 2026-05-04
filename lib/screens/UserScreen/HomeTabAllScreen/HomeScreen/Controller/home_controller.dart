@@ -4,6 +4,12 @@ class HomeController extends GetxController {
   // ---- Tabs ----
   final tabs = ['For You', 'Vibe', 'Feed', 'Community'];
   final selectedTab = 0.obs;
+  final RxDouble radiusValue = 40.0.obs;
+
+
+  void updateRadius(double val) {
+    radiusValue.value = val;
+  }
 }
 
 
