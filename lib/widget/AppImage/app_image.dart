@@ -84,7 +84,7 @@ class AppImage extends StatelessWidget {
       color: Colors.grey.shade100,
       child: const Center(
         child: Icon(
-          Icons.directions_car_outlined,
+          Icons.person,
           size: 48,
           color: Colors.grey,
         ),
@@ -162,7 +162,7 @@ class _NetworkImageWithRetryState extends State<NetworkImageWithRetry> {
             height: widget.height,
             color: Colors.grey.shade100,
             child: const Center(
-              child: Icon(Icons.directions_car_outlined, size: 48, color: Colors.grey),
+              child: Icon(Icons.error_outline, size: 48, color: Colors.grey),
             ),
           ),
         );

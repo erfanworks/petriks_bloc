@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
@@ -37,12 +38,11 @@ class OneToOneMeetupCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ---- Person Info ----
             Padding(
               padding: EdgeInsets.all(12.r),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Person image with verified badge
                   Stack(
                     children: [
                       ClipRRect(
@@ -63,9 +63,16 @@ class OneToOneMeetupCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: ConstColor.primaryColor,
                             shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 1.5.w),
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 1.5.w,
+                            ),
                           ),
-                          child: Icon(Icons.check_rounded, color: Colors.white, size: 10.sp),
+                          child: Icon(
+                            Icons.check_rounded,
+                            color: Colors.white,
+                            size: 10.sp,
+                          ),
                         ),
                       ),
                     ],
@@ -73,7 +80,6 @@ class OneToOneMeetupCard extends StatelessWidget {
 
                   SizedBox(width: 12.w),
 
-                  // Person name, language, distance
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +94,11 @@ class OneToOneMeetupCard extends StatelessWidget {
                         SizedBox(height: 4.h),
                         Row(
                           children: [
-                            Icon(Icons.language_rounded, size: 13.sp, color: ConstColor.grey),
+                            Icon(
+                              Icons.language_rounded,
+                              size: 13.sp,
+                              color: ConstColor.grey,
+                            ),
                             SizedBox(width: 4.w),
                             CustomText(
                               title: item.language,
@@ -98,16 +108,22 @@ class OneToOneMeetupCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 2.h),
+                        SizedBox(height: 4.h),
                         Row(
                           children: [
-                            Icon(Icons.location_on_outlined, size: 13.sp, color: ConstColor.grey),
+                            Icon(
+                              Icons.location_on_outlined,
+                              size: 13.sp,
+                              color: ConstColor.grey,
+                            ),
                             SizedBox(width: 4.w),
-                            CustomText(
-                              title: item.distance,
-                              textColor: ConstColor.grey,
-                              textSize: 12.sp,
-                              maxLine: 1,
+                            Expanded(
+                              child: CustomText(
+                                title: item.distance,
+                                textColor: ConstColor.grey,
+                                textSize: 12.sp,
+                                maxLine: 1,
+                              ),
                             ),
                           ],
                         ),
@@ -115,132 +131,208 @@ class OneToOneMeetupCard extends StatelessWidget {
                     ),
                   ),
 
-                  // View Profile button
-                  GestureDetector(
-                    onTap: () => controller.onViewProfile(item),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 7.h),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: ConstColor.primaryColor),
-                        borderRadius: BorderRadius.circular(20.r),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12.w,
+                          vertical: 4.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: item.isPrivate
+                              ? ConstColor.black.withAlpha(40)
+                              : const Color(0xFFE8F5E9),
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Row(
+                          children: [
+                            if (item.isPrivate)
+                              SvgPicture.asset(
+                                "assets/icons/lock_icon.svg",
+                                height: 10.h,
+                                width: 10.w,
+                                colorFilter: const ColorFilter.mode(
+                                    ConstColor.primaryColor,
+                                    BlendMode.srcIn
+                                ),
+                              )
+                            else
+                              Icon(
+                                  Icons.public,
+                                  size: 11.sp,
+                                  color: const Color(0xFF2E7D32)
+                              ),
+
+                            SizedBox(width: 5.w),
+
+                            CustomText(
+                              title: item.isPrivate ? ConstString.private : "Public",
+                              textColor: item.isPrivate
+                                  ? ConstColor.primaryColor
+                                  : const Color(0xFF2E7D32),
+                              textSize: 10.sp,
+                              fontWeight: FontWeight.w700,
+                              maxLine: 1,
+                            ),
+                          ],
+                        ),
                       ),
-                      child: CustomText(
-                        title: ConstString.viewProfile,
-                        textColor: ConstColor.black,
-                        textSize: 11.sp,
-                        fontWeight: FontWeight.w500,
-                        maxLine: 1,
+
+                      SizedBox(height: 12.h),
+
+                      GestureDetector(
+                        onTap: () => controller.onViewProfile(item),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 8.w,
+                            vertical: 4.h,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: ConstColor.primaryColor,
+                            ),
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                          child: CustomText(
+                            title: ConstString.viewProfile,
+                            textColor: ConstColor.black,
+                            textSize: 10.sp,
+                            fontWeight: FontWeight.w500,
+                            maxLine: 1,
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
             ),
 
-            // ---- Event Image with overlays ----
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(16.r),
-                bottomRight: Radius.circular(16.r),
-              ),
-              child: Stack(
-                children: [
-                  // Full image
-                  AppImage(
-                    path: item.eventImage,
-                    width: double.infinity,
-                    height: 210.h,
-                    fit: BoxFit.cover,
-                  ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.w),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16.r),
+                child: Stack(
+                  children: [
+                    AppImage(
+                      path: item.eventImage,
+                      width: double.infinity,
+                      height: 160.h,
+                      fit: BoxFit.cover,
+                    ),
 
-                  // Tag badge — bottom left of image
-                  Positioned(
-                    bottom: 48.h,
-                    left: 12.w,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFFF3E0),
-                        borderRadius: BorderRadius.circular(20.r),
+                    Positioned(
+                      bottom: 12.h,
+                      left: 12.w,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                          vertical: 5.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF0C4AA),
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: CustomText(
+                          title: item.tag,
+                          textColor: const Color(0xFF763302),
+                          textSize: 10.sp,
+                          fontWeight: FontWeight.w600,
+                          maxLine: 1,
+                        ),
                       ),
-                      child: CustomText(
-                        title: item.tag,
-                        textColor: const Color(0xFFFF9800),
-                        textSize: 10.sp,
-                        fontWeight: FontWeight.w600,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        title: item.eventTitle,
+                        textColor: ConstColor.black,
+                        textSize: 16.sp,
+                        fontWeight: FontWeight.w700,
                         maxLine: 1,
                       ),
-                    ),
+                      if (item.isFreeEntry)
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 4.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEDE9FF),
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                          child: CustomText(
+                            title: ConstString.freeEntry,
+                            textColor: ConstColor.primaryColor,
+                            textSize: 10.sp,
+                            fontWeight: FontWeight.w600,
+                            maxLine: 1,
+                          ),
+                        ),
+                    ],
                   ),
+                  SizedBox(height: 8.h),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_outlined,
+                        size: 14.sp,
+                        color: ConstColor.grey,
+                      ),
+                      SizedBox(width: 4.w),
+                      CustomText(
+                        title: item.location,
+                        textColor: ConstColor.grey,
+                        textSize: 12.sp,
+                        maxLine: 1,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 4.h),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.calendar_today_outlined,
+                        size: 14.sp,
+                        color: ConstColor.primaryColor,
+                      ),
+                      SizedBox(width: 4.w),
+                      CustomText(
+                        title: item.date,
+                        textColor: ConstColor.grey,
+                        textSize: 12.sp,
+                        maxLine: 1,
+                      ),
 
-                  // Event details overlay — bottom
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
+                      SizedBox(width: 8.w),
+                      Container(width: 1, height: 12.h, color: ConstColor.borderColor),
+                      SizedBox(width: 8.w),
+
+                      Icon(
+                        Icons.access_time_rounded,
+                        size: 14.sp,
+                        color: ConstColor.primaryColor,
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              CustomText(
-                                title: item.eventTitle,
-                                textColor: ConstColor.black,
-                                textSize: 15.sp,
-                                fontWeight: FontWeight.w700,
-                                maxLine: 1,
-                              ),
-                              if (item.isFreeEntry)
-                                Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFEDE9FF),
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: CustomText(
-                                    title: ConstString.freeEntry,
-                                    textColor: ConstColor.primaryColor,
-                                    textSize: 10.sp,
-                                    fontWeight: FontWeight.w600,
-                                    maxLine: 1,
-                                  ),
-                                ),
-                            ],
-                          ),
-                          SizedBox(height: 5.h),
-                          Row(
-                            children: [
-                              Icon(Icons.location_on_outlined, size: 12.sp, color: ConstColor.grey),
-                              SizedBox(width: 4.w),
-                              CustomText(
-                                title: item.location,
-                                textColor: ConstColor.primaryColor,
-                                textSize: 11.sp,
-                                maxLine: 1,
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 3.h),
-                          Row(
-                            children: [
-                              Icon(Icons.calendar_today_outlined, size: 12.sp, color: ConstColor.primaryColor),
-                              SizedBox(width: 4.w),
-                              CustomText(title: item.date, textColor: ConstColor.grey, textSize: 11.sp, maxLine: 1),
-                              SizedBox(width: 8.w),
-                              Icon(Icons.access_time_rounded, size: 12.sp, color: ConstColor.primaryColor),
-                              SizedBox(width: 4.w),
-                              CustomText(title: item.time, textColor: ConstColor.grey, textSize: 11.sp, maxLine: 1),
-                            ],
-                          ),
-                        ],
+                      SizedBox(width: 4.w),
+                      CustomText(
+                        title: item.time,
+                        textColor: ConstColor.grey,
+                        textSize: 12.sp,
+                        maxLine: 1,
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),

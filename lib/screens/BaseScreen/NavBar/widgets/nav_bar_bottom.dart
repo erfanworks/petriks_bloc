@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../../../../constant/const_color.dart';
+import '../controller/navbar_controller.dart';
 
 class NavBarBottom extends StatelessWidget {
   const NavBarBottom({
@@ -24,7 +26,8 @@ class NavBarBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bottomPad = MediaQuery.of(context).padding.bottom;
+    final bottomPad     = MediaQuery.of(context).padding.bottom;
+    final navController = Get.find<NavbarController>();
 
     return Container(
       height: 72.h + bottomPad,
@@ -64,11 +67,7 @@ class NavBarBottom extends StatelessWidget {
                       color: ConstColor.primaryColor,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.white,
-                      size: 28.r,
-                    ),
+                    child: Icon(Icons.add, color: Colors.white, size: 28.r),
                   ),
                 ),
               ),
@@ -76,47 +75,190 @@ class NavBarBottom extends StatelessWidget {
           }
 
           final isSelected = selectedIndex == i;
+
           return Expanded(
             child: InkWell(
               onTap: () => onTap(i),
               overlayColor: WidgetStateProperty.all(Colors.transparent),
               child: Padding(
                 padding: EdgeInsets.only(bottom: bottomPad),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      _tabs[i]['icon']!,
-                      width: 24.r,
-                      height: 24.r,
-                      colorFilter: ColorFilter.mode(
-                        isSelected
-                            ? ConstColor.primaryColor
-                            : ConstColor.iconColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    SizedBox(height: 4.h),
-                    Text(
-                      _tabs[i]['label']!,
-                      style: TextStyle(
-                        color: isSelected
-                            ? ConstColor.primaryColor
-                            : ConstColor.iconColor,
-                        fontSize: 11.sp,
-                        fontWeight: isSelected
-                            ? FontWeight.w600
-                            : FontWeight.w500,
-                        fontFamily: 'Poppins',
-                      ),
-                    ),
-                  ],
+                child: i == 1
+                    ? Obx(() => _MyPlanTab(
+                  isSelected: isSelected,
+                  isGlowing: navController.isMyPlanHighlighted.value,
+                ))
+                    : _TabItem(
+                  icon: _tabs[i]['icon']!,
+                  label: _tabs[i]['label']!,
+                  isSelected: isSelected,
                 ),
               ),
             ),
           );
         }),
       ),
+    );
+  }
+}
+
+// ── MY PLAN tab with multi-ring pulse ──
+class _MyPlanTab extends StatefulWidget {
+  const _MyPlanTab({required this.isSelected, required this.isGlowing});
+  final bool isSelected, isGlowing;
+
+  @override
+  State<_MyPlanTab> createState() => _MyPlanTabState();
+}
+
+class _MyPlanTabState extends State<_MyPlanTab>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ctrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1600),
+    );
+    if (widget.isGlowing) _ctrl.repeat();
+  }
+
+  @override
+  void didUpdateWidget(_MyPlanTab old) {
+    super.didUpdateWidget(old);
+    if (widget.isGlowing && !_ctrl.isAnimating) {
+      _ctrl.repeat();
+    } else if (!widget.isGlowing && _ctrl.isAnimating) {
+      _ctrl.stop();
+      _ctrl.reset();
+    }
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final active = widget.isSelected;
+
+    return Stack(
+      alignment: Alignment.center,
+      clipBehavior: Clip.none,
+      children: [
+        // 3 staggered rings
+        if (widget.isGlowing) ...[
+          _PulseRing(controller: _ctrl, delay: 0.0,  maxRadius: 36.r),
+          _PulseRing(controller: _ctrl, delay: 0.35, maxRadius: 44.r),
+          _PulseRing(controller: _ctrl, delay: 0.65, maxRadius: 52.r),
+        ],
+
+        // Icon + label
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              'assets/icons/my_plan_icon.svg',
+              width: 24.r,
+              height: 24.r,
+              colorFilter: ColorFilter.mode(
+                active ? ConstColor.primaryColor : ConstColor.iconColor,
+                BlendMode.srcIn,
+              ),
+            ),
+            SizedBox(height: 4.h),
+            Text(
+              'MY PLAN',
+              style: TextStyle(
+                color:      active ? ConstColor.primaryColor : ConstColor.iconColor,
+                fontSize:   11.sp,
+                fontWeight: active ? FontWeight.w600 : FontWeight.w500,
+                fontFamily: 'Poppins',
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _PulseRing extends StatelessWidget {
+  const _PulseRing({
+    required this.controller,
+    required this.delay,
+    required this.maxRadius,
+  });
+
+  final AnimationController controller;
+  final double delay;
+  final double maxRadius;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: controller,
+      builder: (_, _) {
+        final t = ((controller.value + delay) % 1.0);
+
+        final radius  = maxRadius * t;
+        final opacity = (1.0 - t).clamp(0.0, 1.0);
+
+        return Container(
+          width:  radius * 2,
+          height: radius * 2,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: ConstColor.primaryColor.withAlpha((opacity * 80).toInt()),
+              width: 1.5,
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ── Normal tab ──
+class _TabItem extends StatelessWidget {
+  const _TabItem({
+    required this.icon,
+    required this.label,
+    required this.isSelected,
+  });
+
+  final String icon, label;
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SvgPicture.asset(
+          icon,
+          width: 24.r,
+          height: 24.r,
+          colorFilter: ColorFilter.mode(
+            isSelected ? ConstColor.primaryColor : ConstColor.iconColor,
+            BlendMode.srcIn,
+          ),
+        ),
+        SizedBox(height: 4.h),
+        Text(
+          label,
+          style: TextStyle(
+            color:      isSelected ? ConstColor.primaryColor : ConstColor.iconColor,
+            fontSize:   11.sp,
+            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+            fontFamily: 'Poppins',
+          ),
+        ),
+      ],
     );
   }
 }

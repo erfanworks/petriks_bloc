@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
+import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
 import '../../../ForYouAllScreen/PlanDetailsScreen/Widget/join_confirmation_sheet.dart';
 // ---- Plan Detail Models ----
 class LocationVoteItem {
@@ -120,7 +122,10 @@ class MeetupGroupDetailsController extends GetxController {
   void confirmJoin() {
     hasJoined.value = true;
     Get.back();
+    AppSnackBar.success("Joined successfully 🎉", seconds: 2);
+    Get.find<NavbarController>().highlightMyPlan();
   }
+
 
   void onConfirmAttendance() {
     Get.back();

@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
 import '../Widget/join_confirmation_sheet.dart';
 
 // ---- Plan Detail Models ----
@@ -50,6 +54,45 @@ class ReportReason {
 class PlanDetailsController extends GetxController {
   // ---- Plan State ----
   final RxBool hasJoined = false.obs;
+  final RxInt selectedTimeIndex = 0.obs;
+
+  // ---- Lock Timer ----
+  final lockTimer = ''.obs;
+  Timer? _timer;
+
+  // lockUntil is set from plan data (passed via Get.arguments or API)
+  DateTime? lockUntil;
+
+  void initLockTimer(DateTime lockUntilTime) {
+    lockUntil = lockUntilTime;
+    _startCountdown();
+  }
+
+  void _startCountdown() {
+    _timer?.cancel();
+    _tick(); // run immediately once before first delay
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
+  }
+
+  void _tick() {
+    if (lockUntil == null) return;
+
+    final remaining = lockUntil!.difference(DateTime.now());
+
+    if (remaining.isNegative || remaining.inSeconds == 0) {
+      _timer?.cancel();
+      lockTimer.value = '';
+      return;
+    }
+
+    final h = remaining.inHours;
+    final m = remaining.inMinutes % 60;
+    final s = remaining.inSeconds % 60;
+
+    lockTimer.value = h > 0
+        ? '${h}h ${m.toString().padLeft(2, '0')}m'
+        : '${m}m ${s.toString().padLeft(2, '0')}s';
+  }
 
   // ---- Location Votes ----
   final RxList<LocationVoteItem> locationVotes = <LocationVoteItem>[
@@ -109,7 +152,6 @@ class PlanDetailsController extends GetxController {
 
   // ======= Actions =======
 
-  // Plan Detail
   void showJoinSheet() {
     Get.bottomSheet(
       const JoinConfirmationSheet(),
@@ -121,22 +163,21 @@ class PlanDetailsController extends GetxController {
   void confirmJoin() {
     hasJoined.value = true;
     Get.back();
+    AppSnackBar.success("Joined successfully 🎉", seconds: 2);
+    Get.find<NavbarController>().highlightMyPlan();
   }
 
   void onConfirmAttendance() => Get.toNamed(AppRoutes.howDidItGoScreen);
 
-  // Review
   void onSelectVibe(int index) => selectedVibe.value = index;
-  void submitReview() => Get.toNamed(AppRoutes.navBar,);
+  void submitReview() => Get.toNamed(AppRoutes.navBar);
   void planAgain() => Get.back();
 
-  // Help Center Navigation
   void goToAttendanceTips() => Get.toNamed(AppRoutes.attendanceTipsScreen);
   void goToReportProblem() => Get.toNamed(AppRoutes.reportProblemScreen);
   void goToBlockUser() => Get.toNamed(AppRoutes.blockUserScreen);
   void goToSupportHelp() => Get.toNamed(AppRoutes.supportHelpScreen);
 
-  // Report
   void selectReason(ReportReason reason) {
     for (final r in reportReasons) {
       r.isSelected.value = false;
@@ -144,21 +185,25 @@ class PlanDetailsController extends GetxController {
     reason.isSelected.value = true;
   }
 
+  void selectTime(int index) => selectedTimeIndex.value = index;
   void submitReport() => Get.back();
-
-  // Block
   void blockUser() => Get.back();
-
-  // Support
   void submitSupport() => Get.back();
-
-
 
   @override
   void onClose() {
     reviewController.dispose();
     supportSubjectController.dispose();
     supportDescController.dispose();
+    _timer?.cancel();
     super.onClose();
+  }
+  @override
+  @override
+  void onInit() {
+    super.onInit();
+    initLockTimer(
+      DateTime.now().add(const Duration(hours: 2, minutes: 30)),
+    );
   }
 }

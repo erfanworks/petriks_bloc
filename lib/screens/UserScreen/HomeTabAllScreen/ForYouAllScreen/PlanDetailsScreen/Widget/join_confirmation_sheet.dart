@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
-import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Controller/one_to_one_meetup_details_controller.dart';
 
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../constant/const_string.dart';
@@ -96,7 +95,6 @@ class JoinConfirmationSheet extends StatelessWidget {
 
           SizedBox(height: 28.h),
 
-          // ---- Confirm Button ----
           CustomElevatedButton(
             onPressed: controller.confirmJoin,
             height: 50,

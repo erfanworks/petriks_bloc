@@ -31,6 +31,13 @@ class EventItem {
   final String joined;
   final bool isFreeEntry;
   final bool isOpen;
+  // New fields
+  final String language;
+  final String gender;
+  final String hostName;
+  final String hostImage;
+  final List<String> memberImages;
+  final int extraCount;
 
   const EventItem({
     required this.image,
@@ -42,6 +49,13 @@ class EventItem {
     required this.joined,
     this.isFreeEntry = false,
     this.isOpen = true,
+    // New fields with defaults
+    this.language = 'English',
+    this.gender = 'Male (20-25)',
+    this.hostName = 'Marcus Chen',
+    this.hostImage = 'assets/images/avatar_1.png',
+    this.memberImages = const [],
+    this.extraCount = 1,
   });
 }
 

@@ -45,6 +45,7 @@ class ConstString {
   static const selected = 'SELECTED';
   static const dateOfBirth = 'Date of birth';
   static const selectYourAge = 'Select your age band';
+  static const private = 'Private';
   static const confirmYourArea = 'Confirm your area';
   static const searchLocation = 'Search Location';
   static const yourInterests = 'Your Interests';
@@ -72,6 +73,7 @@ class ConstString {
   static const mins = 'mins';
   static const verifyYourId = 'Verify your ID (optional)';
   static const skip = 'Skip';
+  static const couldTAttend = "Couldn't Attend";
   static const unlockFullAccess = 'Unlock full access and build more trust';
   static const whyVerify = 'Why verify?';
   static const accessAllPlan = 'Access all plans and features';
@@ -355,6 +357,7 @@ class ConstString {
   static const String inclusiveHost = 'Inclusive host';
   static const String inclusiveHostSub = '45 Meet';
   static const String quickReply = 'Quick reply';
+  static const String quite = 'Quite';
   static const String quickReplySub = 'Under 2 HR';
   static const String newcomerFriendly = 'Newcomer friendly';
   static const String newcomerFriendlySub =
@@ -506,5 +509,6 @@ class ConstString {
   static const String notification = 'Notification';
   static const recentActivity  = 'Recent Activity';
   static const yesterday       = 'Yesterday';
+  static const voteNow       = 'Vote Now';
   static const String whatWouldYouLikeToCreate = 'What would you like to create?';
 }

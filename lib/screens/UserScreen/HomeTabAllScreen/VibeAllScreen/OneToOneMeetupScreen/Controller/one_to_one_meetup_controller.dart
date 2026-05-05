@@ -14,6 +14,7 @@ class OneToOneMeetupItem {
   final String date;
   final String time;
   final bool isFreeEntry;
+  final bool isPrivate; // ─── ADDED THIS NEW PROPERTY ───
 
   const OneToOneMeetupItem({
     required this.personImage,
@@ -27,20 +28,17 @@ class OneToOneMeetupItem {
     required this.date,
     required this.time,
     this.isFreeEntry = false,
+    this.isPrivate = true,
   });
 }
 
-// ---- Controller ----
 class OneToOneMeetupController extends GetxController {
-  // ---- Feeling Filter ----
   final feelingFilters = ['Quiet', 'Easy Going', 'Social', 'Lively'];
   final selectedFeeling = 1.obs;
 
-  // ---- Meet Filter ----
   final meetFilters = ['Everyone', 'Women', 'Men'];
   final selectedMeet = 0.obs;
 
-  // ---- Meetup Items ----
   final List<OneToOneMeetupItem> meetups = [
     const OneToOneMeetupItem(
       personImage: 'assets/images/person1_img.jpg',
@@ -54,6 +52,7 @@ class OneToOneMeetupController extends GetxController {
       date: 'Saturday, 24 June',
       time: '6:30 PM Today',
       isFreeEntry: true,
+      isPrivate: true,
     ),
     const OneToOneMeetupItem(
       personImage: 'assets/images/onboarding5_img.jpg',
@@ -67,6 +66,7 @@ class OneToOneMeetupController extends GetxController {
       date: 'Saturday, 24 June',
       time: '6:30 PM Today',
       isFreeEntry: true,
+      isPrivate: false,
     ),
     const OneToOneMeetupItem(
       personImage: 'assets/images/person1_img.jpg',
@@ -80,10 +80,10 @@ class OneToOneMeetupController extends GetxController {
       date: 'Saturday, 24 June',
       time: '6:30 PM Today',
       isFreeEntry: true,
+      isPrivate: true,
     ),
   ];
 
-  // ---- Actions ----
   void onViewProfile(OneToOneMeetupItem item) => Get.toNamed(AppRoutes.hostProfileScreen);
   void onEventTap(OneToOneMeetupItem item) => Get.toNamed(AppRoutes.oneToOneMeetupDetailsScreen);
 }

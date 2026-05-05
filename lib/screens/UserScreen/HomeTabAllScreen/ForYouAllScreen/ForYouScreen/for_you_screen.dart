@@ -91,7 +91,7 @@ class ForYouScreen extends StatelessWidget {
           SizedBox(height: 12.h),
 
           SizedBox(
-            height: 420.h,
+            height: 435.h,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.only(left: 16.w, right: 32.w),

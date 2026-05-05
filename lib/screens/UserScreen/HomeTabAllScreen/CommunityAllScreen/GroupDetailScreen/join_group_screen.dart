@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -144,13 +142,14 @@ class JoinGroupScreen extends StatelessWidget {
           5.h + MediaQuery.of(context).padding.bottom,
         ),
         child: CustomElevatedButton(
-          onPressed: () => JoinedSuccessDialog.show(
-            context,
-            communityName: 'Urban Athletes',
-            onGoToChat: () => Get.toNamed(AppRoutes.directChatScreen),
-            onBackToDiscovery: () => Get.toNamed(AppRoutes.navBar),
-          ),
-          height: 50,
+          // onPressed: () => JoinedSuccessDialog.show(
+          //   context,
+          //   communityName: 'Urban Athletes',
+          //   onGoToChat: () => Get.toNamed(AppRoutes.directChatScreen),
+          //   onBackToDiscovery: () => Get.toNamed(AppRoutes.navBar),
+          // ),
+          onPressed: () => c.confirmJoinGroup(context),
+          height: 40,
           top: 0,
           buttonBorderRadius: 30,
           gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],

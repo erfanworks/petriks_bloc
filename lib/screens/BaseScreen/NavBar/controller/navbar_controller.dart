@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/my_plan_screen.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/ProfileTabAllScreen/ProfileScreen/profile_screen.dart';
 import '../../../UserScreen/CreatePlanTabAllScreen/CreatePlanBottomSheet/create_plan_sheet.dart';
@@ -10,6 +9,7 @@ import '../../../UserScreen/MessageTabAllScreen/ChatScreen/chat_screen.dart';
 
 class NavbarController extends GetxController {
   final RxInt selectedIndex = 0.obs;
+  final isMyPlanHighlighted = false.obs;
 
   final List<Widget> pages =[
     const HomeScreen(),
@@ -19,13 +19,21 @@ class NavbarController extends GetxController {
     const ProfileScreen(),
   ];
 
+  void highlightMyPlan() {
+    isMyPlanHighlighted.value = true;
+  }
+
   void onTabTap(int index) {
     if (index == 2) {
       showCreateOptionsSheet();
       return;
     }
+    if (index == 1) {
+      isMyPlanHighlighted.value = false;
+    }
     selectedIndex.value = index;
   }
+
 
   @override
   void onInit() {

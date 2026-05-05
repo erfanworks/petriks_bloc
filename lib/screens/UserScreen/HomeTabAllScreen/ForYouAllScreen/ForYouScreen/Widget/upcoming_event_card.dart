@@ -1,6 +1,11 @@
+// =========================================================
+// File: lib/screens/.../Widget/upcoming_event_card.dart
+// (Ensure the path is correct based on your project structure)
+// =========================================================
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,6 +24,7 @@ class UpcomingEventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<ForYouController>();
+
     return InkWell(
       onTap: () => controller.onEventTap(item),
       child: Container(
@@ -36,7 +42,10 @@ class UpcomingEventCard extends StatelessWidget {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          // ─── Ensures no overflow issues at the bottom ───
           children: [
+            // ─── Image & Badges Section ───
             Stack(
               children: [
                 ClipRRect(
@@ -47,7 +56,7 @@ class UpcomingEventCard extends StatelessWidget {
                   child: AppImage(
                     path: item.image,
                     width: double.infinity,
-                    height: 220.h,
+                    height: 200.h,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -55,56 +64,120 @@ class UpcomingEventCard extends StatelessWidget {
                 // OPEN badge
                 if (item.isOpen)
                   Positioned(
-                    top: 14.h,
-                    left: 14.w,
+                    top: 8.h,
+                    left: 10.w,
                     child: Container(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 16.w,
-                        vertical: 6.h,
+                        horizontal: 10.w,
+                        vertical: 3.h,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFDCFCE7),
+                        color: ConstColor.primaryColor.withAlpha(200),
                         borderRadius: BorderRadius.circular(20.r),
                       ),
-                      child: CustomText(
-                        title: 'OPEN',
-                        textColor: const Color(0xFF15803D),
-                        textSize: 10.sp,
-                        fontWeight: FontWeight.w700,
-                        maxLine: 1,
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            width: 10.w,
+                            height: 10.h,
+                            "assets/icons/social_icon.svg",
+                            colorFilter: ColorFilter.mode(
+                              ConstColor.white,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                          SizedBox(width: 5),
+                          CustomText(
+                            title: ConstString.group,
+                            textColor: ConstColor.white,
+                            textSize: 10.sp,
+                            fontWeight: FontWeight.w700,
+                            maxLine: 1,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-
-                // Bookmark icon
                 Positioned(
-                  top: 12.h,
-                  right: 12.w,
+                  top: 8.h,
+                  right: 10.w,
                   child: Container(
-                    width: 36.w,
-                    height: 36.h,
-                    decoration: BoxDecoration(
-                      color: ConstColor.silverGray20,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: ConstColor.grey, width: 1),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 3.h,
                     ),
-                    child: Center(
-                      child: SvgPicture.asset(
-                        "assets/icons/book_mark_icon.svg",
-                        width: 12.w,
-                        height: 15.h,
-                      ),
+                    decoration: BoxDecoration(
+                      color: ConstColor.white,
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset("assets/icons/world_icon.svg"),
+                        SizedBox(width: 5),
+                        CustomText(
+                          title: ConstString.publicLabel,
+                          textColor: ConstColor.primaryColor,
+                          textSize: 10.sp,
+                          fontWeight: FontWeight.w700,
+                          maxLine: 1,
+                        ),
+                      ],
                     ),
                   ),
                 ),
+                Positioned(
+                  bottom: 8.h,
+                  left: 10.w,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 3.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFF0C4AA),
+                      borderRadius: BorderRadius.circular(20.r),
+                    ),
+                    child: CustomText(
+                      title: ConstString.quite,
+                      textColor: Color(0xFF763302),
+                      textSize: 10.sp,
+                      fontWeight: FontWeight.w700,
+                      maxLine: 1,
+                    ),
+                  ),
+                ),
+
+                // Bookmark icon
+                // Positioned(
+                //   top: 12.h,
+                //   right: 12.w,
+                //   child: Container(
+                //     width: 36.w,
+                //     height: 36.w,
+                //     decoration: BoxDecoration(
+                //       color: ConstColor.silverGray20,
+                //       shape: BoxShape.circle,
+                //       border: Border.all(color: ConstColor.grey, width: 1),
+                //     ),
+                //     child: Center(
+                //       child: SvgPicture.asset(
+                //         "assets/icons/book_mark_icon.svg",
+                //         width: 12.w,
+                //         height: 15.h,
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
 
+            // ─── Details Section ───
             Padding(
               padding: EdgeInsets.all(12.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Title + Free Entry
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -124,6 +197,7 @@ class UpcomingEventCard extends StatelessWidget {
                             horizontal: 12.w,
                             vertical: 5.h,
                           ),
+                          margin: EdgeInsets.only(left: 8.w),
                           decoration: BoxDecoration(
                             color: const Color(0xFFEDE9FF),
                             borderRadius: BorderRadius.circular(20.r),
@@ -139,32 +213,11 @@ class UpcomingEventCard extends StatelessWidget {
                     ],
                   ),
 
-                  SizedBox(height: 6.h),
-
-                  // Tag
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10.w,
-                      vertical: 6.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF0EDFF),
-                      borderRadius: BorderRadius.circular(20.r),
-                      border: Border.all(
-                        color: ConstColor.borderColor,
-                        width: 1,
-                      ),
-                    ),
-                    child: CustomText(
-                      title: item.tag,
-                      textColor: ConstColor.primaryColor,
-                      textSize: 10.sp,
-                      fontWeight: FontWeight.w600,
-                      maxLine: 1,
-                    ),
-                  ),
-
                   SizedBox(height: 8.h),
+
+                  // Language
+                  _InfoRow(icon: Icons.language_outlined, label: item.language),
+                  SizedBox(height: 4.h),
 
                   // Location
                   _InfoRow(
@@ -173,7 +226,10 @@ class UpcomingEventCard extends StatelessWidget {
                   ),
                   SizedBox(height: 4.h),
 
-                  // Date + Time
+                  // Gender
+                  _InfoRow(icon: Icons.people_outline, label: item.gender),
+                  SizedBox(height: 12.h),
+
                   Row(
                     children: [
                       Icon(
@@ -185,81 +241,169 @@ class UpcomingEventCard extends StatelessWidget {
                       CustomText(
                         title: item.date,
                         textColor: ConstColor.silverGray20,
-                        textSize: 13.sp,
+                        textSize: 12.sp,
                         maxLine: 1,
                       ),
                       SizedBox(width: 8.w),
+                      Container(
+                        width: 1,
+                        height: 12.h,
+                        color: ConstColor.iconColor,
+                      ),
+                      SizedBox(width: 6.w),
                       Icon(
                         Icons.access_time,
                         size: 13.sp,
                         color: ConstColor.primaryDeepColor,
                       ),
-                      SizedBox(width: 4.w),
+                      SizedBox(width: 2.w),
                       CustomText(
-                        title: item.time,
-                        textColor: ConstColor.silverGray20,
-                        textSize: 13.sp,
+                        title: ConstString.voteNow,
+                        textColor: ConstColor.primaryColor,
+                        textSize: 12.sp,
+                        fontWeight: FontWeight.w500,
                         maxLine: 1,
+                      ),
+                      Spacer(),
+                      // Invite button
+                      GestureDetector(
+                        onTap: () => controller.onInviteTap(item),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 12.w,
+                            vertical: 5.h,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.r),
+                            border: Border.all(color: ConstColor.borderColor),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.person_add_alt_1_outlined,
+                                size: 13.sp,
+                                color: ConstColor.primaryColor,
+                              ),
+                              SizedBox(width: 2.w),
+                              CustomText(
+                                title: ConstString.invite,
+                                textColor: ConstColor.primaryColor,
+                                textSize: 11.sp,
+                                fontWeight: FontWeight.w600,
+                                maxLine: 1,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
 
-                  SizedBox(height: 6.h),
+                  SizedBox(height: 12.h),
+                  Divider(height: 1, color: ConstColor.borderColor),
+                  SizedBox(height: 12.h),
 
-                  // Joined + Invite
+                  // Host + Joined row
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
+                      // Host avatar
+                      ClipOval(
+                        child: AppImage(
+                          path: "assets/images/onboarding5_img.jpg",
+                          width: 36.r,
+                          height: 36.r,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(width: 8.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.people_outline,
-                            size: 14.sp,
-                            color: ConstColor.primaryDeepColor,
-                          ),
-                          SizedBox(width: 4.w),
                           CustomText(
-                            title: item.joined,
-                            textColor: ConstColor.silverGray20,
+                            title: item.hostName,
+                            textColor: ConstColor.black,
                             textSize: 13.sp,
+                            fontWeight: FontWeight.w600,
+                            maxLine: 1,
+                          ),
+                          CustomText(
+                            title: ConstString.host,
+                            textColor: ConstColor.primaryColor,
+                            textSize: 11.sp,
+                            fontWeight: FontWeight.w500,
                             maxLine: 1,
                           ),
                         ],
                       ),
-
-                      // ── Invite button — tap goes to invite screen, not event detail ──
-                      GestureDetector(
-                        onTap: () => controller.onInviteTap(item),
-                        child: AbsorbPointer(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 14.w,
-                              vertical: 6.h,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFEDE9FF),
-                              borderRadius: BorderRadius.circular(20.r),
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.person_add_alt_1_outlined,
-                                  size: 13.sp,
-                                  color: ConstColor.primaryColor,
-                                ),
-                                SizedBox(width: 4.w),
-                                CustomText(
-                                  title: 'INVITE',
-                                  textColor: ConstColor.primaryColor,
-                                  textSize: 11.sp,
-                                  fontWeight: FontWeight.w600,
-                                  maxLine: 1,
-                                ),
-                              ],
-                            ),
+                      const Spacer(),
+                      Row(
+                        children: [
+                          _AvatarStack(),
+                          SizedBox(width: 8.w),
+                          CustomText(
+                            title: '3/6 JOINED',
+                            textColor: ConstColor.primaryColor,
+                            textSize: 11.sp,
+                            fontWeight: FontWeight.w700,
+                            maxLine: 1,
                           ),
-                        ),
+                        ],
                       ),
+                      // // Stacked member avatars
+                      // SizedBox(
+                      //   width: 58.w,
+                      //   height: 26.h,
+                      //   child: Stack(
+                      //     children:
+                      //         List.generate(
+                      //           item.memberImages.length > 2
+                      //               ? 2
+                      //               : item.memberImages.length,
+                      //           (i) => Positioned(
+                      //             left: (i * 16).w,
+                      //             child: ClipOval(
+                      //               child: AppImage(
+                      //                 path: item.memberImages[i],
+                      //                 width: 26.r,
+                      //                 height: 26.r,
+                      //                 fit: BoxFit.cover,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         )..add(
+                      //           Positioned(
+                      //             left: 32.w,
+                      //             child: Container(
+                      //               width: 26.r,
+                      //               height: 26.r,
+                      //               decoration: const BoxDecoration(
+                      //                 color: ConstColor.primaryColor,
+                      //                 shape: BoxShape.circle,
+                      //               ),
+                      //               child: Center(
+                      //                 child: CustomText(
+                      //                   title: '+${item.extraCount}',
+                      //                   textSize: 8.sp,
+                      //                   fontWeight: FontWeight.w700,
+                      //                   textColor: Colors.white,
+                      //                   maxLine: 1,
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //   ),
+                      // ),
+                      //
+                      // SizedBox(width: 6.w),
+                      // CustomText(
+                      //   title: item.joined,
+                      //   textColor: ConstColor.primaryColor,
+                      //   textSize: 12.sp,
+                      //   fontWeight: FontWeight.w700,
+                      //   maxLine: 1,
+                      // ),
                     ],
                   ),
                 ],
@@ -283,8 +427,8 @@ class _InfoRow extends StatelessWidget {
     return Row(
       children: [
         Icon(icon, size: 14.sp, color: ConstColor.primaryDeepColor),
-        SizedBox(width: 4.w),
-        Flexible(
+        SizedBox(width: 6.w),
+        Expanded(
           child: CustomText(
             title: label,
             textColor: ConstColor.silverGray20,
@@ -294,6 +438,79 @@ class _InfoRow extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+// ---- Avatar Stack ----
+class _AvatarStack extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 58.w,
+      height: 26.h,
+      child: Stack(
+        children: [
+          // Avatar 1
+          Positioned(
+            left: 0,
+            child: _CircleAvatar(path: 'assets/images/onboarding5_img.jpg'),
+          ),
+          // Avatar 2
+          Positioned(
+            left: 15.w,
+            child: _CircleAvatar(path: 'assets/images/onboarding3_img.jpg'),
+          ),
+          // +1 count badge
+          Positioned(
+            left: 30.w,
+            child: Container(
+              width: 28.w,
+              height: 28.h,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: ConstColor.primaryColor,
+                border: Border.all(color: Colors.white, width: 1.5.w),
+              ),
+              child: Center(
+                child: CustomText(
+                  title: '+1',
+                  textColor: Colors.white,
+                  textSize: 9.sp,
+                  fontWeight: FontWeight.w700,
+                  maxLine: 1,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---- Single Circle Avatar ----
+class _CircleAvatar extends StatelessWidget {
+  final String path;
+
+  const _CircleAvatar({required this.path});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 28.w,
+      height: 28.h,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.white, width: 1.5.w),
+      ),
+      child: ClipOval(
+        child: AppImage(
+          path: path,
+          width: 26.w,
+          height: 26.h,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }

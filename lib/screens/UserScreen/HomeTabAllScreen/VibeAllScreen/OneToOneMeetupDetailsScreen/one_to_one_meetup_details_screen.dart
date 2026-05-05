@@ -272,14 +272,15 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
           5.h + MediaQuery.of(context).padding.bottom,
         ),
         child: CustomElevatedButton(
-          onPressed: () {
-            Get.back();
-            AppSnackBar.message(
-              "Success! \nYou have successfully joined the event",
-              backgroundColor: ConstColor.primaryColor,
-              seconds: 2,
-            );
-          },
+          // onPressed: () {
+          //   Get.back();
+          //   AppSnackBar.message(
+          //     "Success! \nYou have successfully joined the event",
+          //     backgroundColor: ConstColor.primaryColor,
+          //     seconds: 2,
+          //   );
+          // },
+          onPressed: controller.confirmJoin,
           height: 50,
           top: 0,
           buttonBorderRadius: 30,

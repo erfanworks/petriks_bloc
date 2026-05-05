@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
 import '../../GroupDetailScreen/Widget/join_success_sheet.dart';
 
 // ---- Models ----
@@ -68,6 +69,7 @@ class JoinableGroup {
 
 // ---- Community Detail Controller ----
 class CommunityDetailController extends GetxController {
+  final RxBool hasJoined = false.obs;
   // ---- Groups ----
   final List<GroupItem> groups = [
     const GroupItem(image: 'assets/images/football_play.jpg', name: 'Morning Runners', memberCount: '1,248'),
@@ -111,17 +113,27 @@ class CommunityDetailController extends GetxController {
     selected.isSelected.value = true;
   }
 
-  void confirmJoinGroup() {
-    Get.back(); // join group screen close
+  void confirmJoinGroup(BuildContext context) {
+
+    hasJoined.value = true;
+
+    Get.find<NavbarController>().highlightMyPlan();
+
+    JoinedSuccessDialog.show(
+      context,
+      communityName: 'Urban Athletes',
+      onGoToChat: () {
+        Get.back(); // Close dialog first
+        Get.toNamed(AppRoutes.directChatScreen);
+      },
+      onBackToDiscovery: () {
+        Get.back(); // Close dialog first
+        Get.toNamed(AppRoutes.navBar);
+      },
+    );
   }
 
   void goToCommunityChat() => Get.back();
 
   void backToDiscovery() => Get.back();
 }
-
-// class JoinSuccessSheet extends StatelessWidget {
-//   const JoinSuccessSheet({super.key});
-//   @override
-//   Widget build(BuildContext context) => const SizedBox.shrink();
-// }
