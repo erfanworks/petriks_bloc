@@ -135,6 +135,7 @@ class ConstString {
   static const emergencyNumber = 'Emergency number to need help';
   static const helpCenter = 'Help Center';
   static const attendanceTips = 'Attendance Tips';
+  static const attendance = 'Attendance';
   static const howToMeetSafely = 'How to meet safely in person';
   static const reportProblem = 'Report a problem';
   static const blockUser = 'Block User';

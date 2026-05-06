@@ -315,68 +315,22 @@ class PlanDetailsScreen extends StatelessWidget {
                     Row(
                       children: [
                         Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0xFF6C5CE7).withAlpha(40),
-                                  blurRadius: 15.r,
-                                  offset: Offset(0, 4.h),
-                                ),
-                              ],
-                            ),
-                            child: CustomElevatedButton(
-                              onPressed: () {
-                                Get.back();
-                              },
-                              height: 45,
-                              top: 0,
-                              buttonBorderRadius: 30,
-                              color: const Color(0xFFBA1A1A),
-                              child: CustomText(
-                                title: ConstString.couldTAttend,
-                                textColor: Colors.white,
-                                textSize: 13.sp,
-                                fontWeight: FontWeight.w600,
-                                maxLine: 1,
-                              ),
-                            ),
+                          child: _OutlineButton(
+                            label: ConstString.couldTAttend,
+                            color: const Color(0xFFBA1A1A),
+                            onTap: () {Get.back();},
                           ),
                         ),
-
                         SizedBox(width: 12.w),
-
                         Expanded(
-                          child: Container(
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: const Color(0xFF6C5CE7).withAlpha(40),
-                                  blurRadius: 15.r,
-                                  offset: Offset(0, 4.h),
-                                ),
-                              ],
-                            ),
-                            child: CustomElevatedButton(
-                              onPressed: controller.onConfirmAttendance,
-                              height: 45,
-                              top: 0,
-                              buttonBorderRadius: 30,
-                              color: const Color(0xFF006C49),
-                              child: CustomText(
-                                title: ConstString.confirmAttendance,
-                                textColor: Colors.white,
-                                textSize: 13.sp,
-                                fontWeight: FontWeight.w600,
-                                maxLine: 1,
-                              ),
-                            ),
+                          child: _OutlineButton(
+                            label: ConstString.attendance,
+                            color: const Color(0xFF006C49),
+                            onTap: controller.onConfirmAttendance,
                           ),
                         ),
                       ],
                     ),
-
-                    // SizedBox(height: 16.h),
                     CustomElevatedButton(
                       height: 40.h,
                       buttonBorderRadius: 32,
@@ -1136,6 +1090,35 @@ class _CircleAvatar extends StatelessWidget {
           width: 26.w,
           height: 26.h,
           fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+class _OutlineButton extends StatelessWidget {
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+  const _OutlineButton({required this.label, required this.color, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        decoration: BoxDecoration(
+          border: Border.all(color: color, width: 1.5),
+          borderRadius: BorderRadius.circular(30.r),
+        ),
+        child: Center(
+          child: CustomText(
+            title: label,
+            textSize: 14.sp,
+            fontWeight: FontWeight.w600,
+            textColor: color,
+            maxLine: 1,
+          ),
         ),
       ),
     );

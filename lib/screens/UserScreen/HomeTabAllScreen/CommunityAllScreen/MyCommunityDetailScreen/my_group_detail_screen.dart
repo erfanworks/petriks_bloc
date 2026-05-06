@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/Controller/my_community_detail_controller.dart';
 import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
 
@@ -197,7 +199,7 @@ class MyGroupDetailScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
         child: CustomElevatedButton(
-          onPressed: (){},
+          onPressed: (){Get.toNamed(AppRoutes.inviteFriendsListScreen);},
           height: 50,
           top: 0,
           buttonBorderRadius: 30,
