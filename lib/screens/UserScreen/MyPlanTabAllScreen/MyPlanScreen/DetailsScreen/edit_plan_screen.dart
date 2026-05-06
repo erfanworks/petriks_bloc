@@ -91,9 +91,7 @@ class EditPlanScreen extends StatelessWidget {
                       label: ConstString.selectDate,
                       value: c.selectedDate.value,
                       icon: 'assets/icons/calender_icon.svg',
-                      onTap: () {
-                        // TODO: date picker
-                      },
+                      onTap: () => c.pickDate(context),
                     ),
                   ),
                   SizedBox(height: 10.h),
@@ -104,7 +102,7 @@ class EditPlanScreen extends StatelessWidget {
                     () => _DropdownField(
                       value: c.selectedTime1.value,
                       icon: 'assets/icons/clock_icon.svg',
-                      onTap: () {},
+                      onTap: () => c.pickTime(context, isFirst: true),
                     ),
                   ),
                   // SizedBox(height: 8.h),

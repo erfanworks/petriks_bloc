@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_color.dart';
 import '../text/custom_text.dart';
 import 'error_snackbar_message.dart';
 
 class AppSnackBar {
 
   // ─── Error ───────────────────────────────
-  static void error(String parameterValue, {int seconds = 6}) {
+  static void error(String parameterValue, {int seconds = 3}) {
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: Colors.red.withAlpha(230),
+        backgroundColor: ConstColor.red.withAlpha(230),
         animationDuration: const Duration(milliseconds: 400),
         duration: Duration(seconds: seconds),
         isDismissible: true,
@@ -34,10 +35,10 @@ class AppSnackBar {
   }
 
   // ─── Success ─────────────────────────────
-  static void success(String parameterValue, {int seconds = 4}) {
+  static void success(String parameterValue, {int seconds = 3}) {
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: const Color(0xFFECFDF5),
+        backgroundColor: ConstColor.primaryColor.withAlpha(110),
         animationDuration: const Duration(milliseconds: 400),
         duration: Duration(seconds: seconds),
         isDismissible: true,
@@ -62,7 +63,7 @@ class AppSnackBar {
   // ─── Message ─────────────────────────────
   static void message(
       String parameterValue, {
-        Color backgroundColor = Colors.grey,
+        Color backgroundColor = ConstColor.silverGray20,
         Color color = Colors.white,
         int seconds = 3,
       }) {
@@ -111,7 +112,7 @@ class _SuccessMessageWidget extends StatelessWidget {
           width: 22.w,
           height: 22.h,
           decoration: const BoxDecoration(
-            color: Color(0xFF16A34A),
+            color: ConstColor.primaryColor,
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -126,7 +127,7 @@ class _SuccessMessageWidget extends StatelessWidget {
         Expanded(
           child: CustomText(
             title: message,
-            textColor: const Color(0xFF15803D),
+            textColor: ConstColor.primaryColor,
             textSize: 14.sp,
             fontWeight: FontWeight.w500,
             maxLine: 2,

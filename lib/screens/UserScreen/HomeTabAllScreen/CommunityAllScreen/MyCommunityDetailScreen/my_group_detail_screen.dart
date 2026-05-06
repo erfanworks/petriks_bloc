@@ -246,70 +246,73 @@ class _CompetitionListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 10.h),
-      padding: EdgeInsets.all(14.r),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14.r),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 48.w,
-            height: 48.h,
-            decoration: BoxDecoration(
-              color: const Color(0xFFEDE9FF),
-              shape: BoxShape.circle,
+    return InkWell(
+      onTap: (){Get.toNamed(AppRoutes.viewCompetitionScreen);},
+      child: Container(
+        margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 10.h),
+        padding: EdgeInsets.all(14.r),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14.r),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 48.w,
+              height: 48.h,
+              decoration: BoxDecoration(
+                color: const Color(0xFFEDE9FF),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(item.emoji, style: TextStyle(fontSize: 20.sp)),
+              ),
             ),
-            child: Center(
-              child: Text(item.emoji, style: TextStyle(fontSize: 20.sp)),
-            ),
-          ),
-          SizedBox(width: 12.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  title: item.title,
-                  textColor: ConstColor.black,
-                  textSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                  maxLine: 1,
-                ),
-                SizedBox(height: 3.h),
-                Row(
-                  children: [
-                    Container(
-                      width: 7.w,
-                      height: 7.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: item.isUpcoming
-                            ? ConstColor.primaryColor
-                            : Colors.red,
+            SizedBox(width: 12.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    title: item.title,
+                    textColor: ConstColor.black,
+                    textSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    maxLine: 1,
+                  ),
+                  SizedBox(height: 3.h),
+                  Row(
+                    children: [
+                      Container(
+                        width: 7.w,
+                        height: 7.h,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: item.isUpcoming
+                              ? ConstColor.primaryColor
+                              : Colors.red,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 5.w),
-                    CustomText(
-                      title: item.status,
-                      textColor: ConstColor.grey,
-                      textSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      maxLine: 1,
-                    ),
-                  ],
-                ),
-              ],
+                      SizedBox(width: 5.w),
+                      CustomText(
+                        title: item.status,
+                        textColor: ConstColor.grey,
+                        textSize: 12.sp,
+                        fontWeight: FontWeight.w500,
+                        maxLine: 1,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Icon(
-            Icons.chevron_right_rounded,
-            color: ConstColor.grey,
-            size: 20.sp,
-          ),
-        ],
+            Icon(
+              Icons.chevron_right_rounded,
+              color: ConstColor.grey,
+              size: 20.sp,
+            ),
+          ],
+        ),
       ),
     );
   }

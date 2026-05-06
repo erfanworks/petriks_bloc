@@ -154,6 +154,33 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                         height: 200.h,
                         fit: BoxFit.cover,
                       ),
+                      Positioned(
+                        top: 8.h,
+                        left: 10.w,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 3.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: ConstColor.white,
+                            borderRadius: BorderRadius.circular(20.r),
+                          ),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset("assets/icons/world_icon.svg"),
+                              const SizedBox(width: 5),
+                              CustomText(
+                                title: ConstString.publicLabel,
+                                textColor: ConstColor.primaryColor,
+                                textSize: 10.sp,
+                                fontWeight: FontWeight.w700,
+                                maxLine: 1,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
 
                       Positioned(
                         top: 145.h,
@@ -365,11 +392,11 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                                   maxLine: 1,
                                 ),
                               ),
-                              Icon(
-                                Icons.edit_outlined,
-                                size: 19.r,
-                                color: ConstColor.black,
-                              ),
+                              // Icon(
+                              //   Icons.edit_outlined,
+                              //   size: 19.r,
+                              //   color: ConstColor.black,
+                              // ),
                             ],
                           ),
                         ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../constant/const_color.dart';
+
 class PlanModel {
   final String id, title, location, date, time, language, type, image, vibe;
   final int joined, total;
@@ -54,6 +56,7 @@ class MyPlanController extends GetxController {
       time: '6:30 PM Today', language: 'English',
       type: 'Group', image: 'assets/images/hank_out_park_party_img.jpg',
       vibe: 'Social', joined: 3, total: 6,
+      tag: 'COMPLETED',
     ),
     const PlanModel(
       id: '3', title: 'Hang out at the park',
@@ -94,9 +97,61 @@ class MyPlanController extends GetxController {
       Get.toNamed(AppRoutes.createdPlanDetailsScreen, arguments: plan);
 
   void goToJoinedDetails(PlanModel plan) =>
-      Get.toNamed(AppRoutes.planDetailsScreen, arguments: plan);
+      Get.toNamed(AppRoutes.joinedPlanDetailsScreen, arguments: plan);
 
   void goToEditPlan() => Get.toNamed(AppRoutes.editPlanScreen);
+
+  // Date picker
+  Future<void> pickDate(BuildContext context) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2100),
+      builder: (context, child) => Theme(
+        data: ThemeData.light().copyWith(
+          colorScheme: const ColorScheme.light(
+            primary: ConstColor.primaryColor,
+          ),
+        ),
+        child: child!,
+      ),
+    );
+    if (picked == null) return;
+    final day = _weekday(picked.weekday);
+    final month = _month(picked.month);
+    selectedDate.value = '$day, $month ${picked.day}';
+  }
+
+// Time picker
+  Future<void> pickTime(BuildContext context, {required bool isFirst}) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+      builder: (context, child) => Theme(
+        data: ThemeData.light().copyWith(
+          colorScheme: const ColorScheme.light(
+            primary: ConstColor.primaryColor,
+          ),
+        ),
+        child: child!,
+      ),
+    );
+    if (picked == null) return;
+    final formatted = picked.format(context);
+    if (isFirst) {
+      selectedTime1.value = formatted;
+    } else {
+      selectedTime2.value = formatted;
+    }
+  }
+
+  String _weekday(int w) =>
+      ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][w - 1];
+
+  String _month(int m) =>
+      ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][m - 1];
 
   @override
   void onClose() {

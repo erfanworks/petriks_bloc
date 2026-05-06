@@ -58,7 +58,7 @@ class MyPlanScreen extends StatelessWidget {
                     : c.joinedPlans[i];
                 return PlanCard(
                   plan: plan,
-                  showJoinedCount: c.selectedTab.value == 1,
+                  isJoined: c.selectedTab.value == 1,
                   onTap: () => c.selectedTab.value == 0
                       ? c.goToCreatedDetails(plan)
                       : c.goToJoinedDetails(plan),

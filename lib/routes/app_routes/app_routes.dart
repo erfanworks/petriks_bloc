@@ -61,7 +61,8 @@ class AppRoutes {
 
   /////////////// My Plan Screen Part ///////////////////////
   static const createdPlanDetailsScreen = '/createdPlanDetailsScreen';
-  // static const joinedPlanDetailsScreen = '/joinedPlanDetailsScreen';
+  static const joinedPlanDetailsScreen = '/joinedPlanDetailsScreen';
+  static const joinedPlanUserReport = '/joinedPlanUserReport';
   static const editPlanScreen = '/editPlanScreen';
 
   ////////////// Create Plan Screen Part ///////////////////////
