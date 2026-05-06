@@ -26,6 +26,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/Controller/home_con
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Controller/one_to_one_meetup_details_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/Controller/one_to_one_meetup_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/Controller/vibe_controller.dart';
+import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/FeedBackScreen/FeedbackController/feedback_controller.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/JoinedPlanDetailsScreen/Controller/joined_plan_details_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/ConnectionScreen/Controller/connection_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/NotificationScreen/Controller/notification_controller.dart';
@@ -88,6 +89,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => NotificationController());
     Get.lazyPut(() => VerifyIdController());
     Get.lazyPut(() => JoinedPlanDetailsController());
+    Get.lazyPut(() => FeedbackController());
 
 
   }

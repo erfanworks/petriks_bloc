@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -86,7 +87,6 @@ class CreatePlanScreen extends StatelessWidget {
   }
 }
 
-
 class _Step1PlanType extends StatelessWidget {
   const _Step1PlanType();
 
@@ -101,104 +101,109 @@ class _Step1PlanType extends StatelessWidget {
         children: [
           _StepTitle(title: ConstString.whatDoYouWantToDo),
           SizedBox(height: 16.h),
-          Obx(() => Column(
-            children: c.planTypes.map((pt) {
-              final selected = c.selectedPlanType.value == pt['label'];
-              return GestureDetector(
-                onTap: () => c.selectedPlanType.value = pt['label'] as String,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 180),
-                  margin: EdgeInsets.only(bottom: 12.h),
-                  padding: EdgeInsets.all(16.r),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16.r),
-                    border: Border.all(
-                      color: selected
-                          ? ConstColor.primaryColor
-                          : Colors.transparent,
-                      width: 1.5,
+          Obx(
+            () => Column(
+              children: c.planTypes.map((pt) {
+                final selected = c.selectedPlanType.value == pt['label'];
+                return GestureDetector(
+                  onTap: () => c.selectedPlanType.value = pt['label'] as String,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 180),
+                    margin: EdgeInsets.only(bottom: 12.h),
+                    padding: EdgeInsets.all(16.r),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.r),
+                      border: Border.all(
+                        color: selected
+                            ? ConstColor.primaryColor
+                            : Colors.transparent,
+                        width: 1.5,
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            width: 56.r,
-                            height: 56.r,
-                            decoration: BoxDecoration(
-                              color: pt['bgColor'] as Color,
-                              borderRadius: BorderRadius.circular(10.r),
-                            ),
-                            child: Center(
-                              child: SvgPicture.asset(
-                                pt['icon'] as String,
-                                width: 22.r,
-                                height: 22.r,
-                                colorFilter: ColorFilter.mode(
-                                  pt['iconColor'] as Color,
-                                  BlendMode.srcIn,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 56.r,
+                              height: 56.r,
+                              decoration: BoxDecoration(
+                                color: pt['bgColor'] as Color,
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Center(
+                                child: SvgPicture.asset(
+                                  pt['icon'] as String,
+                                  width: 22.r,
+                                  height: 22.r,
+                                  colorFilter: ColorFilter.mode(
+                                    pt['iconColor'] as Color,
+                                    BlendMode.srcIn,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          const Spacer(),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 10.w, vertical: 4.h),
-                            decoration: BoxDecoration(
-                              color: pt['tagBg'] as Color,
-                              borderRadius: BorderRadius.circular(20.r),
-                              border: Border.all(
-                                color: (pt['tagColor'] as Color)
-                                    .withAlpha(80),
+                            const Spacer(),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 10.w,
+                                vertical: 4.h,
+                              ),
+                              decoration: BoxDecoration(
+                                color: pt['tagBg'] as Color,
+                                borderRadius: BorderRadius.circular(20.r),
+                                border: Border.all(
+                                  color: (pt['tagColor'] as Color).withAlpha(
+                                    80,
+                                  ),
+                                ),
+                              ),
+                              child: CustomText(
+                                title: pt['tag'] as String,
+                                textSize: 10.sp,
+                                fontWeight: FontWeight.w700,
+                                textColor: pt['tagColor'] as Color,
+                                maxLine: 1,
                               ),
                             ),
-                            child: CustomText(
-                              title: pt['tag'] as String,
-                              textSize: 10.sp,
-                              fontWeight: FontWeight.w700,
-                              textColor: pt['tagColor'] as Color,
-                              maxLine: 1,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10.h),
-                      CustomText(
-                        title: pt['label'] as String,
-                        textSize: 20.sp,
-                        fontWeight: FontWeight.w700,
-                        textColor: ConstColor.black,
-                        maxLine: 1,
-                      ),
-                      SizedBox(height: 4.h),
-                      CustomText(
-                        title: pt['desc'] as String,
-                        textSize: 15.sp,
-                        textColor: ConstColor.grey,
-                        fontWeight: FontWeight.w500,
-                        maxLine: 3,
-                      ),
-                      if (pt['showArrow'] == true) ...[
-                        SizedBox(height: 8.h),
+                          ],
+                        ),
+                        SizedBox(height: 10.h),
                         CustomText(
-                          title: ConstString.letsGo,
-                          textSize: 13.sp,
-                          fontWeight: FontWeight.w600,
-                          textColor: ConstColor.primaryColor,
+                          title: pt['label'] as String,
+                          textSize: 20.sp,
+                          fontWeight: FontWeight.w700,
+                          textColor: ConstColor.black,
                           maxLine: 1,
                         ),
+                        SizedBox(height: 4.h),
+                        CustomText(
+                          title: pt['desc'] as String,
+                          textSize: 15.sp,
+                          textColor: ConstColor.grey,
+                          fontWeight: FontWeight.w500,
+                          maxLine: 3,
+                        ),
+                        if (pt['showArrow'] == true) ...[
+                          SizedBox(height: 8.h),
+                          CustomText(
+                            title: ConstString.letsGo,
+                            textSize: 13.sp,
+                            fontWeight: FontWeight.w600,
+                            textColor: ConstColor.primaryColor,
+                            maxLine: 1,
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
-          )),
+                );
+              }).toList(),
+            ),
+          ),
         ],
       ),
     );
@@ -220,71 +225,73 @@ class _Step2Activity extends StatelessWidget {
         children: [
           _StepTitle(title: ConstString.pickAnActivity),
           SizedBox(height: 16.h),
-          Obx(() => GridView.count(
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            crossAxisSpacing: 12.w,
-            mainAxisSpacing: 12.h,
-            childAspectRatio: 1.1,
-            children: c.activities.map((act) {
-              final selected = c.selectedActivity.value == act['label'];
-              return GestureDetector(
-                onTap: () => c.selectedActivity.value = act['label']!,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 180),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16.r),
-                    border: Border.all(
-                      color: selected
-                          ? ConstColor.primaryColor
-                          : Colors.transparent,
-                      width: 1.5,
+          Obx(
+            () => GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisSpacing: 12.w,
+              mainAxisSpacing: 12.h,
+              childAspectRatio: 1.1,
+              children: c.activities.map((act) {
+                final selected = c.selectedActivity.value == act['label'];
+                return GestureDetector(
+                  onTap: () => c.selectedActivity.value = act['label']!,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 180),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16.r),
+                      border: Border.all(
+                        color: selected
+                            ? ConstColor.primaryColor
+                            : Colors.transparent,
+                        width: 1.5,
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 60.r,
-                        height: 60.r,
-                        decoration: BoxDecoration(
-                          color: selected
-                              ? ConstColor.primaryColor.withAlpha(20)
-                              : ConstColor.backgroundColor,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: SvgPicture.asset(
-                            act['icon']!,
-                            width: 24.r,
-                            height: 24.r,
-                            colorFilter: ColorFilter.mode(
-                              selected
-                                  ? ConstColor.primaryColor
-                                  : ConstColor.textColor,
-                              BlendMode.srcIn,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 60.r,
+                          height: 60.r,
+                          decoration: BoxDecoration(
+                            color: selected
+                                ? ConstColor.primaryColor.withAlpha(20)
+                                : ConstColor.backgroundColor,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset(
+                              act['icon']!,
+                              width: 24.r,
+                              height: 24.r,
+                              colorFilter: ColorFilter.mode(
+                                selected
+                                    ? ConstColor.primaryColor
+                                    : ConstColor.textColor,
+                                BlendMode.srcIn,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10.h),
-                      CustomText(
-                        title: act['label']!,
-                        textSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                        textColor: ConstColor.black,
-                        textAlign: TextAlign.center,
-                        maxLine: 1,
-                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-                      ),
-                    ],
+                        SizedBox(height: 10.h),
+                        CustomText(
+                          title: act['label']!,
+                          textSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          textColor: ConstColor.black,
+                          textAlign: TextAlign.center,
+                          maxLine: 1,
+                          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
-          )),
+                );
+              }).toList(),
+            ),
+          ),
         ],
       ),
     );
@@ -307,102 +314,120 @@ class _Step3Vibe extends StatelessWidget {
           _StepTitle(title: ConstString.whatsTheVibe),
           SizedBox(height: 14.h),
 
-          Obx(() => Wrap(
-            spacing: 8.w,
-            runSpacing: 8.h,
-            children: c.vibes.map((v) {
-              final sel = c.selectedVibe.value == v;
-              return _SelectChip(
-                label: v,
-                selected: sel,
-                onTap: () => c.selectedVibe.value = v,
-              );
-            }).toList(),
-          )),
+          Obx(
+            () => Wrap(
+              spacing: 8.w,
+              runSpacing: 8.h,
+              children: c.vibes.map((v) {
+                final sel = c.selectedVibe.value == v;
+                return _SelectChip(
+                  label: v,
+                  selected: sel,
+                  onTap: () => c.selectedVibe.value = v,
+                );
+              }).toList(),
+            ),
+          ),
 
           SizedBox(height: 16.h),
 
           _FieldLabel(label: ConstString.groupSize),
           SizedBox(height: 8.h),
-          Obx(() => _PillRow(
-            items: c.groupSizes,
-            selected: c.selectedGroupSize.value,
-            onTap: (v) => c.selectedGroupSize.value = v,
-          )),
+          Obx(
+            () => _PillRow(
+              items: c.groupSizes,
+              selected: c.selectedGroupSize.value,
+              onTap: (v) => c.selectedGroupSize.value = v,
+            ),
+          ),
 
           SizedBox(height: 16.h),
 
           // Budget
           _FieldLabel(label: ConstString.budget),
           SizedBox(height: 8.h),
-          Obx(() => _PillRow(
-            items: c.budgets,
-            selected: c.selectedBudget.value,
-            onTap: (v) => c.selectedBudget.value = v,
-          )),
+          Obx(
+            () => _PillRow(
+              items: c.budgets,
+              selected: c.selectedBudget.value,
+              onTap: (v) => c.selectedBudget.value = v,
+            ),
+          ),
 
           SizedBox(height: 16.h),
 
           _FieldLabel(label: ConstString.gender),
           SizedBox(height: 8.h),
-          Obx(() => _DropdownBox(
-            hint: ConstString.selectGender,
-            value: c.selectedGender.value.isEmpty ? null : c.selectedGender.value,
-            items: c.genders,
-            onChanged: (v) => c.selectedGender.value = v ?? '',
-          )),
+          Obx(
+            () => _DropdownBox(
+              hint: ConstString.selectGender,
+              value: c.selectedGender.value.isEmpty
+                  ? null
+                  : c.selectedGender.value,
+              items: c.genders,
+              onChanged: (v) => c.selectedGender.value = v ?? '',
+            ),
+          ),
 
           SizedBox(height: 16.h),
 
           // Age band
           _FieldLabel(label: ConstString.selectYourAgeBand),
           SizedBox(height: 8.h),
-          Obx(() => GridView.count(
-            crossAxisCount: 2,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            crossAxisSpacing: 10.w,
-            mainAxisSpacing: 10.h,
-            childAspectRatio: 3.0,
-            children: c.ageBands.map((band) {
-              final sel = c.selectedAgeBand.value == band;
-              return GestureDetector(
-                onTap: () => c.selectedAgeBand.value = band,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 160),
-                  decoration: BoxDecoration(
-                    color: sel ? ConstColor.primaryColor : ConstColor.boxColor,
-                    borderRadius: BorderRadius.circular(30.r),
-                    border: Border.all(
+          Obx(
+            () => GridView.count(
+              crossAxisCount: 2,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisSpacing: 10.w,
+              mainAxisSpacing: 10.h,
+              childAspectRatio: 3.0,
+              children: c.ageBands.map((band) {
+                final sel = c.selectedAgeBand.value == band;
+                return GestureDetector(
+                  onTap: () => c.selectedAgeBand.value = band,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 160),
+                    decoration: BoxDecoration(
                       color: sel
                           ? ConstColor.primaryColor
-                          : ConstColor.borderColor,
+                          : ConstColor.boxColor,
+                      borderRadius: BorderRadius.circular(30.r),
+                      border: Border.all(
+                        color: sel
+                            ? ConstColor.primaryColor
+                            : ConstColor.borderColor,
+                      ),
+                    ),
+                    child: Center(
+                      child: CustomText(
+                        title: band,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        textColor: sel ? Colors.white : ConstColor.black,
+                        maxLine: 1,
+                      ),
                     ),
                   ),
-                  child: Center(
-                    child: CustomText(
-                      title: band,
-                      textSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      textColor: sel ? Colors.white : ConstColor.black,
-                      maxLine: 1,
-                    ),
-                  ),
-                ),
-              );
-            }).toList(),
-          )),
+                );
+              }).toList(),
+            ),
+          ),
 
           SizedBox(height: 16.h),
 
           _FieldLabel(label: ConstString.language),
           SizedBox(height: 8.h),
-          Obx(() => _DropdownBox(
-            hint: ConstString.selectLanguage,
-            value: c.selectedLanguage.value.isEmpty ? null : c.selectedLanguage.value,
-            items: c.languages,
-            onChanged: (v) => c.selectedLanguage.value = v ?? '',
-          )),
+          Obx(
+            () => _DropdownBox(
+              hint: ConstString.selectLanguage,
+              value: c.selectedLanguage.value.isEmpty
+                  ? null
+                  : c.selectedLanguage.value,
+              items: c.languages,
+              onChanged: (v) => c.selectedLanguage.value = v ?? '',
+            ),
+          ),
 
           SizedBox(height: 30.h),
         ],
@@ -437,236 +462,281 @@ class _Step4WhenWhere extends StatelessWidget {
               padding: EdgeInsets.all(12.r),
               child: SvgPicture.asset(
                 'assets/icons/edit_icon.svg',
-                width: 18.r, height: 18.r,
+                width: 18.r,
+                height: 18.r,
                 colorFilter: const ColorFilter.mode(
-                    ConstColor.primaryColor, BlendMode.srcIn),
+                  ConstColor.primaryColor,
+                  BlendMode.srcIn,
+                ),
               ),
             ),
             suffixIcon: Padding(
               padding: EdgeInsets.all(12.r),
-              child: Icon(Icons.keyboard_arrow_down_rounded,
-                  color: ConstColor.iconColor, size: 20.r),
+              child: Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: ConstColor.iconColor,
+                size: 20.r,
+              ),
             ),
           ),
 
           SizedBox(height: 8.h),
 
-          Obx(() => _DropdownField(
-            label: ConstString.selectDate,
-            value: c.selectedDate.value,
-            icon: 'assets/icons/calender_icon.svg',
-            onTap: () async {
-              final picked = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime.now(),
-                lastDate: DateTime(2100),
-                builder: (ctx, child) => Theme(
-                  data: Theme.of(ctx).copyWith(
-                    colorScheme: const ColorScheme.light(primary: ConstColor.primaryColor),
+          Obx(
+            () => _DropdownField(
+              label: ConstString.selectDate,
+              value: c.selectedDate.value,
+              icon: 'assets/icons/calender_icon.svg',
+              onTap: () async {
+                final picked = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime(2100),
+                  builder: (ctx, child) => Theme(
+                    data: Theme.of(ctx).copyWith(
+                      colorScheme: const ColorScheme.light(
+                        primary: ConstColor.primaryColor,
+                      ),
+                    ),
+                    child: child!,
                   ),
-                  child: child!,
-                ),
-              );
-              if (picked != null) c.onDateSelected(picked);
-            },
-          )),
+                );
+                if (picked != null) c.onDateSelected(picked);
+              },
+            ),
+          ),
 
           SizedBox(height: 8.h),
 
           _FieldLabel(label: ConstString.selectTime),
           SizedBox(height: 6.h),
-          Obx(() => _DropdownField(
-            value: c.selectedTime1.value,
-            icon: 'assets/icons/clock_icon.svg',
-            onTap: () async {
-              final picked = await showTimePicker(
-                context: context,
-                initialTime: TimeOfDay.now(),
-                builder: (ctx, child) => Theme(
-                  data: Theme.of(ctx).copyWith(
-                    colorScheme: const ColorScheme.light(primary: ConstColor.primaryColor),
+          Obx(
+            () => _DropdownField(
+              value: c.selectedTime1.value,
+              icon: 'assets/icons/clock_icon.svg',
+              onTap: () async {
+                final picked = await showTimePicker(
+                  context: context,
+                  initialTime: TimeOfDay.now(),
+                  builder: (ctx, child) => Theme(
+                    data: Theme.of(ctx).copyWith(
+                      colorScheme: const ColorScheme.light(
+                        primary: ConstColor.primaryColor,
+                      ),
+                    ),
+                    child: child!,
                   ),
-                  child: child!,
-                ),
-              );
-              if (picked != null) c.onTimeSelected(picked);
-            },
-          )),
+                );
+                if (picked != null) c.onTimeSelected(picked);
+              },
+            ),
+          ),
           SizedBox(height: 10.h),
 
-          Obx(() => _ToggleCard(
-            icon: Icons.list_alt_rounded,
-            title: ConstString.letPeopleVoteTime,
-            subtitle: ConstString.voteTimeSubtitle,
-            value: c.voteOnTime.value,
-            onChanged: (v) => c.voteOnTime.value = v,
-          )),
+          Obx(
+            () => _ToggleCard(
+              icon: Icons.list_alt_rounded,
+              title: ConstString.letPeopleVoteTime,
+              subtitle: ConstString.voteTimeSubtitle,
+              value: c.voteOnTime.value,
+              onChanged: (v) => c.voteOnTime.value = v,
+            ),
+          ),
 
           SizedBox(height: 16.h),
 
           _FieldLabel(label: ConstString.pickAPlace),
           SizedBox(height: 8.h),
 
-          Obx(() => Column(
-            children: [
-              ...List.generate(c.locations.length, (i) {
-                final loc     = c.locations[i];
-                final selected = c.selectedLocation.value == i;
-                return GestureDetector(
-                  onTap: () => c.selectedLocation.value = i,
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 180),
-                    margin: EdgeInsets.only(bottom: 8.h),
-                    padding: EdgeInsets.all(12.r),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(
-                        color: selected
-                            ? ConstColor.primaryColor
-                            : Colors.transparent,
-                        width: 1.5,
+          Obx(
+            () => Column(
+              children: [
+                ...List.generate(c.locations.length, (i) {
+                  final loc = c.locations[i];
+                  final selected = c.selectedLocation.value == i;
+                  return GestureDetector(
+                    onTap: () => c.selectedLocation.value = i,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 180),
+                      margin: EdgeInsets.only(bottom: 8.h),
+                      padding: EdgeInsets.all(12.r),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12.r),
+                        border: Border.all(
+                          color: selected
+                              ? ConstColor.primaryColor
+                              : Colors.transparent,
+                          width: 1.5,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.r),
+                            child: AppImage(
+                              path: loc['image']!,
+                              width: 50.r,
+                              height: 48.r,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(width: 10.w),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(
+                                  title: loc['name']!,
+                                  textSize: 15.sp,
+                                  fontWeight: FontWeight.w600,
+                                  textColor: ConstColor.black,
+                                  maxLine: 1,
+                                ),
+                                CustomText(
+                                  title: loc['sub']!,
+                                  textSize: 13.sp,
+                                  textColor: selected
+                                      ? ConstColor.primaryColor
+                                      : ConstColor.iconColor,
+                                  fontWeight: FontWeight.w500,
+                                  maxLine: 1,
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (selected)
+                            Icon(
+                              Icons.check_circle_rounded,
+                              color: ConstColor.primaryColor,
+                              size: 20.r,
+                            ),
+                        ],
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.r),
-                          child: AppImage(
-                            path: loc['image']!,
-                            width: 50.r,
-                            height: 48.r,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        SizedBox(width: 10.w),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                title: loc['name']!,
-                                textSize: 15.sp,
-                                fontWeight: FontWeight.w600,
-                                textColor: ConstColor.black,
-                                maxLine: 1,
-                              ),
-                              CustomText(
-                                title: loc['sub']!,
-                                textSize: 13.sp,
-                                textColor: selected
-                                    ? ConstColor.primaryColor
-                                    : ConstColor.iconColor,
-                                fontWeight: FontWeight.w500,
-                                maxLine: 1,
-                              ),
-                            ],
-                          ),
-                        ),
-                        if (selected)
-                          Icon(Icons.check_circle_rounded,
-                              color: ConstColor.primaryColor, size: 20.r),
-                      ],
-                    ),
-                  ),
-                );
-              }),
+                  );
+                }),
 
-              GestureDetector(
-                onTap: () {
-                  // TODO
-                },
-                child: Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.only(top: 15.h,bottom: 15.h),
-                  padding: EdgeInsets.symmetric(vertical: 14.h),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.r),
-                    border: Border.all(
-                      color: ConstColor.borderColor,
-                      style: BorderStyle.solid,
+                GestureDetector(
+                  onTap: () {
+                    // TODO
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    margin: EdgeInsets.only(top: 15.h, bottom: 15.h),
+                    padding: EdgeInsets.symmetric(vertical: 14.h),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(
+                        color: ConstColor.borderColor,
+                        style: BorderStyle.solid,
+                      ),
                     ),
-                  ),
-                  child: Center(
-                    child: CustomText(
-                      title: ConstString.addCustomLocation,
-                      textSize: 16.sp,
-                      fontWeight: FontWeight.w500,
-                      textColor: ConstColor.textColor,
-                      maxLine: 1,
+                    child: Center(
+                      child: CustomText(
+                        title: ConstString.addCustomLocation,
+                        textSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                        textColor: ConstColor.textColor,
+                        maxLine: 1,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          )),
+              ],
+            ),
+          ),
 
-          Obx(() => _ToggleCard(
-            icon: Icons.list_alt_rounded,
-            title: ConstString.letPeopleVotePlace,
-            subtitle: ConstString.votePlaceSubtitle,
-            value: c.voteOnPlace.value,
-            onChanged: (v) => c.voteOnPlace.value = v,
-          )),
+          Obx(
+            () => _ToggleCard(
+              icon: Icons.list_alt_rounded,
+              title: ConstString.letPeopleVotePlace,
+              subtitle: ConstString.votePlaceSubtitle,
+              value: c.voteOnPlace.value,
+              onChanged: (v) => c.voteOnPlace.value = v,
+            ),
+          ),
 
           SizedBox(height: 16.h),
 
           _FieldLabel(label: ConstString.voteLockSettings),
           SizedBox(height: 8.h),
-          Obx(() => _ToggleCard(
-            icon: Icons.lock_outline,
-            title: ConstString.enableAutoLock,
-            value: c.autoLock.value,
-            onChanged: (v) => c.autoLock.value = v,
-          )),
-          SizedBox(height: 8.h),
-          _FieldLabel(label: ConstString.setTime),
-          SizedBox(height: 6.h),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 13.h),
-            decoration: BoxDecoration(
-              color: ConstColor.boxColor,
-              borderRadius: BorderRadius.circular(12.r),
-              border: Border.all(color: ConstColor.borderColor),
-            ),
-            child: Row(
-              children: [
-                SvgPicture.asset('assets/icons/clock_icon.svg',
-                    width: 16.r, height: 16.r,
-                    colorFilter: const ColorFilter.mode(
-                        ConstColor.primaryColor, BlendMode.srcIn)),
-                SizedBox(width: 8.w),
-                Expanded(
-                  child: CustomText(
-                    title: 'Today, 11:59 PM',
-                    textSize: 16.sp,
-                    textColor: ConstColor.black,
-                    maxLine: 1,
-                  ),
-                ),
-                Icon(Icons.edit_outlined,
-                    size: 18.r, color: ConstColor.black),
-              ],
+          Obx(
+            () => _ToggleCard(
+              icon: Icons.lock_outline,
+              title: ConstString.enableAutoLock,
+              value: c.autoLock.value,
+              onChanged: (v) => c.autoLock.value = v,
             ),
           ),
+          // SizedBox(height: 8.h),
+          // _FieldLabel(label: ConstString.setTime),
+          // SizedBox(height: 6.h),
+          // Container(
+          //   padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 13.h),
+          //   decoration: BoxDecoration(
+          //     color: ConstColor.boxColor,
+          //     borderRadius: BorderRadius.circular(12.r),
+          //     border: Border.all(color: ConstColor.borderColor),
+          //   ),
+          //   child: Row(
+          //     children: [
+          //       SvgPicture.asset(
+          //         'assets/icons/clock_icon.svg',
+          //         width: 16.r,
+          //         height: 16.r,
+          //         colorFilter: const ColorFilter.mode(
+          //           ConstColor.primaryColor,
+          //           BlendMode.srcIn,
+          //         ),
+          //       ),
+          //       SizedBox(width: 8.w),
+          //       Expanded(
+          //         child: CustomText(
+          //           title: 'Today, 11:59 PM',
+          //           textSize: 16.sp,
+          //           textColor: ConstColor.black,
+          //           maxLine: 1,
+          //         ),
+          //       ),
+          //       Icon(Icons.edit_outlined, size: 18.r, color: ConstColor.black),
+          //     ],
+          //   ),
+          // ),
 
+          SizedBox(height: 14.h),
+          Obx(
+            () => PrivacySection(
+              selectedPrivacy: c.selectedPrivacy.value,
+              onPrivacyChanged: (val) => c.selectedPrivacy.value = val,
+              // onAddCustomLocation: () {},
+            ),
+          ),
           SizedBox(height: 14.h),
 
           Container(
             padding: EdgeInsets.all(14.r),
             decoration: BoxDecoration(
               color: const Color(0xFFDBEAFE),
-              border: Border.all(color: const Color(0xFF2563EB),width: 1),
+              border: Border.all(
+                color: ConstColor.primaryColor.withAlpha(40),
+                width: 1,
+              ),
               borderRadius: BorderRadius.circular(14.r),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SvgPicture.asset('assets/icons/stay_safe_icon.svg',
-                    width: 22.r, height: 22.r,
-                    colorFilter: const ColorFilter.mode(
-                        ConstColor.primaryColor, BlendMode.srcIn)),
+                SvgPicture.asset(
+                  'assets/icons/stay_safe_icon.svg',
+                  width: 22.r,
+                  height: 22.r,
+                  colorFilter: const ColorFilter.mode(
+                    ConstColor.primaryColor,
+                    BlendMode.srcIn,
+                  ),
+                ),
                 SizedBox(width: 10.w),
                 Expanded(
                   child: Column(
@@ -700,8 +770,152 @@ class _Step4WhenWhere extends StatelessWidget {
   }
 }
 
+class PrivacySection extends StatelessWidget {
+  final String selectedPrivacy;
+  final ValueChanged<String> onPrivacyChanged;
+  // final VoidCallback onAddCustomLocation;
+
+  const PrivacySection({
+    super.key,
+    required this.selectedPrivacy,
+    required this.onPrivacyChanged,
+    // required this.onAddCustomLocation,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomText(
+          title: ConstString.privacy,
+          textSize: 16.sp,
+          fontWeight: FontWeight.w700,
+          textColor: ConstColor.black,
+          maxLine: 1,
+        ),
+        SizedBox(height: 12.h),
+
+        _PrivacyOption(
+          icon: Icons.public_rounded,
+          title: ConstString.publicLabel,
+          subtitle: ConstString.publicDesc,
+          isSelected: selectedPrivacy == 'public',
+          onTap: () => onPrivacyChanged('public'),
+        ),
+        SizedBox(height: 10.h),
+
+        _PrivacyOption(
+          icon: Icons.lock_outline_rounded,
+          title: ConstString.privateLabel,
+          subtitle: ConstString.privateDesc,
+          isSelected: selectedPrivacy == 'private',
+          onTap: () => onPrivacyChanged('private'),
+        ),
+      ],
+    );
+  }
+}
+
+class _PrivacyOption extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  const _PrivacyOption({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.isSelected,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        padding: EdgeInsets.all(14.r),
+        decoration: BoxDecoration(
+          color: ConstColor.white,
+          borderRadius: BorderRadius.circular(24.r),
+          border: Border.all(
+            color: isSelected
+                ? ConstColor.primaryColor
+                : ConstColor.borderColor,
+            width: isSelected ? 1.5 : 1,
+          ),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Icon circle
+            Container(
+              width: 38.r,
+              height: 38.r,
+              decoration: BoxDecoration(
+                color: ConstColor.primaryColor.withAlpha(20),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Icon(icon, size: 18.sp, color: ConstColor.primaryColor),
+              ),
+            ),
+            SizedBox(width: 12.w),
+
+            // Title + subtitle
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    title: title,
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w700,
+                    textColor: ConstColor.black,
+                    maxLine: 1,
+                  ),
+                  SizedBox(height: 4.h),
+                  CustomText(
+                    title: subtitle,
+                    textSize: 12.sp,
+                    textColor: ConstColor.grey,
+                    maxLine: 3,
+                  ),
+                ],
+              ),
+            ),
+
+            // Check icon when selected
+            if (isSelected) ...[
+              SizedBox(width: 8.w),
+              Container(
+                width: 22.r,
+                height: 22.r,
+                decoration: BoxDecoration(
+                  color: ConstColor.primaryColor,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.check_rounded,
+                  color: ConstColor.white,
+                  size: 13.sp,
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _StepTitle extends StatelessWidget {
   const _StepTitle({required this.title});
+
   final String title;
 
   @override
@@ -717,6 +931,7 @@ class _StepTitle extends StatelessWidget {
 
 class _FieldLabel extends StatelessWidget {
   const _FieldLabel({required this.label});
+
   final String label;
 
   @override
@@ -736,6 +951,7 @@ class _SelectChip extends StatelessWidget {
     required this.selected,
     required this.onTap,
   });
+
   final String label;
   final bool selected;
   final VoidCallback onTap;
@@ -770,6 +986,7 @@ class _PillRow extends StatelessWidget {
     required this.selected,
     required this.onTap,
   });
+
   final List<String> items;
   final String selected;
   final ValueChanged<String> onTap;
@@ -818,6 +1035,7 @@ class _DropdownBox extends StatelessWidget {
     required this.onChanged,
     this.value,
   });
+
   final String hint;
   final String? value;
   final List<String> items;
@@ -828,34 +1046,48 @@ class _DropdownBox extends StatelessWidget {
     height: 50.h,
     padding: EdgeInsets.symmetric(horizontal: 14.w),
     decoration: BoxDecoration(
-      color: Colors.white,
+      color: ConstColor.white,
       borderRadius: BorderRadius.circular(12.r),
       border: Border.all(color: ConstColor.borderColor),
     ),
     child: DropdownButtonHideUnderline(
-      child: DropdownButton<String>(
-        value: value,
-        hint: CustomText(
-          title: hint,
-          textSize: 13.sp,
-          textColor: ConstColor.iconColor,
-          maxLine: 1,
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          hoverColor: Colors.grey,
+          focusColor: Colors.black.withAlpha(20),
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          canvasColor: Colors.white,
         ),
-        isExpanded: true,
-        icon: Icon(Icons.keyboard_arrow_down_rounded,
-            color: ConstColor.textColor, size: 20.r),
-        items: items
-            .map((e) => DropdownMenuItem(
-          value: e,
-          child: CustomText(
-            title: e,
+        child: DropdownButton<String>(
+          value: value,
+          hint: CustomText(
+            title: hint,
             textSize: 13.sp,
-            textColor: ConstColor.black,
+            textColor: ConstColor.iconColor,
             maxLine: 1,
           ),
-        ))
-            .toList(),
-        onChanged: onChanged,
+          isExpanded: true,
+          icon: Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: ConstColor.textColor,
+            size: 20.r,
+          ),
+          items: items
+              .map(
+                (e) => DropdownMenuItem(
+                  value: e,
+                  child: CustomText(
+                    title: e,
+                    textSize: 13.sp,
+                    textColor: ConstColor.black,
+                    maxLine: 1,
+                  ),
+                ),
+              )
+              .toList(),
+          onChanged: onChanged,
+        ),
       ),
     ),
   );
@@ -868,6 +1100,7 @@ class _DropdownField extends StatelessWidget {
     required this.onTap,
     this.label,
   });
+
   final String value, icon;
   final String? label;
   final VoidCallback onTap;
@@ -876,10 +1109,7 @@ class _DropdownField extends StatelessWidget {
   Widget build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      if (label != null) ...[
-        _FieldLabel(label: label!),
-        SizedBox(height: 6.h),
-      ],
+      if (label != null) ...[_FieldLabel(label: label!), SizedBox(height: 6.h)],
       GestureDetector(
         onTap: onTap,
         child: Container(
@@ -891,10 +1121,15 @@ class _DropdownField extends StatelessWidget {
           ),
           child: Row(
             children: [
-              SvgPicture.asset(icon,
-                  width: 16.r, height: 16.r,
-                  colorFilter: const ColorFilter.mode(
-                      ConstColor.primaryColor, BlendMode.srcIn)),
+              SvgPicture.asset(
+                icon,
+                width: 16.r,
+                height: 16.r,
+                colorFilter: const ColorFilter.mode(
+                  ConstColor.primaryColor,
+                  BlendMode.srcIn,
+                ),
+              ),
               SizedBox(width: 8.w),
               Expanded(
                 child: CustomText(
@@ -905,8 +1140,11 @@ class _DropdownField extends StatelessWidget {
                   maxLine: 1,
                 ),
               ),
-              Icon(Icons.keyboard_arrow_down_rounded,
-                  color: ConstColor.textColor, size: 20.r),
+              Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: ConstColor.textColor,
+                size: 20.r,
+              ),
             ],
           ),
         ),
@@ -923,6 +1161,7 @@ class _ToggleCard extends StatelessWidget {
     required this.onChanged,
     this.subtitle,
   });
+
   final IconData icon;
   final String title;
   final String? subtitle;

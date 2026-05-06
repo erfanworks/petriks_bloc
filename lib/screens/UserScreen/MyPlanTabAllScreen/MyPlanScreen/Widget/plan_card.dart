@@ -205,7 +205,7 @@ class PlanCard extends StatelessWidget {
                         const Spacer(),
                         _FeedbackAction(
                           onTap: () {
-                            // Get.toNamed(AppRoutes.feedbackScreen);
+                            Get.toNamed(AppRoutes.feedBackScreen);
                           },
                         ),
                       ],

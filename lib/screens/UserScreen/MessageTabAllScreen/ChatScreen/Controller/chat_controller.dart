@@ -108,6 +108,38 @@ class ChatController extends GetxController {
         text: 'Looking forward to it! How will we recognize each other?',
         time: '10:05 AM', isMe: true),
   ];
+
+  // Plan chat messages (separate from group messages)
+  final List<ChatMessage> planMessages = [
+    const ChatMessage(
+      id: 's1', senderId: 'system', senderName: '',
+      text: 'You joined this plan', time: '', isSystemMsg: true,
+    ),
+    const ChatMessage(
+      id: '1', senderId: 'sarah', senderName: 'Sarah',
+      text: "Hey everyone! So excited for this brunch. I've been to this cafe before and their coffee is amazing! ☕",
+      time: '10:05 AM', isHost: true,
+    ),
+    const ChatMessage(
+      id: '2', senderId: 'mike', senderName: 'Mike',
+      text: 'Looking forward to it! How will we recognize each other?',
+      time: '10:05 AM',
+    ),
+    const ChatMessage(
+      id: '3', senderId: 'emma', senderName: 'Emma',
+      text: 'Looking forward to it! How will we recognize each other?',
+      time: '10:05 AM',
+    ),
+    const ChatMessage(
+      id: 's2', senderId: 'system', senderName: '',
+      text: 'You joined this plan', time: '', isSystemMsg: true,
+    ),
+    const ChatMessage(
+      id: '4', senderId: 'sarah', senderName: 'Sarah',
+      text: "Hey everyone! So excited for this brunch. I've been to this cafe before and their coffee is amazing! ☕",
+      time: '10:05 AM', isHost: true,
+    ),
+  ];
   void pickChatImage() {
     MediaPickerBottomSheet.show(
       onCamera: () async {
@@ -132,6 +164,8 @@ class ChatController extends GetxController {
   void openChat(ChatItem item) {
     if (selectedTab.value == 0) {
       Get.toNamed(AppRoutes.directChatScreen, arguments: item);
+    } else if (selectedTab.value == 1) {
+      Get.toNamed(AppRoutes.planChatScreen, arguments: item); // new screen
     } else {
       Get.toNamed(AppRoutes.groupPlanChatScreen, arguments: item);
     }

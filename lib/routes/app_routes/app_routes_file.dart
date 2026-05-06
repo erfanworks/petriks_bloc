@@ -44,6 +44,8 @@ import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/vibe_
 import '../../screens/UserScreen/MessageTabAllScreen/ChatScreen/chat_screen.dart';
 import '../../screens/UserScreen/MessageTabAllScreen/DirectChatScreen/direct_chat_screen.dart';
 import '../../screens/UserScreen/MessageTabAllScreen/GroupPlanChatScreen/group_plan_chat_screen.dart';
+import '../../screens/UserScreen/MessageTabAllScreen/PlanChatScreen/plan_chat_screen.dart';
+import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/FeedBackScreen/feed_back_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/JoinedPlanDetailsScreen/JoinedPlanUserReport/joined_plan_user_report.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/JoinedPlanDetailsScreen/joined_plan_details_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/created_plan_details_screen.dart';
@@ -132,6 +134,7 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.createdPlanDetailsScreen,page: () => CreatedPlanDetailsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.joinedPlanDetailsScreen,page: () => JoinedPlanDetailsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.joinedPlanUserReport,page: () => JoinedPlanUserReport(),binding: AppBindings()),
+  GetPage(name: AppRoutes.feedBackScreen,page: () => FeedBackScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.editPlanScreen,page: () => EditPlanScreen(),binding: AppBindings()),
 
 
@@ -142,6 +145,7 @@ List<GetPage> appRouteFile = <GetPage>[
   ////////////Messaging Screen Part////////////
   GetPage(name: AppRoutes.chatScreen,page: () => ChatScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.directChatScreen,page: () => DirectChatScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.planChatScreen,page: () => PlanChatScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.groupPlanChatScreen,page: () => GroupPlanChatScreen(),binding: AppBindings()),
 
 

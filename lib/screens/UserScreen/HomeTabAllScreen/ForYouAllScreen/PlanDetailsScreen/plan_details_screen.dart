@@ -339,7 +339,7 @@ class PlanDetailsScreen extends StatelessWidget {
                         ConstColor.primaryColor,
                       ],
                       onPressed: () {
-                        Get.toNamed(AppRoutes.directChatScreen);
+                        Get.toNamed(AppRoutes.planChatScreen);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

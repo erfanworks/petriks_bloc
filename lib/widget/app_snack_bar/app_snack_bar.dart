@@ -38,7 +38,7 @@ class AppSnackBar {
   static void success(String parameterValue, {int seconds = 3}) {
     Get.showSnackbar(
       GetSnackBar(
-        backgroundColor: ConstColor.primaryColor.withAlpha(110),
+        backgroundColor: ConstColor.primaryColor.withAlpha(150),
         animationDuration: const Duration(milliseconds: 400),
         duration: Duration(seconds: seconds),
         isDismissible: true,
@@ -127,7 +127,7 @@ class _SuccessMessageWidget extends StatelessWidget {
         Expanded(
           child: CustomText(
             title: message,
-            textColor: ConstColor.primaryColor,
+            textColor: ConstColor.white,
             textSize: 14.sp,
             fontWeight: FontWeight.w500,
             maxLine: 2,

@@ -7,6 +7,7 @@ class CreatePlanController extends GetxController {
   final currentStep = 0.obs;
 
   final selectedPlanType = ''.obs;
+  final selectedPrivacy = 'public'.obs;
 
   final List<Map<String, dynamic>> planTypes = [
     {
@@ -56,7 +57,17 @@ class CreatePlanController extends GetxController {
   final budgets    = ['Free', '\$10', '\$15', 'Custom'];
   final ageBands   = ['18 - 24', '25 - 34', '35 - 44', '45+'];
   final genders    = ['Male', 'Female', 'Non-binary', 'Prefer not to say'];
-  final languages  = ['English', 'Spanish', 'French', 'German', 'Mandarin'];
+  final languages  =
+  [ 'English',
+    'Spanish',
+    'French',
+    'German',
+    'Mandarin',
+    'Japanese',
+    'Hindi',
+    'Arabic',
+    'Portuguese',
+    'Italian',];
 
   final planTitleController = TextEditingController(text: 'Coffee Time');
   final selectedDate        = 'Saturday, Nov 24'.obs;

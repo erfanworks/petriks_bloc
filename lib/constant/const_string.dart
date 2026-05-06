@@ -12,7 +12,9 @@ class ConstString {
   static const String competition              = 'Competition';
   static const String group                    = 'GROUP';
   static const String oneToOne                 = '1-TO-1';
+  static const viewPlans = 'View Plans';
   static const account = 'Account';
+  static const feedback = 'Feedback';
   static const enterEmailPassword = 'Enter your email and password to log in';
   static const continueWithGoogle = 'Continue with Google';
   static const continueWithFacebook = 'Continue with Facebook';
@@ -512,4 +514,13 @@ class ConstString {
   static const yesterday       = 'Yesterday';
   static const voteNow       = 'Vote Now';
   static const String whatWouldYouLikeToCreate = 'What would you like to create?';
+  static const String completed             = 'COMPLETED';
+  static const String overAllVibe           = 'Over All Vibe';
+  static const String attended              = 'Attended';
+  static const String positive              = 'Positive';
+  static const String privacy           = 'Privacy';
+  static const String publicDesc        = 'Visible to everyone. Anyone can discover and join based on availability.';
+  static const String privateLabel      = 'Private';
+  static const String privateDesc       = 'Only people with an invite or approved request can see details and join.';
+
 }

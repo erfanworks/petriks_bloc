@@ -63,6 +63,7 @@ class AppRoutes {
   static const createdPlanDetailsScreen = '/createdPlanDetailsScreen';
   static const joinedPlanDetailsScreen = '/joinedPlanDetailsScreen';
   static const joinedPlanUserReport = '/joinedPlanUserReport';
+  static const feedBackScreen = '/feedBackScreen';
   static const editPlanScreen = '/editPlanScreen';
 
   ////////////// Create Plan Screen Part ///////////////////////
@@ -71,6 +72,7 @@ class AppRoutes {
   ////////////// Messaging Screen Part ///////////////////////
   static const chatScreen = '/chatScreen';
   static const directChatScreen = '/directChatScreen';
+  static const planChatScreen = '/planChatScreen';
   static const groupPlanChatScreen = '/groupPlanChatScreen';
 
 
