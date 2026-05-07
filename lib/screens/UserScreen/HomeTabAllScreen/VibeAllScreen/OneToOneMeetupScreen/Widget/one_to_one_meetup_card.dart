@@ -97,12 +97,12 @@ class OneToOneMeetupCard extends StatelessWidget {
                             Icon(
                               Icons.language_rounded,
                               size: 13.sp,
-                              color: ConstColor.grey,
+                              color: ConstColor.primaryColor,
                             ),
                             SizedBox(width: 4.w),
                             CustomText(
                               title: item.language,
-                              textColor: ConstColor.grey,
+                              textColor: ConstColor.textColor,
                               textSize: 12.sp,
                               maxLine: 1,
                             ),
@@ -114,13 +114,13 @@ class OneToOneMeetupCard extends StatelessWidget {
                             Icon(
                               Icons.location_on_outlined,
                               size: 13.sp,
-                              color: ConstColor.grey,
+                              color: ConstColor.primaryColor,
                             ),
                             SizedBox(width: 4.w),
                             Expanded(
                               child: CustomText(
                                 title: item.distance,
-                                textColor: ConstColor.grey,
+                                textColor: ConstColor.textColor,
                                 textSize: 12.sp,
                                 maxLine: 1,
                               ),
@@ -288,13 +288,13 @@ class OneToOneMeetupCard extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.location_on_outlined,
-                        size: 14.sp,
-                        color: ConstColor.grey,
+                        size: 18.sp,
+                        color: ConstColor.primaryColor,
                       ),
                       SizedBox(width: 4.w),
                       CustomText(
                         title: item.location,
-                        textColor: ConstColor.grey,
+                        textColor: ConstColor.textColor,
                         textSize: 12.sp,
                         maxLine: 1,
                       ),
@@ -311,7 +311,7 @@ class OneToOneMeetupCard extends StatelessWidget {
                       SizedBox(width: 4.w),
                       CustomText(
                         title: item.date,
-                        textColor: ConstColor.grey,
+                        textColor: ConstColor.textColor,
                         textSize: 12.sp,
                         maxLine: 1,
                       ),
@@ -328,7 +328,7 @@ class OneToOneMeetupCard extends StatelessWidget {
                       SizedBox(width: 4.w),
                       CustomText(
                         title: item.time,
-                        textColor: ConstColor.grey,
+                        textColor: ConstColor.textColor,
                         textSize: 12.sp,
                         maxLine: 1,
                       ),

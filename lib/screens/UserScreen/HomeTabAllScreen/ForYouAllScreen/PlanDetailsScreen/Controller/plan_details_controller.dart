@@ -8,7 +8,6 @@ import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
 import '../Widget/join_confirmation_sheet.dart';
 
-// ---- Plan Detail Models ----
 class LocationVoteItem {
   final String image;
   final String name;
@@ -50,17 +49,13 @@ class ReportReason {
   ReportReason({required this.label}) : isSelected = false.obs;
 }
 
-// ---- Plan Details Controller ----
 class PlanDetailsController extends GetxController {
-  // ---- Plan State ----
   final RxBool hasJoined = false.obs;
   final RxInt selectedTimeIndex = 0.obs;
-
-  // ---- Lock Timer ----
   final lockTimer = ''.obs;
   Timer? _timer;
+  final attendanceConfirmed = false.obs;
 
-  // lockUntil is set from plan data (passed via Get.arguments or API)
   DateTime? lockUntil;
 
   void initLockTimer(DateTime lockUntilTime) {
@@ -70,7 +65,7 @@ class PlanDetailsController extends GetxController {
 
   void _startCountdown() {
     _timer?.cancel();
-    _tick(); // run immediately once before first delay
+    _tick();
     _timer = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
   }
 
@@ -94,7 +89,6 @@ class PlanDetailsController extends GetxController {
         : '${m}m ${s.toString().padLeft(2, '0')}s';
   }
 
-  // ---- Location Votes ----
   final RxList<LocationVoteItem> locationVotes = <LocationVoteItem>[
     const LocationVoteItem(
       image: 'assets/images/location_img1.jpg',
@@ -111,7 +105,6 @@ class PlanDetailsController extends GetxController {
     ),
   ].obs;
 
-  // ---- Chat Messages ----
   final RxList<ChatMessage> chatMessages = <ChatMessage>[
     const ChatMessage(
       senderName: 'Sarah L.',
@@ -128,14 +121,18 @@ class PlanDetailsController extends GetxController {
     ),
   ].obs;
 
-  // ---- Post-meetup Review ----
   final RxBool meetupHappened = true.obs;
   final RxInt selectedVibe = 2.obs;
-  final List<String> vibes = ['Electric', 'Chill', 'Unreal', 'Awkward', 'Boring'];
+  final List<String> vibes = [
+    'Electric',
+    'Chill',
+    'Unreal',
+    'Awkward',
+    'Boring',
+  ];
   final List<String> vibeEmojis = ['⚡', '😌', '🔥', '🤡', '😴'];
   final reviewController = TextEditingController();
 
-  // ---- Report ----
   final List<ReportReason> reportReasons = [
     ReportReason(label: 'Inappropriate behavior'),
     ReportReason(label: 'Harassment or bullying'),
@@ -146,11 +143,9 @@ class PlanDetailsController extends GetxController {
   final urgencyLevels = ['Low', 'Medium', 'High'];
   final selectedUrgency = 'High'.obs;
 
-  // ---- Support ----
   final supportSubjectController = TextEditingController();
   final supportDescController = TextEditingController();
 
-  // ======= Actions =======
 
   void showJoinSheet() {
     Get.bottomSheet(
@@ -167,15 +162,23 @@ class PlanDetailsController extends GetxController {
     Get.find<NavbarController>().highlightMyPlan();
   }
 
-  void onConfirmAttendance() => Get.toNamed(AppRoutes.howDidItGoScreen);
+  void onConfirmAttendance() {
+    attendanceConfirmed.value = true;
+    AppSnackBar.success("Attendance successfully 🎉", seconds: 2);
+  }
 
   void onSelectVibe(int index) => selectedVibe.value = index;
+
   void submitReview() => Get.toNamed(AppRoutes.navBar);
+
   void planAgain() => Get.back();
 
   void goToAttendanceTips() => Get.toNamed(AppRoutes.attendanceTipsScreen);
+
   void goToReportProblem() => Get.toNamed(AppRoutes.reportProblemScreen);
+
   void goToBlockUser() => Get.toNamed(AppRoutes.blockUserScreen);
+
   void goToSupportHelp() => Get.toNamed(AppRoutes.supportHelpScreen);
 
   void selectReason(ReportReason reason) {
@@ -186,8 +189,11 @@ class PlanDetailsController extends GetxController {
   }
 
   void selectTime(int index) => selectedTimeIndex.value = index;
+
   void submitReport() => Get.back();
+
   void blockUser() => Get.back();
+
   void submitSupport() => Get.back();
 
   @override
@@ -198,12 +204,11 @@ class PlanDetailsController extends GetxController {
     _timer?.cancel();
     super.onClose();
   }
+
   @override
   @override
   void onInit() {
     super.onInit();
-    initLockTimer(
-      DateTime.now().add(const Duration(hours: 2, minutes: 30)),
-    );
+    initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
   }
 }

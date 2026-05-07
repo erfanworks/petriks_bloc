@@ -98,9 +98,9 @@ class CreatePlanController extends GetxController {
 
   bool get isLastStep {
     if (selectedPlanType.value == 'Easy Start') {
-      return currentStep.value == 3;
+      return currentStep.value == 2; // Step1 + Step3Vibe + Step4WhenWhere = index 2
     } else {
-      return currentStep.value == 2;
+      return currentStep.value == 3; // Step1 + Step2Activity + Step3Vibe + Step4WhenWhere = index 3
     }
   }
 
@@ -109,24 +109,33 @@ class CreatePlanController extends GetxController {
       return selectedPlanType.value.isNotEmpty;
     }
 
-    if (selectedPlanType.value == 'Easy Start') {
+    if (selectedPlanType.value == 'Group Plan') {
       if (currentStep.value == 1) return selectedActivity.value.isNotEmpty;
       if (currentStep.value == 2) {
-        return selectedVibe.value.isNotEmpty && selectedGroupSize.value.isNotEmpty &&
-            selectedBudget.value.isNotEmpty && selectedGender.value.isNotEmpty &&
-            selectedAgeBand.value.isNotEmpty && selectedLanguage.value.isNotEmpty;
+        return selectedVibe.value.isNotEmpty &&
+            selectedGroupSize.value.isNotEmpty &&
+            selectedBudget.value.isNotEmpty &&
+            selectedGender.value.isNotEmpty &&
+            selectedAgeBand.value.isNotEmpty &&
+            selectedLanguage.value.isNotEmpty;
       }
       if (currentStep.value == 3) {
-        return planTitleController.text.isNotEmpty && selectedLocation.value != -1;
+        return planTitleController.text.isNotEmpty &&
+            selectedLocation.value != -1;
       }
     } else {
+      // Easy Start
       if (currentStep.value == 1) {
-        return selectedVibe.value.isNotEmpty && selectedGroupSize.value.isNotEmpty &&
-            selectedBudget.value.isNotEmpty && selectedGender.value.isNotEmpty &&
-            selectedAgeBand.value.isNotEmpty && selectedLanguage.value.isNotEmpty;
+        return selectedVibe.value.isNotEmpty &&
+            selectedGroupSize.value.isNotEmpty &&
+            selectedBudget.value.isNotEmpty &&
+            selectedGender.value.isNotEmpty &&
+            selectedAgeBand.value.isNotEmpty &&
+            selectedLanguage.value.isNotEmpty;
       }
       if (currentStep.value == 2) {
-        return planTitleController.text.isNotEmpty && selectedLocation.value != -1;
+        return planTitleController.text.isNotEmpty &&
+            selectedLocation.value != -1;
       }
     }
     return false;

@@ -10,11 +10,9 @@ import '../../../../../../../constant/const_color.dart';
 import '../../../../../../../constant/const_string.dart';
 import '../../../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../../../widget/GlobalAppBar/global_app_bar.dart';
-import '../../../../../HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
-
 
 class JoinedPlanUserReport extends StatelessWidget {
-   const JoinedPlanUserReport({super.key});
+  const JoinedPlanUserReport({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,7 @@ class JoinedPlanUserReport extends StatelessWidget {
           children: [
             CustomText(
               title: ConstString.whyReporting,
-              textColor: ConstColor.textColor,
+              textColor: ConstColor.black,
               textSize: 16.sp,
               fontWeight: FontWeight.w600,
               maxLine: 1,
@@ -38,12 +36,15 @@ class JoinedPlanUserReport extends StatelessWidget {
             SizedBox(height: 12.h),
 
             ...controller.reportReasons.map(
-                  (reason) => Obx(
-                    () => GestureDetector(
+              (reason) => Obx(
+                () => GestureDetector(
                   onTap: () => controller.selectReason(reason),
                   child: Container(
                     margin: EdgeInsets.only(bottom: 8.h),
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 14.h,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12.r),
@@ -53,7 +54,7 @@ class JoinedPlanUserReport extends StatelessWidget {
                       children: [
                         CustomText(
                           title: reason.label,
-                          textColor: ConstColor.grey,
+                          textColor: ConstColor.black,
                           textSize: 16.sp,
                           fontWeight: FontWeight.w500,
                           maxLine: 1,
@@ -74,7 +75,11 @@ class JoinedPlanUserReport extends StatelessWidget {
                                 : Colors.transparent,
                           ),
                           child: reason.isSelected.value
-                              ? Icon(Icons.check_rounded, color: Colors.white, size: 12.sp)
+                              ? Icon(
+                                  Icons.check_rounded,
+                                  color: Colors.white,
+                                  size: 12.sp,
+                                )
                               : null,
                         ),
                       ],
@@ -83,57 +88,32 @@ class JoinedPlanUserReport extends StatelessWidget {
                 ),
               ),
             ),
-
-            // SizedBox(height: 20.h),
-
-            // ---- Urgency ----
-            // CustomText(
-            //   title: ConstString.urgencyLevel,
-            //   textColor: ConstColor.black,
-            //   textSize: 16.sp,
-            //   fontWeight: FontWeight.w600,
-            //   maxLine: 1,
-            // ),
-            // SizedBox(height: 10.h),
-            // Obx(
-            //       () => Container(
-            //     padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
-            //     decoration: BoxDecoration(
-            //       color: Colors.white,
-            //       borderRadius: BorderRadius.circular(12.r),
-            //     ),
-            //     child: DropdownButton<String>(
-            //       value: controller.selectedUrgency.value,
-            //       isExpanded: true,
-            //       underline: const SizedBox.shrink(),
-            //       items: controller.urgencyLevels
-            //           .map((u) => DropdownMenuItem(value: u, child: Text(u)))
-            //           .toList(),
-            //       onChanged: (val) {
-            //         if (val != null) controller.selectedUrgency.value = val;
-            //       },
-            //     ),
-            //   ),
-            // ),
-
-            const Spacer(),
-
-            CustomElevatedButton(
-              onPressed: controller.submitReport,
-              height: 50,
-              top: 0,
-              buttonBorderRadius: 30,
-              gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-              child: CustomText(
-                title: ConstString.submitReport,
-                textColor: Colors.white,
-                textSize: 15.sp,
-                fontWeight: FontWeight.w600,
-                maxLine: 1,
-              ),
-            ),
-            SizedBox(height: 16.h),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.fromLTRB(
+          16.w,
+          0,
+          16.w,
+          5.h + MediaQuery.of(context).padding.bottom,
+        ),
+        child: CustomElevatedButton(
+          onPressed: controller.submitReport,
+          height: 50,
+          top: 0,
+          buttonBorderRadius: 30,
+          gradient: const [
+            ConstColor.primaryDeepColor,
+            ConstColor.primaryColor,
+          ],
+          child: CustomText(
+            title: ConstString.submitReport,
+            textColor: Colors.white,
+            textSize: 15.sp,
+            fontWeight: FontWeight.w600,
+            maxLine: 1,
+          ),
         ),
       ),
     );

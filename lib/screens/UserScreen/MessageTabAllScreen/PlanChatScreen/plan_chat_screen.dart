@@ -6,20 +6,36 @@ import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
+import '../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../../../../widget/text/custom_text.dart';
 import '../ChatScreen/Controller/chat_controller.dart';
+import '../Widget/chat_bottom_sheet.dart';
 
 class PlanChatScreen extends StatelessWidget {
   const PlanChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final item = Get.arguments as ChatItem;
+    final item = Get.arguments is ChatItem ? Get.arguments as ChatItem : null;
     final c    = Get.find<ChatController>();
 
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,
-      appBar: _PlanChatAppBar(item: item),
+      appBar: GlobalAppBar(
+        showBack: true,
+        title: 'Sunday Brunch & Coffee C...',
+        titleColor: ConstColor.primaryColor,
+        subTitle: ConstString.fourParticipants,
+        actions:[
+          GestureDetector(
+            onTap: () => ChatBottomSheet.show(context),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Icon(Icons.more_vert, size: 24.sp, color: ConstColor.textColor),
+            ),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           // ── Date + location + View Plans bar ──
@@ -88,9 +104,6 @@ class PlanChatScreen extends StatelessWidget {
               },
             ),
           ),
-
-          // ── Input bar ──
-          // _ChatInputBar(),
         ],
       ),
       bottomNavigationBar: _ChatInputBar(),
@@ -98,54 +111,6 @@ class PlanChatScreen extends StatelessWidget {
   }
 }
 
-class _PlanChatAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const _PlanChatAppBar({required this.item});
-  final ChatItem item;
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.white,
-      elevation: 0,
-      titleSpacing: 0,
-      leading: GestureDetector(
-        onTap: () => Get.back(),
-        child: Icon(Icons.arrow_back_ios_new_rounded,
-            size: 18.r, color: ConstColor.primaryColor),
-      ),
-      title: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomText(
-            title: 'Sunday Brunch & Coffee C...',
-            textSize: 15.sp,
-            fontWeight: FontWeight.w700,
-            textColor: ConstColor.primaryColor,
-            maxLine: 1,
-          ),
-          CustomText(
-            title: ConstString.fourParticipants,
-            textSize: 11.sp,
-            textColor: ConstColor.iconColor,
-            maxLine: 1,
-          ),
-        ],
-      ),
-      actions: [
-        Padding(
-          padding: EdgeInsets.only(right: 16.w),
-          child: Icon(Icons.more_vert_rounded,
-              size: 22.r, color: ConstColor.black),
-        ),
-      ],
-    );
-  }
-
-  @override
-  Size get preferredSize => Size.fromHeight(60.h);
-}
-
-// ── Plan chat message bubble ──
 class _PlanChatMessage extends StatelessWidget {
   const _PlanChatMessage({required this.msg});
   final ChatMessage msg;
@@ -157,7 +122,6 @@ class _PlanChatMessage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Avatar circle with initial
           Container(
             width: 38.r,
             height: 38.r,
@@ -181,7 +145,6 @@ class _PlanChatMessage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Name + HOST badge + time
                 Row(
                   children: [
                     CustomText(
@@ -235,7 +198,6 @@ class _PlanChatMessage extends StatelessWidget {
   }
 }
 
-// ── System message ──
 class _SystemMessage extends StatelessWidget {
   const _SystemMessage({required this.text});
   final String text;
@@ -315,7 +277,6 @@ class _ChatInputBar extends StatelessWidget {
                   ),
                   SizedBox(width: 8.w),
 
-                  // Text Input
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(

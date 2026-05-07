@@ -301,6 +301,10 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                             'name': 'Marcus Chen',
                             'img': 'assets/images/onboarding2_img.jpg',
                           },
+                          {
+                            'name': 'Petris',
+                            'img': 'assets/images/onboarding3_img.jpg',
+                          },
                         ].map(
                           (p) =>
                               _ParticipantRow(name: p['name']!, img: p['img']!),
@@ -574,10 +578,18 @@ class _DetailRow extends StatelessWidget {
   }
 }
 
-class _ParticipantRow extends StatelessWidget {
+class _ParticipantRow extends StatefulWidget {
   const _ParticipantRow({required this.name, required this.img});
 
   final String name, img;
+
+  @override
+  State<_ParticipantRow> createState() => _ParticipantRowState();
+}
+
+class _ParticipantRowState extends State<_ParticipantRow> {
+
+  bool isApproved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -593,19 +605,50 @@ class _ParticipantRow extends StatelessWidget {
         children: [
           ClipOval(
             child: AppImage(
-              path: img,
+              path: widget.img,
               width: 40.r,
               height: 40.r,
               fit: BoxFit.cover,
             ),
           ),
           SizedBox(width: 10.w),
-          CustomText(
-            title: name,
-            textSize: 14.sp,
-            fontWeight: FontWeight.w500,
-            textColor: ConstColor.black,
-            maxLine: 1,
+
+          Expanded(
+            child: CustomText(
+              title: widget.name,
+              textSize: 14.sp,
+              fontWeight: FontWeight.w500,
+              textColor: ConstColor.black,
+              maxLine: 1,
+            ),
+          ),
+
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isApproved = true;
+              });
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 15.w,
+                vertical: 6.h,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30.r),
+                border: Border.all(
+                  color: const Color(0xFF6C63FF),
+                  width: 1.2,
+                ),
+              ),
+              child: CustomText(
+                title: isApproved ? "Approved" : "Approve",
+                textSize: 10.sp,
+                fontWeight: FontWeight.w500,
+                textColor: const Color(0xFF6C63FF),
+                maxLine: 1,
+              ),
+            ),
           ),
         ],
       ),

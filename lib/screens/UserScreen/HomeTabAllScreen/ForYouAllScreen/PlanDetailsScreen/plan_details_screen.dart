@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 import '../../../../../../constant/const_color.dart';
@@ -306,7 +307,7 @@ class PlanDetailsScreen extends StatelessWidget {
             16.w,
             0,
             16.w,
-            5.h + MediaQuery.of(context).padding.bottom,
+            0.h + MediaQuery.of(context).padding.bottom,
           ),
           child: controller.hasJoined.value
               ? Column(
@@ -318,15 +319,28 @@ class PlanDetailsScreen extends StatelessWidget {
                           child: _OutlineButton(
                             label: ConstString.couldTAttend,
                             color: const Color(0xFFBA1A1A),
-                            onTap: () {Get.back();},
+                            onTap: () {
+                              Get.toNamed(AppRoutes.joinedPlanUserReport);
+                              AppSnackBar.message("Attendance canceled");
+
+                            },
                           ),
                         ),
                         SizedBox(width: 12.w),
-                        Expanded(
-                          child: _OutlineButton(
-                            label: ConstString.attendance,
-                            color: const Color(0xFF006C49),
-                            onTap: controller.onConfirmAttendance,
+                        Obx(
+                          () => Expanded(
+                            child: controller.attendanceConfirmed.value
+                                ? _OutlineButton(
+                                    label: ConstString.helpAndSafety,
+                                    color: const Color(0xFF006C49),
+                                    onTap: () =>
+                                        Get.toNamed(AppRoutes.howDidItGoScreen),
+                                  )
+                                : _OutlineButton(
+                                    label: ConstString.attendance,
+                                    color: const Color(0xFF006C49),
+                                    onTap: controller.onConfirmAttendance,
+                                  ),
                           ),
                         ),
                       ],
@@ -1095,11 +1109,17 @@ class _CircleAvatar extends StatelessWidget {
     );
   }
 }
+
 class _OutlineButton extends StatelessWidget {
   final String label;
   final Color color;
   final VoidCallback onTap;
-  const _OutlineButton({required this.label, required this.color, required this.onTap});
+
+  const _OutlineButton({
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

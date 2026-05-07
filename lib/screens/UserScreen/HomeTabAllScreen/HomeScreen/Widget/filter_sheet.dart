@@ -326,6 +326,7 @@ class _FilterSheetState extends State<_FilterSheet> {
               ),
             ),
           ),
+          SizedBox(height: 12.h),
         ],
       ),
     );

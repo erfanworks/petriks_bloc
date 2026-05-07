@@ -62,6 +62,7 @@ class JoinedPlanDetailsController extends GetxController {
 
   // lockUntil is set from plan data (passed via Get.arguments or API)
   DateTime? lockUntil;
+  final RxBool isReportSelected = false.obs;
 
   void initLockTimer(DateTime lockUntilTime) {
     lockUntil = lockUntilTime;
@@ -197,12 +198,31 @@ class JoinedPlanDetailsController extends GetxController {
     for (final r in reportReasons) {
       r.isSelected.value = false;
     }
+
     reason.isSelected.value = true;
+
+    isReportSelected.value = true;
   }
 
   void selectTime(int index) => selectedTimeIndex.value = index;
 
-  void submitReport() => Get.back();
+  void submitReport() {
+
+    final bool hasSelected = reportReasons.any(
+          (reason) => reason.isSelected.value,
+    );
+
+    if (!hasSelected) {
+      AppSnackBar.error("Please select a report reason");
+      return;
+    }
+
+    Get.toNamed(AppRoutes.navBar);
+
+    Future.delayed(const Duration(milliseconds: 100), () {
+      AppSnackBar.success("Report submitted successfully");
+    });
+  }
 
   void blockUser() => Get.back();
 

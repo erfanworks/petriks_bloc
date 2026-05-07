@@ -43,9 +43,7 @@ class UpcomingEventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
-          // ─── Ensures no overflow issues at the bottom ───
           children: [
-            // ─── Image & Badges Section ───
             Stack(
               children: [
                 ClipRRect(
@@ -56,7 +54,7 @@ class UpcomingEventCard extends StatelessWidget {
                   child: AppImage(
                     path: item.image,
                     width: double.infinity,
-                    height: 200.h,
+                    height: 230.h,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -177,7 +175,6 @@ class UpcomingEventCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title + Free Entry
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -228,7 +225,7 @@ class UpcomingEventCard extends StatelessWidget {
 
                   // Gender
                   _InfoRow(icon: Icons.people_outline, label: item.gender),
-                  SizedBox(height: 12.h),
+                  // SizedBox(height: 12.h),
 
                   Row(
                     children: [
@@ -240,7 +237,8 @@ class UpcomingEventCard extends StatelessWidget {
                       SizedBox(width: 4.w),
                       CustomText(
                         title: item.date,
-                        textColor: ConstColor.silverGray20,
+                        textColor: ConstColor.textColor,
+                        fontWeight: FontWeight.w500,
                         textSize: 12.sp,
                         maxLine: 1,
                       ),
@@ -300,9 +298,9 @@ class UpcomingEventCard extends StatelessWidget {
                     ],
                   ),
 
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 10.h),
                   Divider(height: 1, color: ConstColor.borderColor),
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 10.h),
 
                   // Host + Joined row
                   Row(
@@ -431,7 +429,7 @@ class _InfoRow extends StatelessWidget {
         Expanded(
           child: CustomText(
             title: label,
-            textColor: ConstColor.silverGray20,
+            textColor: ConstColor.textColor,
             textSize: 13.sp,
             maxLine: 1,
             fontWeight: FontWeight.w500,

@@ -228,29 +228,57 @@ class JoinedPlanDetailsScreen extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 16.w),
                 padding: EdgeInsets.symmetric(vertical: 12.h),
                 decoration: BoxDecoration(
-                  color: ConstColor.red.withAlpha(20),
+                  color: ConstColor.primaryColor.withAlpha(20),
                   borderRadius: BorderRadius.circular(30.r),
-                  border: Border.all(color: ConstColor.red.withAlpha(80)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.hourglass_bottom_rounded,
-                      color: const Color(0xFFBA1A1A),
+                      color: ConstColor.primaryColor,
                       size: 16.r,
                     ),
                     SizedBox(width: 6.w),
-                    CustomText(
-                      title: 'Vote Ended',
-                      textColor: const Color(0xFFBA1A1A),
-                      textSize: 14.sp,
-                      fontWeight: FontWeight.w700,
-                      maxLine: 1,
+                    Obx(
+                          () => CustomText(
+                        title: 'Locks in: ${controller.lockTimer.value}',
+                        textColor: ConstColor.primaryColor,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        maxLine: 1,
+                      ),
                     ),
                   ],
                 ),
               ),
+              // Container(
+              //   margin: EdgeInsets.symmetric(horizontal: 16.w),
+              //   padding: EdgeInsets.symmetric(vertical: 12.h),
+              //   decoration: BoxDecoration(
+              //     color: ConstColor.red.withAlpha(20),
+              //     borderRadius: BorderRadius.circular(30.r),
+              //     border: Border.all(color: ConstColor.red.withAlpha(80)),
+              //   ),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Icon(
+              //         Icons.hourglass_bottom_rounded,
+              //         color: const Color(0xFFBA1A1A),
+              //         size: 16.r,
+              //       ),
+              //       SizedBox(width: 6.w),
+              //       CustomText(
+              //         title: 'Vote Ended',
+              //         textColor: const Color(0xFFBA1A1A),
+              //         textSize: 14.sp,
+              //         fontWeight: FontWeight.w700,
+              //         maxLine: 1,
+              //       ),
+              //     ],
+              //   ),
+              // ),
               SizedBox(height: 20.h),
 
               Padding(

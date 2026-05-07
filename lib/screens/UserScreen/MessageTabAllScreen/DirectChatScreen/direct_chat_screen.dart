@@ -9,6 +9,7 @@ import '../../../../constant/const_string.dart';
 import '../../../../widget/AppImage/app_image.dart';
 import '../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../../../../widget/text/custom_text.dart';
+import '../Widget/chat_bottom_sheet.dart';
 
 class DirectChatScreen extends StatelessWidget {
   const DirectChatScreen({super.key});
@@ -41,8 +42,14 @@ class DirectChatScreen extends StatelessWidget {
         title: "John Lura",
         titleColor: ConstColor.primaryColor,
         subTitle: ConstString.activeNow,
-        actions: [
-          Icon(Icons.more_vert, size: 24.sp, color: const Color(0xFF635BFE)),
+        actions:[
+          GestureDetector(
+            onTap: () => ChatBottomSheet.show(context),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Icon(Icons.more_vert, size: 24.sp, color: ConstColor.textColor),
+            ),
+          ),
         ],
       ),
       body: Column(
@@ -178,7 +185,6 @@ class _AvatarInitial extends StatelessWidget {
   );
 }
 
-// ── Shared input bar ──
 class _ChatInputBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

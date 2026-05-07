@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../Widget/text/custom_text.dart';
@@ -29,6 +30,7 @@ class OnboardingScreen extends StatelessWidget {
 
 class _MapSection extends StatelessWidget {
   const _MapSection({required this.controller});
+
   final OnboardingController controller;
 
   @override
@@ -40,7 +42,8 @@ class _MapSection extends StatelessWidget {
         children: [
           Positioned(
             top: 52.h,
-            left: 0, right: 0,
+            left: 0,
+            right: 0,
             child: Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -60,84 +63,123 @@ class _MapSection extends StatelessWidget {
           ),
 
           Positioned(
-            top: 100.h, left: 0, right: 0,
+            top: 100.h,
+            left: 0,
+            right: 0,
             child: Center(
-              child: _DashedCircle(radius: 135.r, color: Colors.white.withAlpha(60)),
+              child: _DashedCircle(
+                radius: 135.r,
+                color: Colors.white.withAlpha(60),
+              ),
             ),
           ),
 
           Positioned(
-            top: 145.h, left: 0, right: 0,
+            top: 145.h,
+            left: 0,
+            right: 0,
             child: Center(
-              child: _DashedCircle(radius: 85.r, color: Colors.white.withAlpha(60)),
+              child: _DashedCircle(
+                radius: 85.r,
+                color: Colors.white.withAlpha(60),
+              ),
             ),
           ),
 
           Positioned(
-            top: 195.h, left: 0, right: 0,
+            top: 195.h,
+            left: 0,
+            right: 0,
             child: Center(
               child: Container(
-                width: 70.r, height: 70.r,
+                width: 70.r,
+                height: 70.r,
                 decoration: BoxDecoration(
                   color: Colors.white.withAlpha(40),
                   shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white.withAlpha(80), width: 1.5),
+                  border: Border.all(
+                    color: Colors.white.withAlpha(80),
+                    width: 1.5,
+                  ),
                 ),
-                child: Icon(Icons.people_alt_outlined, color: Colors.white, size: 28.sp),
+                child: Icon(
+                  Icons.message_outlined,
+                  color: Colors.white,
+                  size: 28.sp,
+                ),
               ),
             ),
           ),
 
           Positioned(
-            top: 188.h, right: 138,
+            top: 188.h,
+            right: 138,
             child: Center(
               child: Padding(
                 padding: EdgeInsets.only(left: 10.w),
-                child: Icon(Icons.location_on, color: Colors.white, size: 23.sp),
+                child: Icon(
+                  Icons.location_on,
+                  color: Colors.white,
+                  size: 23.sp,
+                ),
               ),
             ),
           ),
 
           Positioned(
-            top: 245.h, right: 90.w,
-            child: Icon(Icons.location_on, color: Colors.white.withAlpha(120), size: 16.sp),
+            top: 245.h,
+            right: 90.w,
+            child: Icon(
+              Icons.location_on,
+              color: Colors.white.withAlpha(120),
+              size: 16.sp,
+            ),
           ),
 
           Positioned(
-            top: 170.h, right: 40.w,
-            child: _AvatarBubble(imagePath: 'assets/images/onboarding2_img.jpg', size: 56),
+            top: 170.h,
+            right: 40.w,
+            child: _AvatarBubble(
+              imagePath: 'assets/images/splash_5.jpg',
+              size: 56,
+            ),
           ),
 
           Positioned(
-            top: 210.h, left: 78.w,
-            child: _AvatarBubble(imagePath: 'assets/images/onboarding1_img.jpg', size: 52),
+            top: 210.h,
+            left: 78.w,
+            child: _AvatarBubble(
+              imagePath: 'assets/images/splash_4.jpg',
+              size: 52,
+            ),
           ),
 
           Positioned(
-            bottom: 55.h, left: 125.w,
-            child: _AvatarBubble(imagePath: 'assets/images/onboarding4_img.jpg', size: 50),
+            bottom: 55.h,
+            left: 125.w,
+            child: _AvatarBubble(
+              imagePath: 'assets/images/splash_6.jpg',
+              size: 50,
+            ),
+          ),
+
+          Positioned(top: 95.h, left: 20.w, child: _GroupCard()),
+
+          Positioned(
+            top: 110.h,
+            right: 26.w,
+            child: _LocationCard(label: ConstString.buildYourCommunity),
           ),
 
           Positioned(
-            top: 95.h, left: 20.w,
-            child: _GroupCard(),
+            bottom: 120.h,
+            left: 16.w,
+            child: _LocationCard(
+                icon: Icons.emoji_events_sharp,
+                label: ConstString.competition),
           ),
 
-          Positioned(
-            top: 110.h, right: 66.w,
-            child: _LocationCard(label: ConstString.hangoutPlan),
-          ),
-
-          Positioned(
-            bottom: 120.h, left: 16.w,
-            child: _LocationCard(label: ConstString.competition),
-          ),
-
-          // ── 1-TO-1 card — bottom right ──
-          Positioned(
-            bottom: 60.h, right: 16.w,
-            child: _OneTOOneCard(),
-          ),
+          Positioned(bottom: 60.h, right: 16.w, child: _OneTOOneCard()),
         ],
       ),
     );
@@ -147,6 +189,7 @@ class _MapSection extends StatelessWidget {
 class _DashedCircle extends StatelessWidget {
   final double radius;
   final Color color;
+
   const _DashedCircle({required this.radius, required this.color});
 
   @override
@@ -160,6 +203,7 @@ class _DashedCircle extends StatelessWidget {
 
 class _DashedCirclePainter extends CustomPainter {
   final Color color;
+
   const _DashedCirclePainter({required this.color});
 
   @override
@@ -195,18 +239,25 @@ class _DashedCirclePainter extends CustomPainter {
 class _AvatarBubble extends StatelessWidget {
   final String imagePath;
   final double size;
+
   const _AvatarBubble({required this.imagePath, required this.size});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size.r, height: size.r,
+      width: size.r,
+      height: size.r,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(color: Colors.white.withAlpha(180), width: 2.5),
       ),
       child: ClipOval(
-        child: AppImage(path: imagePath, fit: BoxFit.cover, width: size.r, height: size.r),
+        child: AppImage(
+          path: imagePath,
+          fit: BoxFit.cover,
+          width: size.r,
+          height: size.r,
+        ),
       ),
     );
   }
@@ -233,7 +284,13 @@ class _GroupCard extends StatelessWidget {
               color: ConstColor.yellow,
               borderRadius: BorderRadius.circular(6.r),
             ),
-            child: CustomText(title: ConstString.group, textSize: 9.sp, fontWeight: FontWeight.w700, textColor: Colors.black, maxLine: 1),
+            child: CustomText(
+              title: ConstString.group,
+              textSize: 9.sp,
+              fontWeight: FontWeight.w700,
+              textColor: Colors.black,
+              maxLine: 1,
+            ),
           ),
           SizedBox(height: 6.h),
           // Overlapping avatars
@@ -242,21 +299,37 @@ class _GroupCard extends StatelessWidget {
             width: 80.w,
             child: Stack(
               children: [
-                _SmallAvatar(path: 'assets/images/onboarding3_img.jpg', left: 0),
-                _SmallAvatar(path: 'assets/images/onboarding4_img.jpg', left: 18),
-                _SmallAvatar(path: 'assets/images/onboarding5_img.jpg', left: 36),
+                _SmallAvatar(
+                  path: 'assets/images/splash_1.jpg',
+                  left: 0,
+                ),
+                _SmallAvatar(
+                  path: 'assets/images/splash_2.jpg',
+                  left: 18,
+                ),
+                _SmallAvatar(
+                  path: 'assets/images/splash_3.jpg',
+                  left: 36,
+                ),
                 // +5 badge
                 Positioned(
                   left: 54,
                   child: Container(
-                    width: 28.r, height: 28.r,
+                    width: 28.r,
+                    height: 28.r,
                     decoration: BoxDecoration(
                       color: ConstColor.primaryColor,
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 1.5),
                     ),
                     child: Center(
-                      child: CustomText(title: '+5', textSize: 8.sp, fontWeight: FontWeight.w700, textColor: Colors.white, maxLine: 1),
+                      child: CustomText(
+                        title: '+5',
+                        textSize: 8.sp,
+                        fontWeight: FontWeight.w700,
+                        textColor: Colors.white,
+                        maxLine: 1,
+                      ),
                     ),
                   ),
                 ),
@@ -272,6 +345,7 @@ class _GroupCard extends StatelessWidget {
 class _SmallAvatar extends StatelessWidget {
   final String path;
   final double left;
+
   const _SmallAvatar({required this.path, required this.left});
 
   @override
@@ -279,9 +353,20 @@ class _SmallAvatar extends StatelessWidget {
     return Positioned(
       left: left,
       child: Container(
-        width: 28.r, height: 28.r,
-        decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: Colors.white, width: 1.5)),
-        child: ClipOval(child: AppImage(path: path, fit: BoxFit.cover, width: 28.r, height: 28.r)),
+        width: 28.r,
+        height: 28.r,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.white, width: 1.5),
+        ),
+        child: ClipOval(
+          child: AppImage(
+            path: path,
+            fit: BoxFit.cover,
+            width: 28.r,
+            height: 28.r,
+          ),
+        ),
       ),
     );
   }
@@ -289,7 +374,9 @@ class _SmallAvatar extends StatelessWidget {
 
 class _LocationCard extends StatelessWidget {
   final String label;
-  const _LocationCard({required this.label});
+  final IconData icon;
+
+  const _LocationCard({required this.label, this.icon = Icons.groups});
 
   @override
   Widget build(BuildContext context) {
@@ -303,9 +390,15 @@ class _LocationCard extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.location_on_outlined, color: Colors.white, size: 13.sp),
+          Icon(icon, color: Colors.white, size: 18.sp),
           SizedBox(width: 4.w),
-          CustomText(title: label, textSize: 11.sp, fontWeight: FontWeight.w600, textColor: Colors.white, maxLine: 1),
+          CustomText(
+            title: label,
+            textSize: 11.sp,
+            fontWeight: FontWeight.w600,
+            textColor: Colors.white,
+            maxLine: 1,
+          ),
         ],
       ),
     );
@@ -334,23 +427,39 @@ class _OneTOOneCard extends StatelessWidget {
               color: const Color(0xFF34D399),
               borderRadius: BorderRadius.circular(6.r),
             ),
-            child: CustomText(title: ConstString.oneToOne, textSize: 9.sp, fontWeight: FontWeight.w700, textColor: Color(0xFF022C22), maxLine: 1),
+            child: CustomText(
+              title: ConstString.oneToOne,
+              textSize: 9.sp,
+              fontWeight: FontWeight.w700,
+              textColor: Color(0xFF022C22),
+              maxLine: 1,
+            ),
           ),
           SizedBox(height: 6.h),
           Row(
             children: [
-              // Two overlapping avatars
               SizedBox(
-                width: 50.w, height: 28.r,
+                width: 50.w,
+                height: 28.r,
                 child: Stack(
                   children: [
-                    _SmallAvatar(path: 'assets/images/onboarding2_img.jpg', left: 0),
-                    _SmallAvatar(path: 'assets/images/onboarding1_img.jpg', left: 18),
+                    _SmallAvatar(
+                      path: 'assets/images/splash_7.jpg',
+                      left: 0,
+                    ),
+                    _SmallAvatar(
+                      path: 'assets/images/splash_8.jpg',
+                      left: 18,
+                    ),
                   ],
                 ),
               ),
               SizedBox(width: 6.w),
-              Icon(Icons.swap_horiz_rounded, color: Colors.white.withAlpha(150), size: 20.sp),
+              Icon(
+                Icons.swap_horiz_rounded,
+                color: Colors.white.withAlpha(150),
+                size: 20.sp,
+              ),
             ],
           ),
         ],
@@ -361,11 +470,15 @@ class _OneTOOneCard extends StatelessWidget {
 
 class _BottomCard extends StatelessWidget {
   const _BottomCard({required this.controller});
+
   final OnboardingController controller;
 
   @override
   Widget build(BuildContext context) {
-    final bottomPadding = MediaQuery.of(context).padding.bottom;
+    final bottomPadding = MediaQuery
+        .of(context)
+        .padding
+        .bottom;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -381,7 +494,11 @@ class _BottomCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset("assets/images/app_logo.png", width: 60.r, height: 60.r),
+            Image.asset(
+              "assets/images/app_logo.png",
+              width: 60.r,
+              height: 60.r,
+            ),
             SizedBox(height: 16.h),
             CustomText(
               title: ConstString.onboardingHeadline,
@@ -390,7 +507,9 @@ class _BottomCard extends StatelessWidget {
               textColor: ConstColor.black,
               textAlign: TextAlign.center,
               maxLine: 3,
-              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+              fontFamily: GoogleFonts
+                  .plusJakartaSans()
+                  .fontFamily,
             ),
             SizedBox(height: 12.h),
             CustomText(
@@ -403,7 +522,10 @@ class _BottomCard extends StatelessWidget {
             ),
             SizedBox(height: 24.h),
             CustomElevatedButton(
-              gradient: const [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+              gradient: const [
+                ConstColor.primaryDeepColor,
+                ConstColor.primaryColor,
+              ],
               top: 0,
               onPressed: controller.onGetStarted,
               buttonBorderRadius: 30,
@@ -427,5 +549,6 @@ class _PinPosition {
   final double? right;
   final double? top;
   final double? bottom;
+
   _PinPosition({this.left, this.right, this.top, this.bottom});
 }

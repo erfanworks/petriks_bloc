@@ -40,7 +40,7 @@ class CreatePlanScreen extends StatelessWidget {
                 return const _Step1PlanType();
               }
 
-              if (c.selectedPlanType.value == 'Easy Start') {
+              if (c.selectedPlanType.value == 'Group Plan') {
                 if (c.currentStep.value == 1) return const _Step2Activity();
                 if (c.currentStep.value == 2) return const _Step3Vibe();
                 if (c.currentStep.value == 3) return const _Step4WhenWhere();

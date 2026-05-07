@@ -9,6 +9,7 @@ class ConstString {
   static const signInToYour = 'Sign in to your';
   static const String yourCommunityStartsHere = 'Your community starts here';
   static const String hangoutPlan              = 'Hangout Plan';
+  static const String buildYourCommunity              = 'Build your community';
   static const String competition              = 'Competition';
   static const String group                    = 'GROUP';
   static const String oneToOne                 = '1-TO-1';
