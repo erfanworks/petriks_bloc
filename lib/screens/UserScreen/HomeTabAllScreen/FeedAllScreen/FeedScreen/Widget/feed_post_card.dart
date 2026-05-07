@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
@@ -136,15 +137,24 @@ class FeedPostCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: Row(
               children: [
-                GestureDetector(
+                Obx(() => GestureDetector(
                   onTap: () => controller.onLike(post),
                   child: Row(
                     children: [
-                      Icon(Icons.favorite_border_rounded,
-                          color: ConstColor.grey, size: 20.sp),
+                      Icon(
+                        controller.isLiked.value
+                            ? Icons.favorite_rounded
+                            : Icons.favorite_border_rounded,
+                        color: controller.isLiked.value
+                            ? Colors.red
+                            : ConstColor.grey,
+                        size: 20.sp,
+                      ),
                       SizedBox(width: 4.w),
                       CustomText(
-                        title: '${post.likes}',
+                        title: controller.isLiked.value
+                            ? '${controller.likeCount.value}'
+                            : '${post.likes}',
                         textColor: ConstColor.silverGray20,
                         fontWeight: FontWeight.w600,
                         textSize: 12.sp,
@@ -152,7 +162,7 @@ class FeedPostCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
+                )),
                 SizedBox(width: 16.w),
                 GestureDetector(
                   onTap: () => controller.onComment(post),

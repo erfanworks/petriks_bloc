@@ -7,24 +7,28 @@ class VibeEventItem {
   final String type;
   final String tag;
   final String title;
+  final String gender;
   final String language;
   final String location;
   final String date;
   final bool isFreeEntry;
   final String hostName;
   final String hostImage;
+  final bool isOpen;
 
   const VibeEventItem({
     required this.image,
     required this.type,
     required this.tag,
     required this.title,
+    this.gender = 'Male (20-25)',
     required this.language,
     required this.location,
     required this.date,
     required this.hostName,
     required this.hostImage,
     this.isFreeEntry = false,
+    this.isOpen = true,
   });
 }
 

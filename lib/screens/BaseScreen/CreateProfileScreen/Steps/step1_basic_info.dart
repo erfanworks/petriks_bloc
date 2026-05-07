@@ -329,35 +329,44 @@ class _DropdownField extends StatelessWidget {
         border: Border.all(color: const Color(0xFFE0DFF0)),
       ),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: value,
-          hint: CustomText(
-            title: hint,
-            textSize: 15.sp,
-            textColor: ConstColor.iconColor,
-            maxLine: 1,
-            fontWeight: FontWeight.w400,
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            hoverColor: Colors.transparent,
+            focusColor: ConstColor.silverGray20.withAlpha(40),
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            canvasColor: Colors.white,
           ),
-          isExpanded: true,
-          icon: Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: const Color(0xFF6B6B80),
-            size: 22.r,
-          ),
-          items: items
-              .map(
-                (e) => DropdownMenuItem(
-                  value: e,
-                  child: CustomText(
-                    title: e,
-                    textSize: 14.sp,
-                    textColor: const Color(0xFF1A1A2E),
-                    maxLine: 1,
+          child: DropdownButton<String>(
+            value: value,
+            hint: CustomText(
+              title: hint,
+              textSize: 15.sp,
+              textColor: ConstColor.iconColor,
+              maxLine: 1,
+              fontWeight: FontWeight.w400,
+            ),
+            isExpanded: true,
+            icon: Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: const Color(0xFF6B6B80),
+              size: 22.r,
+            ),
+            items: items
+                .map(
+                  (e) => DropdownMenuItem(
+                    value: e,
+                    child: CustomText(
+                      title: e,
+                      textSize: 14.sp,
+                      textColor: const Color(0xFF1A1A2E),
+                      maxLine: 1,
+                    ),
                   ),
-                ),
-              )
-              .toList(),
-          onChanged: onChanged,
+                )
+                .toList(),
+            onChanged: onChanged,
+          ),
         ),
       ),
     );

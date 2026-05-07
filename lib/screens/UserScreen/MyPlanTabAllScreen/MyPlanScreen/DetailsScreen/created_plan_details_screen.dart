@@ -264,7 +264,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                                   _SmallAvatarStack(),
                                   SizedBox(width: 8.w),
                                   CustomText(
-                                    title: '3/6 JOINED',
+                                    title: '3/6 REQUESTED',
                                     textColor: ConstColor.primaryColor,
                                     textSize: 12.sp,
                                     fontWeight: FontWeight.w600,
@@ -295,7 +295,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                         ...[
                           {
                             'name': 'Alex Rivera',
-                            'img': 'assets/images/onboarding1_img.jpg',
+                            'img': 'assets/images/onboarding5_img.jpg',
                           },
                           {
                             'name': 'Marcus Chen',
@@ -303,7 +303,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                           },
                           {
                             'name': 'Petris',
-                            'img': 'assets/images/onboarding3_img.jpg',
+                            'img': 'assets/images/onboarding1_img.jpg',
                           },
                         ].map(
                           (p) =>
@@ -629,24 +629,56 @@ class _ParticipantRowState extends State<_ParticipantRow> {
                 isApproved = true;
               });
             },
-            child: Container(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
               padding: EdgeInsets.symmetric(
                 horizontal: 15.w,
                 vertical: 6.h,
               ),
               decoration: BoxDecoration(
+                color: isApproved
+                    ? const Color(0xFFE8F7EE)
+                    : ConstColor.white,
                 borderRadius: BorderRadius.circular(30.r),
                 border: Border.all(
-                  color: const Color(0xFF6C63FF),
+                  color: isApproved
+                      ? const Color(0xFF22C55E)
+                      : const Color(0xFF6C63FF),
                   width: 1.2,
                 ),
+                boxShadow: isApproved
+                    ? [
+                  BoxShadow(
+                    color: const Color(0xFF22C55E).withAlpha(40),
+                    blurRadius: 10,
+                    offset: const Offset(0, 3),
+                  ),
+                ]
+                    : [],
               ),
-              child: CustomText(
-                title: isApproved ? "Approved" : "Approve",
-                textSize: 10.sp,
-                fontWeight: FontWeight.w500,
-                textColor: const Color(0xFF6C63FF),
-                maxLine: 1,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+
+                  if (isApproved) ...[
+                    Icon(
+                      Icons.check_circle,
+                      color: const Color(0xFF16A34A),
+                      size: 14.sp,
+                    ),
+                    SizedBox(width: 4.w),
+                  ],
+
+                  CustomText(
+                    title: isApproved ? "Approved" : "Approve",
+                    textSize: 10.sp,
+                    fontWeight: FontWeight.w600,
+                    textColor: isApproved
+                        ? const Color(0xFF15803D)
+                        : ConstColor.primaryColor,
+                    maxLine: 1,
+                  ),
+                ],
               ),
             ),
           ),

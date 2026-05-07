@@ -63,6 +63,7 @@ class JoinedPlanDetailsController extends GetxController {
   // lockUntil is set from plan data (passed via Get.arguments or API)
   DateTime? lockUntil;
   final RxBool isReportSelected = false.obs;
+  final attendanceConfirmed = false.obs;
 
   void initLockTimer(DateTime lockUntilTime) {
     lockUntil = lockUntilTime;
@@ -175,9 +176,8 @@ class JoinedPlanDetailsController extends GetxController {
   }
 
   void onConfirmAttendance() {
-    Get.back();
+    attendanceConfirmed.value = true;
     AppSnackBar.success("Attendance successfully 🎉", seconds: 2);
-
   }
 
   void onSelectVibe(int index) => selectedVibe.value = index;

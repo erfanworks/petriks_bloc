@@ -316,7 +316,8 @@ class _Step3Vibe extends StatelessWidget {
 
           Obx(
             () => Wrap(
-              spacing: 8.w,
+              alignment: WrapAlignment.start,
+              spacing: 40.w,
               runSpacing: 8.h,
               children: c.vibes.map((v) {
                 final sel = c.selectedVibe.value == v;
@@ -331,17 +332,33 @@ class _Step3Vibe extends StatelessWidget {
 
           SizedBox(height: 16.h),
 
-          _FieldLabel(label: ConstString.groupSize),
-          SizedBox(height: 8.h),
-          Obx(
-            () => _PillRow(
-              items: c.groupSizes,
-              selected: c.selectedGroupSize.value,
-              onTap: (v) => c.selectedGroupSize.value = v,
-            ),
+          // _FieldLabel(label: ConstString.groupSize),
+          // SizedBox(height: 8.h),
+          // Obx(
+          //   () => _PillRow(
+          //     items: c.groupSizes,
+          //     selected: c.selectedGroupSize.value,
+          //     onTap: (v) => c.selectedGroupSize.value = v,
+          //   ),
+          // ),
+          //
+          // SizedBox(height: 16.h),
+          Obx(() => c.selectedPlanType.value == 'Group Plan'
+              ? Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _FieldLabel(label: ConstString.groupSize),
+              SizedBox(height: 8.h),
+              Obx(() => _PillRow(
+                items: c.groupSizes,
+                selected: c.selectedGroupSize.value,
+                onTap: (v) => c.selectedGroupSize.value = v,
+              )),
+              SizedBox(height: 16.h),
+            ],
+          )
+              : const SizedBox.shrink(),
           ),
-
-          SizedBox(height: 16.h),
 
           // Budget
           _FieldLabel(label: ConstString.budget),
@@ -961,7 +978,7 @@ class _SelectChip extends StatelessWidget {
     onTap: onTap,
     child: AnimatedContainer(
       duration: const Duration(milliseconds: 160),
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 9.h),
+      padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 6.h),
       decoration: BoxDecoration(
         color: selected ? ConstColor.primaryColor : ConstColor.boxColor,
         borderRadius: BorderRadius.circular(30.r),

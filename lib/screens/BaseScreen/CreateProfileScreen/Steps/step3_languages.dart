@@ -103,36 +103,45 @@ class Step3Languages extends StatelessWidget {
                 border: Border.all(color: const Color(0xFFE0DFF0)),
               ),
               child: DropdownButtonHideUnderline(
-                child: DropdownButton<String>(
-                  value: c.preferredChatLanguage.value.isEmpty
-                      ? null
-                      : c.preferredChatLanguage.value,
-                  hint: CustomText(
-                    title: 'Select Language',
-                    textSize: 14.sp,
-                    textColor: ConstColor.grey,
-                    maxLine: 1,
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    hoverColor: Colors.transparent,
+                    focusColor: ConstColor.silverGray20.withAlpha(40),
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    canvasColor: Colors.white,
                   ),
-                  isExpanded: true,
-                  icon: Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    color: const Color(0xFF6B6B80),
-                    size: 22.r,
-                  ),
-                  items: c.chatLanguages
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: CustomText(
-                            title: e,
-                            textSize: 14.sp,
-                            textColor: const Color(0xFF1A1A2E),
-                            maxLine: 1,
+                  child: DropdownButton<String>(
+                    value: c.preferredChatLanguage.value.isEmpty
+                        ? null
+                        : c.preferredChatLanguage.value,
+                    hint: CustomText(
+                      title: 'Select Language',
+                      textSize: 14.sp,
+                      textColor: ConstColor.grey,
+                      maxLine: 1,
+                    ),
+                    isExpanded: true,
+                    icon: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: const Color(0xFF6B6B80),
+                      size: 22.r,
+                    ),
+                    items: c.chatLanguages
+                        .map(
+                          (e) => DropdownMenuItem(
+                            value: e,
+                            child: CustomText(
+                              title: e,
+                              textSize: 14.sp,
+                              textColor: const Color(0xFF1A1A2E),
+                              maxLine: 1,
+                            ),
                           ),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: (v) => c.preferredChatLanguage.value = v ?? '',
+                        )
+                        .toList(),
+                    onChanged: (v) => c.preferredChatLanguage.value = v ?? '',
+                  ),
                 ),
               ),
             ),

@@ -153,7 +153,7 @@ class PlanCard extends StatelessWidget {
                     label: 'Male (20-25)',
                   ),
 
-                  SizedBox(height: 6.h),
+                  // SizedBox(height: 6.h),
                   Row(
                     children: [
                       Icon(
@@ -201,6 +201,14 @@ class PlanCard extends StatelessWidget {
                     children: [
                       if (isJoined) ...[_HostSection(), const Spacer()],
                       _MemberStackSection(),
+                      SizedBox(width: 6.w),
+                      CustomText(
+                        title: isJoined ? "11 JOINED": "11 REQUESTED",
+                        textColor: const Color(0xFF6C5CE7),
+                        textSize: 10.sp,
+                        fontWeight: FontWeight.w800,
+                        maxLine: 1,
+                      ),
                       if (!isJoined && plan.tag == 'COMPLETED') ...[
                         const Spacer(),
                         _FeedbackAction(
@@ -353,13 +361,13 @@ class _MemberStackSection extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(width: 8.w),
-        CustomText(
-          title: '11 JOINED',
-          textColor: const Color(0xFF6C5CE7),
-          textSize: 10.sp,
-          fontWeight: FontWeight.w800,
-        ),
+        // SizedBox(width: 8.w),
+        // CustomText(
+        //   title: '11 REQUESTED',
+        //   textColor: const Color(0xFF6C5CE7),
+        //   textSize: 10.sp,
+        //   fontWeight: FontWeight.w800,
+        // ),
       ],
     );
   }

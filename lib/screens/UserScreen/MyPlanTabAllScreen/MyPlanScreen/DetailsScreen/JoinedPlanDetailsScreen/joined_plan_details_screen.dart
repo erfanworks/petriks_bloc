@@ -351,11 +351,20 @@ class JoinedPlanDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 12.w),
-                  Expanded(
-                    child: _OutlineButton(
-                      label: ConstString.attendance,
-                      color: const Color(0xFF006C49),
-                      onTap: controller.onConfirmAttendance,
+                  Obx(
+                        () => Expanded(
+                      child: controller.attendanceConfirmed.value
+                          ? _OutlineButton(
+                        label: ConstString.helpAndSafety,
+                        color: const Color(0xFF006C49),
+                        onTap: () =>
+                            Get.toNamed(AppRoutes.howDidItGoScreen),
+                      )
+                          : _OutlineButton(
+                        label: ConstString.attendance,
+                        color: const Color(0xFF006C49),
+                        onTap: controller.onConfirmAttendance,
+                      ),
                     ),
                   ),
                 ],

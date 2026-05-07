@@ -52,7 +52,7 @@ class CreatePlanController extends GetxController {
   final selectedAgeBand   = ''.obs;
   final selectedLanguage  = ''.obs;
 
-  final vibes      = ['Make new friends', 'Casual hangout', 'Beginner-friendly', 'Practice / Skill', 'Deep talks', 'Active'];
+  final vibes      = ['Quite', 'Social', 'Lively', 'Easy Going',];
   final groupSizes = ['1:1', '2-4', '5-8', '10+'];
   final budgets    = ['Free', '\$10', '\$15', 'Custom'];
   final ageBands   = ['18 - 24', '25 - 34', '35 - 44', '45+'];
@@ -127,7 +127,7 @@ class CreatePlanController extends GetxController {
       // Easy Start
       if (currentStep.value == 1) {
         return selectedVibe.value.isNotEmpty &&
-            selectedGroupSize.value.isNotEmpty &&
+            // selectedGroupSize.value.isNotEmpty &&
             selectedBudget.value.isNotEmpty &&
             selectedGender.value.isNotEmpty &&
             selectedAgeBand.value.isNotEmpty &&
