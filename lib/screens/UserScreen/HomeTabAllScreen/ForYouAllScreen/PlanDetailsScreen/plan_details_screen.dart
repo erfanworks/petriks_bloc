@@ -322,7 +322,6 @@ class PlanDetailsScreen extends StatelessWidget {
                             onTap: () {
                               Get.toNamed(AppRoutes.joinedPlanUserReport);
                               AppSnackBar.message("Attendance canceled");
-
                             },
                           ),
                         ),
