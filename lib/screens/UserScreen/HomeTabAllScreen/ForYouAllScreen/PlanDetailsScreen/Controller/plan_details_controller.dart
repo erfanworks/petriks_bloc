@@ -55,6 +55,7 @@ class PlanDetailsController extends GetxController {
   final lockTimer = ''.obs;
   Timer? _timer;
   final attendanceConfirmed = false.obs;
+  bool get isTimerExpired => lockTimer.value.isEmpty && lockUntil != null;
 
   DateTime? lockUntil;
 
@@ -209,6 +210,7 @@ class PlanDetailsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
+    // initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
+    initLockTimer(DateTime.now().add(const Duration(minutes: 5)));
   }
 }

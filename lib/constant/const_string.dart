@@ -135,6 +135,9 @@ class ConstString {
   static const planAgain = 'Plan again';
   static const submit = 'Submit';
   static const urgentHelpNeeded = 'Urgent Help Needed?';
+  static const emergencyNumber1  = 'If you are in immediate danger or feel unsafe, call 999';
+  static const emergencyNumber2  = 'You can also call 112 in the UK.';
+  static const emergencyNumber3  = 'For urgent medical help that is not life threatening, call 111.';
   static const emergencyNumber = 'Emergency number to need help';
   static const helpCenter = 'Help Center';
   static const attendanceTips = 'Attendance Tips';

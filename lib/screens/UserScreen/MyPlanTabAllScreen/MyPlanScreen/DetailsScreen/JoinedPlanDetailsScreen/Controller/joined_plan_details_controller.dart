@@ -7,6 +7,7 @@ import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
 import '../../../../../HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Widget/join_confirmation_sheet.dart';
+import '../Widget/joined_plan_confirmation_sheet.dart';
 
 // ---- Plan Detail Models ----
 class JoinedLocationVoteItem {
@@ -64,6 +65,8 @@ class JoinedPlanDetailsController extends GetxController {
   DateTime? lockUntil;
   final RxBool isReportSelected = false.obs;
   final attendanceConfirmed = false.obs;
+  bool get isTimerExpired => lockTimer.value.isEmpty && lockUntil != null;
+
 
   void initLockTimer(DateTime lockUntilTime) {
     lockUntil = lockUntilTime;
@@ -162,13 +165,13 @@ class JoinedPlanDetailsController extends GetxController {
 
   void showJoinSheet() {
     Get.bottomSheet(
-      const JoinConfirmationSheet(),
+      const JoinedPlanConfirmationSheet(),
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
     );
   }
 
-  void confirmJoin() {
+  void confirmJoined() {
     hasJoined.value = true;
     Get.back();
     AppSnackBar.success("Joined successfully 🎉", seconds: 2);
@@ -241,6 +244,6 @@ class JoinedPlanDetailsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
+    initLockTimer(DateTime.now().add(const Duration(minutes: 10)));
   }
 }

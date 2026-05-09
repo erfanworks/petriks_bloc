@@ -358,7 +358,7 @@ class JoinedPlanDetailsScreen extends StatelessWidget {
                         label: ConstString.helpAndSafety,
                         color: const Color(0xFF006C49),
                         onTap: () =>
-                            Get.toNamed(AppRoutes.howDidItGoScreen),
+                            Get.toNamed(AppRoutes.helpCenterScreen),
                       )
                           : _OutlineButton(
                         label: ConstString.attendance,
