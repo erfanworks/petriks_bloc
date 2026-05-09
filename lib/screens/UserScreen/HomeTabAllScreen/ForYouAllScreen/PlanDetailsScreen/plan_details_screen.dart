@@ -197,7 +197,7 @@ class PlanDetailsScreen extends StatelessWidget {
 
               Obx(
                 () => _ChooseTimeCard(
-                  timeText: 'Sat • 7:30 PM',
+                  timeText: 'Sat • 8:40 PM',
                   voteCount: '2 Vote',
                   isSelected: controller.selectedTimeIndex.value == 1,
                   onTap: () => controller.selectTime(1),
@@ -307,7 +307,7 @@ class PlanDetailsScreen extends StatelessWidget {
             16.w,
             0,
             16.w,
-            0.h + MediaQuery.of(context).padding.bottom,
+            4.h + MediaQuery.of(context).padding.bottom,
           ),
           child: controller.hasJoined.value
               ? Column(

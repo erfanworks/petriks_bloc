@@ -183,7 +183,6 @@ class HostProfileScreen extends StatelessWidget {
     );
   }
 
-  // ── 3-dot menu: Report / Block ──
   void _showOptionsMenu(BuildContext context, HostProfileController c) {
     showMenu(
       context: context,

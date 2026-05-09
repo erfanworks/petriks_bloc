@@ -205,7 +205,12 @@ class MyCommunityDetailScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 24.h),
+        padding: EdgeInsets.fromLTRB(
+          16.w,
+          0,
+          16.w,
+          4.h + MediaQuery.of(context).padding.bottom,
+        ),
         child: Column(
           // ─── ERROR FIXED: This prevents the Column from taking the full screen height ───
           mainAxisSize: MainAxisSize.min,
@@ -224,7 +229,7 @@ class MyCommunityDetailScreen extends StatelessWidget {
                 maxLine: 1,
               ),
             ),
-            SizedBox(height: 10.h),
+            SizedBox(height: 6.h),
             CustomElevatedButton(
               onPressed: controller.toCreateCompetition,
               height: 48,

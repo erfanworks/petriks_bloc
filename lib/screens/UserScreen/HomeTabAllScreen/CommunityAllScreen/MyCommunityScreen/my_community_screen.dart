@@ -21,7 +21,7 @@ class MyCommunityScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10.h,),
-          _InviteFriendsButton(),
+          _CreateCommunityButton(),
           SizedBox(height: 20.h),
           ListView.separated(
             shrinkWrap: true,
@@ -47,9 +47,9 @@ class MyCommunityScreen extends StatelessWidget {
 
 
 
-class _InviteFriendsButton extends StatelessWidget {
+class _CreateCommunityButton extends StatelessWidget {
 
-  const _InviteFriendsButton({super.key});
+  const _CreateCommunityButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,39 +59,31 @@ class _InviteFriendsButton extends StatelessWidget {
         onTap: (){
           Get.toNamed(AppRoutes.createCommunityScreen);
         },
-        child: DottedBorder(
-          options: RoundedRectDottedBorderOptions(
-            color: ConstColor.primaryDeepColor,
-            strokeWidth: 1.2,
-            dashPattern: const [10, 5],
-            radius: Radius.circular(32.r),
-            padding: EdgeInsets.zero,
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(vertical: 12.h),
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(30.r),
+            border: Border.all(color: ConstColor.primaryColor.withAlpha(40))
           ),
-          child: Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(vertical: 14.h),
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(30.r),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.group,
-                  color: ConstColor.primaryColor,
-                  size: 22.sp,
-                ),
-                SizedBox(width: 8.w),
-                CustomText(
-                  title: ConstString.createCommunity,
-                  textColor: ConstColor.primaryColor,
-                  textSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                  maxLine: 1,
-                ),
-              ],
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.group,
+                color: ConstColor.primaryColor,
+                size: 22.sp,
+              ),
+              SizedBox(width: 8.w),
+              CustomText(
+                title: ConstString.createCommunity,
+                textColor: ConstColor.primaryColor,
+                textSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                maxLine: 1,
+              ),
+            ],
           ),
         ),
       ),

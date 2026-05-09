@@ -159,7 +159,12 @@ class SetMatchDetailsScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
+        padding: EdgeInsets.fromLTRB(
+          16.w,
+          0,
+          16.w,
+          4.h + MediaQuery.of(context).padding.bottom,
+        ),
         child: CustomElevatedButton(
           onPressed: c.goToFinalReview,
           height: 48, top: 0, buttonBorderRadius: 30,

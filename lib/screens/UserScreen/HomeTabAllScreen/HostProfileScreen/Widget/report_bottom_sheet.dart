@@ -259,19 +259,27 @@ class _ReportFormView extends StatelessWidget {
           SizedBox(height: 20.h),
 
           // Submit button
-          CustomElevatedButton(
-            height: 48,
-            top: 0,
-            onPressed: c.submitReport,
-            // color: ConstColor.primaryColor,
-            gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-            buttonBorderRadius: 30,
-            child: CustomText(
-              title: ConstString.submitReport,
-              textSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              textColor: Colors.white,
-              maxLine: 1,
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+              16.w,
+              0,
+              16.w,
+              4.h + MediaQuery.of(context).padding.bottom,
+            ),
+            child: CustomElevatedButton(
+              height: 48,
+              top: 0,
+              onPressed: c.submitReport,
+              // color: ConstColor.primaryColor,
+              gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
+              buttonBorderRadius: 30,
+              child: CustomText(
+                title: ConstString.submitReport,
+                textSize: 15.sp,
+                fontWeight: FontWeight.w600,
+                textColor: Colors.white,
+                maxLine: 1,
+              ),
             ),
           ),
         ],

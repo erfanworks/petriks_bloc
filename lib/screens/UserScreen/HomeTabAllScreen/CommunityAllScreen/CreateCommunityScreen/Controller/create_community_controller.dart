@@ -91,7 +91,7 @@ class CreateCommunityController extends GetxController {
   }
 
   void nextStep() {
-    if (!canProceed) return; // Prevent action if fields are missing
+    if (!canProceed) return;
 
     if (currentStep.value < totalSteps - 1) {
       currentStep.value++;

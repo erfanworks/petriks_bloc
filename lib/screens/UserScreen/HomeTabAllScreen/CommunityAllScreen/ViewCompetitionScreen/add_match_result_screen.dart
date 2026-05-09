@@ -122,7 +122,7 @@ class AddMatchResultScreen extends StatelessWidget {
               onPressed: c.confirmResult,
               height: 48,
               top: 0,
-              bottom: 10,
+              bottom: 6,
               buttonBorderRadius: 30,
               gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
               child: CustomText(

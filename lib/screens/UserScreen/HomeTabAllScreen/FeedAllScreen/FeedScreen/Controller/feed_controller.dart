@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 // ─── Feed Post Model ──────────────────────────────────────────────────────────
@@ -136,11 +137,12 @@ class FeedController extends GetxController {
 
   void onMore(FeedPost post) {
     Get.bottomSheet(
-      const _MoreOptionsSheet(),
+      _MoreOptionsSheet(),
       backgroundColor: Get.theme.colorScheme.surface,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
+      isScrollControlled: true,
     );
   }
 
@@ -215,6 +217,6 @@ class _MoreOptionsSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO
-    return const SizedBox(height: 100);
+    return Card(color: ConstColor.primaryColor,);
   }
 }

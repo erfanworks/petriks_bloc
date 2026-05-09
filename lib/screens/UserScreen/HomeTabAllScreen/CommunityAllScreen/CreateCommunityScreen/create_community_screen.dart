@@ -54,7 +54,12 @@ class CreateCommunityScreen  extends StatelessWidget {
           ),
 
           Padding(
-            padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 24.h),
+            padding: EdgeInsets.fromLTRB(
+              16.w,
+              0,
+              16.w,
+              4.h + MediaQuery.of(context).padding.bottom,
+            ),
             child: Obx(() {
               final isNextDisabled = !c.canProceed;
 

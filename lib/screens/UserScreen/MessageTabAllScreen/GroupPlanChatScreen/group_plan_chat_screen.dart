@@ -27,7 +27,6 @@ class GroupPlanChatScreen extends StatelessWidget {
         titleColor: ConstColor.primaryColor,
         subTitle: ConstString.fourParticipants,
         actions:[
-          // ── 3 Dot Icon (Bottom Sheet trigger) ──
           GestureDetector(
             onTap: () => ChatBottomSheet.show(context),
             child: Padding(
@@ -110,9 +109,10 @@ class GroupPlanChatScreen extends StatelessWidget {
             ),
           ),
 
-          _ChatInputBar(),
+
         ],
       ),
+      bottomNavigationBar: _ChatInputBar(),
     );
   }
 }
@@ -377,15 +377,19 @@ class _AvatarInitial extends StatelessWidget {
     ),
   );
 }
-
 class _ChatInputBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+      padding: EdgeInsets.fromLTRB(
+        16.w,
+        0,
+        16.w,
+        5.h + MediaQuery.of(context).padding.bottom,
+      ),
       decoration: BoxDecoration(
         // color: Colors.white,
-        boxShadow:[
+        boxShadow: [
           BoxShadow(
             color: Colors.black.withAlpha(10),
             blurRadius: 8.r,
@@ -395,21 +399,16 @@ class _ChatInputBar extends StatelessWidget {
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        children:[
+        children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.fromLTRB(
-                16.w,
-                0,
-                16.w,
-                5.h + MediaQuery.of(context).padding.bottom,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 2.h),
               decoration: BoxDecoration(
                 color: ConstColor.primaryColor.withAlpha(25),
                 borderRadius: BorderRadius.circular(30.r),
               ),
               child: Row(
-                children:[
+                children: [
                   GestureDetector(
                     onTap: () => Get.find<ChatController>().pickChatImage(),
                     child: SvgPicture.asset(
@@ -423,6 +422,7 @@ class _ChatInputBar extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 8.w),
+
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
@@ -442,6 +442,8 @@ class _ChatInputBar extends StatelessWidget {
                       ),
                     ),
                   ),
+
+                  // Emoji Icon
                   GestureDetector(
                     onTap: () {},
                     child: Icon(
@@ -454,7 +456,9 @@ class _ChatInputBar extends StatelessWidget {
               ),
             ),
           ),
+
           SizedBox(width: 12.w),
+
           GestureDetector(
             onTap: () {},
             child: Container(
@@ -479,3 +483,104 @@ class _ChatInputBar extends StatelessWidget {
     );
   }
 }
+// class _ChatInputBar extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+//       decoration: BoxDecoration(
+//         // color: Colors.white,
+//         boxShadow:[
+//           BoxShadow(
+//             color: Colors.black.withAlpha(10),
+//             blurRadius: 8.r,
+//             offset: Offset(0, -2.h),
+//           ),
+//         ],
+//       ),
+//       child: Row(
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children:[
+//           Expanded(
+//             child: Container(
+//               padding: EdgeInsets.fromLTRB(
+//                 16.w,
+//                 0,
+//                 16.w,
+//                 5.h + MediaQuery.of(context).padding.bottom,
+//               ),
+//               decoration: BoxDecoration(
+//                 color: ConstColor.primaryColor.withAlpha(25),
+//                 borderRadius: BorderRadius.circular(30.r),
+//               ),
+//               child: Row(
+//                 children:[
+//                   GestureDetector(
+//                     onTap: () => Get.find<ChatController>().pickChatImage(),
+//                     child: SvgPicture.asset(
+//                       "assets/icons/add_icon.svg",
+//                       width: 25.w,
+//                       height: 25.h,
+//                       colorFilter: const ColorFilter.mode(
+//                         ConstColor.textColor,
+//                         BlendMode.srcIn,
+//                       ),
+//                     ),
+//                   ),
+//                   SizedBox(width: 8.w),
+//                   Expanded(
+//                     child: TextField(
+//                       decoration: InputDecoration(
+//                         hintText: ConstString.typeAMessage,
+//                         hintStyle: TextStyle(
+//                           color: ConstColor.textColor,
+//                           fontSize: 15.sp,
+//                           fontWeight: FontWeight.w400,
+//                         ),
+//                         border: InputBorder.none,
+//                         isDense: true,
+//                         contentPadding: EdgeInsets.symmetric(vertical: 12.h),
+//                       ),
+//                       style: TextStyle(
+//                         fontSize: 14.sp,
+//                         color: ConstColor.black,
+//                       ),
+//                     ),
+//                   ),
+//                   GestureDetector(
+//                     onTap: () {},
+//                     child: Icon(
+//                       Icons.sentiment_satisfied_alt_outlined,
+//                       size: 24.r,
+//                       color: ConstColor.textColor,
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//           SizedBox(width: 12.w),
+//           GestureDetector(
+//             onTap: () {},
+//             child: Container(
+//               width: 48.r,
+//               height: 48.r,
+//               decoration: const BoxDecoration(
+//                 color: ConstColor.primaryColor,
+//                 shape: BoxShape.circle,
+//               ),
+//               child: Padding(
+//                 padding: EdgeInsets.only(left: 4.w),
+//                 child: Icon(
+//                   Icons.send_outlined,
+//                   color: Colors.white,
+//                   size: 22.r,
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

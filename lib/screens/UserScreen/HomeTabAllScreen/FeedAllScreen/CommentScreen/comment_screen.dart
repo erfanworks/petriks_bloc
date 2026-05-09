@@ -191,7 +191,12 @@ class _CommentInputBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(16.w, 10.h, 16.w, 24.h),
+      padding: EdgeInsets.fromLTRB(
+        16.w,
+        0,
+        16.w,
+        4.h + MediaQuery.of(context).padding.bottom,
+      ),
       decoration: BoxDecoration(
         color: ConstColor.white,
         border: Border(top: BorderSide(color: ConstColor.borderColor)),

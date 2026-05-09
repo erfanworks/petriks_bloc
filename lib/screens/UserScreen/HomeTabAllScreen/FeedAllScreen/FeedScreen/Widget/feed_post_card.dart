@@ -71,7 +71,8 @@ class FeedPostCard extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () => controller.onMore(post),
+                  // onTap: () => controller.onMore(post),
+                  onTap: (){},
                   child: Icon(Icons.more_horiz, color: ConstColor.black, size: 20.sp),
                 ),
               ],

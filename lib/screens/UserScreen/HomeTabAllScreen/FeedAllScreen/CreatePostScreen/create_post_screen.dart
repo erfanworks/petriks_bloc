@@ -37,6 +37,7 @@ class CreatePostScreen extends StatelessWidget {
                         ? const SizedBox.shrink()
                         : _PickedImagePreview(c: c),
                   ),
+                  SizedBox(height: 20.h,)
                 ],
               ),
             ),
