@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
@@ -25,6 +27,7 @@ class ChatMessage {
   final bool isMe;
   final bool isHost;
   final bool isSystemMsg;
+  final List<String>? mediaPaths;
 
   const ChatMessage({
     required this.id,
@@ -35,6 +38,7 @@ class ChatMessage {
     this.isMe = false,
     this.isHost = false,
     this.isSystemMsg = false,
+    this.mediaPaths,
   });
 }
 
@@ -43,6 +47,8 @@ class ChatController extends GetxController {
   final tabs = ['Direct', 'Plan', 'Group'];
   final ImagePicker _picker = ImagePicker();
   final RxString selectedChatImagePath = ''.obs;
+  final RxList<String> selectedMediaPaths = <String>[].obs;
+  final messageController = TextEditingController();
 
   final List<ChatItem> chats = [
     const ChatItem(id: '1', name: 'Midnight Jazz Session',
@@ -80,7 +86,7 @@ class ChatController extends GetxController {
     const ChatMessage(id: '4', senderId: 'sarah', senderName: 'Sarah',
         text: "Hey everyone! So excited for this brunch. I've been to this cafe before and their coffee is amazing! ☕",
         time: '10:05 AM', isHost: true),
-  ];
+  ].obs;
 
   final List<ChatMessage> directMessages = [
     const ChatMessage(id: '1', senderId: 'mike', senderName: 'Mike',
@@ -107,9 +113,8 @@ class ChatController extends GetxController {
     const ChatMessage(id: '8', senderId: 'me', senderName: 'Me',
         text: 'Looking forward to it! How will we recognize each other?',
         time: '10:05 AM', isMe: true),
-  ];
+  ].obs;
 
-  // Plan chat messages (separate from group messages)
   final List<ChatMessage> planMessages = [
     const ChatMessage(
       id: 's1', senderId: 'system', senderName: '',
@@ -139,24 +144,95 @@ class ChatController extends GetxController {
       text: "Hey everyone! So excited for this brunch. I've been to this cafe before and their coffee is amazing! ☕",
       time: '10:05 AM', isHost: true,
     ),
-  ];
+  ].obs;
+
+  void sendGroupMessage() {
+    final text = messageController.text.trim();
+    if (text.isEmpty && selectedMediaPaths.isEmpty) return;
+
+    final now = TimeOfDay.now();
+    final hour = now.hourOfPeriod == 0 ? 12 : now.hourOfPeriod;
+    final minute = now.minute.toString().padLeft(2, '0');
+    final period = now.period == DayPeriod.am ? 'AM' : 'PM';
+
+    // এটি messages লিস্টে মেসেজ অ্যাড করবে (নিশ্চিত করুন messages লিস্টটি .obs করা আছে)
+    messages.add(ChatMessage(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      senderId: 'me',
+      senderName: 'Me',
+      text: text,
+      time: '$hour:$minute $period',
+      isMe: true,
+      mediaPaths: List.from(selectedMediaPaths),
+    ));
+
+    messageController.clear();
+    selectedMediaPaths.clear();
+  }
+
+  void sendPlanMessage() {
+    final text = messageController.text.trim();
+    if (text.isEmpty && selectedMediaPaths.isEmpty) return;
+
+    final now = TimeOfDay.now();
+    final hour = now.hourOfPeriod == 0 ? 12 : now.hourOfPeriod;
+    final minute = now.minute.toString().padLeft(2, '0');
+    final period = now.period == DayPeriod.am ? 'AM' : 'PM';
+
+    // এটি planMessages লিস্টে মেসেজ অ্যাড করবে
+    planMessages.add(ChatMessage(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      senderId: 'me',
+      senderName: 'Me',
+      text: text,
+      time: '$hour:$minute $period',
+      isMe: true,
+      mediaPaths: List.from(selectedMediaPaths), // ইমেজ পাঠানোর জন্য
+    ));
+
+    messageController.clear();
+    selectedMediaPaths.clear();
+  }
+
+
   void pickChatImage() {
     MediaPickerBottomSheet.show(
       onCamera: () async {
         final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
         if (photo != null) {
-          selectedChatImagePath.value = photo.path;
-          // TODO: Add logic to send this image in chat
+          selectedMediaPaths.add(photo.path);
         }
       },
       onGallery: () async {
-        final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
-        if (photo != null) {
-          selectedChatImagePath.value = photo.path;
-          // TODO: Add logic to send this image in chat
+        final List<XFile> photos = await _picker.pickMultiImage();
+        if (photos.isNotEmpty) {
+          selectedMediaPaths.addAll(photos.map((e) => e.path));
         }
       },
     );
+  }
+
+  void sendDirectMessage() {
+    final text = messageController.text.trim();
+    if (text.isEmpty && selectedMediaPaths.isEmpty) return;
+
+    final now = TimeOfDay.now();
+    final hour = now.hourOfPeriod == 0 ? 12 : now.hourOfPeriod;
+    final minute = now.minute.toString().padLeft(2, '0');
+    final period = now.period == DayPeriod.am ? 'AM' : 'PM';
+
+    directMessages.add(ChatMessage(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      senderId: 'me',
+      senderName: 'Me',
+      text: text,
+      mediaPaths: List.from(selectedMediaPaths),
+      time: '$hour:$minute $period',
+      isMe: true,
+    ));
+
+    messageController.clear();
+    selectedMediaPaths.clear();
   }
 
   void switchTab(int i) => selectedTab.value = i;
@@ -165,9 +241,14 @@ class ChatController extends GetxController {
     if (selectedTab.value == 0) {
       Get.toNamed(AppRoutes.directChatScreen, arguments: item);
     } else if (selectedTab.value == 1) {
-      Get.toNamed(AppRoutes.planChatScreen, arguments: item); // new screen
+      Get.toNamed(AppRoutes.planChatScreen, arguments: item);
     } else {
       Get.toNamed(AppRoutes.groupPlanChatScreen, arguments: item);
     }
+  }
+  @override
+  void onClose() {
+    messageController.dispose();
+    super.onClose();
   }
 }

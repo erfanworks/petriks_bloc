@@ -79,7 +79,6 @@ class FeaturedEventCard extends StatelessWidget {
                   ),
                 ),
 
-                // ---- Right: Event Info ----
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(
@@ -102,7 +101,6 @@ class FeaturedEventCard extends StatelessWidget {
 
                         SizedBox(height: 8.h),
 
-                        // ---- Info Rows ----
                         _InfoRow(
                           icon: Icons.language_rounded,
                           label: 'English',
@@ -125,17 +123,18 @@ class FeaturedEventCard extends StatelessWidget {
 
                         const Spacer(),
 
-                        // ---- Avatars + Joined ----
                         Row(
                           children: [
                             _AvatarStack(),
                             SizedBox(width: 8.w),
-                            CustomText(
-                              title: '3/6 JOINED',
-                              textColor: ConstColor.primaryColor,
-                              textSize: 11.sp,
-                              fontWeight: FontWeight.w700,
-                              maxLine: 1,
+                            Flexible(
+                              child: CustomText(
+                                title: '3/6 JOINED',
+                                textColor: ConstColor.primaryColor,
+                                textSize: 10.sp,
+                                fontWeight: FontWeight.w700,
+                                maxLine: 1,
+                              ),
                             ),
                           ],
                         ),
@@ -171,7 +170,6 @@ class FeaturedEventCard extends StatelessWidget {
   }
 }
 
-// ---- Info Row ----
 class _InfoRow extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -198,7 +196,6 @@ class _InfoRow extends StatelessWidget {
   }
 }
 
-// ---- Avatar Stack ----
 class _AvatarStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -207,17 +204,14 @@ class _AvatarStack extends StatelessWidget {
       height: 26.h,
       child: Stack(
         children: [
-          // Avatar 1
           Positioned(
             left: 0,
             child: _CircleAvatar(path: 'assets/images/onboarding5_img.jpg'),
           ),
-          // Avatar 2
           Positioned(
             left: 15.w,
             child: _CircleAvatar(path: 'assets/images/onboarding3_img.jpg'),
           ),
-          // +1 count badge
           Positioned(
             left: 30.w,
             child: Container(
@@ -245,7 +239,6 @@ class _AvatarStack extends StatelessWidget {
   }
 }
 
-// ---- Single Circle Avatar ----
 class _CircleAvatar extends StatelessWidget {
   final String path;
 

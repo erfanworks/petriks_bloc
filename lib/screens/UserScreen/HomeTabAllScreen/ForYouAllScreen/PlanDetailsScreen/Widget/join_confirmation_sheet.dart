@@ -124,6 +124,7 @@ class JoinConfirmationSheet extends StatelessWidget {
               maxLine: 1,
             ),
           ),
+          SizedBox(height: 12.h,)
         ],
       ),
     );

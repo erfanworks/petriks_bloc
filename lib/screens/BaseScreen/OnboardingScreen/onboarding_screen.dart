@@ -41,41 +41,62 @@ class _MapSection extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Positioned(
-            top: 52.h,
+            top: 50.h,
             left: 0,
             right: 0,
             child: Center(
-              child: Row(
+              child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   CustomText(
-                    title: ConstString.yourCommunityStartsHere,
-                    textSize: 15.sp,
-                    fontWeight: FontWeight.w600,
-                    textColor: Colors.white,
+                    title: ConstString.welcomeTo,
+                    textSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    textColor: Colors.white.withAlpha(200),
                     maxLine: 1,
                   ),
-                  SizedBox(width: 6.w),
-                  Text('👋', style: TextStyle(fontSize: 15.sp)),
+                  CustomText(
+                    title: ConstString.appName,
+                    textSize: 32.sp,
+                    fontWeight: FontWeight.w800,
+                    textColor: Colors.white,
+                    maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                  ),
+                  SizedBox(height: 2.h),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CustomText(
+                        title: ConstString.yourCommunityStartsHere,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                        textColor: Colors.white,
+                        maxLine: 1,
+                      ),
+                      SizedBox(width: 6.w),
+                      Text('👋', style: TextStyle(fontSize: 14.sp)),
+                    ],
+                  ),
                 ],
               ),
             ),
           ),
 
           Positioned(
-            top: 100.h,
+            top: 160.h,
             left: 0,
             right: 0,
             child: Center(
               child: _DashedCircle(
-                radius: 135.r,
+                radius: 130.r,
                 color: Colors.white.withAlpha(60),
               ),
             ),
           ),
 
           Positioned(
-            top: 145.h,
+            top: 205.h,
             left: 0,
             right: 0,
             child: Center(
@@ -87,7 +108,7 @@ class _MapSection extends StatelessWidget {
           ),
 
           Positioned(
-            top: 195.h,
+            top: 255.h,
             left: 0,
             right: 0,
             child: Center(
@@ -112,22 +133,13 @@ class _MapSection extends StatelessWidget {
           ),
 
           Positioned(
-            top: 188.h,
+            top: 248.h,
             right: 138,
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.only(left: 10.w),
-                child: Icon(
-                  Icons.location_on,
-                  color: Colors.white,
-                  size: 23.sp,
-                ),
-              ),
-            ),
+            child: Icon(Icons.location_on, color: Colors.white, size: 23.sp),
           ),
 
           Positioned(
-            top: 245.h,
+            top: 310.h,
             right: 90.w,
             child: Icon(
               Icons.location_on,
@@ -137,8 +149,8 @@ class _MapSection extends StatelessWidget {
           ),
 
           Positioned(
-            top: 170.h,
-            right: 40.w,
+            top: 228.h,
+            right: 36.w,
             child: _AvatarBubble(
               imagePath: 'assets/images/splash_5.jpg',
               size: 56,
@@ -146,8 +158,8 @@ class _MapSection extends StatelessWidget {
           ),
 
           Positioned(
-            top: 210.h,
-            left: 78.w,
+            top: 270.h,
+            left: 72.w,
             child: _AvatarBubble(
               imagePath: 'assets/images/splash_4.jpg',
               size: 52,
@@ -155,31 +167,32 @@ class _MapSection extends StatelessWidget {
           ),
 
           Positioned(
-            bottom: 55.h,
-            left: 125.w,
+            bottom: 30.h,
+            left: 150.w,
             child: _AvatarBubble(
               imagePath: 'assets/images/splash_6.jpg',
               size: 50,
             ),
           ),
 
-          Positioned(top: 95.h, left: 20.w, child: _GroupCard()),
+          Positioned(top: 155.h, left: 16.w, child: _GroupCard()),
 
           Positioned(
-            top: 110.h,
-            right: 26.w,
+            top: 168.h,
+            right: 16.w,
             child: _LocationCard(label: ConstString.buildYourCommunity),
           ),
 
           Positioned(
-            bottom: 120.h,
-            left: 16.w,
+            bottom: 50.h,
+            left: 12.w,
             child: _LocationCard(
-                icon: Icons.emoji_events_sharp,
-                label: ConstString.competition),
+              icon: Icons.emoji_events_sharp,
+              label: ConstString.competition,
+            ),
           ),
 
-          Positioned(bottom: 60.h, right: 16.w, child: _OneTOOneCard()),
+          Positioned(bottom: 20.h, right: 16.w, child: _OneTOOneCard()),
         ],
       ),
     );
@@ -212,13 +225,11 @@ class _DashedCirclePainter extends CustomPainter {
       ..color = color
       ..strokeWidth = 1.2
       ..style = PaintingStyle.stroke;
-
     final center = Offset(size.width / 2, size.height / 2);
     final radius = size.width / 2;
     const dashCount = 28;
     const dashAngle = 0.08;
     const gapAngle = (3.14159 * 2 / dashCount) - dashAngle;
-
     double angle = 0;
     for (int i = 0; i < dashCount; i++) {
       canvas.drawArc(
@@ -293,25 +304,14 @@ class _GroupCard extends StatelessWidget {
             ),
           ),
           SizedBox(height: 6.h),
-          // Overlapping avatars
           SizedBox(
             height: 28.r,
             width: 80.w,
             child: Stack(
               children: [
-                _SmallAvatar(
-                  path: 'assets/images/splash_1.jpg',
-                  left: 0,
-                ),
-                _SmallAvatar(
-                  path: 'assets/images/splash_2.jpg',
-                  left: 18,
-                ),
-                _SmallAvatar(
-                  path: 'assets/images/splash_3.jpg',
-                  left: 36,
-                ),
-                // +5 badge
+                _SmallAvatar(path: 'assets/images/splash_1.jpg', left: 0),
+                _SmallAvatar(path: 'assets/images/splash_2.jpg', left: 18),
+                _SmallAvatar(path: 'assets/images/splash_3.jpg', left: 36),
                 Positioned(
                   left: 54,
                   child: Container(
@@ -420,7 +420,6 @@ class _OneTOOneCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 1-TO-1 badge
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
             decoration: BoxDecoration(
@@ -431,7 +430,7 @@ class _OneTOOneCard extends StatelessWidget {
               title: ConstString.oneToOne,
               textSize: 9.sp,
               fontWeight: FontWeight.w700,
-              textColor: Color(0xFF022C22),
+              textColor: const Color(0xFF022C22),
               maxLine: 1,
             ),
           ),
@@ -443,14 +442,8 @@ class _OneTOOneCard extends StatelessWidget {
                 height: 28.r,
                 child: Stack(
                   children: [
-                    _SmallAvatar(
-                      path: 'assets/images/splash_7.jpg',
-                      left: 0,
-                    ),
-                    _SmallAvatar(
-                      path: 'assets/images/splash_8.jpg',
-                      left: 18,
-                    ),
+                    _SmallAvatar(path: 'assets/images/splash_7.jpg', left: 0),
+                    _SmallAvatar(path: 'assets/images/splash_8.jpg', left: 18),
                   ],
                 ),
               ),
@@ -475,10 +468,7 @@ class _BottomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bottomPadding = MediaQuery
-        .of(context)
-        .padding
-        .bottom;
+    final bottomPadding = MediaQuery.of(context).padding.bottom;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -507,9 +497,7 @@ class _BottomCard extends StatelessWidget {
               textColor: ConstColor.black,
               textAlign: TextAlign.center,
               maxLine: 3,
-              fontFamily: GoogleFonts
-                  .plusJakartaSans()
-                  .fontFamily,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
             SizedBox(height: 12.h),
             CustomText(
@@ -542,13 +530,4 @@ class _BottomCard extends StatelessWidget {
       ),
     );
   }
-}
-
-class _PinPosition {
-  final double? left;
-  final double? right;
-  final double? top;
-  final double? bottom;
-
-  _PinPosition({this.left, this.right, this.top, this.bottom});
 }

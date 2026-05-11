@@ -920,7 +920,7 @@ class _HostCard extends StatelessWidget {
                     CustomText(
                       title: 'Marcus Chen',
                       textColor: ConstColor.black,
-                      textSize: 14.sp,
+                      textSize: 12.sp,
                       fontWeight: FontWeight.w700,
                       maxLine: 1,
                     ),
@@ -937,7 +937,7 @@ class _HostCard extends StatelessWidget {
                       child: CustomText(
                         title: ConstString.captain,
                         textColor: Color(0xFF8700BD),
-                        textSize: 10,
+                        textSize: 8,
                       ),
                     ),
                   ],
@@ -957,7 +957,7 @@ class _HostCard extends StatelessWidget {
               Get.toNamed(AppRoutes.hostProfileScreen);
             },
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
               decoration: BoxDecoration(
                 color: ConstColor.black.withAlpha(40),
                 borderRadius: BorderRadius.circular(20.r),

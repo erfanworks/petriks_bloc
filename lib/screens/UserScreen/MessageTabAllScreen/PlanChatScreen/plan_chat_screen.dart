@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,47 +17,55 @@ class PlanChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final item = Get.arguments is ChatItem ? Get.arguments as ChatItem : null;
-    final c    = Get.find<ChatController>();
+    final c = Get.find<ChatController>();
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: ConstColor.backgroundColor,
       appBar: GlobalAppBar(
         showBack: true,
         title: 'Sunday Brunch & Coffee C...',
         titleColor: ConstColor.primaryColor,
         subTitle: ConstString.fourParticipants,
-        actions:[
+        actions: [
           GestureDetector(
             onTap: () => ChatBottomSheet.show(context),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Icon(Icons.more_vert, size: 24.sp, color: ConstColor.textColor),
+              child: Icon(
+                Icons.more_vert,
+                size: 24.sp,
+                color: ConstColor.textColor,
+              ),
             ),
           ),
         ],
       ),
       body: Column(
         children: [
-          // ── Date + location + View Plans bar ──
           Container(
             color: Colors.white,
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
             child: Row(
               children: [
-                Icon(Icons.calendar_today_outlined,
-                    size: 13.r, color: ConstColor.primaryColor),
+                Icon(
+                  Icons.calendar_today_outlined,
+                  size: 13.r,
+                  color: ConstColor.primaryColor,
+                ),
                 SizedBox(width: 4.w),
                 CustomText(
                   title: 'Sun, Mar 26',
                   textSize: 12.sp,
                   fontWeight: FontWeight.w500,
                   textColor: ConstColor.black,
-                  maxLine: 1,
                 ),
                 SizedBox(width: 12.w),
-                Icon(Icons.location_on_outlined,
-                    size: 13.r, color: ConstColor.primaryColor),
+                Icon(
+                  Icons.location_on_outlined,
+                  size: 13.r,
+                  color: ConstColor.primaryColor,
+                ),
                 SizedBox(width: 4.w),
                 Expanded(
                   child: CustomText(
@@ -64,15 +73,15 @@ class PlanChatScreen extends StatelessWidget {
                     textSize: 12.sp,
                     fontWeight: FontWeight.w500,
                     textColor: ConstColor.black,
-                    maxLine: 1,
                   ),
                 ),
-                // View Plans button
                 GestureDetector(
                   onTap: () => Get.toNamed(AppRoutes.joinedPlanDetailsScreen),
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                        horizontal: 12.w, vertical: 6.h),
+                      horizontal: 12.w,
+                      vertical: 6.h,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20.r),
@@ -83,7 +92,6 @@ class PlanChatScreen extends StatelessWidget {
                       textSize: 12.sp,
                       fontWeight: FontWeight.w500,
                       textColor: ConstColor.black,
-                      maxLine: 1,
                     ),
                   ),
                 ),
@@ -91,108 +99,309 @@ class PlanChatScreen extends StatelessWidget {
             ),
           ),
 
-          // ── Messages ──
           Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 16.w, vertical: 12.h),
-              itemCount: c.messages.length,
-              itemBuilder: (_, i) {
-                final msg = c.messages[i];
-                if (msg.isSystemMsg) return _SystemMessage(text: msg.text);
-                return _PlanChatMessage(msg: msg);
-              },
+            child: Obx(
+              () => ListView.builder(
+                reverse: true,
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                itemCount: c.planMessages.length,
+                itemBuilder: (_, i) {
+                  final msg = c.planMessages[c.planMessages.length - 1 - i];
+                  if (msg.isSystemMsg) return _SystemMessage(text: msg.text);
+                  return _PlanChatMessage(msg: msg);
+                },
+              ),
             ),
           ),
+
+          _ChatInputBar(),
         ],
       ),
-      bottomNavigationBar: _ChatInputBar(),
     );
   }
 }
 
-class _PlanChatMessage extends StatelessWidget {
+class _PlanChatMessage extends StatefulWidget {
   const _PlanChatMessage({required this.msg});
+
   final ChatMessage msg;
 
   @override
+  State<_PlanChatMessage> createState() => _PlanChatMessageState();
+}
+
+class _PlanChatMessageState extends State<_PlanChatMessage> {
+  bool _showTime = false;
+
+  @override
   Widget build(BuildContext context) {
+    bool hasMedia =
+        widget.msg.mediaPaths != null && widget.msg.mediaPaths!.isNotEmpty;
+
     return Padding(
       padding: EdgeInsets.only(bottom: 16.h),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 38.r,
-            height: 38.r,
-            decoration: BoxDecoration(
-              color: ConstColor.primaryColor.withAlpha(40),
-              shape: BoxShape.circle,
-            ),
-            child: Center(
-              child: CustomText(
-                title: msg.senderName.isNotEmpty ? msg.senderName[0] : '?',
-                textSize: 15.sp,
-                fontWeight: FontWeight.w600,
-                textColor: ConstColor.primaryColor,
-                maxLine: 1,
+      child: GestureDetector(
+        onTap: () => setState(() => _showTime = !_showTime),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 38.r,
+              height: 38.r,
+              decoration: BoxDecoration(
+                color: ConstColor.primaryColor.withAlpha(40),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: CustomText(
+                  title: widget.msg.senderName.isNotEmpty
+                      ? widget.msg.senderName[0]
+                      : '?',
+                  textSize: 15.sp,
+                  fontWeight: FontWeight.w600,
+                  textColor: ConstColor.primaryColor,
+                ),
               ),
             ),
-          ),
-          SizedBox(width: 10.w),
+            SizedBox(width: 10.w),
 
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    CustomText(
-                      title: msg.senderName,
-                      textSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                      textColor: ConstColor.black,
-                      maxLine: 1,
-                    ),
-                    if (msg.isHost) ...[
-                      SizedBox(width: 6.w),
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 6.w, vertical: 2.h),
-                        decoration: BoxDecoration(
-                          color: ConstColor.primaryColor.withAlpha(20),
-                          borderRadius: BorderRadius.circular(6.r),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      CustomText(
+                        title: widget.msg.senderName,
+                        textSize: 13.sp,
+                        fontWeight: FontWeight.w700,
+                        textColor: ConstColor.black,
+                      ),
+                      if (widget.msg.isHost) ...[
+                        SizedBox(width: 6.w),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 6.w,
+                            vertical: 2.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: ConstColor.primaryColor.withAlpha(20),
+                            borderRadius: BorderRadius.circular(6.r),
+                          ),
+                          child: CustomText(
+                            title: ConstString.host,
+                            textSize: 9.sp,
+                            fontWeight: FontWeight.w700,
+                            textColor: ConstColor.primaryColor,
+                          ),
                         ),
-                        child: CustomText(
-                          title: ConstString.host,
-                          textSize: 9.sp,
-                          fontWeight: FontWeight.w700,
-                          textColor: ConstColor.primaryColor,
-                          maxLine: 1,
+                      ],
+                    ],
+                  ),
+                  SizedBox(height: 4.h),
+
+                  if (hasMedia)
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 4.h),
+                      child: Container(
+                        constraints: BoxConstraints(maxWidth: 240.w),
+                        child: GridView.builder(
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: widget.msg.mediaPaths!.length == 1 ? 1 : 2,
+                            crossAxisSpacing: 4,
+                            mainAxisSpacing: 4,
+                            childAspectRatio: widget.msg.mediaPaths!.length == 1 ? 1.5 : 1,
+                          ),
+                          itemCount: widget.msg.mediaPaths!.length,
+                          itemBuilder: (_, i) => ClipRRect(
+                            borderRadius: BorderRadius.circular(10.r),
+                            child: Image.file(
+                              File(widget.msg.mediaPaths![i]),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
-                    ],
-                    SizedBox(width: 8.w),
-                    CustomText(
-                      title: msg.time,
-                      textSize: 10.sp,
-                      textColor: ConstColor.iconColor,
-                      maxLine: 1,
                     ),
-                  ],
+
+                  if (widget.msg.text.isNotEmpty)
+                    CustomText(
+                      title: widget.msg.text,
+                      textSize: 13.sp,
+                      textColor: ConstColor.black,
+                      maxLine: 10,
+                    ),
+
+                  if (_showTime)
+                    Padding(
+                      padding: EdgeInsets.only(top: 4.h),
+                      child: CustomText(
+                        title: widget.msg.time,
+                        textSize: 10.sp,
+                        textColor: ConstColor.iconColor,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ChatInputBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final c = Get.find<ChatController>();
+
+    return Obx(
+      () => Container(
+        padding: EdgeInsets.fromLTRB(
+          16.w,
+          8.h,
+          16.w,
+          8.h +
+              MediaQuery.of(context).viewInsets.bottom +
+              (MediaQuery.of(context).viewInsets.bottom > 0
+                  ? 0
+                  : MediaQuery.of(context).padding.bottom),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(10),
+              blurRadius: 8.r,
+              offset: Offset(0, -2.h),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (c.selectedMediaPaths.isNotEmpty)
+              Container(
+                height: 85.h,
+                padding: EdgeInsets.only(bottom: 8.h),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: c.selectedMediaPaths.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: EdgeInsets.only(right: 10.w),
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.r),
+                          child: Image.file(
+                            File(c.selectedMediaPaths[index]),
+                            width: 70.w,
+                            height: 70.h,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Positioned(
+                          top: -5,
+                          right: -5,
+                          child: GestureDetector(
+                            onTap: () => c.selectedMediaPaths.removeAt(index),
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.red,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.close,
+                                size: 16.sp,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                SizedBox(height: 4.h),
-                // Message text
-                CustomText(
-                  title: msg.text,
-                  textSize: 13.sp,
-                  textColor: ConstColor.black,
-                  maxLine: 10,
+              ),
+
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    decoration: BoxDecoration(
+                      color: ConstColor.primaryColor.withAlpha(25),
+                      borderRadius: BorderRadius.circular(30.r),
+                    ),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () => c.pickChatImage(),
+                          child: SvgPicture.asset(
+                            "assets/icons/add_icon.svg",
+                            width: 25.w,
+                            height: 25.h,
+                            colorFilter: const ColorFilter.mode(
+                              ConstColor.textColor,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 8.w),
+                        Expanded(
+                          child: TextField(
+                            controller: c.messageController,
+                            decoration: InputDecoration(
+                              hintText: ConstString.typeAMessage,
+                              border: InputBorder.none,
+                              isDense: true,
+                              contentPadding: EdgeInsets.symmetric(
+                                vertical: 12.h,
+                              ),
+                            ),
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: ConstColor.black,
+                            ),
+                          ),
+                        ),
+                        // Icon(
+                        //   Icons.sentiment_satisfied_alt_outlined,
+                        //   size: 24.r,
+                        //   color: ConstColor.textColor,
+                        // ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(width: 12.w),
+                GestureDetector(
+                  onTap: () => c.sendPlanMessage(),
+                  child: Container(
+                    width: 48.r,
+                    height: 48.r,
+                    decoration: const BoxDecoration(
+                      color: ConstColor.primaryColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.send_outlined,
+                        color: Colors.white,
+                        size: 22.r,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -200,6 +409,7 @@ class _PlanChatMessage extends StatelessWidget {
 
 class _SystemMessage extends StatelessWidget {
   const _SystemMessage({required this.text});
+
   final String text;
 
   @override
@@ -215,124 +425,20 @@ class _SystemMessage extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.people_outline_rounded,
-                size: 13.r, color: ConstColor.primaryColor),
+            Icon(
+              Icons.people_outline_rounded,
+              size: 13.r,
+              color: ConstColor.primaryColor,
+            ),
             SizedBox(width: 5.w),
             CustomText(
               title: text,
               textSize: 11.sp,
               fontWeight: FontWeight.w500,
               textColor: ConstColor.primaryColor,
-              maxLine: 1,
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-class _ChatInputBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(
-        16.w,
-        0,
-        16.w,
-        5.h + MediaQuery.of(context).padding.bottom,
-      ),
-      decoration: BoxDecoration(
-        // color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha(10),
-            blurRadius: 8.r,
-            offset: Offset(0, -2.h),
-          ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 2.h),
-              decoration: BoxDecoration(
-                color: ConstColor.primaryColor.withAlpha(25),
-                borderRadius: BorderRadius.circular(30.r),
-              ),
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () => Get.find<ChatController>().pickChatImage(),
-                    child: SvgPicture.asset(
-                      "assets/icons/add_icon.svg",
-                      width: 25.w,
-                      height: 25.h,
-                      colorFilter: const ColorFilter.mode(
-                        ConstColor.textColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8.w),
-
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: ConstString.typeAMessage,
-                        hintStyle: TextStyle(
-                          color: ConstColor.textColor,
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: InputBorder.none,
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(vertical: 12.h),
-                      ),
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        color: ConstColor.black,
-                      ),
-                    ),
-                  ),
-
-                  // Emoji Icon
-                  GestureDetector(
-                    onTap: () {},
-                    child: Icon(
-                      Icons.sentiment_satisfied_alt_outlined,
-                      size: 24.r,
-                      color: ConstColor.textColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          SizedBox(width: 12.w),
-
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              width: 48.r,
-              height: 48.r,
-              decoration: const BoxDecoration(
-                color: ConstColor.primaryColor,
-                shape: BoxShape.circle,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 4.w),
-                child: Icon(
-                  Icons.send_outlined,
-                  color: Colors.white,
-                  size: 22.r,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

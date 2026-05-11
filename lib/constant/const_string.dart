@@ -14,6 +14,8 @@ class ConstString {
   static const String group                    = 'GROUP';
   static const String oneToOne                 = '1-TO-1';
   static const viewPlans = 'View Plans';
+  static const welcomeTo = 'Welcome to';
+  static const appName   = 'GoodNiva';
   static const account = 'Account';
   static const feedback = 'Feedback';
   static const enterEmailPassword = 'Enter your email and password to log in';
@@ -95,7 +97,6 @@ class ConstString {
   static const sayHelloAndShare =
       'Say hello and share the kinds of plans you enjoy';
   static const rec = 'REC';
-  static const appName = 'GoodNiva';
   static const searchHint = 'Search events, people, or groups';
   static const easyMeetup = 'Easy Meetup';
   static const upcomingEvents = 'Upcoming Events';
