@@ -24,6 +24,15 @@ class LocationVoteItem {
   });
 
   int get percent => ((votes / totalVotes) * 100).round();
+  LocationVoteItem copyWith({bool? isSelected}) {
+    return LocationVoteItem(
+      image: image,
+      name: name,
+      votes: votes,
+      totalVotes: totalVotes,
+      isSelected: isSelected ?? this.isSelected,
+    );
+  }
 }
 
 class ChatMessage {
@@ -56,12 +65,22 @@ class PlanDetailsController extends GetxController {
   Timer? _timer;
   final attendanceConfirmed = false.obs;
   bool get isTimerExpired => lockTimer.value.isEmpty && lockUntil != null;
+  bool get isLocked => lockTimer.value.isEmpty && lockUntil != null;
 
   DateTime? lockUntil;
 
   void initLockTimer(DateTime lockUntilTime) {
     lockUntil = lockUntilTime;
     _startCountdown();
+  }
+
+
+  void selectLocation(LocationVoteItem selected) {
+    for (int i = 0; i < locationVotes.length; i++) {
+      locationVotes[i] = locationVotes[i].copyWith(
+        isSelected: locationVotes[i] == selected,
+      );
+    }
   }
 
   void _startCountdown() {
@@ -165,6 +184,7 @@ class PlanDetailsController extends GetxController {
 
   void onConfirmAttendance() {
     attendanceConfirmed.value = true;
+    Get.toNamed(AppRoutes.helpCenterScreen);
     AppSnackBar.success("Attendance successfully 🎉", seconds: 2);
   }
 
@@ -193,7 +213,10 @@ class PlanDetailsController extends GetxController {
 
   void submitReport() => Get.back();
 
-  void blockUser() => Get.back();
+  void blockUser() {
+    Get.back();
+    AppSnackBar.success("User blocked successfully 🚫");
+  }
 
   void submitSupport() => Get.back();
 
@@ -211,6 +234,6 @@ class PlanDetailsController extends GetxController {
   void onInit() {
     super.onInit();
     // initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
-    initLockTimer(DateTime.now().add(const Duration(minutes: 5)));
+    initLockTimer(DateTime.now().add(const Duration(seconds: 5)));
   }
 }

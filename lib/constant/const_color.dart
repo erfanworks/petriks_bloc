@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ConstColor {
   static const primaryColor = Color(0xFF6C5CE7);
   static const primaryDeepColor = Color(0xFF5341CD);
-  static const backgroundColor = Color(0xFFF5F5FA);
+  static const backgroundColor = Color(0xFFF8F9FB);
   static const tabButtonColour = Color(0xFFB0E6E4);
   static const borderColor = Color(0xFFE4E5EB);
   static const boxColor = Color(0xFFF2F4F6);

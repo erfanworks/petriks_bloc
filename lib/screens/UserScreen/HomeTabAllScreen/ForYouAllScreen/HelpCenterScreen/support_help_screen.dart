@@ -76,18 +76,26 @@ class SupportHelpScreen extends StatelessWidget {
             ),
           ),
             const Spacer(),
-            CustomElevatedButton(
-              onPressed: controller.submitSupport,
-              height: 50,
-              top: 0,
-              buttonBorderRadius: 30,
-              gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-              child: CustomText(
-                title: ConstString.submit,
-                textColor: Colors.white,
-                textSize: 16.sp,
-                fontWeight: FontWeight.w500,
-                maxLine: 1,
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                0.w,
+                0,
+                0.w,
+                0.h + MediaQuery.of(context).padding.bottom,
+              ),
+              child: CustomElevatedButton(
+                onPressed: controller.submitSupport,
+                height: 50,
+                top: 0,
+                buttonBorderRadius: 30,
+                gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
+                child: CustomText(
+                  title: ConstString.submit,
+                  textColor: Colors.white,
+                  textSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  maxLine: 1,
+                ),
               ),
             ),
             SizedBox(height: 16.h),

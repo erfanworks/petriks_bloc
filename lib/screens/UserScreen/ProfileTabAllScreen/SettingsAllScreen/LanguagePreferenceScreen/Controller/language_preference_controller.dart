@@ -7,7 +7,7 @@ class LanguagePreferenceController extends GetxController {
   final allLanguages = const [
     'English', 'Spanish', 'French', 'German',
     'Mandarin', 'Japanese', 'Hindi', 'Arabic',
-    'Portuguese', 'Italian', '+ More',
+    'Portuguese', 'Italian',
   ];
 
   final selectedLanguages = <String>['English', 'Spanish'].obs;

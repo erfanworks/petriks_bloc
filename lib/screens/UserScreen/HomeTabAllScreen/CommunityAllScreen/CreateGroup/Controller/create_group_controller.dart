@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -6,8 +7,23 @@ import '../../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_shee
 class CreateGroupController extends GetxController {
 
   final ImagePicker _picker = ImagePicker();
-
   final RxString descriptionPhotoPath = ''.obs;
+  final selectedGroupLimit = '2-4'.obs;
+  final groupLimits = ['1:1', '2-4', '5-8', 'Custom'];
+  final showCustomInput = false.obs;
+  final customLimitController = TextEditingController();
+
+  void selectGroupLimit(String limit) {
+    selectedGroupLimit.value = limit;
+    showCustomInput.value = false;
+    customLimitController.clear();
+  }
+  void submitCustomLimit(String value) {
+    if (value.isNotEmpty) {
+      selectedGroupLimit.value = value;
+      showCustomInput.value = false;
+    }
+  }
 
   void pickDescriptionPhoto() {
     MediaPickerBottomSheet.show(
@@ -22,4 +38,9 @@ class CreateGroupController extends GetxController {
     );
   }
 
+  @override
+  void onClose() {
+    customLimitController.dispose(); // মেমরি লিক রোধে ডিসপোজ
+    super.onClose();
+  }
 }

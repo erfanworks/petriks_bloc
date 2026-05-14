@@ -6,11 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
+import 'package:petriks_flutter_app/utils/app_size.dart';
 import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
+import '../../../../../routes/app_routes/app_routes.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/CustomTextFormField/custom_text_form_field.dart';
 import 'Controller/create_group_controller.dart';
@@ -23,183 +26,316 @@ class CreateGroupScreen extends StatelessWidget {
     final c = Get.put(CreateGroupController());
     return Scaffold(
       appBar: GlobalAppBar(title: ConstString.createGroup),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _StepHeader(
-              title: ConstString.groupInformation,
-              subtitle: ConstString.giveYourGroupAName,
-            ),
-            SizedBox(height: 16.h),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _StepHeader(
+                title: ConstString.groupInformation,
+                subtitle: ConstString.giveYourGroupAName,
+              ),
+              SizedBox(height: 16.h),
 
-            CustomTextFormField(
-              fromTitle: ConstString.communityName,
-              textController: TextEditingController(),
-              hintText: const SizedBox.shrink(),
-              backgroundColor: ConstColor.white,
-              prefixIcon: Padding(
-                padding: EdgeInsets.all(12.r),
-                child: SvgPicture.asset(
-                  'assets/icons/edit_icon.svg',
-                  width: 18.r,
-                  height: 18.r,
-                  colorFilter: const ColorFilter.mode(
-                    ConstColor.primaryColor,
-                    BlendMode.srcIn,
+              CustomTextFormField(
+                fromTitle: ConstString.communityName,
+                textController: TextEditingController(),
+                hintText: const SizedBox.shrink(),
+                backgroundColor: ConstColor.white,
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(12.r),
+                  child: SvgPicture.asset(
+                    'assets/icons/edit_icon.svg',
+                    width: 18.r,
+                    height: 18.r,
+                    colorFilter: const ColorFilter.mode(
+                      ConstColor.primaryColor,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ),
-            ),
 
-            SizedBox(height: 4.h),
-            SizedBox(height: 16.h),
+              SizedBox(height: 4.h),
+              SizedBox(height: 16.h),
 
-            CustomText(
-              title: ConstString.shortDescription,
-              textSize: 16.sp,
-              fontWeight: FontWeight.w500,
-              textColor: ConstColor.silverGray20,
-              maxLine: 1,
-            ),
-            SizedBox(height: 4.h),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16.r),
+              CustomText(
+                title: ConstString.shortDescription,
+                textSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                textColor: ConstColor.silverGray20,
+                maxLine: 1,
               ),
-              child: TextField(
-                maxLines: 8,
-                style: TextStyle(
-                  fontSize: 10.sp,
-                  color: ConstColor.silverGray20,
-                  fontWeight: FontWeight.w400,
+              SizedBox(height: 4.h),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16.r),
                 ),
-                decoration: InputDecoration(
-                  hintText:
-                      "e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.",
-                  hintMaxLines: 3,
-                  hintStyle: TextStyle(
-                    color: ConstColor.textColor.withAlpha(150),
-                    fontSize: 14.sp,
+                child: TextField(
+                  maxLines: 8,
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    color: ConstColor.silverGray20,
                     fontWeight: FontWeight.w400,
                   ),
-                  border: InputBorder.none,
-                  isDense: true,
-                  contentPadding: EdgeInsets.symmetric(vertical: 8.h),
+                  decoration: InputDecoration(
+                    hintText:
+                        "e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.",
+                    hintMaxLines: 3,
+                    hintStyle: TextStyle(
+                      color: ConstColor.textColor.withAlpha(150),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    border: InputBorder.none,
+                    isDense: true,
+                    contentPadding: EdgeInsets.symmetric(vertical: 8.h),
+                  ),
                 ),
               ),
-            ),
 
-            SizedBox(height: 16.h),
+              SizedBox(height: 16.h),
 
-            CustomText(
-              title: ConstString.uploadCoverPhoto,
-              textSize: 16.sp,
-              fontWeight: FontWeight.w500,
-              textColor: ConstColor.silverGray20,
-              maxLine: 1,
-            ),
-            SizedBox(height: 8.h),
-
-            Obx(() {
-              final hasImage = c.descriptionPhotoPath.value.isNotEmpty;
-
-              return GestureDetector(
-                onTap: hasImage ? null : c.pickDescriptionPhoto,
-                child: DottedBorder(
-                  options: RoundedRectDottedBorderOptions(
-                    color: ConstColor.primaryDeepColor,
-                    strokeWidth: 1,
-                    dashPattern: const <double>[10, 5],
-                    radius: Radius.circular(16.r),
-                    padding: EdgeInsets.zero,
+              CustomText(
+                title: ConstString.groupLimit,
+                textSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                textColor: ConstColor.silverGray20,
+                maxLine: 1,
+              ),
+              SizedBox(height: 10.h),
+              Obx(
+                () => Container(
+                  padding: EdgeInsets.all(18.r),
+                  decoration: BoxDecoration(
+                    color: ConstColor.black.withAlpha(30),
+                    borderRadius: BorderRadius.circular(24.r),
                   ),
-                  child: Container(
-                    width: double.infinity,
-                    height: 150.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(14.r),
-                    ),
-                    child: hasImage
-                        ? Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(14.r),
-                          child: Image.file(
-                            File(c.descriptionPhotoPath.value),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                  child: Row(
+                    children: c.groupLimits.map((limit) {
+                      final isCustomBtn = limit == "Custom";
+                      final isEditing = isCustomBtn && c.showCustomInput.value;
 
-                        Positioned(
-                          top: 8.h,
-                          right: 8.w,
-                          child: GestureDetector(
-                            onTap: c.pickDescriptionPhoto,
-                            child: Container(
-                              padding: EdgeInsets.all(6.r),
-                              decoration: const BoxDecoration(
-                                color: ConstColor.primaryColor,
-                                shape: BoxShape.circle,
-                              ),
-                              child: Icon(
-                                Icons.edit,
-                                color: Colors.white,
-                                size: 16.sp,
-                              ),
+                      final bool isPredefinedSelected =
+                          !isCustomBtn && c.selectedGroupLimit.value == limit;
+
+                      final bool isCustomSelected =
+                          isCustomBtn &&
+                          c.selectedGroupLimit.value ==
+                              c.customLimitController.text &&
+                          c.customLimitController.text.isNotEmpty;
+
+                      final bool isCustomActive =
+                          isCustomBtn && c.showCustomInput.value;
+
+                      String displayLabel =
+                          (isCustomBtn &&
+                              c.customLimitController.text.isNotEmpty)
+                          ? c.customLimitController.text
+                          : limit;
+
+                      return Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            if (isCustomBtn) {
+                              c.showCustomInput.value = true;
+                              c.selectedGroupLimit.value = '';
+                            } else {
+                              c.selectGroupLimit(limit);
+                            }
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 00),
+                            padding: EdgeInsets.symmetric(
+                              vertical: isEditing ? 5.h : 10.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: isCustomSelected || isPredefinedSelected
+                                  ? ConstColor.primaryColor
+                                  : isCustomActive
+                                  ? Colors.white
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(26.r),
+                            ),
+                            child: Center(
+                              child: isEditing
+                                  ? TextField(
+                                      controller: c.customLimitController,
+                                      keyboardType: TextInputType.number,
+                                      textAlign: TextAlign.center,
+                                      autofocus: true,
+                                      style: TextStyle(
+                                        color: isCustomSelected
+                                            ? Colors.white
+                                            : Colors.black,
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        isDense: true,
+                                      ),
+                                      onSubmitted: (value) =>
+                                          c.submitCustomLimit(value),
+                                    )
+                                  : CustomText(
+                                      title: displayLabel,
+                                      textSize: 13.sp,
+                                      fontWeight:
+                                          (isPredefinedSelected ||
+                                              isCustomSelected)
+                                          ? FontWeight.w600
+                                          : FontWeight.w400,
+                                      textColor:
+                                          (isPredefinedSelected ||
+                                              isCustomSelected)
+                                          ? Colors.white
+                                          : isCustomActive
+                                          ? Colors.black
+                                          : ConstColor.black,
+                                      maxLine: 1,
+                                    ),
                             ),
                           ),
                         ),
-                      ],
-                    )
-                        : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 60.r,
-                          height: 60.r,
-                          decoration: BoxDecoration(
-                            color: ConstColor.white,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withAlpha(20),
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
-                          ),
-                          child: Center(
-                            child: SvgPicture.asset(
-                              'assets/icons/camera_icon.svg',
-                              width: 20.r,
-                              height: 20.r,
-                              colorFilter: const ColorFilter.mode(
-                                  ConstColor.primaryColor, BlendMode.srcIn),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10.h),
-                        CustomText(
-                          title: "Upload Description Photo",
-                          textSize: 12.sp,
-                          textColor: ConstColor.iconColor,
-                          textAlign: TextAlign.center,
-                          maxLine: 2,
-                        ),
-                      ],
-                    ),
+                      );
+                    }).toList(),
                   ),
                 ),
-              );
-            }),
-          ],
+              ),
+
+              SizedBox(height: 16.h),
+
+              CustomElevatedButton(
+                top: 0,
+                onPressed: () => Get.toNamed(AppRoutes.inviteFriendsListScreen),
+                isOutLined: true,
+                elevation: 0,
+                outLineColour: ConstColor.primaryColor.withAlpha(40),
+                buttonBorderRadius: 30,
+                child: CustomText(
+                  title: ConstString.inviteFriends,
+                  textSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  textColor: ConstColor.primaryColor,
+                  maxLine: 1,
+                ),
+              ),
+
+              SizedBox(height: 16.h),
+
+              CustomText(
+                title: ConstString.uploadCoverPhoto,
+                textSize: 16.sp,
+                fontWeight: FontWeight.w500,
+                textColor: ConstColor.silverGray20,
+                maxLine: 1,
+              ),
+              SizedBox(height: 8.h),
+
+              Obx(() {
+                final hasImage = c.descriptionPhotoPath.value.isNotEmpty;
+
+                return GestureDetector(
+                  onTap: hasImage ? null : c.pickDescriptionPhoto,
+                  child: DottedBorder(
+                    options: RoundedRectDottedBorderOptions(
+                      color: ConstColor.primaryDeepColor,
+                      strokeWidth: 1,
+                      dashPattern: const <double>[10, 5],
+                      radius: Radius.circular(16.r),
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: Container(
+                      width: double.infinity,
+                      height: 150.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14.r),
+                      ),
+                      child: hasImage
+                          ? Stack(
+                              fit: StackFit.expand,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(14.r),
+                                  child: Image.file(
+                                    File(c.descriptionPhotoPath.value),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+
+                                Positioned(
+                                  top: 8.h,
+                                  right: 8.w,
+                                  child: GestureDetector(
+                                    onTap: c.pickDescriptionPhoto,
+                                    child: Container(
+                                      padding: EdgeInsets.all(6.r),
+                                      decoration: const BoxDecoration(
+                                        color: ConstColor.primaryColor,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Icon(
+                                        Icons.edit,
+                                        color: Colors.white,
+                                        size: 16.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 60.r,
+                                  height: 60.r,
+                                  decoration: BoxDecoration(
+                                    color: ConstColor.white,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withAlpha(20),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: const Offset(0, 4),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Center(
+                                    child: SvgPicture.asset(
+                                      'assets/icons/camera_icon.svg',
+                                      width: 20.r,
+                                      height: 20.r,
+                                      colorFilter: const ColorFilter.mode(
+                                        ConstColor.primaryColor,
+                                        BlendMode.srcIn,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10.h),
+                                CustomText(
+                                  title: "Upload Description Photo",
+                                  textSize: 12.sp,
+                                  textColor: ConstColor.iconColor,
+                                  textAlign: TextAlign.center,
+                                  maxLine: 2,
+                                ),
+                              ],
+                            ),
+                    ),
+                  ),
+                );
+              }),
+              SizedBox(height: 30.h,)
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
@@ -210,7 +346,10 @@ class CreateGroupScreen extends StatelessWidget {
           4.h + MediaQuery.of(context).padding.bottom,
         ),
         child: CustomElevatedButton(
-          onPressed: () {Get.back();},
+          onPressed: () {
+            Get.back();
+            AppSnackBar.success("Group created successfully 🎉");
+          },
           height: 48,
           top: 0,
           buttonBorderRadius: 30,

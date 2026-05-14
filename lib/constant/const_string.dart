@@ -2,7 +2,7 @@ class ConstString {
   /////////// Auth Part All String/////////
   static const letsGetStarted = 'Let’s get Started';
   static const String onboardingHeadline =
-      'Real friendships that improve your week';
+      'Real connections that improve your week';
   static const String onboardingSubHeadline =
       'Discover local plans and connect with people who share your vibe.';
   static const String getStarted = 'Get Started';
@@ -40,6 +40,7 @@ class ConstString {
   static const codeHasBeenSent = 'A code has been sent to your phone no';
   static const verify = 'Verify';
   static const donTGetOtp = 'Dont get OTP?';
+  static const groupLimit = 'Group Limit';
   static const resend = 'Resend';
   static const tellUsAboutYou = 'Tell us about you';
   static const helpUsTailor =

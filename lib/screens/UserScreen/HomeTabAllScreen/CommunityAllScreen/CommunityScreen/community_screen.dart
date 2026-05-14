@@ -58,7 +58,7 @@ class CommunityScreen extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 16.h),
+          SizedBox(height: 10.h),
 
           Obx(() {
             if (controller.selectedCommunityTab.value == 0) {

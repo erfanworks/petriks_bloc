@@ -113,17 +113,15 @@ class OneToOneMeetupCard extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.location_on_outlined,
-                              size: 13.sp,
+                              size: 18.sp,
                               color: ConstColor.primaryColor,
                             ),
                             SizedBox(width: 4.w),
-                            Expanded(
-                              child: CustomText(
-                                title: item.distance,
-                                textColor: ConstColor.textColor,
-                                textSize: 12.sp,
-                                maxLine: 1,
-                              ),
+                            CustomText(
+                              title: item.location,
+                              textColor: ConstColor.textColor,
+                              textSize: 12.sp,
+                              maxLine: 1,
                             ),
                           ],
                         ),
@@ -153,21 +151,23 @@ class OneToOneMeetupCard extends StatelessWidget {
                                 height: 10.h,
                                 width: 10.w,
                                 colorFilter: const ColorFilter.mode(
-                                    ConstColor.primaryColor,
-                                    BlendMode.srcIn
+                                  ConstColor.primaryColor,
+                                  BlendMode.srcIn,
                                 ),
                               )
                             else
                               Icon(
-                                  Icons.public,
-                                  size: 11.sp,
-                                  color: const Color(0xFF2E7D32)
+                                Icons.public,
+                                size: 11.sp,
+                                color: const Color(0xFF2E7D32),
                               ),
 
                             SizedBox(width: 5.w),
 
                             CustomText(
-                              title: item.isPrivate ? ConstString.private : "Public",
+                              title: item.isPrivate
+                                  ? ConstString.private
+                                  : "Public",
                               textColor: item.isPrivate
                                   ? ConstColor.primaryColor
                                   : const Color(0xFF2E7D32),
@@ -189,9 +189,7 @@ class OneToOneMeetupCard extends StatelessWidget {
                             vertical: 4.h,
                           ),
                           decoration: BoxDecoration(
-                            border: Border.all(
-                              color: ConstColor.primaryColor,
-                            ),
+                            border: Border.all(color: ConstColor.primaryColor),
                             borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: CustomText(
@@ -247,9 +245,34 @@ class OneToOneMeetupCard extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 4.h),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.w),
+              child: Row(
+                children: [
+                  // Icon(
+                  //   Icons.,
+                  //   size: 13.sp,
+                  //   color: ConstColor.primaryColor,
+                  // ),
+                  SvgPicture.asset(
+                      width: 14.w,
+                      height: 14.h,
+                      "assets/icons/world_icon.svg"),
+                  SizedBox(width: 4.w),
+                  CustomText(
+                    title: ConstString.publicLabel,
+                    textColor: ConstColor.primaryColor,
+                    textSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    maxLine: 1,
+                  ),
+                ],
+              ),
+            ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -259,7 +282,7 @@ class OneToOneMeetupCard extends StatelessWidget {
                       CustomText(
                         title: item.eventTitle,
                         textColor: ConstColor.black,
-                        textSize: 16.sp,
+                        textSize: 18.sp,
                         fontWeight: FontWeight.w700,
                         maxLine: 1,
                       ),
@@ -286,14 +309,18 @@ class OneToOneMeetupCard extends StatelessWidget {
                   SizedBox(height: 8.h),
                   Row(
                     children: [
-                      Icon(
-                        Icons.location_on_outlined,
-                        size: 18.sp,
-                        color: ConstColor.primaryColor,
-                      ),
+                      // Icon(
+                      //   Icons.,
+                      //   size: 18.sp,
+                      //   color: ConstColor.primaryColor,
+                      // ),
+                      SvgPicture.asset(
+                          width: 15.w,
+                          height: 15.h,
+                          "assets/icons/male_icon.svg"),
                       SizedBox(width: 4.w),
                       CustomText(
-                        title: item.location,
+                        title: "Male (20-25)",
                         textColor: ConstColor.textColor,
                         textSize: 12.sp,
                         maxLine: 1,
@@ -317,7 +344,11 @@ class OneToOneMeetupCard extends StatelessWidget {
                       ),
 
                       SizedBox(width: 8.w),
-                      Container(width: 1, height: 12.h, color: ConstColor.borderColor),
+                      Container(
+                        width: 1,
+                        height: 12.h,
+                        color: ConstColor.borderColor,
+                      ),
                       SizedBox(width: 8.w),
 
                       Icon(

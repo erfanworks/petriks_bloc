@@ -5,9 +5,9 @@ import '../../../../../constant/const_string.dart';
 
 class CreatePlanController extends GetxController {
   final currentStep = 0.obs;
-
   final selectedPlanType = ''.obs;
   final selectedPrivacy = 'public'.obs;
+  final selectedTime2 = '08:00 PM'.obs;
 
   final List<Map<String, dynamic>> planTypes = [
     {
@@ -54,7 +54,7 @@ class CreatePlanController extends GetxController {
 
   final vibes      = ['Quite', 'Social', 'Lively', 'Easy Going',];
   final groupSizes = ['1:1', '2-4', '5-8', '10+'];
-  final budgets    = ['Free', '\$10', '\$15', 'Custom'];
+  final budgets    = ['Free', '£10', '£15', 'Custom'];
   final ageBands   = ['18 - 24', '25 - 34', '35 - 44', '45+'];
   final genders    = ['Male', 'Female', 'Non-binary', 'Prefer not to say'];
   final languages  =
@@ -73,7 +73,7 @@ class CreatePlanController extends GetxController {
   final selectedDate        = 'Saturday, Nov 24'.obs;
   final selectedTime1       = '07:00 PM'.obs;
   final selectedLocation    = (-1).obs;
-  final voteOnTime          = true.obs;
+  final voteOnTime          = false.obs;
   final voteOnPlace         = true.obs;
   final autoLock            = true.obs;
 
@@ -91,6 +91,13 @@ class CreatePlanController extends GetxController {
     final minute = time.minute.toString().padLeft(2, '0');
     final period = time.period == DayPeriod.am ? 'AM' : 'PM';
     selectedTime1.value = '$hour:$minute $period';
+  }
+
+  void onTime2Selected(TimeOfDay time) {
+    final hour   = time.hourOfPeriod == 0 ? 12 : time.hourOfPeriod;
+    final minute = time.minute.toString().padLeft(2, '0');
+    final period = time.period == DayPeriod.am ? 'AM' : 'PM';
+    selectedTime2.value = '$hour:$minute $period';
   }
 
   String _month(int m) => ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m];

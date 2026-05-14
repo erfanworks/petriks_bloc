@@ -1,4 +1,3 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -49,7 +48,7 @@ class MyCommunityScreen extends StatelessWidget {
 
 class _CreateCommunityButton extends StatelessWidget {
 
-  const _CreateCommunityButton({super.key});
+  const _CreateCommunityButton();
 
   @override
   Widget build(BuildContext context) {

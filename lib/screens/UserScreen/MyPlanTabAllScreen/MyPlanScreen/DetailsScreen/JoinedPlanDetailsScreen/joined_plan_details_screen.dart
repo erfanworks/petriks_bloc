@@ -332,7 +332,7 @@ class JoinedPlanDetailsScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
           padding: EdgeInsets.fromLTRB(
             16.w,
-            0,
+            5,
             16.w,
             5.h + MediaQuery.of(context).padding.bottom,
           ),

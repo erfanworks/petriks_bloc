@@ -100,34 +100,52 @@ class ReportProblemScreen extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12.r),
                 ),
-                child: DropdownButton<String>(
-                  value: controller.selectedUrgency.value,
-                  isExpanded: true,
-                  underline: const SizedBox.shrink(),
-                  items: controller.urgencyLevels
-                      .map((u) => DropdownMenuItem(value: u, child: Text(u)))
-                      .toList(),
-                  onChanged: (val) {
-                    if (val != null) controller.selectedUrgency.value = val;
-                  },
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    hoverColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    canvasColor: Colors.white,
+                  ),
+
+                  child: DropdownButton<String>(
+                    value: controller.selectedUrgency.value,
+                    isExpanded: true,
+                    underline: const SizedBox.shrink(),
+                    items: controller.urgencyLevels
+                        .map((u) => DropdownMenuItem(value: u, child: Text(u)))
+                        .toList(),
+                    onChanged: (val) {
+                      if (val != null) controller.selectedUrgency.value = val;
+                    },
+                  ),
                 ),
               ),
             ),
 
             const Spacer(),
 
-            CustomElevatedButton(
-              onPressed: controller.submitReport,
-              height: 50,
-              top: 0,
-              buttonBorderRadius: 30,
-              gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-              child: CustomText(
-                title: ConstString.submitReport,
-                textColor: Colors.white,
-                textSize: 15.sp,
-                fontWeight: FontWeight.w600,
-                maxLine: 1,
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                0.w,
+                0,
+               0.w,
+                0.h + MediaQuery.of(context).padding.bottom,
+              ),
+              child: CustomElevatedButton(
+                onPressed: controller.submitReport,
+                height: 48,
+                top: 0,
+                buttonBorderRadius: 30,
+                gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
+                child: CustomText(
+                  title: ConstString.submitReport,
+                  textColor: Colors.white,
+                  textSize: 15.sp,
+                  fontWeight: FontWeight.w600,
+                  maxLine: 1,
+                ),
               ),
             ),
             SizedBox(height: 16.h),

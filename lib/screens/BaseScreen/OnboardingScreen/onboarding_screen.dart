@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -90,7 +92,7 @@ class _MapSection extends StatelessWidget {
             child: Center(
               child: _DashedCircle(
                 radius: 130.r,
-                color: Colors.white.withAlpha(60),
+                color: Colors.white.withAlpha(150),
               ),
             ),
           ),
@@ -102,7 +104,7 @@ class _MapSection extends StatelessWidget {
             child: Center(
               child: _DashedCircle(
                 radius: 85.r,
-                color: Colors.white.withAlpha(60),
+                color: Colors.white.withAlpha(150),
               ),
             ),
           ),
@@ -119,14 +121,13 @@ class _MapSection extends StatelessWidget {
                   color: Colors.white.withAlpha(40),
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: Colors.white.withAlpha(80),
-                    width: 1.5,
+                    color: Colors.white,
+                    width: 2,
                   ),
                 ),
-                child: Icon(
-                  Icons.message_outlined,
-                  color: Colors.white,
-                  size: 28.sp,
+                child: Center(
+                  child: SvgPicture.asset("assets/icons/onboarding_chat_icon.svg",
+                  ),
                 ),
               ),
             ),
@@ -158,7 +159,7 @@ class _MapSection extends StatelessWidget {
           ),
 
           Positioned(
-            top: 270.h,
+            top: 250.h,
             left: 72.w,
             child: _AvatarBubble(
               imagePath: 'assets/images/splash_4.jpg',
@@ -167,8 +168,8 @@ class _MapSection extends StatelessWidget {
           ),
 
           Positioned(
-            bottom: 30.h,
-            left: 150.w,
+            bottom: 25.h,
+            left: 170.w,
             child: _AvatarBubble(
               imagePath: 'assets/images/splash_6.jpg',
               size: 50,
@@ -186,13 +187,10 @@ class _MapSection extends StatelessWidget {
           Positioned(
             bottom: 50.h,
             left: 12.w,
-            child: _LocationCard(
-              icon: Icons.emoji_events_sharp,
-              label: ConstString.competition,
-            ),
+            child: _CompetitionCard(),
           ),
 
-          Positioned(bottom: 20.h, right: 16.w, child: _OneTOOneCard()),
+          Positioned(bottom: 10.h, right: 16.w, child: _OneTOOneCard()),
         ],
       ),
     );
@@ -273,75 +271,6 @@ class _AvatarBubble extends StatelessWidget {
     );
   }
 }
-
-class _GroupCard extends StatelessWidget {
-  const _GroupCard();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-      decoration: BoxDecoration(
-        color: Colors.white.withAlpha(60),
-        borderRadius: BorderRadius.circular(14.r),
-        border: Border.all(color: Colors.white.withAlpha(60), width: 1),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
-            decoration: BoxDecoration(
-              color: ConstColor.yellow,
-              borderRadius: BorderRadius.circular(6.r),
-            ),
-            child: CustomText(
-              title: ConstString.group,
-              textSize: 9.sp,
-              fontWeight: FontWeight.w700,
-              textColor: Colors.black,
-              maxLine: 1,
-            ),
-          ),
-          SizedBox(height: 6.h),
-          SizedBox(
-            height: 28.r,
-            width: 80.w,
-            child: Stack(
-              children: [
-                _SmallAvatar(path: 'assets/images/splash_1.jpg', left: 0),
-                _SmallAvatar(path: 'assets/images/splash_2.jpg', left: 18),
-                _SmallAvatar(path: 'assets/images/splash_3.jpg', left: 36),
-                Positioned(
-                  left: 54,
-                  child: Container(
-                    width: 28.r,
-                    height: 28.r,
-                    decoration: BoxDecoration(
-                      color: ConstColor.primaryColor,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 1.5),
-                    ),
-                    child: Center(
-                      child: CustomText(
-                        title: '+5',
-                        textSize: 8.sp,
-                        fontWeight: FontWeight.w700,
-                        textColor: Colors.white,
-                        maxLine: 1,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class _SmallAvatar extends StatelessWidget {
   final String path;
   final double left;
@@ -380,17 +309,24 @@ class _LocationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 7.h),
-      decoration: BoxDecoration(
-        color: Colors.white.withAlpha(60),
-        borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: Colors.white.withAlpha(60), width: 1),
-      ),
+    return ClipRRect(
+        borderRadius: BorderRadius.circular(16.r),
+        child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+              decoration: BoxDecoration(
+                color: Colors.white.withAlpha(10),
+                borderRadius: BorderRadius.circular(8.r),
+                border: Border.all(
+                  color: Colors.white.withAlpha(80),
+                  width: 1,
+                ),
+              ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: Colors.white, size: 18.sp),
+          Icon(icon, color: Colors.white, size: 24.sp),
           SizedBox(width: 4.w),
           CustomText(
             title: label,
@@ -401,65 +337,65 @@ class _LocationCard extends StatelessWidget {
           ),
         ],
       ),
-    );
+    )));
   }
 }
 
-class _OneTOOneCard extends StatelessWidget {
-  const _OneTOOneCard();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 11.h),
-      decoration: BoxDecoration(
-        color: Colors.white.withAlpha(30),
-        borderRadius: BorderRadius.circular(14.r),
-        border: Border.all(color: Colors.white.withAlpha(60), width: 1),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
-            decoration: BoxDecoration(
-              color: const Color(0xFF34D399),
-              borderRadius: BorderRadius.circular(6.r),
-            ),
-            child: CustomText(
-              title: ConstString.oneToOne,
-              textSize: 9.sp,
-              fontWeight: FontWeight.w700,
-              textColor: const Color(0xFF022C22),
-              maxLine: 1,
-            ),
-          ),
-          SizedBox(height: 6.h),
-          Row(
-            children: [
-              SizedBox(
-                width: 50.w,
-                height: 28.r,
-                child: Stack(
-                  children: [
-                    _SmallAvatar(path: 'assets/images/splash_7.jpg', left: 0),
-                    _SmallAvatar(path: 'assets/images/splash_8.jpg', left: 18),
-                  ],
-                ),
-              ),
-              SizedBox(width: 6.w),
-              Icon(
-                Icons.swap_horiz_rounded,
-                color: Colors.white.withAlpha(150),
-                size: 20.sp,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
+// class _OneTOOneCard extends StatelessWidget {
+//   const _OneTOOneCard();
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 11.h),
+//       decoration: BoxDecoration(
+//         color: Colors.white.withAlpha(30),
+//         borderRadius: BorderRadius.circular(14.r),
+//         border: Border.all(color: Colors.white.withAlpha(60), width: 1),
+//       ),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           Container(
+//             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+//             decoration: BoxDecoration(
+//               color: const Color(0xFF34D399),
+//               borderRadius: BorderRadius.circular(6.r),
+//             ),
+//             child: CustomText(
+//               title: ConstString.oneToOne,
+//               textSize: 9.sp,
+//               fontWeight: FontWeight.w700,
+//               textColor: const Color(0xFF022C22),
+//               maxLine: 1,
+//             ),
+//           ),
+//           SizedBox(height: 6.h),
+//           Row(
+//             children: [
+//               SizedBox(
+//                 width: 50.w,
+//                 height: 28.r,
+//                 child: Stack(
+//                   children: [
+//                     _SmallAvatar(path: 'assets/images/splash_7.jpg', left: 0),
+//                     _SmallAvatar(path: 'assets/images/splash_8.jpg', left: 18),
+//                   ],
+//                 ),
+//               ),
+//               SizedBox(width: 6.w),
+//               Icon(
+//                 Icons.swap_horiz_rounded,
+//                 color: Colors.white.withAlpha(150),
+//                 size: 20.sp,
+//               ),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class _BottomCard extends StatelessWidget {
   const _BottomCard({required this.controller});
@@ -489,7 +425,7 @@ class _BottomCard extends StatelessWidget {
               width: 60.r,
               height: 60.r,
             ),
-            SizedBox(height: 16.h),
+            SizedBox(height: 12.h),
             CustomText(
               title: ConstString.onboardingHeadline,
               textSize: 30.sp,
@@ -529,5 +465,210 @@ class _BottomCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// ── Replace _GroupCard with this ──
+class _GroupCard extends StatelessWidget {
+  const _GroupCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+        borderRadius: BorderRadius.circular(16.r),
+        child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+              decoration: BoxDecoration(
+                color: Colors.white.withAlpha(10),
+                borderRadius: BorderRadius.circular(16.r),
+                border: Border.all(
+                  color: Colors.white.withAlpha(80),
+                  width: 1,
+                ),
+              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // GROUP label row
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.groups_rounded, color: Colors.white, size: 24.sp),
+              SizedBox(width: 4.w),
+              CustomText(
+                title: ConstString.group,
+                textSize: 11.sp,
+                fontWeight: FontWeight.w700,
+                textColor: Colors.white,
+                maxLine: 1,
+              ),
+            ],
+          ),
+          SizedBox(height: 8.h),
+          // Stacked avatars
+          SizedBox(
+            height: 30.r,
+            width: 92.w,
+            child: Stack(
+              children: [
+                _SmallAvatar(path: 'assets/images/splash_1.jpg', left: 0),
+                _SmallAvatar(path: 'assets/images/splash_2.jpg', left: 20),
+                _SmallAvatar(path: 'assets/images/splash_3.jpg', left: 40),
+                Positioned(
+                  left: 60,
+                  child: Container(
+                    width: 30.r,
+                    height: 30.r,
+                    decoration: BoxDecoration(
+                      color: ConstColor.primaryDeepColor,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 1.5),
+                    ),
+                    child: Center(
+                      child: CustomText(
+                        title: '+5',
+                        textSize: 9.sp,
+                        fontWeight: FontWeight.w700,
+                        textColor: Colors.white,
+                        maxLine: 1,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    )));
+  }
+}
+
+
+class _CompetitionCard extends StatelessWidget {
+  const _CompetitionCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+        borderRadius: BorderRadius.circular(16.r),
+        child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+              decoration: BoxDecoration(
+                color: Colors.white.withAlpha(10),
+                borderRadius: BorderRadius.circular(16.r),
+                border: Border.all(
+                  color: Colors.white.withAlpha(80),
+                  width: 1,
+                ),
+              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.emoji_events_rounded,
+                  color: Colors.white, size: 24.sp),
+              SizedBox(width: 4.w),
+              CustomText(
+                title: ConstString.competition,
+                textSize: 13.sp,
+                fontWeight: FontWeight.w700,
+                textColor: Colors.white,
+                maxLine: 1,
+              ),
+            ],
+          ),
+          SizedBox(height: 4.h),
+          CustomText(
+            title: 'Enter challenges &\nclimb leaderboards',
+            textSize: 11.sp,
+            fontWeight: FontWeight.w400,
+            textColor: Colors.white.withAlpha(200),
+            maxLine: 2,
+          ),
+        ],
+      ),
+    )));
+  }
+}
+
+// ── Replace _OneTOOneCard with this ──
+class _OneTOOneCard extends StatelessWidget {
+  const _OneTOOneCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+        borderRadius: BorderRadius.circular(16.r),
+        child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+              decoration: BoxDecoration(
+                color: Colors.white.withAlpha(10),
+                borderRadius: BorderRadius.circular(16.r),
+                border: Border.all(
+                  color: Colors.white.withAlpha(80),
+                  width: 1,
+                ),
+              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 1-TO-1 badge
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+            decoration: BoxDecoration(
+              color: ConstColor.white.withAlpha(40),
+              borderRadius: BorderRadius.circular(16.r),
+            ),
+            child: CustomText(
+              title: ConstString.oneToOne,
+              textSize: 9.sp,
+              fontWeight: FontWeight.w700,
+              textColor: ConstColor.white,
+              maxLine: 1,
+            ),
+          ),
+          SizedBox(height: 6.h),
+          CustomText(
+            title: 'Enter challenges &\nclimb leaderboards',
+            textSize: 11.sp,
+            fontWeight: FontWeight.w400,
+            textColor: Colors.white.withAlpha(200),
+            maxLine: 2,
+          ),
+          SizedBox(height: 8.h),
+          // Stacked avatars + swap icon
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(
+                width: 52.w,
+                height: 28.r,
+                child: Stack(
+                  children: [
+                    _SmallAvatar(path: 'assets/images/splash_7.jpg', left: 0),
+                    _SmallAvatar(path: 'assets/images/splash_8.jpg', left: 20),
+                  ],
+                ),
+              ),
+              SizedBox(width: 6.w),
+              Icon(
+                Icons.swap_horiz_rounded,
+                color: Colors.white.withAlpha(180),
+                size: 20.sp,
+              ),
+            ],
+          ),
+        ],
+      ),
+    )));
   }
 }

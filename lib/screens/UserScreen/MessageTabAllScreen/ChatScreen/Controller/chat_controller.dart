@@ -155,7 +155,6 @@ class ChatController extends GetxController {
     final minute = now.minute.toString().padLeft(2, '0');
     final period = now.period == DayPeriod.am ? 'AM' : 'PM';
 
-    // এটি messages লিস্টে মেসেজ অ্যাড করবে (নিশ্চিত করুন messages লিস্টটি .obs করা আছে)
     messages.add(ChatMessage(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       senderId: 'me',
@@ -179,7 +178,6 @@ class ChatController extends GetxController {
     final minute = now.minute.toString().padLeft(2, '0');
     final period = now.period == DayPeriod.am ? 'AM' : 'PM';
 
-    // এটি planMessages লিস্টে মেসেজ অ্যাড করবে
     planMessages.add(ChatMessage(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       senderId: 'me',
@@ -187,7 +185,7 @@ class ChatController extends GetxController {
       text: text,
       time: '$hour:$minute $period',
       isMe: true,
-      mediaPaths: List.from(selectedMediaPaths), // ইমেজ পাঠানোর জন্য
+      mediaPaths: List.from(selectedMediaPaths),
     ));
 
     messageController.clear();
@@ -248,7 +246,7 @@ class ChatController extends GetxController {
   }
   @override
   void onClose() {
-    messageController.dispose();
+    // messageController.dispose();
     super.onClose();
   }
 }

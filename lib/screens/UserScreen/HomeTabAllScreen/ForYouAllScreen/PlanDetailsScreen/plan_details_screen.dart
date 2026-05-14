@@ -127,7 +127,7 @@ class PlanDetailsScreen extends StatelessWidget {
                               SizedBox(width: 6.w),
                               CustomText(
                                 title: 'Saturday, 24 June',
-                                textColor: ConstColor.grey,
+                                textColor: ConstColor.textColor,
                                 textSize: 12.sp,
                                 maxLine: 1,
                               ),
@@ -145,6 +145,22 @@ class PlanDetailsScreen extends StatelessWidget {
                             label: 'English',
                           ),
                           SizedBox(height: 6.h),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                  width: 14.w,
+                                  height: 14.h,
+                                  "assets/icons/male_icon.svg"),
+                              SizedBox(width: 6.w),
+                              CustomText(
+                                title: "Male (20-25)",
+                                textColor: ConstColor.textColor,
+                                textSize: 12.sp,
+                                maxLine: 1,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 6.h,),
                           const _DetailRow(
                             icon: Icons.people_outline,
                             label: 'Group Plan',
@@ -163,6 +179,38 @@ class PlanDetailsScreen extends StatelessWidget {
                                 fontFamily:
                                     GoogleFonts.plusJakartaSans().fontFamily,
                               ),
+                              Spacer(),
+                              GestureDetector(
+                                onTap: () {Get.toNamed(AppRoutes.inviteFriendsListScreen);},
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 12.w,
+                                    vertical: 5.h,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.r),
+                                    border: Border.all(color: ConstColor.borderColor),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.person_add_alt_1_outlined,
+                                        size: 13.sp,
+                                        color: ConstColor.primaryColor,
+                                      ),
+                                      SizedBox(width: 2.w),
+                                      CustomText(
+                                        title: ConstString.invite,
+                                        textColor: ConstColor.primaryColor,
+                                        textSize: 11.sp,
+                                        fontWeight: FontWeight.w600,
+                                        maxLine: 1,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -175,53 +223,80 @@ class PlanDetailsScreen extends StatelessWidget {
               SizedBox(height: 170.h),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: CustomText(
-                  title: "Choose Time",
-                  textColor: ConstColor.black,
+                child: Obx(() => CustomText(
+                  title: controller.isLocked
+                      ? '🕐 Time Confirmed!'
+                      : 'Choose Time',
+                  textColor: controller.isLocked
+                      ? ConstColor.primaryColor
+                      : ConstColor.black,
                   textSize: 18.sp,
                   fontWeight: FontWeight.w700,
                   maxLine: 1,
                   fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-                ),
+                )),
               ),
               SizedBox(height: 10.h),
 
-              Obx(
-                () => _ChooseTimeCard(
-                  timeText: 'Sat • 7:30 PM',
-                  voteCount: '4 Vote',
-                  isSelected: controller.selectedTimeIndex.value == 0,
-                  onTap: () => controller.selectTime(0),
-                ),
-              ),
-
-              Obx(
-                () => _ChooseTimeCard(
-                  timeText: 'Sat • 8:40 PM',
-                  voteCount: '2 Vote',
-                  isSelected: controller.selectedTimeIndex.value == 1,
-                  onTap: () => controller.selectTime(1),
-                ),
-              ),
+              Obx(() => controller.isLocked
+                  ? _ChooseTimeCard(
+                timeText: 'Sat • 7:30 PM',
+                voteCount: '4 Vote',
+                isSelected: true,
+                onTap: () {},
+              )
+                  : Column(
+                children: [
+                  _ChooseTimeCard(
+                    timeText: 'Sat • 7:30 PM',
+                    voteCount: '4 Vote',
+                    isSelected: controller.selectedTimeIndex.value == 0,
+                    onTap: () => controller.selectTime(0),
+                  ),
+                  _ChooseTimeCard(
+                    timeText: 'Sat • 8:40 PM',
+                    voteCount: '2 Vote',
+                    isSelected: controller.selectedTimeIndex.value == 1,
+                    onTap: () => controller.selectTime(1),
+                  ),
+                ],
+              )),
 
               SizedBox(height: 20.h),
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: CustomText(
-                  title: ConstString.pickALocation,
-                  textColor: ConstColor.black,
+                child: Obx(() => CustomText(
+                  title: controller.isLocked
+                      ? '📍 Venue Decided!'
+                      : ConstString.pickALocation,
+                  textColor: controller.isLocked
+                      ? ConstColor.primaryColor
+                      : ConstColor.black,
                   textSize: 18.sp,
                   fontWeight: FontWeight.w700,
                   maxLine: 1,
                   fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-                ),
+                )),
               ),
               SizedBox(height: 10.h),
 
-              ...controller.locationVotes.map(
-                (loc) => _LocationVoteCard(item: loc),
-              ),
+              Obx(() => controller.isLocked
+                  ? _LocationVoteCard(
+                item: controller.locationVotes.reduce(
+                      (a, b) => a.votes >= b.votes ? a : b,
+                ),
+              )
+                  : Column(
+                children: [
+                  ...controller.locationVotes.map(
+                        (loc) => _LocationVoteCard(
+                      item: loc,
+                      onTap: () => controller.selectLocation(loc), // ← add
+                    ),
+                  ),
+                ],
+              )),
 
               SizedBox(height: 8.h),
               Container(
@@ -514,128 +589,132 @@ class _ChooseTimeCard extends StatelessWidget {
 
 class _LocationVoteCard extends StatelessWidget {
   final LocationVoteItem item;
+  final VoidCallback? onTap;
 
-  const _LocationVoteCard({required this.item});
+  const _LocationVoteCard({required this.item,this.onTap,});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 18.h),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14.r),
-        border: item.isSelected
-            ? Border.all(color: ConstColor.primaryColor, width: 1.5.w)
-            : null,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(14.r),
-                  topRight: Radius.circular(14.r),
-                ),
-                child: AppImage(
-                  path: item.image,
-                  width: double.infinity,
-                  height: 110.h,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              if (item.isSelected)
-                Positioned(
-                  bottom: 8.h,
-                  left: 10.w,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10.w,
-                      vertical: 5.h,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.check_circle_rounded,
-                          color: Colors.white,
-                          size: 16.sp,
-                        ),
-                        SizedBox(width: 4.w),
-                        CustomText(
-                          title: 'Selected',
-                          textColor: Colors.white,
-                          textSize: 14.sp,
-                          fontWeight: FontWeight.w700,
-                          maxLine: 1,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.all(12.r),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 18.h),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14.r),
+          border: item.isSelected
+              ? Border.all(color: ConstColor.primaryColor, width: 1.5.w)
+              : null,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(
-                      title: item.name,
-                      textColor: ConstColor.black,
-                      textSize: 14.sp,
-                      fontWeight: FontWeight.w700,
-                      maxLine: 1,
-                    ),
-                    CustomText(
-                      title: '${item.percent}%',
-                      textColor: ConstColor.primaryColor,
-                      textSize: 14.sp,
-                      fontWeight: FontWeight.w700,
-                      maxLine: 1,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 6.h),
-                Row(
-                  children: [
-                    _SmallAvatarStack(),
-                    SizedBox(width: 8.w),
-                    CustomText(
-                      title: '${item.votes} votes',
-                      textColor: ConstColor.grey,
-                      textSize: 11.sp,
-                      maxLine: 1,
-                    ),
-                    if (item.isSelected) ...[
-                      SizedBox(width: 8.w),
-                      const _PillBadge(
-                        label: 'MOST VOTED',
-                        bgColor: Color(0x336C5CE7),
-                        textColor: ConstColor.primaryColor,
-                      ),
-                    ],
-                  ],
-                ),
-                SizedBox(height: 8.h),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(9.r),
-                  child: LinearProgressIndicator(
-                    value: item.votes / item.totalVotes,
-                    minHeight: 5.h,
-                    backgroundColor: const Color(0xFFEDE9FF),
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      ConstColor.primaryColor,
-                    ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(14.r),
+                    topRight: Radius.circular(14.r),
+                  ),
+                  child: AppImage(
+                    path: item.image,
+                    width: double.infinity,
+                    height: 110.h,
+                    fit: BoxFit.cover,
                   ),
                 ),
+                if (item.isSelected)
+                  Positioned(
+                    bottom: 8.h,
+                    left: 10.w,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.w,
+                        vertical: 5.h,
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.check_circle_rounded,
+                            color: Colors.white,
+                            size: 16.sp,
+                          ),
+                          SizedBox(width: 4.w),
+                          CustomText(
+                            title: 'Selected',
+                            textColor: Colors.white,
+                            textSize: 14.sp,
+                            fontWeight: FontWeight.w700,
+                            maxLine: 1,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
               ],
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.all(12.r),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        title: item.name,
+                        textColor: ConstColor.black,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        maxLine: 1,
+                      ),
+                      CustomText(
+                        title: '${item.percent}%',
+                        textColor: ConstColor.primaryColor,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        maxLine: 1,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 6.h),
+                  Row(
+                    children: [
+                      _SmallAvatarStack(),
+                      SizedBox(width: 8.w),
+                      CustomText(
+                        title: '${item.votes} votes',
+                        textColor: ConstColor.grey,
+                        textSize: 11.sp,
+                        maxLine: 1,
+                      ),
+                      if (item.isSelected) ...[
+                        SizedBox(width: 8.w),
+                        const _PillBadge(
+                          label: 'MOST VOTED',
+                          bgColor: Color(0x336C5CE7),
+                          textColor: ConstColor.primaryColor,
+                        ),
+                      ],
+                    ],
+                  ),
+                  SizedBox(height: 8.h),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(9.r),
+                    child: LinearProgressIndicator(
+                      value: item.votes / item.totalVotes,
+                      minHeight: 5.h,
+                      backgroundColor: const Color(0xFFEDE9FF),
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                        ConstColor.primaryColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -1018,7 +1097,7 @@ class _DetailRow extends StatelessWidget {
         Flexible(
           child: CustomText(
             title: label,
-            textColor: ConstColor.silverGray20,
+            textColor: ConstColor.textColor,
             textSize: 12.sp,
             fontWeight: FontWeight.w500,
             maxLine: 1,

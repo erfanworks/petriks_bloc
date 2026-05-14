@@ -529,7 +529,7 @@ class _Step4WhenWhere extends StatelessWidget {
           _FieldLabel(label: ConstString.selectTime),
           SizedBox(height: 6.h),
           Obx(
-            () => _DropdownField(
+                () => _DropdownField(
               value: c.selectedTime1.value,
               icon: 'assets/icons/clock_icon.svg',
               onTap: () async {
@@ -549,10 +549,10 @@ class _Step4WhenWhere extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 8.h),
 
           Obx(
-            () => _ToggleCard(
+                () => _ToggleCard(
               icon: Icons.list_alt_rounded,
               title: ConstString.letPeopleVoteTime,
               subtitle: ConstString.voteTimeSubtitle,
@@ -561,7 +561,35 @@ class _Step4WhenWhere extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 16.h),
+
+          SizedBox(height: 8.h),
+          Obx(() => Opacity(
+            opacity: c.voteOnTime.value ? 1.0 : 0.4,
+            child: IgnorePointer(
+              ignoring: !c.voteOnTime.value,
+              child: _DropdownField(
+                value: c.selectedTime2.value,
+                icon: 'assets/icons/clock_icon.svg',
+                onTap: () async {
+                  final picked = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                    builder: (ctx, child) => Theme(
+                      data: Theme.of(ctx).copyWith(
+                        colorScheme: const ColorScheme.light(
+                          primary: ConstColor.primaryColor,
+                        ),
+                      ),
+                      child: child!,
+                    ),
+                  );
+                  if (picked != null) c.onTime2Selected(picked);
+                },
+              ),
+            ),
+          )),
+
+          SizedBox(height: 24.h),
 
           _FieldLabel(label: ConstString.pickAPlace),
           SizedBox(height: 8.h),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
 import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
 import '../../../../widget/AppImage/app_image.dart';
@@ -13,36 +14,40 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(ChatController());
+    final c = Get.put(ChatController(), permanent: true);
 
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,
+      appBar: GlobalAppBar(
+        title: ConstString.chat,
+        showBack: false,
+        actions: [Icon(Icons.search)],
+      ),
       body: SafeArea(
         child: Column(
           children: [
             // ── AppBar ──
-            Padding(
-              padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomText(
-                    title: ConstString.chat,
-                    textSize: 22.sp,
-                    fontWeight: FontWeight.w700,
-                    textColor: ConstColor.black,
-                    maxLine: 1,
-                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-                  ),
-                  Icon(
-                    Icons.search_rounded,
-                    size: 24.r,
-                    color: ConstColor.black,
-                  ),
-                ],
-              ),
-            ),
-
+            // Padding(
+            //   padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 0),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       CustomText(
+            //         title: ConstString.chat,
+            //         textSize: 22.sp,
+            //         fontWeight: FontWeight.w700,
+            //         textColor: ConstColor.black,
+            //         maxLine: 1,
+            //         fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+            //       ),
+            //       Icon(
+            //         Icons.search_rounded,
+            //         size: 24.r,
+            //         color: ConstColor.black,
+            //       ),
+            //     ],
+            //   ),
+            // ),
             SizedBox(height: 14.h),
 
             // ── 3-tab toggle ──

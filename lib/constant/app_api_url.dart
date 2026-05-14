@@ -6,34 +6,37 @@ class AppApiUrl {
   static final AppApiUrl _instance = AppApiUrl._privateConstructor();
   static AppApiUrl get instance => _instance;
 
-  // Domain configuration
+  // ==================== Domain ====================
   static final String domain = _getDomain();
   static final String socket = _getDomain();
   final String baseUrl = "$domain/api/v1";
   final String imgBaseUrl = domain;
 
   // ==================== Auth ====================
-  String register       = "/users";
+  final String register = "/users";
 
   // ==================== Profile ====================
-  String userProfile       = "/users/profile";
-  String refreshToken      = "/refreshToken";
-  // ==================== USER ====================
-  String banner              = "/banners";
+  final String userProfile = "/users/profile";
+  final String refreshToken = "/refreshToken";
 
+  // ==================== Banner ====================
+  final String banner = "/banners";
 
+// ==================== [ADD YOUR ENDPOINTS BELOW] ====================
+// Example:
+// final String products = "/products";
+// final String orders   = "/orders";
 }
 
 String _getDomain() {
-  // const String liveServer  = "https://api.gogreenmatrix.my";
-  const String localServer = "http://10.10.7.41:5005";
+  const String liveServer  = "https://your-live-api.com";   // 🔴 Replace with live URL
+  const String localServer = "http://10.10.7.41:5005";      // 🟡 Your local dev server
 
   try {
-    if (kDebugMode) {
-      return localServer;
-    }
+    if (kDebugMode) return localServer;
+    return liveServer;
   } catch (e) {
     errorLog("_getDomain", e);
+    return localServer;
   }
-  return localServer;
 }
