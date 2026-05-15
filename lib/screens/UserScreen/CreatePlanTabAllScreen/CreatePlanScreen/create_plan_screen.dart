@@ -12,6 +12,7 @@ import '../../../../widget/CustomTextFormField/custom_text_form_field.dart';
 import '../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../../../../widget/text/custom_text.dart';
 import 'Controller/create_plan_controller.dart';
+import 'Widget/cover_photo_uploader.dart';
 
 class CreatePlanScreen extends StatelessWidget {
   const CreatePlanScreen({super.key});
@@ -469,6 +470,8 @@ class _Step4WhenWhere extends StatelessWidget {
           _StepTitle(title: ConstString.whenShouldItHappen),
           SizedBox(height: 16.h),
 
+          CoverPhotoUploader(coverPhotoPath: c.coverPhotoPath),
+          SizedBox(height: 16.h),
           // Plan Title
           CustomTextFormField(
             backgroundColor: ConstColor.white,
@@ -599,9 +602,9 @@ class _Step4WhenWhere extends StatelessWidget {
               children: [
                 ...List.generate(c.locations.length, (i) {
                   final loc = c.locations[i];
-                  final selected = c.selectedLocation.value == i;
+                  final selected = c.selectedLocations.contains(i);
                   return GestureDetector(
-                    onTap: () => c.selectedLocation.value = i,
+                    onTap: () => c.toggleLocation(i),
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 180),
                       margin: EdgeInsets.only(bottom: 8.h),

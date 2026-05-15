@@ -358,8 +358,8 @@ class OneToOneMeetupCard extends StatelessWidget {
                       ),
                       SizedBox(width: 4.w),
                       CustomText(
-                        title: item.time,
-                        textColor: ConstColor.textColor,
+                        title: "Vote now",
+                        textColor: ConstColor.primaryColor,
                         textSize: 12.sp,
                         maxLine: 1,
                       ),

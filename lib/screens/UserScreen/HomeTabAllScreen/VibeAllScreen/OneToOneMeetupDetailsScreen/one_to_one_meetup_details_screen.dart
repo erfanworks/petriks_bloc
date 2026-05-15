@@ -94,7 +94,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                               SizedBox(width: 6.w),
                               CustomText(
                                 title: 'Saturday, 24 June',
-                                textColor: ConstColor.grey,
+                                textColor: ConstColor.textColor,
                                 textSize: 12.sp,
                                 maxLine: 1,
                               ),
@@ -103,6 +103,22 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                                 label: '👥 Chill Vibe',
                                 bgColor: const Color(0xFFEDE9FF),
                                 textColor: ConstColor.primaryColor,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 6.h),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                  width: 14.w,
+                                  height: 14.h,
+                                  "assets/icons/male_icon.svg"),
+                              SizedBox(width: 6.w),
+                              CustomText(
+                                title: "Male (20-25)",
+                                textColor: ConstColor.textColor,
+                                textSize: 12.sp,
+                                maxLine: 1,
                               ),
                             ],
                           ),
@@ -264,37 +280,98 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.fromLTRB(
-          16.w,
-          0,
-          16.w,
-          5.h + MediaQuery.of(context).padding.bottom,
-        ),
-        child: CustomElevatedButton(
-          // onPressed: () {
-          //   Get.back();
-          //   AppSnackBar.message(
-          //     "Success! \nYou have successfully joined the event",
-          //     backgroundColor: ConstColor.primaryColor,
-          //     seconds: 2,
-          //   );
-          // },
-          onPressed: controller.confirmJoin,
-          height: 50,
-          top: 0,
-          buttonBorderRadius: 30,
-          gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
-          child: CustomText(
-            title: ConstString.joinEvent,
-            textColor: Colors.white,
-            textSize: 15.sp,
-            fontWeight: FontWeight.w600,
-            maxLine: 1,
+      bottomNavigationBar: Obx(
+            () => Padding(
+          padding: EdgeInsets.fromLTRB(
+            16.w,
+            0,
+            16.w,
+            4.h + MediaQuery.of(context).padding.bottom,
           ),
-
+              child: controller.hasJoined.value
+                  ? SizedBox(
+                height: 50.h,
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _OutlineButton(
+                        label: ConstString.couldTAttend,
+                        color: const Color(0xFFBA1A1A),
+                        onTap: () {
+                          Get.toNamed(AppRoutes.joinedPlanUserReport);
+                          AppSnackBar.message("Attendance canceled");
+                        },
+                      ),
+                    ),
+                    SizedBox(width: 12.w),
+                    Obx(
+                          () => Expanded(
+                        child: controller.attendanceConfirmed.value
+                            ? _OutlineButton(
+                          label: ConstString.helpAndSafety,
+                          color: const Color(0xFF006C49),
+                          onTap: () => Get.toNamed(AppRoutes.helpCenterScreen),
+                        )
+                            : _OutlineButton(
+                          label: ConstString.attendance,
+                          color: const Color(0xFF006C49),
+                          onTap: controller.onConfirmAttendance,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+              : CustomElevatedButton(
+            onPressed: controller.showJoinSheet,
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: const [
+              ConstColor.primaryDeepColor,
+              ConstColor.primaryColor,
+            ],
+            child: CustomText(
+              title: ConstString.joinEvent,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
+          ),
         ),
       ),
+      // bottomNavigationBar: Padding(
+      //   padding: EdgeInsets.fromLTRB(
+      //     16.w,
+      //     0,
+      //     16.w,
+      //     5.h + MediaQuery.of(context).padding.bottom,
+      //   ),
+      //   child: CustomElevatedButton(
+      //     // onPressed: () {
+      //     //   Get.back();
+      //     //   AppSnackBar.message(
+      //     //     "Success! \nYou have successfully joined the event",
+      //     //     backgroundColor: ConstColor.primaryColor,
+      //     //     seconds: 2,
+      //     //   );
+      //     // },
+      //     onPressed: controller.confirmJoin,
+      //     height: 50,
+      //     top: 0,
+      //     buttonBorderRadius: 30,
+      //     gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+      //     child: CustomText(
+      //       title: ConstString.joinEvent,
+      //       textColor: Colors.white,
+      //       textSize: 15.sp,
+      //       fontWeight: FontWeight.w600,
+      //       maxLine: 1,
+      //     ),
+      //
+      //   ),
+      // ),
       // ---- Bottom Button ----
       // bottomNavigationBar: Obx(
       //   () => Padding(
@@ -731,7 +808,7 @@ class _DetailRow extends StatelessWidget {
         Flexible(
           child: CustomText(
             title: label,
-            textColor: ConstColor.silverGray20,
+            textColor: ConstColor.textColor,
             textSize: 12.sp,
             fontWeight: FontWeight.w500,
             maxLine: 1,
@@ -842,6 +919,40 @@ class _CircleAvatar extends StatelessWidget {
           width: 26.w,
           height: 26.h,
           fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+class _OutlineButton extends StatelessWidget {
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _OutlineButton({
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        decoration: BoxDecoration(
+          border: Border.all(color: color, width: 1.5),
+          borderRadius: BorderRadius.circular(30.r),
+        ),
+        child: Center(
+          child: CustomText(
+            title: label,
+            textSize: 14.sp,
+            fontWeight: FontWeight.w600,
+            textColor: color,
+            maxLine: 1,
+          ),
         ),
       ),
     );

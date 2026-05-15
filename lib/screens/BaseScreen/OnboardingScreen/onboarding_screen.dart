@@ -115,18 +115,29 @@ class _MapSection extends StatelessWidget {
             right: 0,
             child: Center(
               child: Container(
-                width: 70.r,
-                height: 70.r,
+                width: 80.r,
+                height: 80.r,
                 decoration: BoxDecoration(
-                  color: Colors.white.withAlpha(40),
+                  color: Colors.white.withAlpha(10),
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 2,
-                  ),
+                  border: Border.all(color: Colors.white.withAlpha(60), width: 1.5),
                 ),
                 child: Center(
-                  child: SvgPicture.asset("assets/icons/onboarding_chat_icon.svg",
+                  child: Container(
+                    width: 60.r,
+                    height: 60.r,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withAlpha(40),
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 2),
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        width: 28.w,
+                        height: 28.h,
+                        "assets/icons/onboarding_chat_icon.svg",
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -184,11 +195,7 @@ class _MapSection extends StatelessWidget {
             child: _LocationCard(label: ConstString.buildYourCommunity),
           ),
 
-          Positioned(
-            bottom: 50.h,
-            left: 12.w,
-            child: _CompetitionCard(),
-          ),
+          Positioned(bottom: 50.h, left: 12.w, child: _CompetitionCard()),
 
           Positioned(bottom: 10.h, right: 16.w, child: _OneTOOneCard()),
         ],
@@ -271,6 +278,7 @@ class _AvatarBubble extends StatelessWidget {
     );
   }
 }
+
 class _SmallAvatar extends StatelessWidget {
   final String path;
   final double left;
@@ -310,34 +318,33 @@ class _LocationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: BorderRadius.circular(16.r),
-        child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-              decoration: BoxDecoration(
-                color: Colors.white.withAlpha(10),
-                borderRadius: BorderRadius.circular(8.r),
-                border: Border.all(
-                  color: Colors.white.withAlpha(80),
-                  width: 1,
-                ),
-              ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, color: Colors.white, size: 24.sp),
-          SizedBox(width: 4.w),
-          CustomText(
-            title: label,
-            textSize: 11.sp,
-            fontWeight: FontWeight.w600,
-            textColor: Colors.white,
-            maxLine: 1,
+      borderRadius: BorderRadius.circular(16.r),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+          decoration: BoxDecoration(
+            color: Colors.white.withAlpha(10),
+            borderRadius: BorderRadius.circular(8.r),
+            border: Border.all(color: Colors.white.withAlpha(80), width: 1),
           ),
-        ],
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, color: Colors.white, size: 24.sp),
+              SizedBox(width: 4.w),
+              CustomText(
+                title: label,
+                textSize: 11.sp,
+                fontWeight: FontWeight.w600,
+                textColor: Colors.white,
+                maxLine: 1,
+              ),
+            ],
+          ),
+        ),
       ),
-    )));
+    );
   }
 }
 
@@ -475,77 +482,75 @@ class _GroupCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: BorderRadius.circular(16.r),
-        child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-              decoration: BoxDecoration(
-                color: Colors.white.withAlpha(10),
-                borderRadius: BorderRadius.circular(16.r),
-                border: Border.all(
-                  color: Colors.white.withAlpha(80),
-                  width: 1,
-                ),
-              ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // GROUP label row
-          Row(
-            mainAxisSize: MainAxisSize.min,
+      borderRadius: BorderRadius.circular(16.r),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+          decoration: BoxDecoration(
+            color: Colors.white.withAlpha(10),
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(color: Colors.white.withAlpha(80), width: 1),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.groups_rounded, color: Colors.white, size: 24.sp),
-              SizedBox(width: 4.w),
-              CustomText(
-                title: ConstString.group,
-                textSize: 11.sp,
-                fontWeight: FontWeight.w700,
-                textColor: Colors.white,
-                maxLine: 1,
+              // GROUP label row
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.groups_rounded, color: Colors.white, size: 24.sp),
+                  SizedBox(width: 4.w),
+                  CustomText(
+                    title: ConstString.group,
+                    textSize: 11.sp,
+                    fontWeight: FontWeight.w700,
+                    textColor: Colors.white,
+                    maxLine: 1,
+                  ),
+                ],
+              ),
+              SizedBox(height: 8.h),
+              // Stacked avatars
+              SizedBox(
+                height: 30.r,
+                width: 92.w,
+                child: Stack(
+                  children: [
+                    _SmallAvatar(path: 'assets/images/splash_1.jpg', left: 0),
+                    _SmallAvatar(path: 'assets/images/splash_2.jpg', left: 20),
+                    _SmallAvatar(path: 'assets/images/splash_3.jpg', left: 40),
+                    Positioned(
+                      left: 60,
+                      child: Container(
+                        width: 30.r,
+                        height: 30.r,
+                        decoration: BoxDecoration(
+                          color: ConstColor.primaryDeepColor,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 1.5),
+                        ),
+                        child: Center(
+                          child: CustomText(
+                            title: '+5',
+                            textSize: 9.sp,
+                            fontWeight: FontWeight.w700,
+                            textColor: Colors.white,
+                            maxLine: 1,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          SizedBox(height: 8.h),
-          // Stacked avatars
-          SizedBox(
-            height: 30.r,
-            width: 92.w,
-            child: Stack(
-              children: [
-                _SmallAvatar(path: 'assets/images/splash_1.jpg', left: 0),
-                _SmallAvatar(path: 'assets/images/splash_2.jpg', left: 20),
-                _SmallAvatar(path: 'assets/images/splash_3.jpg', left: 40),
-                Positioned(
-                  left: 60,
-                  child: Container(
-                    width: 30.r,
-                    height: 30.r,
-                    decoration: BoxDecoration(
-                      color: ConstColor.primaryDeepColor,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 1.5),
-                    ),
-                    child: Center(
-                      child: CustomText(
-                        title: '+5',
-                        textSize: 9.sp,
-                        fontWeight: FontWeight.w700,
-                        textColor: Colors.white,
-                        maxLine: 1,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
-    )));
+    );
   }
 }
-
 
 class _CompetitionCard extends StatelessWidget {
   const _CompetitionCard();
@@ -553,48 +558,50 @@ class _CompetitionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: BorderRadius.circular(16.r),
-        child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-              decoration: BoxDecoration(
-                color: Colors.white.withAlpha(10),
-                borderRadius: BorderRadius.circular(16.r),
-                border: Border.all(
-                  color: Colors.white.withAlpha(80),
-                  width: 1,
-                ),
-              ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
+      borderRadius: BorderRadius.circular(16.r),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+          decoration: BoxDecoration(
+            color: Colors.white.withAlpha(10),
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(color: Colors.white.withAlpha(80), width: 1),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(Icons.emoji_events_rounded,
-                  color: Colors.white, size: 24.sp),
-              SizedBox(width: 4.w),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.emoji_events_rounded,
+                    color: Colors.white,
+                    size: 24.sp,
+                  ),
+                  SizedBox(width: 4.w),
+                  CustomText(
+                    title: ConstString.competition,
+                    textSize: 13.sp,
+                    fontWeight: FontWeight.w700,
+                    textColor: Colors.white,
+                    maxLine: 1,
+                  ),
+                ],
+              ),
+              SizedBox(height: 4.h),
               CustomText(
-                title: ConstString.competition,
-                textSize: 13.sp,
-                fontWeight: FontWeight.w700,
-                textColor: Colors.white,
-                maxLine: 1,
+                title: 'Enter challenges &\nclimb leaderboards',
+                textSize: 11.sp,
+                fontWeight: FontWeight.w400,
+                textColor: Colors.white.withAlpha(200),
+                maxLine: 2,
               ),
             ],
           ),
-          SizedBox(height: 4.h),
-          CustomText(
-            title: 'Enter challenges &\nclimb leaderboards',
-            textSize: 11.sp,
-            fontWeight: FontWeight.w400,
-            textColor: Colors.white.withAlpha(200),
-            maxLine: 2,
-          ),
-        ],
+        ),
       ),
-    )));
+    );
   }
 }
 
@@ -605,70 +612,75 @@ class _OneTOOneCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: BorderRadius.circular(16.r),
-        child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-              decoration: BoxDecoration(
-                color: Colors.white.withAlpha(10),
-                borderRadius: BorderRadius.circular(16.r),
-                border: Border.all(
-                  color: Colors.white.withAlpha(80),
-                  width: 1,
-                ),
-              ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // 1-TO-1 badge
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
-            decoration: BoxDecoration(
-              color: ConstColor.white.withAlpha(40),
-              borderRadius: BorderRadius.circular(16.r),
-            ),
-            child: CustomText(
-              title: ConstString.oneToOne,
-              textSize: 9.sp,
-              fontWeight: FontWeight.w700,
-              textColor: ConstColor.white,
-              maxLine: 1,
-            ),
+      borderRadius: BorderRadius.circular(16.r),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+          decoration: BoxDecoration(
+            color: Colors.white.withAlpha(10),
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(color: Colors.white.withAlpha(80), width: 1),
           ),
-          SizedBox(height: 6.h),
-          CustomText(
-            title: 'Enter challenges &\nclimb leaderboards',
-            textSize: 11.sp,
-            fontWeight: FontWeight.w400,
-            textColor: Colors.white.withAlpha(200),
-            maxLine: 2,
-          ),
-          SizedBox(height: 8.h),
-          // Stacked avatars + swap icon
-          Row(
-            mainAxisSize: MainAxisSize.min,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: 52.w,
-                height: 28.r,
-                child: Stack(
-                  children: [
-                    _SmallAvatar(path: 'assets/images/splash_7.jpg', left: 0),
-                    _SmallAvatar(path: 'assets/images/splash_8.jpg', left: 20),
-                  ],
+              // 1-TO-1 badge
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+                decoration: BoxDecoration(
+                  color: ConstColor.white.withAlpha(40),
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
+                child: CustomText(
+                  title: ConstString.oneToOne,
+                  textSize: 9.sp,
+                  fontWeight: FontWeight.w700,
+                  textColor: ConstColor.white,
+                  maxLine: 1,
                 ),
               ),
-              SizedBox(width: 6.w),
-              Icon(
-                Icons.swap_horiz_rounded,
-                color: Colors.white.withAlpha(180),
-                size: 20.sp,
+              SizedBox(height: 6.h),
+              CustomText(
+                title: 'Enter challenges &\nclimb leaderboards',
+                textSize: 11.sp,
+                fontWeight: FontWeight.w400,
+                textColor: Colors.white.withAlpha(200),
+                maxLine: 2,
+              ),
+              SizedBox(height: 8.h),
+              // Stacked avatars + swap icon
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    width: 52.w,
+                    height: 28.r,
+                    child: Stack(
+                      children: [
+                        _SmallAvatar(
+                          path: 'assets/images/splash_7.jpg',
+                          left: 0,
+                        ),
+                        _SmallAvatar(
+                          path: 'assets/images/splash_8.jpg',
+                          left: 20,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 6.w),
+                  Icon(
+                    Icons.swap_horiz_rounded,
+                    color: Colors.white.withAlpha(180),
+                    size: 20.sp,
+                  ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
-    )));
+    );
   }
 }

@@ -72,7 +72,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => CreateCompetitionController());
     Get.lazyPut(() => ViewCompetitionController());
     Get.lazyPut(() => OneToOneMeetupController());
-    Get.lazyPut(() => MeetupGroupDetailsController());
+    // Get.lazyPut(() => MeetupGroupDetailsController());
     Get.lazyPut(() => OneToOneMeetupDetailsController());
     Get.lazyPut(() => ChatController());
     Get.lazyPut(() => ProfileController());

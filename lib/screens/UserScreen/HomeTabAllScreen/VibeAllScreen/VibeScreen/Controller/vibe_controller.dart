@@ -82,5 +82,6 @@ class VibeController extends GetxController {
     ),
   ];
 
-  void onEventTap(VibeEventItem event) => Get.toNamed(AppRoutes.meetupGroupDetailsScreen);
+  // void onEventTap(VibeEventItem event) => Get.toNamed(AppRoutes.meetupGroupDetailsScreen);
+  void onEventTap() => Get.toNamed(AppRoutes.planDetailsScreen);
 }

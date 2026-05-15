@@ -73,9 +73,11 @@ class CreatePlanController extends GetxController {
   final selectedDate        = 'Saturday, Nov 24'.obs;
   final selectedTime1       = '07:00 PM'.obs;
   final selectedLocation    = (-1).obs;
+  final selectedLocations = <int>{}.obs;
   final voteOnTime          = false.obs;
   final voteOnPlace         = true.obs;
   final autoLock            = true.obs;
+  final coverPhotoPath = ''.obs;
 
   final List<Map<String, String>> locations = [
     {'name': 'Blue Bottle Coffee', 'sub': '8 min away',  'image': 'assets/images/party_img.png'},
@@ -84,6 +86,13 @@ class CreatePlanController extends GetxController {
 
   void onDateSelected(DateTime date) {
     selectedDate.value = '${date.day} ${_month(date.month)}, ${date.year}';
+  }
+  void toggleLocation(int index) {
+    if (selectedLocations.contains(index)) {
+      selectedLocations.remove(index);
+    } else {
+      selectedLocations.add(index);
+    }
   }
 
   void onTimeSelected(TimeOfDay time) {
@@ -127,8 +136,8 @@ class CreatePlanController extends GetxController {
             selectedLanguage.value.isNotEmpty;
       }
       if (currentStep.value == 3) {
-        return planTitleController.text.isNotEmpty &&
-            selectedLocation.value != -1;
+        return planTitleController.text.isNotEmpty ;
+            // selectedLocation.value != -1;
       }
     } else {
       // Easy Start
@@ -141,8 +150,8 @@ class CreatePlanController extends GetxController {
             selectedLanguage.value.isNotEmpty;
       }
       if (currentStep.value == 2) {
-        return planTitleController.text.isNotEmpty &&
-            selectedLocation.value != -1;
+        return planTitleController.text.isNotEmpty ;
+            // selectedLocation.value != -1;
       }
     }
     return false;

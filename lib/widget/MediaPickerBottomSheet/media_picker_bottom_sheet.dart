@@ -39,7 +39,7 @@ class MediaPickerBottomSheet {
                   textSize: 18.sp,
                   fontWeight: FontWeight.w600,
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 8.h),
 
                 ListTile(
                   leading: Icon(Icons.camera_alt,

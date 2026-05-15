@@ -105,6 +105,14 @@ class EditPlanScreen extends StatelessWidget {
                       onTap: () => c.pickTime(context, isFirst: true),
                     ),
                   ),
+                  SizedBox(height: 8.h),
+                  Obx(
+                    () => _DropdownField(
+                      value: c.selectedTime2.value,
+                      icon: 'assets/icons/clock_icon.svg',
+                      onTap: () => c.pickTime(context, isFirst: true),
+                    ),
+                  ),
                   // SizedBox(height: 8.h),
                   // Obx(
                   //   () => _DropdownField(

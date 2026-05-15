@@ -254,6 +254,22 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                                 label: 'English',
                               ),
                               SizedBox(height: 6.h),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                      width: 14.w,
+                                      height: 14.h,
+                                      "assets/icons/male_icon.svg"),
+                                  SizedBox(width: 6.w),
+                                  CustomText(
+                                    title: "Male (20-25)",
+                                    textColor: ConstColor.textColor,
+                                    textSize: 12.sp,
+                                    maxLine: 1,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 6.h),
                               _DetailRow(
                                 icon: "assets/icons/person_group_icon.svg",
                                 label: 'Group Plan',
@@ -283,7 +299,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 180.h),
+                  SizedBox(height: 220.h),
                   _SectionPad(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

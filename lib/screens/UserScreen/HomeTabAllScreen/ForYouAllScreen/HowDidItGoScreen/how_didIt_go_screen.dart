@@ -27,25 +27,6 @@ class HowDidItGoScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // CustomElevatedButton(
-            //   onPressed: () => Get.toNamed(AppRoutes.helpCenterScreen),
-            //   isOutLined: true,
-            //   elevation: 0,
-            //   outLineColour: ConstColor.primaryColor,
-            //   height: 44,
-            //   top: 0,
-            //   buttonBorderRadius: 22,
-            //   child: CustomText(
-            //     title: ConstString.helpSafety,
-            //     textColor: ConstColor.primaryColor,
-            //     textSize: 16.sp,
-            //     fontWeight: FontWeight.w500,
-            //     maxLine: 1,
-            //   ),
-            // ),
-
-            // SizedBox(height: 20.h),
-
             CustomText(
               title: ConstString.didMeetupHappen,
               textColor: ConstColor.black,
@@ -184,9 +165,19 @@ class HowDidItGoScreen extends StatelessWidget {
               ),
               validator: (_) => null,
             ),
-
-            SizedBox(height: 24.h),
-
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.fromLTRB(
+          16.w,
+          0,
+          16.w,
+          4.h + MediaQuery.of(context).padding.bottom,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
             CustomElevatedButton(
               onPressed: controller.planAgain,
               isOutLined: true,
@@ -194,7 +185,7 @@ class HowDidItGoScreen extends StatelessWidget {
               outLineColour: ConstColor.primaryColor,
               height: 50,
               top: 0,
-              bottom: 12,
+              bottom: 6,
               buttonBorderRadius: 25,
               icon: Icon(
                 Icons.refresh_rounded,
@@ -209,7 +200,6 @@ class HowDidItGoScreen extends StatelessWidget {
                 maxLine: 1,
               ),
             ),
-
             CustomElevatedButton(
               onPressed: controller.submitReview,
               height: 54,
@@ -227,8 +217,6 @@ class HowDidItGoScreen extends StatelessWidget {
                 maxLine: 1,
               ),
             ),
-
-            SizedBox(height: 34.h),
           ],
         ),
       ),

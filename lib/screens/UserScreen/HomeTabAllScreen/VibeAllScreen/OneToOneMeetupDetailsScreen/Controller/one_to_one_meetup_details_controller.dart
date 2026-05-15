@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Widget/joined_one_to_one_sheet.dart';
 
 import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
 import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
@@ -51,6 +52,9 @@ class ReportReason {
 class OneToOneMeetupDetailsController extends GetxController {
   // ---- Plan State ----
   final RxBool hasJoined = false.obs;
+  // final hasJoined = false.obs;
+  final attendanceConfirmed = false.obs;
+
 
   // ---- Location Votes ----
   final RxList<LocationVoteItem> locationVotes = <LocationVoteItem>[
@@ -93,6 +97,7 @@ class OneToOneMeetupDetailsController extends GetxController {
   final List<String> vibeEmojis = ['⚡', '😌', '🔥', '🤡', '😴'];
   final reviewController = TextEditingController();
 
+
   // ---- Report ----
   final List<ReportReason> reportReasons = [
     ReportReason(label: 'Inappropriate behavior'),
@@ -113,20 +118,21 @@ class OneToOneMeetupDetailsController extends GetxController {
   // Plan Detail
   void showJoinSheet() {
     Get.bottomSheet(
-      const JoinConfirmationSheet(),
+      const JoinedOneToOneSheet(),
       isScrollControlled: true,
-      backgroundColor: Colors.transparent,
     );
   }
 
-  void confirmJoin() {
-    hasJoined.value = true;
+  void onJoinConfirmed() {
     Get.back();
-    AppSnackBar.success("Joined successfully 🎉", seconds: 2);
-    Get.find<NavbarController>().highlightMyPlan();
+    hasJoined.value = true;
+    AppSnackBar.success("Joined successfully");
   }
 
-  void onConfirmAttendance() => Get.back();
+  void onConfirmAttendance() {
+    attendanceConfirmed.value = true;
+    Get.toNamed(AppRoutes.helpCenterScreen);
+  }
 
   // Review
   void onSelectVibe(int index) => selectedVibe.value = index;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
@@ -22,7 +23,7 @@ class FeaturedEventCard extends StatelessWidget {
             Get.toNamed(AppRoutes.planDetailsScreen);
           },
           child: Container(
-            height: 190.h,
+            height: 200.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.r),
               gradient: const LinearGradient(
@@ -48,12 +49,12 @@ class FeaturedEventCard extends StatelessWidget {
                         child: AppImage(
                           path: 'assets/images/party_img.png',
                           width: 160.w,
-                          height: 160.h,
+                          height: 180.h,
                           fit: BoxFit.fitHeight,
                         ),
                       ),
                       Positioned(
-                        bottom: 15.h,
+                        bottom: 6.h,
                         left: 50.w,
                         right: 6.w,
                         child: Container(
@@ -119,6 +120,22 @@ class FeaturedEventCard extends StatelessWidget {
                         _InfoRow(
                           icon: Icons.access_time_rounded,
                           label: '6:30 PM Today',
+                        ),
+                        SizedBox(height: 5.h),
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                                width: 14.w,
+                                height: 14.h,
+                                "assets/icons/male_icon.svg"),
+                            SizedBox(width: 6.w),
+                            CustomText(
+                              title: "Male (20-25)",
+                              textColor: ConstColor.textColor,
+                              textSize: 12.sp,
+                              maxLine: 1,
+                            ),
+                          ],
                         ),
 
                         const Spacer(),

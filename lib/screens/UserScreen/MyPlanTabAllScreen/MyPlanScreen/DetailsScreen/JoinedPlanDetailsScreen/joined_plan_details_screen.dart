@@ -145,6 +145,22 @@ class JoinedPlanDetailsScreen extends StatelessWidget {
                             label: 'English',
                           ),
                           SizedBox(height: 6.h),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                  width: 14.w,
+                                  height: 14.h,
+                                  "assets/icons/male_icon.svg"),
+                              SizedBox(width: 6.w),
+                              CustomText(
+                                title: "Male (20-25)",
+                                textColor: ConstColor.textColor,
+                                textSize: 12.sp,
+                                maxLine: 1,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 6.h),
                           const _DetailRow(
                             icon: Icons.people_outline,
                             label: 'Group Plan',

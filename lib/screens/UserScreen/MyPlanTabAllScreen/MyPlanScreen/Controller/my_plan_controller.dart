@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+import 'package:socket_io_client/socket_io_client.dart';
 
 import '../../../../../constant/const_color.dart';
 
@@ -99,7 +100,10 @@ class MyPlanController extends GetxController {
   void goToJoinedDetails(PlanModel plan) =>
       Get.toNamed(AppRoutes.joinedPlanDetailsScreen, arguments: plan);
 
-  void goToEditPlan() => Get.toNamed(AppRoutes.editPlanScreen);
+  void goToEditPlan() => Get.toNamed(
+    AppRoutes.editPlanScreen,
+    arguments: events,
+  );
 
   // Date picker
   Future<void> pickDate(BuildContext context) async {

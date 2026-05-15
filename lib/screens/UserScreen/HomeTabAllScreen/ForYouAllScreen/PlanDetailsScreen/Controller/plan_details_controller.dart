@@ -199,7 +199,7 @@ class PlanDetailsController extends GetxController {
   void goToReportProblem() => Get.toNamed(AppRoutes.reportProblemScreen);
 
   void goToBlockUser() => Get.toNamed(AppRoutes.blockUserScreen);
-
+  void goHowDidItGo() => Get.toNamed(AppRoutes.howDidItGoScreen);
   void goToSupportHelp() => Get.toNamed(AppRoutes.supportHelpScreen);
 
   void selectReason(ReportReason reason) {
@@ -234,6 +234,6 @@ class PlanDetailsController extends GetxController {
   void onInit() {
     super.onInit();
     // initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
-    initLockTimer(DateTime.now().add(const Duration(seconds: 5)));
+    initLockTimer(DateTime.now().add(const Duration(minutes: 5)));
   }
 }

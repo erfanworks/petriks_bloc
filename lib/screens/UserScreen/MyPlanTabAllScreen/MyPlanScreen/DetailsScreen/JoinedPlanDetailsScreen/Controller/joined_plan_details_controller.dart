@@ -180,6 +180,7 @@ class JoinedPlanDetailsController extends GetxController {
 
   void onConfirmAttendance() {
     attendanceConfirmed.value = true;
+    Get.toNamed(AppRoutes.helpCenterScreen);
     AppSnackBar.success("Attendance successfully 🎉", seconds: 2);
   }
 
