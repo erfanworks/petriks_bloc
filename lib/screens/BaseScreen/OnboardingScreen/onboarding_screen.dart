@@ -642,7 +642,7 @@ class _OneTOOneCard extends StatelessWidget {
               ),
               SizedBox(height: 6.h),
               CustomText(
-                title: 'Enter challenges &\nclimb leaderboards',
+                title: 'Create or join \nmeaning meetups.',
                 textSize: 11.sp,
                 fontWeight: FontWeight.w400,
                 textColor: Colors.white.withAlpha(200),

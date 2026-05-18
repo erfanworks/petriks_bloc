@@ -52,6 +52,43 @@ class SetMatchDetailsScreen extends StatelessWidget {
               iconColor: ConstColor.primaryColor,
               value: c.titleController.text,
             ),
+            SizedBox(height: 16.h),
+            CustomText(
+              title: ConstString.location,
+              textColor: ConstColor.black,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w500,
+              maxLine: 1,
+            ),
+            SizedBox(height: 8.h),
+
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12.r),
+              border: Border.all(color: ConstColor.borderColor),
+            ),
+            child: Row(
+              children: [
+                Icon(Icons.location_on_outlined, color: ConstColor.primaryColor, size: 18.sp),
+                SizedBox(width: 10.w),
+                Expanded(
+                  child: CustomText(
+                    title: "London Park, UK",
+                    textColor: ConstColor.black,
+                    textSize: 14.sp,
+                    maxLine: 1,
+                  ),
+                ),
+                Icon(
+                  Icons.my_location,
+                  color: ConstColor.grey,
+                  size: 20.sp,
+                ),
+              ],
+            ),
+          ),
 
             SizedBox(height: 16.h),
 

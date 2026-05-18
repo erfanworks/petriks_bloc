@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
@@ -23,6 +25,15 @@ class LocationVoteItem {
   });
 
   int get percent => ((votes / totalVotes) * 100).round();
+  LocationVoteItem copyWith({bool? isSelected}) {
+    return LocationVoteItem(
+      image: image,
+      name: name,
+      votes: votes,
+      totalVotes: totalVotes,
+      isSelected: isSelected ?? this.isSelected,
+    );
+  }
 }
 
 class ChatMessage {
@@ -52,8 +63,54 @@ class ReportReason {
 class OneToOneMeetupDetailsController extends GetxController {
   // ---- Plan State ----
   final RxBool hasJoined = false.obs;
-  // final hasJoined = false.obs;
+  final RxInt selectedTimeIndex = 0.obs;
   final attendanceConfirmed = false.obs;
+  final lockTimer = ''.obs;
+  Timer? _timer;
+  bool get isTimerExpired => lockTimer.value.isEmpty && lockUntil != null;
+  bool get isLocked => lockTimer.value.isEmpty && lockUntil != null;
+
+  DateTime? lockUntil;
+
+  void initLockTimer(DateTime lockUntilTime) {
+    lockUntil = lockUntilTime;
+    _startCountdown();
+  }
+
+  void _startCountdown() {
+    _timer?.cancel();
+    _tick();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
+  }
+
+  void selectLocation(LocationVoteItem selected) {
+    for (int i = 0; i < locationVotes.length; i++) {
+      locationVotes[i] = locationVotes[i].copyWith(
+        isSelected: locationVotes[i] == selected,
+      );
+    }
+  }
+
+
+  void _tick() {
+    if (lockUntil == null) return;
+
+    final remaining = lockUntil!.difference(DateTime.now());
+
+    if (remaining.isNegative || remaining.inSeconds == 0) {
+      _timer?.cancel();
+      lockTimer.value = '';
+      return;
+    }
+
+    final h = remaining.inHours;
+    final m = remaining.inMinutes % 60;
+    final s = remaining.inSeconds % 60;
+
+    lockTimer.value = h > 0
+        ? '${h}h ${m.toString().padLeft(2, '0')}m'
+        : '${m}m ${s.toString().padLeft(2, '0')}s';
+  }
 
 
   // ---- Location Votes ----
@@ -115,6 +172,8 @@ class OneToOneMeetupDetailsController extends GetxController {
 
   // ======= Actions =======
 
+  void selectTime(int index) => selectedTimeIndex.value = index;
+
   // Plan Detail
   void showJoinSheet() {
     Get.bottomSheet(
@@ -168,6 +227,14 @@ class OneToOneMeetupDetailsController extends GetxController {
     reviewController.dispose();
     supportSubjectController.dispose();
     supportDescController.dispose();
+    _timer?.cancel();
     super.onClose();
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    // initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
+    initLockTimer(DateTime.now().add(const Duration(seconds: 5)));
   }
 }
