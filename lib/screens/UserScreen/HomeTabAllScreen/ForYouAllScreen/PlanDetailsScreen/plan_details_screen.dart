@@ -228,7 +228,7 @@ class PlanDetailsScreen extends StatelessWidget {
                       ? '🕐 Time Confirmed!'
                       : 'Choose Time',
                   textColor: controller.isLocked
-                      ? ConstColor.primaryColor
+                      ? ConstColor.black
                       : ConstColor.black,
                   textSize: 18.sp,
                   fontWeight: FontWeight.w700,
@@ -271,7 +271,7 @@ class PlanDetailsScreen extends StatelessWidget {
                       ? '📍 Venue Decided!'
                       : ConstString.pickALocation,
                   textColor: controller.isLocked
-                      ? ConstColor.primaryColor
+                      ? ConstColor.black
                       : ConstColor.black,
                   textSize: 18.sp,
                   fontWeight: FontWeight.w700,

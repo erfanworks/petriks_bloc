@@ -140,16 +140,16 @@ class CommunityDetailScreen extends StatelessWidget {
                     maxLine: 1,
                     fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: CustomText(
-                      title: ConstString.seeAll,
-                      textColor: ConstColor.primaryColor,
-                      fontWeight: FontWeight.w600,
-                      textSize: 14.sp,
-                      maxLine: 1,
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {},
+                  //   child: CustomText(
+                  //     title: ConstString.seeAll,
+                  //     textColor: ConstColor.primaryColor,
+                  //     fontWeight: FontWeight.w600,
+                  //     textSize: 14.sp,
+                  //     maxLine: 1,
+                  //   ),
+                  // ),
                 ],
               ),
             ),

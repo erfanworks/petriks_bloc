@@ -149,7 +149,7 @@ class JoinGroupScreen extends StatelessWidget {
           //   onBackToDiscovery: () => Get.toNamed(AppRoutes.navBar),
           // ),
           onPressed: () => c.confirmJoinGroup(context),
-          height: 40,
+          height: 48,
           top: 0,
           buttonBorderRadius: 30,
           gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],

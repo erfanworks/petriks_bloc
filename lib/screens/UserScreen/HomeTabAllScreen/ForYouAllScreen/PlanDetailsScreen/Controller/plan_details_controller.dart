@@ -233,6 +233,6 @@ class PlanDetailsController extends GetxController {
   void onInit() {
     super.onInit();
     // initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
-    initLockTimer(DateTime.now().add(const Duration(minutes: 5)));
+    initLockTimer(DateTime.now().add(const Duration(seconds: 5)));
   }
 }
