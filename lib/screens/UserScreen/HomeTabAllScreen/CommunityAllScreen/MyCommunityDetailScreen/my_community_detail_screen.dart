@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -8,6 +9,8 @@ import '../../../../../constant/const_string.dart';
 import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+import '../MyCommunityScreen/Controller/my_community_controller.dart';
+import '../ViewCompetitionScreen/Controller/view_competition_controller.dart';
 import 'Controller/my_community_detail_controller.dart';
 import 'Widget/my_group_card.dart';
 
@@ -17,6 +20,13 @@ class MyCommunityDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<MyCommunityDetailController>();
+    final item = Get.arguments as MyCommunityModel?;
+
+    if (item == null) {
+      Get.back();
+      return const SizedBox.shrink();
+    }
+    final bool isOwner = item.role.toLowerCase() == 'owner';
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
@@ -152,17 +162,14 @@ class MyCommunityDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10.h),
-            // ─── If you are using GetBuilder(builder: (c) { ... }) ───
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-
-              itemCount: controller.groups.length,
-              separatorBuilder: (_, _) => SizedBox(height: 12.h),
+              itemCount: isOwner ? controller.groups.length : 1,
+              separatorBuilder: (_, __) => SizedBox(height: 12.h),
               itemBuilder: (context, i) {
                 final GroupItem currentItem = controller.groups[i];
-
                 return MyGroupCard(
                   item: currentItem,
                   onTap: () => controller.onViewGroup(currentItem),
@@ -198,13 +205,13 @@ class MyCommunityDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10.h),
-            ...controller.competitions.map((comp) => _CompetitionListItem(item: comp)),
+            ...controller.competitions.map((comp) => _CompetitionListItem(item: comp,isOwner: isOwner,)),
 
             SizedBox(height: 50.h),
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
+      bottomNavigationBar: isOwner ? Padding(
         padding: EdgeInsets.fromLTRB(
           16.w,
           0,
@@ -248,7 +255,7 @@ class MyCommunityDetailScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      ) : const SizedBox.shrink(),
     );
   }
 }
@@ -486,8 +493,9 @@ class _LegendDot extends StatelessWidget {
 }
 class _CompetitionListItem extends StatelessWidget {
   final CompetitionItem item;
+  final bool isOwner;
 
-  const _CompetitionListItem({required this.item});
+  const _CompetitionListItem({required this.item,required this.isOwner,});
 
   @override
   Widget build(BuildContext context) {
@@ -498,63 +506,69 @@ class _CompetitionListItem extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(14.r),
       ),
-      child: Row(
-        children: [
-          Container(
-            width: 48.w,
-            height: 48.h,
-            decoration: BoxDecoration(
-              color: const Color(0xFFEDE9FF),
-              shape: BoxShape.circle,
+      child: InkWell(
+        onTap: () {
+          Get.find<ViewCompetitionController>().setOwner(isOwner);
+          Get.toNamed(AppRoutes.viewCompetitionScreen);
+        },
+        child: Row(
+          children: [
+            Container(
+              width: 48.w,
+              height: 48.h,
+              decoration: BoxDecoration(
+                color: const Color(0xFFEDE9FF),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Text(item.emoji, style: TextStyle(fontSize: 20.sp)),
+              ),
             ),
-            child: Center(
-              child: Text(item.emoji, style: TextStyle(fontSize: 20.sp)),
-            ),
-          ),
-          SizedBox(width: 12.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  title: item.title,
-                  textColor: ConstColor.black,
-                  textSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                  maxLine: 1,
-                ),
-                SizedBox(height: 3.h),
-                Row(
-                  children: [
-                    Container(
-                      width: 7.w,
-                      height: 7.h,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: item.isUpcoming
-                            ? ConstColor.primaryColor
-                            : Colors.red,
+            SizedBox(width: 12.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    title: item.title,
+                    textColor: ConstColor.black,
+                    textSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    maxLine: 1,
+                  ),
+                  SizedBox(height: 3.h),
+                  Row(
+                    children: [
+                      Container(
+                        width: 7.w,
+                        height: 7.h,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: item.isUpcoming
+                              ? ConstColor.primaryColor
+                              : Colors.red,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 5.w),
-                    CustomText(
-                      title: item.status,
-                      textColor: ConstColor.grey,
-                      textSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      maxLine: 1,
-                    ),
-                  ],
-                ),
-              ],
+                      SizedBox(width: 5.w),
+                      CustomText(
+                        title: item.status,
+                        textColor: ConstColor.grey,
+                        textSize: 12.sp,
+                        fontWeight: FontWeight.w500,
+                        maxLine: 1,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-          Icon(
-            Icons.chevron_right_rounded,
-            color: ConstColor.grey,
-            size: 20.sp,
-          ),
-        ],
+            Icon(
+              Icons.chevron_right_rounded,
+              color: ConstColor.grey,
+              size: 20.sp,
+            ),
+          ],
+        ),
       ),
     );
   }

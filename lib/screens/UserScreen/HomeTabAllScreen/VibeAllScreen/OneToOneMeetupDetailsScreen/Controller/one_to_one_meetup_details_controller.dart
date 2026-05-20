@@ -61,14 +61,14 @@ class ReportReason {
 
 // ---- Plan Details Controller ----
 class OneToOneMeetupDetailsController extends GetxController {
-  // ---- Plan State ----
   final RxBool hasJoined = false.obs;
-  final RxInt selectedTimeIndex = 0.obs;
-  final attendanceConfirmed = false.obs;
+  final RxInt selectedTimeIndex = (-1).obs;
   final lockTimer = ''.obs;
   Timer? _timer;
+  final attendanceConfirmed = false.obs;
   bool get isTimerExpired => lockTimer.value.isEmpty && lockUntil != null;
   bool get isLocked => lockTimer.value.isEmpty && lockUntil != null;
+  final hasNavigated = false.obs;
 
   DateTime? lockUntil;
 
@@ -120,7 +120,7 @@ class OneToOneMeetupDetailsController extends GetxController {
       name: 'Hyde Park',
       votes: 3,
       totalVotes: 5,
-      isSelected: true,
+      isSelected: false,
     ),
     const LocationVoteItem(
       image: 'assets/images/location_img2.jpg',
@@ -183,7 +183,7 @@ class OneToOneMeetupDetailsController extends GetxController {
   }
 
   void onJoinConfirmed() {
-    Get.back();
+    Navigator.of(Get.context!).pop();
     hasJoined.value = true;
     AppSnackBar.success("Joined successfully");
   }
@@ -191,6 +191,7 @@ class OneToOneMeetupDetailsController extends GetxController {
   void onConfirmAttendance() {
     attendanceConfirmed.value = true;
     Get.toNamed(AppRoutes.helpCenterScreen);
+    AppSnackBar.success("Attendance successfully 🎉", seconds: 2);
   }
 
   // Review
@@ -235,6 +236,6 @@ class OneToOneMeetupDetailsController extends GetxController {
   void onInit() {
     super.onInit();
     // initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
-    initLockTimer(DateTime.now().add(const Duration(seconds: 5)));
+    initLockTimer(DateTime.now().add(const Duration(seconds: 35)));
   }
 }

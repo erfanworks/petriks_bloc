@@ -176,23 +176,23 @@ class MyGroupDetailScreen extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20.h),
-
-            // ---- Competitions ----
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: CustomText(
-                title: ConstString.competitions,
-                textColor: ConstColor.black,
-                textSize: 20.sp,
-                fontWeight: FontWeight.w700,
-                maxLine: 1,
-              ),
-            ),
-            SizedBox(height: 10.h),
-            ...c.competitions.map((comp) => _CompetitionListItem(item: comp)),
-
-            SizedBox(height: 100.h),
+            // SizedBox(height: 20.h),
+            //
+            // // ---- Competitions ----
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 16.w),
+            //   child: CustomText(
+            //     title: ConstString.competitions,
+            //     textColor: ConstColor.black,
+            //     textSize: 20.sp,
+            //     fontWeight: FontWeight.w700,
+            //     maxLine: 1,
+            //   ),
+            // ),
+            // SizedBox(height: 10.h),
+            // ...c.competitions.map((comp) => _CompetitionListItem(item: comp)),
+            //
+            // SizedBox(height: 100.h),
           ],
         ),
       ),

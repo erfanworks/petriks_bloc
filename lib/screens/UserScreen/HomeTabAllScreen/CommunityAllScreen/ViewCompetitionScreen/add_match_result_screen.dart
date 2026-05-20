@@ -118,6 +118,20 @@ class AddMatchResultScreen extends StatelessWidget {
 
             SizedBox(height: 38.h),
 
+
+          ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.fromLTRB(
+          16.w,
+          0,
+          16.w,
+          4.h + MediaQuery.of(context).padding.bottom,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
             CustomElevatedButton(
               onPressed: c.confirmResult,
               height: 48,

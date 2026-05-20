@@ -120,6 +120,7 @@ class ConstString {
   static const pickALocation = 'Pick a location';
   static const location = 'Location';
   static const groupChat = 'Group Chat';
+  static const navigate = 'Navigate';
   static const view = 'View';
   static const joinEvent = 'Join Event';
   static const confirmAttendance = 'Confirm Attendance';

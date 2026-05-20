@@ -24,6 +24,9 @@ class ViewCompetitionController extends GetxController {
   // ---- State ----
   final RxBool isRegistered = false.obs;
   final RxBool isCompleted = false.obs;
+  final isOwner = false.obs;
+
+  void setOwner(bool value) => isOwner.value = value;
 
   // ---- Select Winner (0=GroupA, 1=GroupB, 2=Draw) ----
   final RxInt selectedWinner = 0.obs;
@@ -57,7 +60,7 @@ class ViewCompetitionController extends GetxController {
   ];
 
   // ---- Actions ----
-  void onRegister() => isRegistered.value = true;
+  void onRegister() => Get.toNamed(AppRoutes.navBar);
 
   void onMarkCompleted() => Get.toNamed(AppRoutes.addMatchResultScreen);
 
@@ -75,7 +78,7 @@ class ViewCompetitionController extends GetxController {
     Get.toNamed(AppRoutes.finalScoreScreen);
   }
 
-  void onEditResult() => Get.toNamed('/add-match-result');
+  void onEditResult() => Get.toNamed(AppRoutes.addMatchResultScreen);
 
   @override
   void onClose() {

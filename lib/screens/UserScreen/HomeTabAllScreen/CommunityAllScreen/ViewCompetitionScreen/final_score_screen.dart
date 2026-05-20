@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -91,98 +93,57 @@ class FinalScoreScreen extends StatelessWidget {
           ],
         ),
       ),
-      // bottomNavigationBar: Padding(
-      //   padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 24.h),
-      //   child: CustomElevatedButton(
-      //     onPressed: c.onEditResult,
-      //     height: 48,
-      //     elevation: 0,
-      //     top: 0,
-      //     buttonBorderRadius: 30,
-      //     isOutLined: true,
-      //     outLineColour: ConstColor.grey,
-      //     icon: Icon(Icons.edit_outlined, size: 16.sp, color: ConstColor.black),
-      //     child: CustomText(
-      //       title: ConstString.editResult,
-      //       textColor: ConstColor.black,
-      //       textSize: 14.sp,
-      //       fontWeight: FontWeight.w500,
-      //       maxLine: 1,
-      //     ),
-      //   ),
-      // ),
-      bottomNavigationBar: Obx(
-        () => Padding(
-          padding: EdgeInsets.fromLTRB(
-            16.w,
-            0,
-            16.w,
-            4.h + MediaQuery.of(context).padding.bottom,
-          ),
-          child: c.isRegistered.value
-              ? Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Mark as completed
-                    CustomElevatedButton(
-                      onPressed: c.backToHome,
-                      height: 48,
-                      top: 0,
-                      bottom: 10,
-                      buttonBorderRadius: 30,
-                      gradient: const [
-                        ConstColor.primaryDeepColor,
-                        ConstColor.primaryColor,
-                      ],
-                      child: CustomText(
-                        title: ConstString.backToHome,
-                        textColor: Colors.white,
-                        textSize: 15.sp,
-                        fontWeight: FontWeight.w600,
-                        maxLine: 1,
-                      ),
-                    ),
-                    // Edit competition
-                    CustomElevatedButton(
-                      onPressed: c.onEditCompetition,
-                      height: 48,
-                      top: 0,
-                      elevation: 0,
-                      buttonBorderRadius: 30,
-                      isOutLined: true,
-                      outLineColour: ConstColor.grey,
-                      icon: Icon(
-                        Icons.edit_outlined,
-                        size: 16.sp,
-                        color: ConstColor.black,
-                      ),
-                      child: CustomText(
-                        title: ConstString.editCompetition,
-                        textColor: ConstColor.black,
-                        textSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        maxLine: 1,
-                      ),
-                    ),
-                  ],
-                )
-              : CustomElevatedButton(
-                  onPressed: c.onRegister,
-                  height: 48,
-                  top: 0,
-                  buttonBorderRadius: 30,
-                  gradient: const [
-                    ConstColor.primaryDeepColor,
-                    ConstColor.primaryColor,
-                  ],
-                  child: CustomText(
-                    title: ConstString.registerNow,
-                    textColor: Colors.white,
-                    textSize: 15.sp,
-                    fontWeight: FontWeight.w600,
-                    maxLine: 1,
-                  ),
-                ),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.fromLTRB(
+          16.w,
+          0,
+          16.w,
+          4.h + MediaQuery.of(context).padding.bottom,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomElevatedButton(
+              onPressed: c.onEditResult,
+              height: 48,
+              top: 0,
+              bottom: 8,
+              elevation: 0,
+              buttonBorderRadius: 30,
+              isOutLined: true,
+              outLineColour: ConstColor.grey,
+              icon: Icon(
+                Icons.edit_outlined,
+                size: 16.sp,
+                color: ConstColor.black,
+              ),
+              child: CustomText(
+                title: ConstString.editResult,
+                textColor: ConstColor.black,
+                textSize: 14.sp,
+                fontWeight: FontWeight.w500,
+                maxLine: 1,
+              ),
+            ),
+            CustomElevatedButton(
+              onPressed: c.backToHome,
+              height: 48,
+              top: 0,
+
+              buttonBorderRadius: 30,
+              gradient: const [
+                ConstColor.primaryDeepColor,
+                ConstColor.primaryColor,
+              ],
+              child: CustomText(
+                title: ConstString.backToHome,
+                textColor: Colors.white,
+                textSize: 15.sp,
+                fontWeight: FontWeight.w600,
+                maxLine: 1,
+              ),
+            ),
+          ],
         ),
       ),
     );

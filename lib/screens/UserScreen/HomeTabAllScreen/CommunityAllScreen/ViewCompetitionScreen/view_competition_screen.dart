@@ -18,6 +18,7 @@ class ViewCompetitionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = Get.find<ViewCompetitionController>();
+    final bool isOwner = c.isOwner.value;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
@@ -88,15 +89,14 @@ class ViewCompetitionScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Obx(
-        () => Padding(
+      bottomNavigationBar: Padding(
           padding: EdgeInsets.fromLTRB(
             16.w,
             0,
             16.w,
             4.h + MediaQuery.of(context).padding.bottom,
           ),
-          child: c.isRegistered.value
+          child: isOwner
               ? Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -155,7 +155,6 @@ class ViewCompetitionScreen extends StatelessWidget {
                   ),
                 ),
         ),
-      ),
     );
   }
 }
