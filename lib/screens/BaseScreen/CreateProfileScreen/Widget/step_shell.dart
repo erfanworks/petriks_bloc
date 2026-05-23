@@ -43,7 +43,7 @@ class StepShell extends StatelessWidget {
                   title: title,
                   textSize: 28.sp,
                   fontWeight: FontWeight.w700,
-                  textColor: ConstColor.textColor,
+                  textColor: Colors.black,
                   maxLine: 3,
                   fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                 ),

@@ -16,7 +16,7 @@ class Step4MeetPref extends StatelessWidget {
     return StepShell(
       title: ConstString.howToYouPerfect,
       subtitle:
-      ConstString.thisHelpsYouConnect,
+      ConstString.selectYourPreferred,
       child: Obx(() => Column(
         children: c.meetOptions.map((opt) {
           final selected = c.selectedMeetPref.value == opt['label'];

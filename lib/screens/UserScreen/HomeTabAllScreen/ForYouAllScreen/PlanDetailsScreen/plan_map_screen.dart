@@ -73,7 +73,7 @@ class PlanMapScreen extends StatelessWidget {
           ),
 
           Positioned(
-            bottom: 42.h,
+            bottom: MediaQuery.of(context).padding.bottom + 16.h,
             left: 16.w,
             right: 16.w,
             child: CustomElevatedButton(

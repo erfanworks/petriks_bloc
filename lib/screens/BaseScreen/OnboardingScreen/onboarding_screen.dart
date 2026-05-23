@@ -453,6 +453,7 @@ class _BottomCard extends StatelessWidget {
             ),
             SizedBox(height: 24.h),
             CustomElevatedButton(
+              bottom: MediaQuery.of(context).padding.bottom + 16.h,
               gradient: const [
                 ConstColor.primaryDeepColor,
                 ConstColor.primaryColor,

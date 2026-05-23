@@ -57,6 +57,7 @@ class ConstString {
   static const yourInterests = 'Your Interests';
   static const pickAFewWell = "Pick a few — we'll personalize your experience";
   static const whatLanguageTo = 'What languages do you speak?';
+  static const selectYourPreferred = 'Select your preferred meeting style to find connections that match your comfort zone.';
   static const thisHelpsYouConnect =
       'This helps you connect comfortably and find local communities that share your native tongue.';
   static const preferredChat = 'Preferred Chat Language';
