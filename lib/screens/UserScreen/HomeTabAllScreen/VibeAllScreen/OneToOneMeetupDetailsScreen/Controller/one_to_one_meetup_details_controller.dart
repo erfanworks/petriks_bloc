@@ -186,6 +186,8 @@ class OneToOneMeetupDetailsController extends GetxController {
     Navigator.of(Get.context!).pop();
     hasJoined.value = true;
     AppSnackBar.success("Joined successfully");
+
+    Get.find<NavbarController>().highlightMyPlan();
   }
 
   void onConfirmAttendance() {
