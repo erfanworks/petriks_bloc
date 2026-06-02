@@ -90,6 +90,24 @@ class Step1BasicInfo extends StatelessWidget {
                 initialDate: DateTime(2000),
                 firstDate: DateTime(1950),
                 lastDate: DateTime.now(),
+
+                builder: (context, child) {
+                  return Theme(
+                    data: Theme.of(context).copyWith(
+                      colorScheme: const ColorScheme.light(
+                        primary: ConstColor.primaryColor,
+                        onPrimary: Colors.white,
+                        surface: Colors.white,
+                        onSurface: Colors.black,
+                      ),
+
+                      datePickerTheme: const DatePickerThemeData(
+                        backgroundColor: Colors.white,
+                      ),
+                    ),
+                    child: child!,
+                  );
+                },
               );
               if (picked != null) c.selectDob(picked);
             },

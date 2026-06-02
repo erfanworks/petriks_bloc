@@ -144,21 +144,21 @@ class _MapSection extends StatelessWidget {
             ),
           ),
 
-          Positioned(
-            top: 248.h,
-            right: 138,
-            child: Icon(Icons.location_on, color: Colors.white, size: 23.sp),
-          ),
-
-          Positioned(
-            top: 310.h,
-            right: 90.w,
-            child: Icon(
-              Icons.location_on,
-              color: Colors.white.withAlpha(120),
-              size: 16.sp,
-            ),
-          ),
+          // Positioned(
+          //   top: 248.h,
+          //   right: 138,
+          //   child: Icon(Icons.location_on, color: Colors.white, size: 23.sp),
+          // ),
+          //
+          // Positioned(
+          //   top: 310.h,
+          //   right: 90.w,
+          //   child: Icon(
+          //     Icons.location_on,
+          //     color: Colors.white.withAlpha(120),
+          //     size: 16.sp,
+          //   ),
+          // ),
 
           Positioned(
             top: 228.h,
