@@ -593,7 +593,8 @@ class _Step4WhenWhere extends StatelessWidget {
           )),
 
           SizedBox(height: 24.h),
-
+          _VoteDurationSection(),
+          SizedBox(height: 16.h),
           _FieldLabel(label: ConstString.pickAPlace),
           SizedBox(height: 8.h),
 
@@ -814,6 +815,124 @@ class _Step4WhenWhere extends StatelessWidget {
           SizedBox(height: 40.h),
         ],
       ),
+    );
+  }
+}
+
+// ─── 3. এই widget ta file এর নিচে add করো ────────────────────────────────────
+
+class _VoteDurationSection extends StatelessWidget {
+  const _VoteDurationSection();
+
+  @override
+  Widget build(BuildContext context) {
+    final c = Get.find<CreatePlanController>();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // ── Header ──
+        Row(
+          children: [
+            Container(
+              width: 34.r,
+              height: 34.r,
+              decoration: BoxDecoration(
+                color: ConstColor.primaryColor.withAlpha(20),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.timer_outlined, size: 18.sp, color: ConstColor.primaryColor),
+            ),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    title: ConstString.voteDuration,
+                    textSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                    textColor: ConstColor.black,
+                    maxLine: 1,
+                  ),
+                  CustomText(
+                    title: ConstString.voteDurationSubtitle,
+                    textSize: 12.sp,
+                    textColor: ConstColor.grey,
+                    maxLine: 1,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 12.h),
+
+        // ── Duration Chips ──
+        Obx(() => Wrap(
+          spacing: 8.w,
+          runSpacing: 8.h,
+          children: c.voteDurations.asMap().entries.map((entry) {
+            final isSelected = c.voteDurationIndex.value == entry.key;
+            return GestureDetector(
+              onTap: () => c.voteDurationIndex.value = entry.key,
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 160),
+                padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 9.h),
+                decoration: BoxDecoration(
+                  color: isSelected ? ConstColor.primaryColor : ConstColor.white,
+                  borderRadius: BorderRadius.circular(30.r),
+                  border: Border.all(
+                    color: isSelected ? ConstColor.primaryColor : ConstColor.borderColor,
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (isSelected) ...[
+                      Icon(Icons.check_rounded, size: 13.sp, color: Colors.white),
+                      SizedBox(width: 4.w),
+                    ],
+                    CustomText(
+                      title: entry.value,
+                      textSize: 13.sp,
+                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+                      textColor: isSelected ? Colors.white : ConstColor.black,
+                      maxLine: 1,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
+        )),
+
+        SizedBox(height: 10.h),
+
+        // ── Selected duration info pill ──
+        Obx(() => Container(
+          padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
+          decoration: BoxDecoration(
+            color: ConstColor.primaryColor.withAlpha(15),
+            borderRadius: BorderRadius.circular(12.r),
+            border: Border.all(color: ConstColor.primaryColor.withAlpha(40)),
+          ),
+          child: Row(
+            children: [
+              Icon(Icons.info_outline_rounded, size: 15.sp, color: ConstColor.primaryColor),
+              SizedBox(width: 8.w),
+              Expanded(
+                child: CustomText(
+                  title: 'Voting will close after ${c.voteDurations[c.voteDurationIndex.value]} — then the most voted option wins.',
+                  textSize: 12.sp,
+                  textColor: ConstColor.primaryColor,
+                  maxLine: 2,
+                ),
+              ),
+            ],
+          ),
+        )),
+      ],
     );
   }
 }

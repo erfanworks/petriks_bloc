@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../widget/AppImage/app_image.dart';
+import '../../../../../../widget/FullScreenImageViewer/full_screen_image_viewer.dart';
 import '../Controller/feed_controller.dart';
 
 class FeedPostCard extends StatelessWidget {
@@ -83,13 +84,16 @@ class FeedPostCard extends StatelessWidget {
           if (post.postImage != null)
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16.r),
-                  child: AppImage(
-                    path: post.postImage!,
-                    width: double.infinity,
-                    height: 200.h,
-                    fit: BoxFit.cover,
+                InkWell(
+                  onTap: () => openFullScreenImage(post.postImage!),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.r),
+                    child: AppImage(
+                      path: post.postImage!,
+                      width: double.infinity,
+                      height: 200.h,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 if (post.locationTag != null)

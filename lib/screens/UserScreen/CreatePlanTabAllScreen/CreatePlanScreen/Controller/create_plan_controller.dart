@@ -8,6 +8,8 @@ class CreatePlanController extends GetxController {
   final selectedPlanType = ''.obs;
   final selectedPrivacy = 'public'.obs;
   final selectedTime2 = '08:00 PM'.obs;
+  final voteDurationIndex = 0.obs;
+  final voteDurations = ['1h', '3h', '6h', '12h', '24h', '48h'];
 
   final List<Map<String, dynamic>> planTypes = [
     {

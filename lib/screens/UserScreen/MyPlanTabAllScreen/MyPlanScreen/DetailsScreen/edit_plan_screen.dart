@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
@@ -256,7 +257,7 @@ class EditPlanScreen extends StatelessWidget {
             ),
             child: CustomElevatedButton(
               top: 0,
-              onPressed: () => Get.back(),
+              onPressed: () => Get.toNamed(AppRoutes.navBar, arguments: 2),
               gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
               buttonBorderRadius: 30,
               child: CustomText(

@@ -23,7 +23,7 @@ class Step1BasicInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Full Name ──
+          ////// Full Name
           CustomTextFormField(
             onChanged: (_) => c.selectedAgeBand.refresh(),
             fromTitle: ConstString.fullName,
@@ -31,8 +31,9 @@ class Step1BasicInfo extends StatelessWidget {
             backgroundColor: ConstColor.boxColor,
             hintText: const Text(
               ConstString.enterName,
-              style: TextStyle(color: ConstColor.iconColor,
-              fontWeight: FontWeight.w400,
+              style: TextStyle(
+                color: ConstColor.iconColor,
+                fontWeight: FontWeight.w400,
               ),
             ),
             prefixIcon: Padding(
@@ -51,7 +52,7 @@ class Step1BasicInfo extends StatelessWidget {
 
           SizedBox(height: 4.h),
 
-          // ── Gender dropdown ──
+          ///// Gender dropdown
           _LabelField(label: 'Gender'),
           Obx(
             () => _DropdownField(
@@ -66,7 +67,7 @@ class Step1BasicInfo extends StatelessWidget {
 
           SizedBox(height: 4.h),
 
-          // ── Date of Birth ──
+          ///// Date of Birth
           CustomTextFormField(
             fromTitle: ConstString.dateOfBirth,
             textController: c.dobController,
@@ -115,7 +116,7 @@ class Step1BasicInfo extends StatelessWidget {
 
           SizedBox(height: 12.h),
 
-          // ── Age band ──
+          ///// Age band
           CustomText(
             title: ConstString.selectYourAge,
             textSize: 15.sp,
@@ -140,7 +141,9 @@ class Step1BasicInfo extends StatelessWidget {
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 180),
                     decoration: BoxDecoration(
-                      color: selected ? const Color(0xFF6C5CE7) : ConstColor.boxColor,
+                      color: selected
+                          ? const Color(0xFF6C5CE7)
+                          : ConstColor.boxColor,
                       borderRadius: BorderRadius.circular(30.r),
                       border: Border.all(
                         color: selected
@@ -167,7 +170,7 @@ class Step1BasicInfo extends StatelessWidget {
 
           SizedBox(height: 16.h),
 
-          // ── Confirm area ──
+          ///// Confirm area
           CustomText(
             title: ConstString.confirmYourArea,
             textSize: 15.sp,
@@ -181,7 +184,8 @@ class Step1BasicInfo extends StatelessWidget {
             backgroundColor: ConstColor.boxColor,
             hintText: const Text(
               ConstString.searchLocation,
-              style: TextStyle(color: ConstColor.iconColor,
+              style: TextStyle(
+                color: ConstColor.iconColor,
                 fontWeight: FontWeight.w400,
               ),
             ),
@@ -201,7 +205,7 @@ class Step1BasicInfo extends StatelessWidget {
 
           SizedBox(height: 10.h),
 
-          // ── Map placeholder ──
+          ////// Map placeholder
           ClipRRect(
             borderRadius: BorderRadius.circular(14.r),
             child: Stack(
@@ -217,7 +221,7 @@ class Step1BasicInfo extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                // Location pin
+                ///// Location pin
                 Positioned(
                   top: 55.h,
                   left: 140.h,
@@ -240,12 +244,15 @@ class Step1BasicInfo extends StatelessWidget {
                         'assets/icons/location_icon.svg',
                         width: 18.r,
                         height: 18.r,
-                        colorFilter: ColorFilter.mode(ConstColor.white, BlendMode.srcIn),
+                        colorFilter: ColorFilter.mode(
+                          ConstColor.white,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                // GPS button
+                ////// GPS button
                 Positioned(
                   right: 10.w,
                   bottom: 30.h,
@@ -267,7 +274,10 @@ class Step1BasicInfo extends StatelessWidget {
                         'assets/icons/location_pin.svg',
                         width: 18.r,
                         height: 18.r,
-                        colorFilter: ColorFilter.mode(ConstColor.primaryColor, BlendMode.srcIn),
+                        colorFilter: ColorFilter.mode(
+                          ConstColor.primaryColor,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     ),
                   ),
@@ -282,9 +292,12 @@ class Step1BasicInfo extends StatelessWidget {
                 'assets/icons/current_location_icon.svg',
                 width: 14.r,
                 height: 14.r,
-                colorFilter: ColorFilter.mode(ConstColor.primaryColor, BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(
+                  ConstColor.primaryColor,
+                  BlendMode.srcIn,
+                ),
               ),
-              SizedBox(width: 8.w,),
+              SizedBox(width: 8.w),
               CustomText(
                 title: 'Shoreditch, London— Based on your \ncurrent location',
                 textSize: 14.sp,
@@ -301,7 +314,7 @@ class Step1BasicInfo extends StatelessWidget {
   }
 }
 
-// ── Helper label ──
+////// Helper label
 class _LabelField extends StatelessWidget {
   const _LabelField({required this.label});
 
@@ -322,7 +335,7 @@ class _LabelField extends StatelessWidget {
   }
 }
 
-// ── Dropdown field ──
+////// Dropdown field
 class _DropdownField extends StatelessWidget {
   const _DropdownField({
     required this.hint,

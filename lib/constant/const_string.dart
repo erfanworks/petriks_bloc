@@ -313,6 +313,8 @@ class ConstString {
   static const voteTimeSubtitle =
       'Allow guests to suggest and vote on alternatives.';
   static const pickAPlace = 'Pick a place';
+  static const String voteDuration         = 'Vote Duration';
+  static const String voteDurationSubtitle = 'How long should voting stay open?';
   static const addLocation = '+ Add location';
   static const letPeopleVotePlace = 'Let people vote on place';
   static const votePlaceSubtitle =

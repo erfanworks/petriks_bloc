@@ -81,10 +81,17 @@ class ViewCompetitionScreen extends StatelessWidget {
 
             SizedBox(height: 10.h),
 
-            ...Get.find<ViewCompetitionController>().rosterGroups.map(
-              (g) => RosterCard(group: g),
-            ),
-
+            Obx(() => Column(
+              children: Get.find<ViewCompetitionController>().rosterGroups
+                  .asMap()
+                  .entries
+                  .map((entry) => RosterCard(
+                group: entry.value,
+                isSelected: c.selectedRosterIndex.value == entry.key,
+                onTap: () => c.onRosterSelect(entry.key),
+              ))
+                  .toList(),
+            )),
             SizedBox(height: 100.h),
           ],
         ),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
-// ---- Models ----
+import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
+
+////// Models
 class RosterGroup {
   final String image;
   final String name;
@@ -19,27 +21,26 @@ class RosterGroup {
   });
 }
 
-// ---- Controller ----
+///// Controller
 class ViewCompetitionController extends GetxController {
-  // ---- State ----
+  ///// State
   final RxBool isRegistered = false.obs;
   final RxBool isCompleted = false.obs;
   final isOwner = false.obs;
 
   void setOwner(bool value) => isOwner.value = value;
 
-  // ---- Select Winner (0=GroupA, 1=GroupB, 2=Draw) ----
+  //// Select Winner (0=GroupA, 1=GroupB, 2=Draw)
   final RxInt selectedWinner = 0.obs;
 
-  // ---- Notes ----
+  ///// Notes
   final notesController = TextEditingController();
-
-  // ---- Teams Roster ----
+  final selectedRosterIndex = RxnInt();
   final List<RosterGroup> rosterGroups = [
     const RosterGroup(
       image: 'assets/images/hank_out_party_img.jpg',
       name: 'Group A',
-      memberCount: '12 Members Registered',
+      memberCount: '6 Members Registered',
       avatars: [
         'assets/images/person1_img.jpg',
         'assets/images/onboarding5_img.jpg',
@@ -59,8 +60,19 @@ class ViewCompetitionController extends GetxController {
     ),
   ];
 
-  // ---- Actions ----
-  void onRegister() => Get.toNamed(AppRoutes.navBar);
+  void onRosterSelect(int index) {
+    selectedRosterIndex.value = selectedRosterIndex.value == index ? null : index;
+  }
+  ///// Actions
+  void onRegister() {
+    if (selectedRosterIndex.value == null) {
+      AppSnackBar.message("Please select a team to register!");
+      return;
+    }
+    final teamName = rosterGroups[selectedRosterIndex.value!].name;
+    AppSnackBar.success("You've successfully registered with $teamName for this competition! 🎉", seconds: 3);
+    Get.toNamed(AppRoutes.navBar);
+  }
 
   void onMarkCompleted() => Get.toNamed(AppRoutes.addMatchResultScreen);
 

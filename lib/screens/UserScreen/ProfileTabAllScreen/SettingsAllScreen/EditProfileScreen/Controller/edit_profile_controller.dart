@@ -5,6 +5,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 class EditProfileController extends GetxController {
   final fullNameController = TextEditingController(text: 'Sophia Chen');
@@ -53,10 +54,11 @@ class EditProfileController extends GetxController {
   void onSave() async {
     try {
       isSaving.value = true;
-      await Future.delayed(const Duration(seconds: 1)); // TODO: API call
-      Get.back();
+      await Future.delayed(const Duration(seconds: 1));
+      // G et.back();
+      Get.toNamed(AppRoutes.navBar, arguments: 3);
     } catch (_) {
-      // TODO: error snackbar
+      // TODO: error snack bar
     } finally {
       isSaving.value = false;
     }
