@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
+import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 
 class CreatePlanController extends GetxController {
@@ -10,6 +11,7 @@ class CreatePlanController extends GetxController {
   final selectedTime2 = '08:00 PM'.obs;
   final voteDurationIndex = 0.obs;
   final voteDurations = ['1h', '3h', '6h', '12h', '24h', '48h'];
+  final customDuration = ''.obs;
 
   final List<Map<String, dynamic>> planTypes = [
     {
@@ -111,8 +113,27 @@ class CreatePlanController extends GetxController {
     selectedTime2.value = '$hour:$minute $period';
   }
 
-  String _month(int m) => ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m];
 
+  void onPickCustomDuration(BuildContext context) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: const TimeOfDay(hour: 2, minute: 0),
+      helpText: 'Set custom vote duration',
+      builder: (ctx, child) => Theme(
+        data: Theme.of(ctx).copyWith(
+          colorScheme: const ColorScheme.light(primary: ConstColor.primaryColor),
+        ),
+        child: child!,
+      ),
+    );
+    if (picked == null) return;
+    if (picked.hour == 0 && picked.minute == 0) return;
+    final h = picked.hour;
+    final m = picked.minute;
+    customDuration.value = h > 0 ? (m > 0 ? '${h}h ${m}m' : '${h}h') : '${m}m';
+  }
+
+  String _month(int m) => ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m];
 
   bool get isLastStep {
     if (selectedPlanType.value == 'Easy Start') {
