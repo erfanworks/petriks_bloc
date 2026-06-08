@@ -27,9 +27,12 @@ import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDe
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/Controller/one_to_one_meetup_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/Controller/vibe_controller.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/FeedBackScreen/FeedbackController/feedback_controller.dart';
+import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/Controller/created_plan_details_controller.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/JoinedPlanDetailsScreen/Controller/joined_plan_details_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/ConnectionScreen/Controller/connection_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/NotificationScreen/Controller/notification_controller.dart';
+import '../../screens/UserScreen/CreatePlanTabAllScreen/CreatePlanScreen/Controller/create_plan_controller.dart';
+import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/Controller/my_plan_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/BlockUserScreen/Controller/block_user_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfileScreen/Controller/edit_profile_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguagePreferenceScreen/Controller/language_preference_controller.dart';
@@ -90,6 +93,9 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => VerifyIdController());
     Get.lazyPut(() => JoinedPlanDetailsController());
     Get.lazyPut(() => FeedbackController());
+    Get.lazyPut(() => MyPlanController());
+    Get.lazyPut(() => CreatePlanController());
+    Get.lazyPut(() => CreatedPlanDetailsController());
 
 
   }

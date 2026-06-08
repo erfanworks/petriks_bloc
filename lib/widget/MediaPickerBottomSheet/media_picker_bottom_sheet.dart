@@ -49,8 +49,9 @@ class MediaPickerBottomSheet {
                     textSize: 16.sp,
                     fontWeight: FontWeight.w400,
                   ),
-                  onTap: () {
+                  onTap: () async {
                     Get.back();
+                    await Future.delayed(const Duration(milliseconds: 300));
                     onCamera();
                   },
                 ),
@@ -63,8 +64,9 @@ class MediaPickerBottomSheet {
                     textSize: 16.sp,
                     fontWeight: FontWeight.w400,
                   ),
-                  onTap: () {
+                  onTap: () async {
                     Get.back();
+                    await Future.delayed(const Duration(milliseconds: 300));
                     onGallery();
                   },
                 ),

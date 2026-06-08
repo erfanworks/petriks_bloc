@@ -192,9 +192,15 @@ class PlanDetailsController extends GetxController {
 
   void onSelectVibe(int index) => selectedVibe.value = index;
 
-  void submitReview() => Get.toNamed(AppRoutes.navBar);
+  void submitReview() {
+    Get.toNamed(AppRoutes.navBar);
+    AppSnackBar.success("Review submitted successfully! ✅", seconds: 3);
+    }
 
-  void planAgain() => Get.back();
+  void planAgain() {
+    Get.toNamed(AppRoutes.navBar);
+    AppSnackBar.success("Your request has been sent to the host. ✅", seconds: 4);
+  }
 
   void goToAttendanceTips() => Get.toNamed(AppRoutes.attendanceTipsScreen);
 

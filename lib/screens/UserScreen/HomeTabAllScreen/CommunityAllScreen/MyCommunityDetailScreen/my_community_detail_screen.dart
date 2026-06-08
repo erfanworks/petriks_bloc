@@ -9,7 +9,6 @@ import '../../../../../constant/const_string.dart';
 import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
-import '../MyCommunityScreen/Controller/my_community_controller.dart';
 import '../ViewCompetitionScreen/Controller/view_competition_controller.dart';
 import 'Controller/my_community_detail_controller.dart';
 import 'Widget/my_group_card.dart';
@@ -20,11 +19,10 @@ class MyCommunityDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<MyCommunityDetailController>();
-    final item = Get.arguments as MyCommunityModel?;
+    final item = controller.communityItem;
 
     if (item == null) {
-      Get.back();
-      return const SizedBox.shrink();
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     final bool isOwner = item.role.toLowerCase() == 'owner';
 

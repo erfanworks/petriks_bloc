@@ -202,7 +202,7 @@ class CreatePlanController extends GetxController {
 
   @override
   void onClose() {
-    planTitleController.dispose();
+    // planTitleController.dispose();
     super.onClose();
   }
 }

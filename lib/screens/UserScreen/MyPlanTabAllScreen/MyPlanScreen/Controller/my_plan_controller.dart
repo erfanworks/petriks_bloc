@@ -159,7 +159,7 @@ class MyPlanController extends GetxController {
 
   @override
   void onClose() {
-    titleController.dispose();
+    // titleController.dispose();
     super.onClose();
   }
 }

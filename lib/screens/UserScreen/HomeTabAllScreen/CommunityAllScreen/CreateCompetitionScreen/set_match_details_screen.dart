@@ -136,7 +136,6 @@ class SetMatchDetailsScreen extends StatelessWidget {
 
             SizedBox(height: 16.h),
 
-            // ---- Notes ----
             CustomText(
               title: ConstString.notes,
               textColor: ConstColor.black,
@@ -154,10 +153,11 @@ class SetMatchDetailsScreen extends StatelessWidget {
                   border: Border.all(color: ConstColor.borderColor,width: 1)
               ),
               child: TextField(
+                controller: c.descriptionController,
                 maxLines: 8,
                 style: TextStyle(
-                  fontSize: 10.sp,
-                  color: ConstColor.silverGray20,
+                  fontSize: 14.sp,
+                  color: ConstColor.textColor,
                   fontWeight: FontWeight.w400,
                 ),
                 decoration: InputDecoration(

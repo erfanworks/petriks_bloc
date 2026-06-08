@@ -413,7 +413,7 @@ class _ToggleCard extends StatelessWidget {
         Switch(
           value: value,
           onChanged: onChanged,
-          activeColor: ConstColor.primaryDeepColor,
+           activeColor: ConstColor.primaryDeepColor,
           materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
       ],

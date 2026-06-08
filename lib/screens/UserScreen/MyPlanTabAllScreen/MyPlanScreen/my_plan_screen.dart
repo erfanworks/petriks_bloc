@@ -14,7 +14,7 @@ class MyPlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(MyPlanController());
+    final c = Get.find<MyPlanController>();
 
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,

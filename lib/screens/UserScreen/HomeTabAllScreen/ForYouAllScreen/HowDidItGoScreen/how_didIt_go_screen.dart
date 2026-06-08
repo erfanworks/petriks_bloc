@@ -183,7 +183,7 @@ class HowDidItGoScreen extends StatelessWidget {
               isOutLined: true,
               elevation: 0,
               outLineColour: ConstColor.primaryColor,
-              height: 50,
+              height: 48,
               top: 0,
               bottom: 6,
               buttonBorderRadius: 25,
@@ -202,7 +202,7 @@ class HowDidItGoScreen extends StatelessWidget {
             ),
             CustomElevatedButton(
               onPressed: controller.submitReview,
-              height: 54,
+              height: 48,
               top: 0,
               buttonBorderRadius: 30,
               gradient: const [

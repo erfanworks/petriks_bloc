@@ -27,7 +27,7 @@ class MyCommunityScreen extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             itemCount: controller.myCommunities.length,
-            separatorBuilder: (_, __) => SizedBox(height: 16.h),
+            separatorBuilder: (_, _) => SizedBox(height: 16.h),
             itemBuilder: (_, index) => MyCommunityCard(
               item: controller.myCommunities[index],
               onTap: () => Get.toNamed(

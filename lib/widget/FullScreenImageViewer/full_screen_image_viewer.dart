@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../widget/AppImage/app_image.dart';
 
 // Call this anywhere to open full screen image
@@ -32,13 +30,13 @@ class _FullScreenImageViewerState extends State<FullScreenImageViewer> {
   void initState() {
     super.initState();
     // Hide status bar for immersive experience
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   }
 
   @override
   void dispose() {
     // Restore status bar
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     _transformController.dispose();
     _showUI.dispose();
     super.dispose();

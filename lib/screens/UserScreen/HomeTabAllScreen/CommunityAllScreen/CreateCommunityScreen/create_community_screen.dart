@@ -19,7 +19,7 @@ class CreateCommunityScreen  extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(CreateCommunityController());
+    final c = Get.find<CreateCommunityController>();
 
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,

@@ -11,6 +11,7 @@ import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../Controller/my_plan_controller.dart';
+import 'Controller/created_plan_details_controller.dart';
 
 class PlanDetailHeader extends StatelessWidget {
   const PlanDetailHeader({super.key, required this.plan, this.statusTag});
@@ -131,8 +132,13 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final plan = Get.arguments as PlanModel;
+    final detailsController = Get.find<CreatedPlanDetailsController>();
+    final plan = detailsController.plan;
     final c = Get.find<MyPlanController>();
+
+    if (plan == null) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,

@@ -83,6 +83,7 @@ class CreateCompetitionController extends GetxController {
   final notesController = TextEditingController();
   final RxString selectedDate = 'Saturday, Nov 24'.obs;
   final RxString selectedTime = '07:00 PM'.obs;
+  final descriptionController = TextEditingController();
 
   Future<void> pickDate(BuildContext context) async {
     final picked = await showDatePicker(
@@ -196,6 +197,7 @@ class CreateCompetitionController extends GetxController {
   void onClose() {
     titleController.dispose();
     notesController.dispose();
+    descriptionController.dispose();
     super.onClose();
   }
 }

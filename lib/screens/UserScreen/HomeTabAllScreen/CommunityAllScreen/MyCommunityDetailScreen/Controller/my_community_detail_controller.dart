@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
-
-import '../../GroupDetailScreen/Widget/join_success_sheet.dart';
-
+import '../../MyCommunityScreen/Controller/my_community_controller.dart';
 // ---- Models ----
 class GroupItem {
   final String image;
@@ -68,6 +66,16 @@ class JoinableGroup {
 
 // ---- Community Detail Controller ----
 class MyCommunityDetailController extends GetxController {
+  MyCommunityModel? communityItem;
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (Get.arguments is MyCommunityModel) {
+      communityItem = Get.arguments;
+    }
+  }
+
   // ---- Groups ----
   final List<GroupItem> groups = [
     const GroupItem(image: 'assets/images/football_play.jpg', name: 'Morning Runners', memberCount: '1,248'),

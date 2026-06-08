@@ -19,7 +19,7 @@ class CreatePlanScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(CreatePlanController());
+    final c = Get.find<CreatePlanController>();
 
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,

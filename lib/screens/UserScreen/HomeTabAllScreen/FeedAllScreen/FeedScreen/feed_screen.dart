@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import '../../../../../Widget/text/custom_text.dart';
@@ -61,6 +62,7 @@ class FeedScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(24.r),
                             ),
                             child: TextField(
+                              onTap: (){Get.toNamed(AppRoutes.createPostScreen);},
                               decoration: InputDecoration(
                                 hintText: ConstString.whatsOnYourMind,
                                 hintStyle: TextStyle(

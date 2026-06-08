@@ -18,15 +18,35 @@ import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/CustomTextFormField/custom_text_form_field.dart';
 import 'Controller/create_group_controller.dart';
 
-class CreateGroupScreen extends StatelessWidget {
+class CreateGroupScreen extends StatefulWidget {
   const CreateGroupScreen({super.key});
 
   @override
+  State<CreateGroupScreen> createState() => _CreateGroupScreenState();
+}
+
+class _CreateGroupScreenState extends State<CreateGroupScreen> {
+  late final CreateGroupController c;
+
+  @override
+  void initState() {
+    super.initState();
+    // Use Get.find if it's already in bindings, otherwise Get.put
+    try {
+      c = Get.find<CreateGroupController>();
+    } catch (e) {
+      c = Get.put(CreateGroupController());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final c = Get.put(CreateGroupController());
+
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: GlobalAppBar(title: ConstString.createGroup),
       body: SingleChildScrollView(
+        // keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -39,8 +59,9 @@ class CreateGroupScreen extends StatelessWidget {
               SizedBox(height: 16.h),
 
               CustomTextFormField(
-                fromTitle: ConstString.communityName,
-                textController: TextEditingController(),
+                fromTitle: ConstString.groupName,
+                textController: c.groupNameController,
+                onChanged: (value) => c.updateGroupName(value),
                 hintText: const SizedBox.shrink(),
                 backgroundColor: ConstColor.white,
                 prefixIcon: Padding(
@@ -76,10 +97,12 @@ class CreateGroupScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16.r),
                 ),
                 child: TextField(
+                  controller: c.descriptionController,
+                  onChanged: (value) => c.updateDescription(value),
                   maxLines: 8,
                   style: TextStyle(
-                    fontSize: 10.sp,
-                    color: ConstColor.silverGray20,
+                    fontSize: 15.sp,
+                    color: ConstColor.textColor,
                     fontWeight: FontWeight.w400,
                   ),
                   decoration: InputDecoration(
@@ -167,7 +190,7 @@ class CreateGroupScreen extends StatelessWidget {
                                       controller: c.customLimitController,
                                       keyboardType: TextInputType.number,
                                       textAlign: TextAlign.center,
-                                      autofocus: true,
+                                      autofocus: false,
                                       style: TextStyle(
                                         color: isCustomSelected
                                             ? Colors.white
@@ -338,31 +361,34 @@ class CreateGroupScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.fromLTRB(
-          16.w,
-          0,
-          16.w,
-          4.h + MediaQuery.of(context).padding.bottom,
-        ),
-        child: CustomElevatedButton(
-          onPressed: () {
-            Get.back();
-            AppSnackBar.success("Group created successfully 🎉");
-          },
-          height: 48,
-          top: 0,
-          buttonBorderRadius: 30,
-          gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
-          child: CustomText(
-            title: ConstString.create,
-            textColor: Colors.white,
-            textSize: 15.sp,
-            fontWeight: FontWeight.w600,
-            maxLine: 1,
+      bottomNavigationBar: Obx(() {
+        final ready = c.canCreate;
+        return Padding(
+          padding: EdgeInsets.fromLTRB(
+            16.w, 0, 16.w,
+            4.h + MediaQuery.of(context).padding.bottom,
           ),
-        ),
-      ),
+          child: CustomElevatedButton(
+            onPressed: c.onCreateGroup,
+            height: 48,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: ready
+                ? [ConstColor.primaryDeepColor, ConstColor.primaryColor]
+                : [
+                    ConstColor.primaryColor.withAlpha(100),
+                    ConstColor.primaryColor.withAlpha(100)
+                  ],
+            child: CustomText(
+              title: ConstString.create,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
+          ),
+        );
+      }),
     );
   }
 }
