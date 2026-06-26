@@ -106,6 +106,7 @@ class ConstString {
   static const seeAll = 'See all';
   static const createCompetition = "Create Competition";
   static const inviteFriends = 'Invite Friends';
+  static const inviteFriendsBoots = ' Invite friends and get boost rewards';
   static const sayWarmHello = 'Say a warm Hello';
   static const open = 'OPEN';
   static const popular = 'POPULAR';
@@ -484,6 +485,7 @@ class ConstString {
   static const String meetBothDesc =
       'I\'m open to all types of discovery and social experiences.';
   static const String selectedLabel = 'SELECTED';
+  static const String sponsored = 'SPONSORED';
   static const String blockUserTitle = 'Block User';
   static const String currentlyBlocked = 'Currently Blocked';
   static const String unblock = 'Unblock';
@@ -532,5 +534,56 @@ class ConstString {
   static const String publicDesc        = 'Visible to everyone. Anyone can discover and join based on availability.';
   static const String privateLabel      = 'Private';
   static const String privateDesc       = 'Only people with an invite or approved request can see details and join.';
+  static const String join                = 'Join';
+  static const String startFreeTrialTitle = 'Start 7-Day Free Trial';
+  static const String premiumFullDesc     = 'Full access to all features and priority matching';
+  static const String monthlyPrice        = 'GBP \$15';
+  static const String yearlyPrice         = 'GBP \$120';
+
+// Free Plan Features (11 items)
+  static const String freeFeature1  = 'Create Profile';
+  static const String freeFeature2  = 'Verify Account';
+  static const String freeFeature3  = 'Browse Feed (with Ads)';
+  static const String freeFeature4  = 'Discover Plans';
+  static const String freeFeature5  = 'Join Plans (Unlimited)';
+  static const String freeFeature6  = 'Create Plans';
+  static const String freeFeature7  = 'Discover Communities (Preview Only)';
+  static const String freeFeature8  = 'Discover Groups (Preview Only)';
+  static const String freeFeature9  = 'View Competition Previews (Preview Only)';
+  static const String freeFeature10 = 'Safety Tools';
+  static const String freeFeature11 = 'Block & Report Users';
+
+// Premium Plan Features (19 items)
+  static const String premiumFeature1  = 'Verify Account';
+  static const String premiumFeature2  = 'Browse Feed (No Ads)';
+  static const String premiumFeature3  = 'Discover Plans';
+  static const String premiumFeature4  = 'Join Plans (Unlimited)';
+  static const String premiumFeature5  = 'Create Plans';
+  static const String premiumFeature6  = 'Join Communities';
+  static const String premiumFeature7  = 'Create Communities';
+  static const String premiumFeature8  = 'Join Groups';
+  static const String premiumFeature9  = 'Create Groups';
+  static const String premiumFeature10 = 'Join Competitions';
+  static const String premiumFeature11 = 'Create Competitions';
+  static const String premiumFeature12 = 'Manage Teams, Scores, Standings & Results';
+  static const String premiumFeature13 = 'Community Admin Tools';
+  static const String premiumFeature14 = 'Advanced Filters (Full)';
+  static const String premiumFeature15 = 'Saved Vibe Preferences';
+  static const String premiumFeature16 = 'Better Reminders';
+  static const String premiumFeature17 = 'Ad-Free Browsing';
+  static const String premiumFeature18 = 'Partner Venue Suggestions';
+  static const String premiumFeature19 = 'Safety Tools';
+  static const String premiumFeature20 = 'Block & Report Users';
+  static const String boost = 'Boost';
+  static const String freeTrialEnded      = 'Your Free Trial Has Ended';
+  static const String upgradeToPrefix     = 'Upgrade to ';
+  static const String appPlusName         = 'GoodNiva Plus';
+  static const String upgradeToSuffix     = ' to keep achieving\nyour wellness goals.';
+  static const String freeTrialExpired    = 'Free Trial Expired •';
+  static const String trialCompleted      = '7-DAY TRIAL COMPLETED';
+  static const String planCreationLocked  = 'Plan Creation access locked. Upgrade required to continue.';
+  static const String includedWith        = 'Included with GoodNiva Plus';
+  static const String chooseYourTier      = 'Choose your tier';
+  static const String maybeLater          = 'Maybe Later';
 
 }

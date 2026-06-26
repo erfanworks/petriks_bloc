@@ -148,12 +148,18 @@ class _InviteFriendsButton extends StatelessWidget {
               ),
               SizedBox(width: 8.w),
               CustomText(
-                title: ConstString.inviteFriends,
+                title: ConstString.inviteFriendsBoots,
                 textColor: ConstColor.primaryColor,
-                textSize: 16.sp,
+                textSize: 14.sp,
                 fontWeight: FontWeight.w500,
                 maxLine: 1,
               ),
+              SizedBox(width: 10.w),
+              // Text(
+              //   '📣',
+              //   style: TextStyle(fontSize: 20.sp),
+              // ),
+              Image.asset("assets/images/bossts_img.png")
             ],
           ),
         ),

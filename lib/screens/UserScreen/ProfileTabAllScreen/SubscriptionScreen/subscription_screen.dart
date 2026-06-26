@@ -26,7 +26,7 @@ class SubscriptionScreen extends StatelessWidget {
             _TabBar(c: c),
             SizedBox(height: 16.h),
             Obx(
-              () => c.selectedTab.value == 0
+                  () => c.selectedTab.value == 0
                   ? _PlanCard(c: c, isPremium: false)
                   : const SizedBox.shrink(),
             ),
@@ -48,7 +48,7 @@ class _TabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => Container(
+          () => Container(
         padding: EdgeInsets.all(4.r),
         decoration: BoxDecoration(
           color: ConstColor.boxColor,
@@ -170,19 +170,19 @@ class _PlanCard extends StatelessWidget {
                           CustomText(
                             title: isPremium
                                 ? ConstString.premium
-                                : ConstString.free,
-                            textSize: 20.sp,
-                            fontWeight: FontWeight.w700,
+                                : ConstString.startFreeTrialTitle,
+                            textSize: isPremium ? 22.sp : 18.sp,
+                            fontWeight: isPremium? FontWeight.bold : FontWeight.w600,
                             textColor: isPremium
                                 ? ConstColor.primaryColor
                                 : ConstColor.black,
-                            maxLine: 1,
+                            maxLine: 2,
                             fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                           ),
                           SizedBox(height: 4.h),
                           CustomText(
                             title: isPremium
-                                ? "ConstString.premiumFullDesc "
+                                ? ConstString.premiumFullDesc
                                 : ConstString.freeDesc,
                             textSize: 12.sp,
                             textColor: ConstColor.grey,
@@ -193,14 +193,14 @@ class _PlanCard extends StatelessWidget {
                     ),
                     if (isPremium)
                       Obx(
-                        () => Column(
+                            () => Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             CustomText(
                               title: c.priceLabel,
                               textSize: 22.sp,
                               fontWeight: FontWeight.w700,
-                              textColor: ConstColor.black,
+                              textColor: ConstColor.primaryColor,
                               maxLine: 1,
                               fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                             ),
@@ -243,18 +243,17 @@ class _PlanCard extends StatelessWidget {
               height: 48,
               top: 0,
               buttonBorderRadius: 30,
-              isOutLined: !isPremium,
+              // Free card button is now solid/filled (not outlined) per Figma
+              isOutLined: false,
               elevation: 0,
               outLineColour: ConstColor.primaryColor,
               child: CustomText(
                 title: isPremium
                     ? ConstString.upgradeToPremium
-                    : ConstString.joinFree,
+                    : ConstString.join,
                 textSize: 15.sp,
                 fontWeight: FontWeight.w600,
-                textColor: isPremium
-                    ? ConstColor.white
-                    : ConstColor.primaryColor,
+                textColor: ConstColor.white,
                 maxLine: 1,
               ),
             ),
@@ -285,8 +284,9 @@ class _FeatureRow extends StatelessWidget {
           Expanded(
             child: CustomText(
               title: label,
-              textSize: 13.sp,
+              textSize: 14.sp,
               textColor: ConstColor.black,
+              fontWeight: FontWeight.w500,
               maxLine: 2,
             ),
           ),

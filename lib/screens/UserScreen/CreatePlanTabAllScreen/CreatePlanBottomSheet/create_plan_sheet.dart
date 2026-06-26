@@ -61,7 +61,7 @@ class _CreateOptionsSheet extends StatelessWidget {
                   iconColor: ConstColor.primaryColor,
                   onTap: () {
                     Get.back();
-                    Get.toNamed(AppRoutes.createPlanScreen);
+                    Get.toNamed(AppRoutes.freeTrialEndedScreen);
                   },
                 ),
               ),

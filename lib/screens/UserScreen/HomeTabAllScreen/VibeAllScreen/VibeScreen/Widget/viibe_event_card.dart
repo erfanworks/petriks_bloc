@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -99,16 +98,20 @@ class VibeEventCard extends StatelessWidget {
                       vertical: 3.h,
                     ),
                     decoration: BoxDecoration(
-                      color: ConstColor.white,
+                      color: const Color(0xFF9C4E04),
                       borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Row(
                       children: [
-                        SvgPicture.asset("assets/icons/world_icon.svg"),
+                        Icon(
+                          Icons.verified_rounded,
+                          color: ConstColor.white,
+                          size: 13.sp,
+                        ),
                         SizedBox(width: 5),
                         CustomText(
-                          title: ConstString.publicLabel,
-                          textColor: ConstColor.primaryColor,
+                          title: ConstString.sponsored,
+                          textColor: Colors.white,
                           textSize: 10.sp,
                           fontWeight: FontWeight.w700,
                           maxLine: 1,

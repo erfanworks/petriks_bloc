@@ -220,6 +220,7 @@ class OneToOneMeetupCard extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
 
+                    // ── SPONSORED badge (bottom-left of image) ──
                     Positioned(
                       bottom: 12.h,
                       left: 12.w,
@@ -229,15 +230,26 @@ class OneToOneMeetupCard extends StatelessWidget {
                           vertical: 5.h,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF0C4AA),
+                          color: const Color(0xFFB35A00),
                           borderRadius: BorderRadius.circular(20.r),
                         ),
-                        child: CustomText(
-                          title: item.tag,
-                          textColor: const Color(0xFF763302),
-                          textSize: 10.sp,
-                          fontWeight: FontWeight.w600,
-                          maxLine: 1,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.verified_rounded,
+                              color: ConstColor.white ,
+                              size: 13.sp,
+                            ),
+                            SizedBox(width: 5.w),
+                            CustomText(
+                              title: ConstString.sponsored,
+                              textColor: Colors.white,
+                              textSize: 10.sp,
+                              fontWeight: FontWeight.w700,
+                              maxLine: 1,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -250,11 +262,6 @@ class OneToOneMeetupCard extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 12.w),
               child: Row(
                 children: [
-                  // Icon(
-                  //   Icons.,
-                  //   size: 13.sp,
-                  //   color: ConstColor.primaryColor,
-                  // ),
                   SvgPicture.asset(
                       width: 14.w,
                       height: 14.h,
@@ -309,11 +316,6 @@ class OneToOneMeetupCard extends StatelessWidget {
                   SizedBox(height: 8.h),
                   Row(
                     children: [
-                      // Icon(
-                      //   Icons.,
-                      //   size: 18.sp,
-                      //   color: ConstColor.primaryColor,
-                      // ),
                       SvgPicture.asset(
                           width: 15.w,
                           height: 15.h,
@@ -328,6 +330,8 @@ class OneToOneMeetupCard extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 4.h),
+
+                  // ── Date/Time row + Tag badge (bottom-right) ──
                   Row(
                     children: [
                       Icon(
@@ -362,6 +366,27 @@ class OneToOneMeetupCard extends StatelessWidget {
                         textColor: ConstColor.primaryColor,
                         textSize: 12.sp,
                         maxLine: 1,
+                      ),
+
+                      const Spacer(),
+
+                      // ── Tag badge moved here (bottom-right) ──
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                          vertical: 5.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF0C4AA),
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: CustomText(
+                          title: item.tag,
+                          textColor: const Color(0xFF763302),
+                          textSize: 10.sp,
+                          fontWeight: FontWeight.w600,
+                          maxLine: 1,
+                        ),
                       ),
                     ],
                   ),

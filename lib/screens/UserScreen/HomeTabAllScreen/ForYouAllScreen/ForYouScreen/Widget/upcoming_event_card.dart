@@ -1,8 +1,3 @@
-// =========================================================
-// File: lib/screens/.../Widget/upcoming_event_card.dart
-// (Ensure the path is correct based on your project structure)
-// =========================================================
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -59,7 +54,7 @@ class UpcomingEventCard extends StatelessWidget {
                   ),
                 ),
 
-                // OPEN badge
+                // SPONSORED badge (left top)
                 if (item.isOpen)
                   Positioned(
                     top: 8.h,
@@ -70,24 +65,20 @@ class UpcomingEventCard extends StatelessWidget {
                         vertical: 3.h,
                       ),
                       decoration: BoxDecoration(
-                        color: ConstColor.primaryColor.withAlpha(200),
+                        color: const Color(0xFFB35A00),
                         borderRadius: BorderRadius.circular(20.r),
                       ),
                       child: Row(
                         children: [
-                          SvgPicture.asset(
-                            width: 10.w,
-                            height: 10.h,
-                            "assets/icons/social_icon.svg",
-                            colorFilter: ColorFilter.mode(
-                              ConstColor.white,
-                              BlendMode.srcIn,
-                            ),
+                          Icon(
+                            Icons.verified_rounded,
+                            color: ConstColor.white,
+                            size: 13.sp,
                           ),
                           SizedBox(width: 5),
                           CustomText(
-                            title: ConstString.group,
-                            textColor: ConstColor.white,
+                            title: ConstString.sponsored,
+                            textColor: Colors.white,
                             textSize: 10.sp,
                             fontWeight: FontWeight.w700,
                             maxLine: 1,
@@ -96,6 +87,7 @@ class UpcomingEventCard extends StatelessWidget {
                       ),
                     ),
                   ),
+                // Group badge (right top)
                 Positioned(
                   top: 8.h,
                   right: 10.w,
@@ -105,16 +97,24 @@ class UpcomingEventCard extends StatelessWidget {
                       vertical: 3.h,
                     ),
                     decoration: BoxDecoration(
-                      color: ConstColor.white,
+                      color: ConstColor.primaryColor.withAlpha(200),
                       borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Row(
                       children: [
-                        SvgPicture.asset("assets/icons/world_icon.svg"),
+                        SvgPicture.asset(
+                          width: 10.w,
+                          height: 10.h,
+                          "assets/icons/social_icon.svg",
+                          colorFilter: ColorFilter.mode(
+                            ConstColor.white,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                         SizedBox(width: 5),
                         CustomText(
-                          title: ConstString.publicLabel,
-                          textColor: ConstColor.primaryColor,
+                          title: ConstString.group,
+                          textColor: ConstColor.white,
                           textSize: 10.sp,
                           fontWeight: FontWeight.w700,
                           maxLine: 1,

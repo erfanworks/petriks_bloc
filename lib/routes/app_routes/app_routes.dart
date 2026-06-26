@@ -69,6 +69,7 @@ class AppRoutes {
 
   ////////////// Create Plan Screen Part ///////////////////////
   static const createPlanScreen = '/createPlanScreen';
+  static const freeTrialEndedScreen = '/freeTrialEndedScreen';
 
   ////////////// Messaging Screen Part ///////////////////////
   static const chatScreen = '/chatScreen';

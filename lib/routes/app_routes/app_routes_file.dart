@@ -10,6 +10,7 @@ import '../../screens/BaseScreen/NavBar/nav_bar.dart';
 import '../../screens/BaseScreen/OnboardingScreen/onboarding_screen.dart';
 import '../../screens/BaseScreen/SplashScreen/splash_screen.dart';
 import '../../screens/UserScreen/CreatePlanTabAllScreen/CreatePlanScreen/create_plan_screen.dart';
+import '../../screens/UserScreen/CreatePlanTabAllScreen/FreeTrialEndedScree/free_trial_ended_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityDetailScreen/community_detail_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityScreen/community_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCommunityScreen/create_community_screen.dart';
@@ -142,6 +143,7 @@ List<GetPage> appRouteFile = <GetPage>[
 
   ////////////My Plan Screen Part////////////
   GetPage(name: AppRoutes.createPlanScreen,page: () => CreatePlanScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.freeTrialEndedScreen,page: () => FreeTrialEndedScreen(),binding: AppBindings()),
 
 
   ////////////Messaging Screen Part////////////

@@ -16,6 +16,7 @@ class ConstColor {
   static const black = Color(0xFF191C1E);
   static const yellow = Color(0xFFFFCC00);
   static const textTealColor = Color(0xFF14B8A6);
+  static const redDeep = Color(0xFFBA1A1A);
   static const white = Colors.white;
   static const red = Colors.red;
 

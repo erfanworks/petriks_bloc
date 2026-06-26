@@ -9,13 +9,13 @@ import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/Communit
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/Controller/my_community_detail_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/HostProfileScreen/Controller/host_profile_controller.dart';
-import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/GroupDetailScreen/Controller/group_details_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/MessageTabAllScreen/ChatScreen/Controller/chat_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/ProfileTabAllScreen/ProfileScreen/Controller/profile_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/Controller/phone_login_controller.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Controller/phone_number_verify_otp_controller.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/Controller/create_profile_controller.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/VerifyIdScreen/Controller/verify_id_controller.dart';
+import '../../screens/UserScreen/CreatePlanTabAllScreen/FreeTrialEndedScree/Controller/free_trial_ended_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityScreen/Controller/community_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCompetitionScreen/Controller/create_competition_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityScreen/Controller/my_community_controller.dart';
@@ -96,6 +96,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => MyPlanController());
     Get.lazyPut(() => CreatePlanController());
     Get.lazyPut(() => CreatedPlanDetailsController());
+    Get.lazyPut(() => FreeTrialEndedController());
 
 
   }
