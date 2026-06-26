@@ -44,13 +44,13 @@ class MyPlanController extends GetxController {
   final activities = ['Coffee', 'Sports', 'Art', 'Outdoors', 'Music'];
 
   final createdPlans = <PlanModel>[
-    const PlanModel(
-      id: '1', title: 'Hang out at the park',
-      location: 'Central Park West', date: 'Saturday, 24 June',
-      time: '6:30 PM Today', language: 'English',
-      type: 'Group', image: 'assets/images/night_party_img.jpg',
-      vibe: 'Social', joined: 3, total: 6,
-    ),
+    // const PlanModel(
+    //   id: '1', title: 'Hang out at the park',
+    //   location: 'Central Park West', date: 'Saturday, 24 June',
+    //   time: '6:30 PM Today', language: 'English',
+    //   type: 'Group', image: 'assets/images/night_party_img.jpg',
+    //   vibe: 'Social', joined: 3, total: 6,
+    // ),
     const PlanModel(
       id: '2', title: 'Hang out at the park',
       location: 'Central Park West', date: 'Saturday, 24 June',
@@ -65,6 +65,15 @@ class MyPlanController extends GetxController {
       time: '6:30 PM Today', language: 'English',
       type: 'Group', image: 'assets/images/hank_out_party_img.jpg',
       vibe: 'Social', joined: 3, total: 6,
+      tag: 'BOOST',
+    ),
+    const PlanModel(
+      id: '4', title: 'Hang out at the park',
+      location: 'Central Park West', date: 'Saturday, 24 June',
+      time: '6:30 PM Today', language: 'English',
+      type: 'Group', image: 'assets/images/hank_out_party_img.jpg',
+      vibe: 'Social', joined: 11, total: 6,
+      tag: 'BOOSTED',
     ),
   ];
 

@@ -575,6 +575,7 @@ class ConstString {
   static const String premiumFeature19 = 'Safety Tools';
   static const String premiumFeature20 = 'Block & Report Users';
   static const String boost = 'Boost';
+  static const String boosted = 'BOOSTED';
   static const String freeTrialEnded      = 'Your Free Trial Has Ended';
   static const String upgradeToPrefix     = 'Upgrade to ';
   static const String appPlusName         = 'GoodNiva Plus';
@@ -585,5 +586,8 @@ class ConstString {
   static const String includedWith        = 'Included with GoodNiva Plus';
   static const String chooseYourTier      = 'Choose your tier';
   static const String maybeLater          = 'Maybe Later';
+  static const String recommendedPartnerPlaces = 'Recommended Partner Places';
+  static const String select       = 'Select';
+  static const String useThisVenue = 'Use this venue';
 
 }

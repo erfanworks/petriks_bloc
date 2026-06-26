@@ -13,7 +13,7 @@ class FreeTrialEndedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.put(FreeTrialEndedController());
+    final c = Get.find<FreeTrialEndedController>();
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,
       body: SafeArea(

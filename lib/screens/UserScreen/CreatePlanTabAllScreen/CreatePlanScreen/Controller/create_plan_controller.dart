@@ -12,6 +12,7 @@ class CreatePlanController extends GetxController {
   final voteDurationIndex = 0.obs;
   final voteDurations = ['1h', '3h', '6h', '12h', '24h', '48h'];
   final customDuration = ''.obs;
+  final autoLockTime = 'Today, 12:00 PM'.obs;
 
   final List<Map<String, dynamic>> planTypes = [
     {
@@ -84,8 +85,8 @@ class CreatePlanController extends GetxController {
   final coverPhotoPath = ''.obs;
 
   final List<Map<String, String>> locations = [
-    {'name': 'Blue Bottle Coffee', 'sub': '8 min away',  'image': 'assets/images/party_img.png'},
-    {'name': 'Central Park',       'sub': '8 min walk',  'image': 'assets/images/location_img1.jpg'},
+    {'name': 'Bean House Café',  'sub': '0.4 miles away', 'desc': 'Good for small coffee meetups.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/party_img.png'},
+    {'name': 'Bean House Café',  'sub': '0.4 miles away', 'desc': 'Good for small coffee meetups.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/location_img1.jpg'},
   ];
 
   void onDateSelected(DateTime date) {
@@ -111,6 +112,13 @@ class CreatePlanController extends GetxController {
     final minute = time.minute.toString().padLeft(2, '0');
     final period = time.period == DayPeriod.am ? 'AM' : 'PM';
     selectedTime2.value = '$hour:$minute $period';
+  }
+
+  void onAutoLockTimeSelected(TimeOfDay time) {
+    final hour   = time.hourOfPeriod == 0 ? 12 : time.hourOfPeriod;
+    final minute = time.minute.toString().padLeft(2, '0');
+    final period = time.period == DayPeriod.am ? 'AM' : 'PM';
+    autoLockTime.value = 'Today, $hour:$minute $period';
   }
 
 
@@ -160,7 +168,7 @@ class CreatePlanController extends GetxController {
       }
       if (currentStep.value == 3) {
         return planTitleController.text.isNotEmpty ;
-            // selectedLocation.value != -1;
+        // selectedLocation.value != -1;
       }
     } else {
       // Easy Start
@@ -174,7 +182,7 @@ class CreatePlanController extends GetxController {
       }
       if (currentStep.value == 2) {
         return planTitleController.text.isNotEmpty ;
-            // selectedLocation.value != -1;
+        // selectedLocation.value != -1;
       }
     }
     return false;

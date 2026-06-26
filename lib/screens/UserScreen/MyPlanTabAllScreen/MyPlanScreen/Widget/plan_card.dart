@@ -72,38 +72,21 @@ class PlanCard extends StatelessWidget {
                   top: 12.h,
                   right: 10.w,
                   child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10.w,
-                      vertical: 4.h,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                     decoration: BoxDecoration(
-                      color: isPrivate
-                          ? Colors.white.withAlpha(200)
-                          : const Color(0xFFE8F5E9),
+                      color: const Color(0xFFB35A00),
                       borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        if (isPrivate)
-                          Icon(
-                            Icons.lock_outline,
-                            size: 12.sp,
-                            color: ConstColor.primaryColor,
-                          )
-                        else
-                          Icon(
-                            Icons.public,
-                            size: 12.sp,
-                            color: const Color(0xFF2E7D32),
-                          ),
+                        Icon(Icons.verified_rounded, color: const Color(0xFFFF9800), size: 12.sp),
                         SizedBox(width: 4.w),
                         CustomText(
-                          title: isPrivate ? "Private" : "Public",
-                          textColor: isPrivate
-                              ? ConstColor.primaryColor
-                              : const Color(0xFF2E7D32),
+                          title: ConstString.sponsored,
+                          textColor: Colors.white,
                           textSize: 10.sp,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w700,
                           maxLine: 1,
                         ),
                       ],
@@ -224,13 +207,14 @@ class PlanCard extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                         maxLine: 1,
                       ),
-                      if (!isJoined && plan.tag == 'COMPLETED') ...[
+                      if (!isJoined && plan.tag != null) ...[
                         const Spacer(),
-                        _FeedbackAction(
-                          onTap: () {
-                            Get.toNamed(AppRoutes.feedBackScreen);
-                          },
-                        ),
+                        if (plan.tag == 'COMPLETED')
+                          _FeedbackAction(
+                            onTap: () => Get.toNamed(AppRoutes.feedBackScreen),
+                          )
+                        else
+                          _BoostButton(isBoosted: plan.tag == 'BOOSTED'),
                       ],
                     ],
                   ),
@@ -515,6 +499,43 @@ class _InviteButton extends StatelessWidget {
               textSize: 10.sp,
               fontWeight: FontWeight.w700,
               textColor: ConstColor.primaryColor,
+              maxLine: 1,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _BoostButton extends StatelessWidget {
+  final bool isBoosted;
+  const _BoostButton({required this.isBoosted});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {}, // TODO
+      borderRadius: BorderRadius.circular(20.r),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+        decoration: BoxDecoration(
+          color: isBoosted ? ConstColor.primaryColor : const Color(0xFFEDE9FF),
+          borderRadius: BorderRadius.circular(20.r),
+          border: Border.all(
+            color: isBoosted ? ConstColor.primaryColor : ConstColor.borderColor,
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('🚀', style: TextStyle(fontSize: 11.sp)),
+            SizedBox(width: 4.w),
+            CustomText(
+              title: isBoosted ? ConstString.boosted : ConstString.boost,
+              textSize: 10.sp,
+              fontWeight: FontWeight.w700,
+              textColor: isBoosted ? Colors.white : ConstColor.primaryColor,
               maxLine: 1,
             ),
           ],
