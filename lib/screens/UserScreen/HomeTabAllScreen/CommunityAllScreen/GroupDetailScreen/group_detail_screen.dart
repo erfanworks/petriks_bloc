@@ -199,25 +199,45 @@ class GroupDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.fromLTRB(
-          16.w,
-          0,
-          16.w,
-          5.h + MediaQuery.of(context).padding.bottom,
-        ),
-        child: CustomElevatedButton(
-          onPressed: c.onJoinGroup,
-          height: 50,
-          top: 0,
-          buttonBorderRadius: 30,
-          gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-          child: CustomText(
-            title: ConstString.joinGroup,
-            textColor: Colors.white,
-            textSize: 16.sp,
-            fontWeight: FontWeight.w500,
-            maxLine: 1,
+      bottomNavigationBar: Obx(
+            () => Padding(
+          padding: EdgeInsets.fromLTRB(
+            16.w, 0, 16.w,
+            5.h + MediaQuery.of(context).padding.bottom,
+          ),
+          child: c.showUpgradeGate.value
+              ? CustomElevatedButton(
+            onPressed: () => Get.toNamed(
+              AppRoutes.freeTrialEndedScreen,
+              arguments: {
+                'onConfirm': () => c.showUpgradeGate.value = false,
+              },
+            ),
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+            child: CustomText(
+              title: ConstString.upgradeToPlusPrice,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
+          )
+              : CustomElevatedButton(
+            onPressed: c.onJoinCommunity,
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+            child: CustomText(
+              title: ConstString.joinGroup,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
           ),
         ),
       ),

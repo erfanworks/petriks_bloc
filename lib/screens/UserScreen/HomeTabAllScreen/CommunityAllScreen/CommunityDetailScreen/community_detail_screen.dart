@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
+import '../../../../../routes/app_routes/app_routes.dart';
 import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
@@ -186,25 +187,45 @@ class CommunityDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.fromLTRB(
-          16.w,
-          0,
-          16.w,
-          5.h + MediaQuery.of(context).padding.bottom,
-        ),
-        child: CustomElevatedButton(
-          onPressed: c.onJoinCommunity,
-          height: 50,
-          top: 0,
-          buttonBorderRadius: 30,
-          gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-          child: CustomText(
-            title: ConstString.joinCommunity,
-            textColor: Colors.white,
-            textSize: 15.sp,
-            fontWeight: FontWeight.w600,
-            maxLine: 1,
+      bottomNavigationBar: Obx(
+            () => Padding(
+          padding: EdgeInsets.fromLTRB(
+            16.w, 0, 16.w,
+            5.h + MediaQuery.of(context).padding.bottom,
+          ),
+          child: c.showUpgradeGate.value
+              ? CustomElevatedButton(
+            onPressed: () => Get.toNamed(
+              AppRoutes.freeTrialEndedScreen,
+              arguments: {
+                'onConfirm': () => c.showUpgradeGate.value = false,
+              },
+            ),
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+            child: CustomText(
+              title: ConstString.upgradeToPlusPrice,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
+          )
+              : CustomElevatedButton(
+            onPressed: c.onJoinCommunity,
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+            child: CustomText(
+              title: ConstString.joinCommunity,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
           ),
         ),
       ),
@@ -218,9 +239,7 @@ class CommunityDetailScreen extends StatelessWidget {
 
 
 
-// ======================================================
 // Shared Small Widgets
-// ======================================================
 
 class _Card extends StatelessWidget {
   final Widget child;

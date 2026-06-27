@@ -70,6 +70,7 @@ class JoinableGroup {
 // ---- Community Detail Controller ----
 class CommunityDetailController extends GetxController {
   final RxBool hasJoined = false.obs;
+  final showUpgradeGate = true.obs;
   // ---- Groups ----
   final List<GroupItem> groups = [
     const GroupItem(image: 'assets/images/football_play.jpg', name: 'Morning Runners', memberCount: '1,248'),

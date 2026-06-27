@@ -14,6 +14,7 @@ class ConstString {
   static const String group                    = 'GROUP';
   static const String oneToOne                 = '1-TO-1';
   static const viewPlans = 'View Plans';
+  static const String upgradeToPlusPrice = 'Upgrade to Plus  (GBP 15/month)';
   static const welcomeTo = 'Welcome to';
   static const appName   = 'GoodNiva';
   static const account = 'Account';

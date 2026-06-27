@@ -7,6 +7,8 @@ import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/Communit
 import '../../../../../../Widget/text/custom_text.dart';
 import '../../../../../../constant/const_color.dart';
 import '../../../../../../constant/const_string.dart';
+import '../../../../../routes/app_routes/app_routes.dart';
+import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import 'Controller/community_controller.dart';
 import 'Widget/community_card.dart';
 
@@ -17,14 +19,13 @@ class CommunityScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.find<CommunityController>();
 
-    return SingleChildScrollView(
-      child: Column(
+    return Scaffold(
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10.h),
-
           Obx(
-            () => Padding(
+                () => Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
                 children: List.generate(controller.communityTabs.length, (i) {
@@ -61,58 +62,94 @@ class CommunityScreen extends StatelessWidget {
               ),
             ),
           ),
-
           SizedBox(height: 10.h),
 
-          Obx(() {
-            if (controller.selectedCommunityTab.value == 0) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    itemCount: controller.communities.length,
-                    separatorBuilder: (_, _) => SizedBox(height: 16.h),
-                    itemBuilder: (_, index) => CommunityCard(
-                      item: controller.communities[index],
-                      onTap: () => controller.onViewCommunity(
-                        controller.communities[index],
+          Expanded(
+            child: Obx(() {
+              if (controller.selectedCommunityTab.value == 0) {
+                return SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        itemCount: controller.communities.length,
+                        separatorBuilder: (_, _) => SizedBox(height: 16.h),
+                        itemBuilder: (_, index) => CommunityCard(
+                          item: controller.communities[index],
+                          onTap: () => controller.onViewCommunity(
+                            controller.communities[index],
+                          ),
+                        ),
                       ),
-                    ),
+
+                      SizedBox(height: 24.h),
+
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: CustomText(
+                          title: ConstString.appNews,
+                          textColor: ConstColor.black,
+                          textSize: 22.sp,
+                          fontWeight: FontWeight.w700,
+                          maxLine: 1,
+                          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                        ),
+                      ),
+
+                      SizedBox(height: 12.h),
+
+                      ...controller.appNews.map((news) => _AppNewsItem(item: news)),
+
+                      SizedBox(height: 24.h),
+                    ],
                   ),
-
-                  SizedBox(height: 24.h),
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w),
-                    child: CustomText(
-                      title: ConstString.appNews,
-                      textColor: ConstColor.black,
-                      textSize: 22.sp,
-                      fontWeight: FontWeight.w700,
-                      maxLine: 1,
-                      fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-                    ),
-                  ),
-
-                  SizedBox(height: 12.h),
-
-                  ...controller.appNews.map((news) => _AppNewsItem(item: news)),
-
-                  SizedBox(height: 24.h),
-                ],
-              );
-            } else {
-              return Obx(
-                () => controller.showUpgradeWall.value
-                    ? _CommunityUpgradeWall(controller: controller)
-                    : MyCommunityScreen(),
-              );
-            }
-          }),
+                );
+              } else {
+                return Obx(
+                      () => controller.showUpgradeWall.value
+                      ? _CommunityUpgradeWall(controller: controller)
+                      : MyCommunityScreen(),
+                );
+              }
+            }),
+          ),
         ],
+      ),
+      bottomNavigationBar: Obx(
+            () => controller.selectedCommunityTab.value == 0
+            ? Padding(
+          padding: EdgeInsets.fromLTRB(
+            16.w, 8.h, 16.w,
+            8.h + MediaQuery.of(context).padding.bottom,
+          ),
+          child: CustomElevatedButton(
+            onPressed: () => Get.toNamed(
+              AppRoutes.freeTrialEndedScreen,
+              arguments: {
+                'onConfirm': () {},
+              },
+            ),
+            height: 52,
+            top: 0,
+            buttonBorderRadius: 30,
+            elevation: 0,
+            gradient: const [
+              ConstColor.primaryDeepColor,
+              ConstColor.primaryColor,
+            ],
+            child: CustomText(
+              title: ConstString.upgradeToPlusPrice,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              textColor: Colors.white,
+              maxLine: 1,
+            ),
+          ),
+        )
+            : const SizedBox.shrink(),
       ),
     );
   }
