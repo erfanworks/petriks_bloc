@@ -134,14 +134,28 @@ class FeedScreen extends StatelessWidget {
 
           SizedBox(height: 18.h),
 
-          ListView.separated(
+          ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.symmetric(horizontal: 16.w),
-            itemCount: controller.posts.length,
-            separatorBuilder: (_, _) => SizedBox(height: 12.h),
-            itemBuilder: (_, index) =>
-                FeedPostCard(post: controller.posts[index]),
+            itemCount: controller.posts.length + 2, // +2 for sponsored + banner
+            itemBuilder: (_, index) {
+              // After 1st post (index 0) → Sponsored Local Offer
+              if (index == 1) return const _SponsoredLocalOffer();
+              // After 2nd post (index 2 in adjusted) → Banner Ad
+              if (index == 3) return const _BannerAd();
+
+              // Map adjusted index back to post index
+              int postIndex = index;
+              if (index > 1) postIndex--;
+              if (index > 3) postIndex--;
+
+              if (postIndex >= controller.posts.length) return const SizedBox.shrink();
+              return Padding(
+                padding: EdgeInsets.only(bottom: 12.h),
+                child: FeedPostCard(post: controller.posts[postIndex]),
+              );
+            },
           ),
 
           SizedBox(height: 24.h),
@@ -151,7 +165,71 @@ class FeedScreen extends StatelessWidget {
   }
 }
 
-// ---- Action Chip ----
+// ---- Sponsored Local Offer ----
+class _SponsoredLocalOffer extends StatelessWidget {
+  const _SponsoredLocalOffer();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 12.h),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(color: ConstColor.borderColor.withAlpha(80)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+              child: CustomText(
+                title: ConstString.sponsoredLocalOffer,
+                textSize: 11.sp,
+                textColor: ConstColor.grey,
+                fontWeight: FontWeight.w500,
+                maxLine: 1,
+              ),
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12.r),
+              child: AppImage(
+                path: 'assets/images/demo_local_offer.png', // 👈 তোমার image
+                width: double.infinity,
+                height: 160.h,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 8.h),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ---- Banner Ad ----
+class _BannerAd extends StatelessWidget {
+  const _BannerAd();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 12.h),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.r),
+        child: AppImage(
+          path: 'assets/images/demo_offer_banner.png',
+          width: double.infinity,
+          height: 80.h,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
 class _ActionChip extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
@@ -185,4 +263,3 @@ class _ActionChip extends StatelessWidget {
     );
   }
 }
-

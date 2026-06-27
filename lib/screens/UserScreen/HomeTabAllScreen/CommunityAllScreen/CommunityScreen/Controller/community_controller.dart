@@ -79,6 +79,19 @@ class CommunityController extends GetxController {
     ),
   ];
 
+  // ---- My Community Gate ----
+  final showUpgradeWall = true.obs;
+  void onUpgradeTap() {
+    Get.toNamed(
+      AppRoutes.freeTrialEndedScreen,
+      arguments: {
+        'onConfirm': () {
+          showUpgradeWall.value = false;
+        },
+      },
+    );
+  }
+
   // ---- Actions ----
   void onViewCommunity(CommunityItem item) => Get.toNamed(AppRoutes.communityDetailScreen);
 }

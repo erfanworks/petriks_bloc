@@ -14,6 +14,7 @@ class FreeTrialEndedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = Get.find<FreeTrialEndedController>();
+    // c.onConfirmCallback = Get.arguments?['onConfirm'];
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,
       body: SafeArea(

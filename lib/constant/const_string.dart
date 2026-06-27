@@ -539,8 +539,6 @@ class ConstString {
   static const String premiumFullDesc     = 'Full access to all features and priority matching';
   static const String monthlyPrice        = 'GBP \$15';
   static const String yearlyPrice         = 'GBP \$120';
-
-// Free Plan Features (11 items)
   static const String freeFeature1  = 'Create Profile';
   static const String freeFeature2  = 'Verify Account';
   static const String freeFeature3  = 'Browse Feed (with Ads)';
@@ -552,8 +550,6 @@ class ConstString {
   static const String freeFeature9  = 'View Competition Previews (Preview Only)';
   static const String freeFeature10 = 'Safety Tools';
   static const String freeFeature11 = 'Block & Report Users';
-
-// Premium Plan Features (19 items)
   static const String premiumFeature1  = 'Verify Account';
   static const String premiumFeature2  = 'Browse Feed (No Ads)';
   static const String premiumFeature3  = 'Discover Plans';
@@ -589,5 +585,11 @@ class ConstString {
   static const String recommendedPartnerPlaces = 'Recommended Partner Places';
   static const String select       = 'Select';
   static const String useThisVenue = 'Use this venue';
+  static const String sponsoredLocalOffer = 'Sponsored Local Offer';
+  static const String createYourOwnCommunity     = 'Create Your Own Community';
+  static const String createCommunitySubtitle    = 'Build and grow your own community. Connect people with similar interests, organize activities, and create a space where members can engage, share, and participate together.';
+  static const String communityCreationAvailable = 'Community Creation is available with GoodNiva Plus';
+  static const String communityCreationDesc      = 'You need GoodNiva Plus to create and manage your own Community.';
+  static const String upgradeToCreatePlans       = 'Upgrade to Create Plans';
 
 }
