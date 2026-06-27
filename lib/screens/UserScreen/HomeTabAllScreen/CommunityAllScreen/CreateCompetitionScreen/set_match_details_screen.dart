@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
+import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import 'Controller/create_competition_controller.dart';
@@ -53,8 +54,9 @@ class SetMatchDetailsScreen extends StatelessWidget {
               value: c.titleController.text,
             ),
             SizedBox(height: 16.h),
+            // ---- Recommended Partner Places ----
             CustomText(
-              title: ConstString.location,
+              title: ConstString.recommendedPartnerPlaces,
               textColor: ConstColor.black,
               textSize: 15.sp,
               fontWeight: FontWeight.w500,
@@ -62,33 +64,150 @@ class SetMatchDetailsScreen extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
 
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12.r),
-              border: Border.all(color: ConstColor.borderColor),
+            SizedBox(
+              height: 260.h,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: c.matchLocations.length,
+                separatorBuilder: (_, __) => SizedBox(width: 12.w),
+                itemBuilder: (context, i) {
+                  final loc = c.matchLocations[i];
+                  return Obx(() {
+                    final selected = c.selectedMatchLocations.contains(i);
+                    return AnimatedContainer(
+                      duration: const Duration(milliseconds: 180),
+                      width: 200.w,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16.r),
+                        border: Border.all(
+                          color: selected ? ConstColor.primaryColor : ConstColor.borderColor,
+                          width: selected ? 1.8 : 1,
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
+                            child: Stack(
+                              children: [
+                                AppImage(
+                                  path: loc['image']!,
+                                  width: double.infinity,
+                                  height: 120.h,
+                                  fit: BoxFit.cover,
+                                ),
+                                Positioned(
+                                  top: 10.h,
+                                  left: 10.w,
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFFB35A00),
+                                      borderRadius: BorderRadius.circular(20.r),
+                                    ),
+                                    child: CustomText(
+                                      title: loc['discount']!,
+                                      textSize: 9.sp,
+                                      fontWeight: FontWeight.w600,
+                                      textColor: Colors.white,
+                                      maxLine: 1,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(10.r),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(
+                                  title: loc['name']!,
+                                  textSize: 13.sp,
+                                  fontWeight: FontWeight.w700,
+                                  textColor: ConstColor.black,
+                                  maxLine: 1,
+                                ),
+                                SizedBox(height: 3.h),
+                                Row(
+                                  children: [
+                                    Icon(Icons.location_on_outlined, size: 12.sp, color: ConstColor.primaryColor),
+                                    SizedBox(width: 3.w),
+                                    CustomText(
+                                      title: loc['sub']!,
+                                      textSize: 11.sp,
+                                      textColor: ConstColor.primaryColor,
+                                      maxLine: 1,
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 3.h),
+                                CustomText(
+                                  title: loc['desc']!,
+                                  textSize: 11.sp,
+                                  textColor: ConstColor.grey,
+                                  maxLine: 2,
+                                ),
+                                SizedBox(height: 8.h),
+                                GestureDetector(
+                                  onTap: () => c.toggleMatchLocation(i),
+                                  child: Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.symmetric(vertical: 9.h),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(30.r),
+                                      border: Border.all(color: ConstColor.primaryColor),
+                                    ),
+                                    child: Center(
+                                      child: CustomText(
+                                        title: selected ? ConstString.useThisVenue : ConstString.select,
+                                        textSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                        textColor: ConstColor.primaryColor,
+                                        maxLine: 1,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  });
+                },
+              ),
             ),
-            child: Row(
-              children: [
-                Icon(Icons.location_on_outlined, color: ConstColor.primaryColor, size: 18.sp),
-                SizedBox(width: 10.w),
-                Expanded(
+
+            SizedBox(height: 8.h),
+
+            GestureDetector(
+              onTap: () {}, // TODO
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 14.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.r),
+                  border: Border.all(
+                    color: ConstColor.borderColor,
+                    style: BorderStyle.solid,
+                  ),
+                ),
+                child: Center(
                   child: CustomText(
-                    title: "London Park, UK",
-                    textColor: ConstColor.black,
+                    title: ConstString.addCustomLocation,
                     textSize: 14.sp,
+                    fontWeight: FontWeight.w500,
+                    textColor: ConstColor.textColor,
                     maxLine: 1,
                   ),
                 ),
-                Icon(
-                  Icons.my_location,
-                  color: ConstColor.grey,
-                  size: 20.sp,
-                ),
-              ],
+              ),
             ),
-          ),
 
             SizedBox(height: 16.h),
 
@@ -102,7 +221,7 @@ class SetMatchDetailsScreen extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Obx(
-              () => GestureDetector(
+                  () => GestureDetector(
                 onTap: () => c.pickDate(context),
                 child: _DropdownField(
                   icon: Icons.calendar_today_outlined,
@@ -124,7 +243,7 @@ class SetMatchDetailsScreen extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Obx(
-              () => GestureDetector(
+                  () => GestureDetector(
                 onTap: () => c.pickTime(context),
                 child: _DropdownField(
                   icon: Icons.access_time_rounded,
@@ -148,8 +267,8 @@ class SetMatchDetailsScreen extends StatelessWidget {
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16.r),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16.r),
                   border: Border.all(color: ConstColor.borderColor,width: 1)
               ),
               child: TextField(

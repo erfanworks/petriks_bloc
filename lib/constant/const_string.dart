@@ -64,6 +64,7 @@ class ConstString {
   static const chooseYourPrimary =
       'Choose your primary language for app notifications and chat translations.';
   static const howToYouPerfect = 'How do you prefer to meet?';
+  static const languageNotListed = 'Language not listed? Add manually:';
   static const whatsYourVibe = "What's your vibe?";
   static const wellMatchYouWithSimilar = "We'll match you with similar people";
   static const whenAreYouUsually = 'When are you usually free?';

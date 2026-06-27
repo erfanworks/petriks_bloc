@@ -79,6 +79,21 @@ class CreateCompetitionController extends GetxController {
   void selectActivity(int index) => selectedActivity.value = index;
 
   // ---- Step 3: Match Details ----
+  // ---- Step 3: Match Locations ----
+  final List<Map<String, String>> matchLocations = [
+    {'name': 'Astro Turf', 'sub': '0.4 miles away', 'desc': 'Perfect for 5-a-side football matches, floodlights included', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/party_img.png'},
+    {'name': 'Green Fields Arena', 'sub': '0.4 miles away', 'desc': 'Excellent grass conditions, seating arrangement.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/location_img1.jpg'},
+  ];
+  final selectedMatchLocations = <int>{}.obs;
+
+  void toggleMatchLocation(int index) {
+    if (selectedMatchLocations.contains(index)) {
+      selectedMatchLocations.remove(index);
+    } else {
+      selectedMatchLocations.add(index);
+    }
+  }
+
   final titleController = TextEditingController(text: 'Football Match');
   final notesController = TextEditingController();
   final RxString selectedDate = 'Saturday, Nov 24'.obs;
@@ -111,7 +126,7 @@ class CreateCompetitionController extends GetxController {
     );
     if (picked != null) {
       selectedDate.value =
-          '${_weekday(picked.weekday)}, ${_month(picked.month)} ${picked.day}';
+      '${_weekday(picked.weekday)}, ${_month(picked.month)} ${picked.day}';
     }
   }
 

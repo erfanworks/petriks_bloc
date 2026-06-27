@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 
+import '../../../../widget/CustomTextFormField/custom_text_form_field.dart';
 import '../../../../widget/text/custom_text.dart';
 import '../Controller/create_profile_controller.dart';
 import '../Widget/step_shell.dart';
@@ -147,7 +148,26 @@ class Step3Languages extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 8.h),
+          SizedBox(height: 22.h),
+          CustomText(
+            title: ConstString.languageNotListed,
+            textSize: 14.sp,
+            textColor: ConstColor.textColor,
+            fontWeight: FontWeight.w400,
+            maxLine: 3,
+          ),
+          SizedBox(height: 12.h),
+          CustomTextFormField(
+            keyboardType: TextInputType.text,
+            numeric: true,
+            onChanged: (val) {
+              if (val.trim().isNotEmpty) {
+                c.selectedLanguages.add('custom');
+              } else {
+                c.selectedLanguages.remove('custom');
+              }
+            },
+          ),
         ],
       ),
     );
