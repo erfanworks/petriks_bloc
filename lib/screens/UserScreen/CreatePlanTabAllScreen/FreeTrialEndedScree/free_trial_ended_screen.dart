@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
 
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../constant/const_color.dart';
@@ -17,6 +18,7 @@ class FreeTrialEndedScreen extends StatelessWidget {
     // c.onConfirmCallback = Get.arguments?['onConfirm'];
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,
+      appBar: GlobalAppBar(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),

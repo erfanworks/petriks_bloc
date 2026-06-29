@@ -169,7 +169,7 @@ class _PlanCard extends StatelessWidget {
                         children: [
                           CustomText(
                             title: isPremium
-                                ? ConstString.premium
+                                ? ConstString.goodNIvaPlus
                                 : ConstString.startFreeTrialTitle,
                             textSize: isPremium ? 22.sp : 18.sp,
                             fontWeight: isPremium? FontWeight.bold : FontWeight.w600,

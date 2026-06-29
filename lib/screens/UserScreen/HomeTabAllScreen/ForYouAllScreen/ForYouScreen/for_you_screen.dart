@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -91,7 +92,7 @@ class ForYouScreen extends StatelessWidget {
           SizedBox(height: 12.h),
 
           SizedBox(
-            height: 435.h,
+            height: 440.h,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               padding: EdgeInsets.only(left: 16.w, right: 32.w),
@@ -117,19 +118,37 @@ class ForYouScreen extends StatelessWidget {
   }
 }
 
+
+
 class _InviteFriendsButton extends StatelessWidget {
   final ForYouController controller;
 
   const _InviteFriendsButton({required this.controller});
+
+  // ── Deep link / invite link ──
+  static const _inviteLink = 'https://goodniva.app/invite?ref=USER_REF_CODE';
+  static const _inviteText =
+      'Join me on GoodNiva — discover local meetups & events! 🎉\n$_inviteLink';
+
+  Future<void> _onTap(BuildContext context) async {
+    final box = context.findRenderObject() as RenderBox?;
+    await SharePlus.instance.share(
+      ShareParams(
+        text: _inviteText,
+        subject: 'Join GoodNiva!',
+        sharePositionOrigin: box == null
+            ? null
+            : box.localToGlobal(Offset.zero) & box.size,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: GestureDetector(
-        onTap: () {
-          Get.toNamed(AppRoutes.inviteFriendsListScreen);
-        },
+        onTap: () => _onTap(context),
         child: Container(
           width: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 14.h),
@@ -155,11 +174,7 @@ class _InviteFriendsButton extends StatelessWidget {
                 maxLine: 1,
               ),
               SizedBox(width: 10.w),
-              // Text(
-              //   '📣',
-              //   style: TextStyle(fontSize: 20.sp),
-              // ),
-              Image.asset("assets/images/bossts_img.png")
+              Image.asset("assets/images/bossts_img.png"),
             ],
           ),
         ),

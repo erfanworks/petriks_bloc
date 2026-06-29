@@ -14,7 +14,7 @@ class ConstString {
   static const String group                    = 'GROUP';
   static const String oneToOne                 = '1-TO-1';
   static const viewPlans = 'View Plans';
-  static const String upgradeToPlusPrice = 'Upgrade to Plus  (GBP £15/month)';
+  static const String upgradeToPlusPrice = 'Upgrade to Plus  (GBP 15/month)';
   static const welcomeTo = 'Welcome to';
   static const appName   = 'GoodNiva';
   static const account = 'Account';
@@ -356,7 +356,8 @@ class ConstString {
   static const String followers = 'Followers';
   static const String yourPlan = 'Your Plan';
   static const String premium = 'Premium';
-  static const String premiumBannerDesc = 'Full access to plans & features';
+  static const String goodNIvaPlus = 'GoodNIva Plus';
+  static const String premiumBannerDesc = 'Upgrade to Plus (£15/month)';
   static const String manage = 'Manage';
   static const String preference = 'Preference';
   static const String energy = 'Energy';
@@ -387,13 +388,13 @@ class ConstString {
   static const String yearly = 'Yearly';
   static const String free = 'Free';
   static const String freeDesc = 'Basic access to meetups';
-  static const String upgradeToPremium = 'Upgrade to Premium';
+  static const String upgradeToPremium = 'Upgrade';
   static const String recommended = 'RECOMMENDED';
   static const String premiumPlanDesc =
       'Full access to all features and priority matching';
   static const String perMonth = '/ month';
-  static const String price999 = '\£9.99';
-  static const String price7999 = '\£79.99';
+  static const String price999 = '£9.99';
+  static const String price7999 = '£79.99';
   static const String perYear = '/ year';
   static const String settings = 'Settings';
   static const String accountVerification = 'Account & Verification';
@@ -539,8 +540,8 @@ class ConstString {
   static const String join                = 'Join';
   static const String startFreeTrialTitle = 'Start 7-Day Free Trial';
   static const String premiumFullDesc     = 'Full access to all features and priority matching';
-  static const String monthlyPrice        = 'GBP \£15';
-  static const String yearlyPrice         = 'GBP \£120';
+  static const String monthlyPrice        = 'GBP £15';
+  static const String yearlyPrice         = 'GBP £120';
   static const String freeFeature1  = 'Create Profile';
   static const String freeFeature2  = 'Verify Account';
   static const String freeFeature3  = 'Browse Feed (with Ads)';

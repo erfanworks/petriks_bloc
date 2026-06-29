@@ -279,7 +279,7 @@ class _PremiumBanner extends StatelessWidget {
               Row(
                 children: [
                   CustomText(
-                    title: ConstString.premium,
+                    title: ConstString.free,
                     textSize: 18.sp,
                     fontWeight: FontWeight.w600,
                     textColor: ConstColor.white,
@@ -356,7 +356,7 @@ class _IntroVideoCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: ConstColor.white.withAlpha(100),
                       shape: BoxShape.circle,
-                      border: Border.all(color: ConstColor.white)
+                      border: Border.all(color: ConstColor.white),
                     ),
                     child: Icon(
                       Icons.play_arrow_rounded,
@@ -381,6 +381,7 @@ class _IntroVideoCard extends StatelessWidget {
     );
   }
 }
+
 class _AboutSection extends StatelessWidget {
   final ProfileController c;
 

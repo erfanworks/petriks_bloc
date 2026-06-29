@@ -25,7 +25,7 @@ class CommunityScreen extends StatelessWidget {
         children: [
           SizedBox(height: 10.h),
           Obx(
-                () => Padding(
+            () => Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
                 children: List.generate(controller.communityTabs.length, (i) {
@@ -101,7 +101,9 @@ class CommunityScreen extends StatelessWidget {
 
                       SizedBox(height: 12.h),
 
-                      ...controller.appNews.map((news) => _AppNewsItem(item: news)),
+                      ...controller.appNews.map(
+                        (news) => _AppNewsItem(item: news),
+                      ),
 
                       SizedBox(height: 24.h),
                     ],
@@ -109,7 +111,7 @@ class CommunityScreen extends StatelessWidget {
                 );
               } else {
                 return Obx(
-                      () => controller.showUpgradeWall.value
+                  () => controller.showUpgradeWall.value
                       ? _CommunityUpgradeWall(controller: controller)
                       : MyCommunityScreen(),
                 );
@@ -119,36 +121,36 @@ class CommunityScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: Obx(
-            () => controller.selectedCommunityTab.value == 0
+        () => controller.selectedCommunityTab.value == 0
             ? Padding(
-          padding: EdgeInsets.fromLTRB(
-            16.w, 8.h, 16.w,
-            8.h + MediaQuery.of(context).padding.bottom,
-          ),
-          child: CustomElevatedButton(
-            onPressed: () => Get.toNamed(
-              AppRoutes.freeTrialEndedScreen,
-              arguments: {
-                'onConfirm': () {},
-              },
-            ),
-            height: 52,
-            top: 0,
-            buttonBorderRadius: 30,
-            elevation: 0,
-            gradient: const [
-              ConstColor.primaryDeepColor,
-              ConstColor.primaryColor,
-            ],
-            child: CustomText(
-              title: ConstString.upgradeToPlusPrice,
-              textSize: 15.sp,
-              fontWeight: FontWeight.w600,
-              textColor: Colors.white,
-              maxLine: 1,
-            ),
-          ),
-        )
+                padding: EdgeInsets.fromLTRB(
+                  16.w,
+                  8.h,
+                  16.w,
+                  8.h + MediaQuery.of(context).padding.bottom,
+                ),
+                child: CustomElevatedButton(
+                  onPressed: () => Get.toNamed(
+                    AppRoutes.freeTrialEndedScreen,
+                    arguments: {'onConfirm': () {}},
+                  ),
+                  height: 52,
+                  top: 0,
+                  buttonBorderRadius: 30,
+                  elevation: 0,
+                  gradient: const [
+                    ConstColor.primaryDeepColor,
+                    ConstColor.primaryColor,
+                  ],
+                  child: CustomText(
+                    title: ConstString.upgradeToPlusPrice,
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    textColor: Colors.white,
+                    maxLine: 1,
+                  ),
+                ),
+              )
             : const SizedBox.shrink(),
       ),
     );
@@ -166,127 +168,129 @@ class _CommunityUpgradeWall extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(height: 40.h),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: 40.h),
 
-          // Title
-          CustomText(
-            title: ConstString.createYourOwnCommunity,
-            textSize: 22.sp,
-            fontWeight: FontWeight.w700,
-            textColor: ConstColor.black,
-            maxLine: 2,
-            textAlign: TextAlign.center,
-            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-          ),
-          SizedBox(height: 16.h),
-
-          // Subtitle
-          CustomText(
-            title: ConstString.createCommunitySubtitle,
-            textSize: 16.sp,
-            textColor: ConstColor.textColor,
-            maxLine: 5,
-            textAlign: TextAlign.center,
-          ),
-
-          SizedBox(height: 48.h),
-
-          // Info card
-          Container(
-            padding: EdgeInsets.all(16.r),
-            decoration: BoxDecoration(
-              color: ConstColor.white,
-              borderRadius: BorderRadius.circular(16.r),
-              border: Border.all(color: ConstColor.borderColor),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withAlpha(8),
-                  blurRadius: 10.r,
-                  offset: Offset(0, 2.h),
-                ),
-              ],
+            // Title
+            CustomText(
+              title: ConstString.createYourOwnCommunity,
+              textSize: 22.sp,
+              fontWeight: FontWeight.w700,
+              textColor: ConstColor.black,
+              maxLine: 2,
+              textAlign: TextAlign.center,
+              fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
             ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 44.r,
-                  height: 44.r,
-                  decoration: BoxDecoration(
-                    color: ConstColor.primaryColor.withAlpha(25),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.lock_rounded,
-                    color: ConstColor.primaryColor,
-                    size: 22.sp,
-                  ),
-                ),
-                SizedBox(width: 12.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomText(
-                        title: ConstString.communityCreationAvailable,
-                        textSize: 14.sp,
-                        fontWeight: FontWeight.w600,
-                        textColor: ConstColor.primaryColor,
-                        maxLine: 2,
-                      ),
-                      SizedBox(height: 4.h),
-                      CustomText(
-                        title: ConstString.communityCreationDesc,
-                        textSize: 12.sp,
-                        textColor: ConstColor.textColor,
-                        maxLine: 3,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            SizedBox(height: 16.h),
+
+            // Subtitle
+            CustomText(
+              title: ConstString.createCommunitySubtitle,
+              textSize: 16.sp,
+              textColor: ConstColor.textColor,
+              maxLine: 5,
+              textAlign: TextAlign.center,
             ),
-          ),
 
-          SizedBox(height: 24.h),
+            SizedBox(height: 48.h),
 
-          // Upgrade button
-          GestureDetector(
-            onTap: controller.onUpgradeTap,
-            child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.symmetric(vertical: 14.h),
+            // Info card
+            Container(
+              padding: EdgeInsets.all(16.r),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30.r),
-                border: Border.all(color: ConstColor.primaryColor),
+                color: ConstColor.white,
+                borderRadius: BorderRadius.circular(16.r),
+                border: Border.all(color: ConstColor.borderColor),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withAlpha(8),
+                    blurRadius: 10.r,
+                    offset: Offset(0, 2.h),
+                  ),
+                ],
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Icon(
-                  //   Icons.workspace_premium_rounded,
-                  //   color: ConstColor.primaryColor,
-                  //   size: 18.sp,
-                  // ),
-                  SvgPicture.asset("assets/icons/Upgrade.svg"),
-                  SizedBox(width: 8.w),
-                  CustomText(
-                    title: ConstString.upgradeToCreatePlans,
-                    textSize: 15.sp,
-                    fontWeight: FontWeight.w600,
-                    textColor: ConstColor.primaryColor,
-                    maxLine: 1,
+                  Container(
+                    width: 44.r,
+                    height: 44.r,
+                    decoration: BoxDecoration(
+                      color: ConstColor.primaryColor.withAlpha(25),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.lock_rounded,
+                      color: ConstColor.primaryColor,
+                      size: 22.sp,
+                    ),
+                  ),
+                  SizedBox(width: 12.w),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText(
+                          title: ConstString.communityCreationAvailable,
+                          textSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          textColor: ConstColor.primaryColor,
+                          maxLine: 2,
+                        ),
+                        SizedBox(height: 4.h),
+                        CustomText(
+                          title: ConstString.communityCreationDesc,
+                          textSize: 12.sp,
+                          textColor: ConstColor.textColor,
+                          maxLine: 3,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
 
-          SizedBox(height: 40.h),
-        ],
+            SizedBox(height: 24.h),
+
+            // Upgrade button
+            GestureDetector(
+              onTap: controller.onUpgradeTap,
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(vertical: 14.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.r),
+                  border: Border.all(color: ConstColor.primaryColor),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Icon(
+                    //   Icons.workspace_premium_rounded,
+                    //   color: ConstColor.primaryColor,
+                    //   size: 18.sp,
+                    // ),
+                    SvgPicture.asset("assets/icons/Upgrade.svg"),
+                    SizedBox(width: 8.w),
+                    CustomText(
+                      title: ConstString.upgradeToCreatePlans,
+                      textSize: 15.sp,
+                      fontWeight: FontWeight.w600,
+                      textColor: ConstColor.primaryColor,
+                      maxLine: 1,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            SizedBox(height: 40.h),
+          ],
+        ),
       ),
     );
   }
