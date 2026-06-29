@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
+import '../../AddCardAndBanner/add_screen.dart';
 import '../OneToOneMeetupScreen/one_to_one_meetup_screen.dart';
 import 'Controller/vibe_controller.dart';
 import 'Widget/viibe_event_card.dart';
@@ -194,14 +195,25 @@ class VibeScreen extends StatelessWidget {
           Obx(() => IndexedStack(
             index: controller.selectedVibeTab.value,
             children: [
-              ListView.separated(
+              ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                itemCount: controller.events.length,
-                separatorBuilder: (_, _) => SizedBox(height: 16.h),
-                itemBuilder: (_, index) =>
-                    VibeEventCard(item: controller.events[index]),
+                itemCount: controller.events.length + 2,
+                itemBuilder: (_, index) {
+                  if (index == 1) return const SponsoredLocalOfferCard();
+                  if (index == 3) return const BannerAdCard();
+
+                  int eventIndex = index;
+                  if (index > 1) eventIndex--;
+                  if (index > 3) eventIndex--;
+
+                  if (eventIndex >= controller.events.length) return const SizedBox.shrink();
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: 16.h),
+                    child: VibeEventCard(item: controller.events[eventIndex]),
+                  );
+                },
               ),
 
               const OneToOneMeetupScreen(),
@@ -214,4 +226,3 @@ class VibeScreen extends StatelessWidget {
     );
   }
 }
-

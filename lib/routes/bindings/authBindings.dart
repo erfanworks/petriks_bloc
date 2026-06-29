@@ -16,6 +16,7 @@ import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/Contro
 import '../../screens/BaseScreen/CreateProfileScreen/Controller/create_profile_controller.dart';
 import '../../screens/BaseScreen/CreateProfileScreen/VerifyIdScreen/Controller/verify_id_controller.dart';
 import '../../screens/UserScreen/CreatePlanTabAllScreen/FreeTrialEndedScree/Controller/free_trial_ended_controller.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/AddCardAndBanner/Controller/ad_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityScreen/Controller/community_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCompetitionScreen/Controller/create_competition_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityScreen/Controller/my_community_controller.dart';
@@ -97,6 +98,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => CreatePlanController());
     Get.lazyPut(() => CreatedPlanDetailsController());
     Get.lazyPut(() => FreeTrialEndedController());
+    Get.lazyPut(() => AdController());
 
 
   }

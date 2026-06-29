@@ -1,14 +1,13 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Widget/joined_one_to_one_sheet.dart';
-
 import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
+import '../../../../../../widget/SelectPackageSheet/select_package_sheet.dart';
 import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
-import '../../../ForYouAllScreen/PlanDetailsScreen/Widget/join_confirmation_sheet.dart';
-// ---- Plan Detail Models ----
+
+
 class LocationVoteItem {
   final String image;
   final String name;
@@ -62,6 +61,7 @@ class ReportReason {
 // ---- Plan Details Controller ----
 class OneToOneMeetupDetailsController extends GetxController {
   final RxBool hasJoined = false.obs;
+  final RxBool showBoostGate = true.obs;
   final RxInt selectedTimeIndex = (-1).obs;
   final lockTimer = ''.obs;
   Timer? _timer;
@@ -175,6 +175,19 @@ class OneToOneMeetupDetailsController extends GetxController {
   void selectTime(int index) => selectedTimeIndex.value = index;
 
   // Plan Detail
+  void showSelectPackageSheet() {
+    Get.bottomSheet(
+      SelectPackageSheet(
+        onConfirm: () {
+          Get.back();
+          showBoostGate.value = false;
+        },
+      ),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+    );
+  }
+
   void showJoinSheet() {
     Get.bottomSheet(
       const JoinedOneToOneSheet(),

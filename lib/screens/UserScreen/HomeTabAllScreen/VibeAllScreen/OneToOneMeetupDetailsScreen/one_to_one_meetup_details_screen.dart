@@ -27,7 +27,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F5FA),
       appBar: GlobalAppBar(title: ConstString.planDetails),
       body: Obx(
-        () => SingleChildScrollView(
+            () => SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -515,6 +515,24 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
               ),
               SizedBox(height: 10.h),
             ],
+          )
+              : controller.showBoostGate.value
+              ? CustomElevatedButton(
+            onPressed: controller.showSelectPackageSheet,
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: const [
+              ConstColor.primaryDeepColor,
+              ConstColor.primaryColor,
+            ],
+            child: CustomText(
+              title: ConstString.get1BoostToJoin,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
           )
               : CustomElevatedButton(
             onPressed: controller.showJoinSheet,

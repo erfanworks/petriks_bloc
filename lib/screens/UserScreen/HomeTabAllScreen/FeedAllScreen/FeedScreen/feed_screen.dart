@@ -6,6 +6,7 @@ import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../widget/AppImage/app_image.dart';
+import '../../AddCardAndBanner/add_screen.dart';
 import 'Controller/feed_controller.dart';
 import 'Widget/feed_post_card.dart';
 
@@ -140,8 +141,8 @@ class FeedScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             itemCount: controller.posts.length + 2,
             itemBuilder: (_, index) {
-              if (index == 1) return const _SponsoredLocalOffer();
-              if (index == 3) return const _BannerAd();
+              if (index == 1) return const SponsoredLocalOfferCard();
+              if (index == 3) return const BannerAdCard();
 
               int postIndex = index;
               if (index > 1) postIndex--;
@@ -162,71 +163,7 @@ class FeedScreen extends StatelessWidget {
   }
 }
 
-// ---- Sponsored Local Offer ----
-class _SponsoredLocalOffer extends StatelessWidget {
-  const _SponsoredLocalOffer();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 12.h),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(color: ConstColor.borderColor.withAlpha(80)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-              child: CustomText(
-                title: ConstString.sponsoredLocalOffer,
-                textSize: 11.sp,
-                textColor: ConstColor.grey,
-                fontWeight: FontWeight.w500,
-                maxLine: 1,
-              ),
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12.r),
-              child: AppImage(
-                path: 'assets/images/demo_local_offer.png',
-                width: double.infinity,
-                height: 160.h,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 8.h),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-// ---- Banner Ad ----
-class _BannerAd extends StatelessWidget {
-  const _BannerAd();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 12.h),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12.r),
-        child: AppImage(
-          path: 'assets/images/demo_offer_banner.png',
-          width: double.infinity,
-          height: 80.h,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
-
+// ---- Action Chip ----
 class _ActionChip extends StatelessWidget {
   final IconData icon;
   final Color iconColor;

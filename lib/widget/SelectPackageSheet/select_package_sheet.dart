@@ -26,9 +26,9 @@ class _SelectPackageSheetState extends State<SelectPackageSheet> {
   int _selected = 0;
 
   final _packages = const [
-    _Package(number: 1, label: 'Join 1 Plan',   price: 'GBP 0.99'),
-    _Package(number: 2, label: 'Join 3 Plans',  price: 'GBP 1.99'),
-    _Package(number: 3, label: 'Join 7 Plans',  price: 'GBP 3.99'),
+    _Package(number: 1, label: 'Join 1 Plan',   price: 'GBP £0.99'),
+    _Package(number: 2, label: 'Join 3 Plans',  price: 'GBP £1.99'),
+    _Package(number: 3, label: 'Join 7 Plans',  price: 'GBP £3.99'),
   ];
 
   @override
