@@ -593,5 +593,9 @@ class ConstString {
   static const String communityCreationAvailable = 'Community Creation is available with GoodNiva Plus';
   static const String communityCreationDesc      = 'You need GoodNiva Plus to create and manage your own Community.';
   static const String upgradeToCreatePlans       = 'Upgrade to Create Plans';
+  static const String get1BoostToJoin       = 'Get 1 Boost to Join';
+  static const String selectPackage         = 'Select Package';
+  static const String purchasePackageToJoin = 'Purchase a package to join additional plans';
+  static const String confirmAndPay         = 'Confirm & pay';
 
 }

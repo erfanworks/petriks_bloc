@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
@@ -20,7 +19,7 @@ class VibeScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20.h),
+          // SizedBox(height: 20.h),
           Obx(
                 () => Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),

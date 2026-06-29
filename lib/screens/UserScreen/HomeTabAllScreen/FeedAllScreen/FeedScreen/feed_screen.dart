@@ -138,14 +138,11 @@ class FeedScreen extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.symmetric(horizontal: 16.w),
-            itemCount: controller.posts.length + 2, // +2 for sponsored + banner
+            itemCount: controller.posts.length + 2,
             itemBuilder: (_, index) {
-              // After 1st post (index 0) → Sponsored Local Offer
               if (index == 1) return const _SponsoredLocalOffer();
-              // After 2nd post (index 2 in adjusted) → Banner Ad
               if (index == 3) return const _BannerAd();
 
-              // Map adjusted index back to post index
               int postIndex = index;
               if (index > 1) postIndex--;
               if (index > 3) postIndex--;
@@ -195,7 +192,7 @@ class _SponsoredLocalOffer extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(12.r),
               child: AppImage(
-                path: 'assets/images/demo_local_offer.png', // 👈 তোমার image
+                path: 'assets/images/demo_local_offer.png',
                 width: double.infinity,
                 height: 160.h,
                 fit: BoxFit.cover,

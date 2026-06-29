@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../../widget/SelectPackageSheet/select_package_sheet.dart';
 import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
 import '../Widget/join_confirmation_sheet.dart';
 
@@ -60,6 +61,7 @@ class ReportReason {
 
 class PlanDetailsController extends GetxController {
   final RxBool hasJoined = false.obs;
+  final RxBool showBoostGate = true.obs;
   final RxInt selectedTimeIndex = (-1).obs;
   final lockTimer = ''.obs;
   Timer? _timer;
@@ -168,6 +170,20 @@ class PlanDetailsController extends GetxController {
   final supportDescController = TextEditingController();
 
 
+  void showSelectPackageSheet() {
+    Get.bottomSheet(
+      SelectPackageSheet(
+        onConfirm: () {
+          Get.back();
+          showBoostGate.value = false;
+          // showJoinSheet();
+        },
+      ),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+    );
+  }
+
   void showJoinSheet() {
     Get.bottomSheet(
       const JoinConfirmationSheet(),
@@ -195,7 +211,7 @@ class PlanDetailsController extends GetxController {
   void submitReview() {
     Get.toNamed(AppRoutes.navBar);
     AppSnackBar.success("Review submitted successfully! ✅", seconds: 3);
-    }
+  }
 
   void planAgain() {
     Get.toNamed(AppRoutes.navBar);

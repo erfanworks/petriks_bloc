@@ -30,7 +30,7 @@ class PlanDetailsScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF5F5FA),
       appBar: GlobalAppBar(title: ConstString.planDetails),
       body: Obx(
-        () => SingleChildScrollView(
+            () => SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -102,7 +102,7 @@ class PlanDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 maxLine: 1,
                                 fontFamily:
-                                    GoogleFonts.plusJakartaSans().fontFamily,
+                                GoogleFonts.plusJakartaSans().fontFamily,
                               ),
                               const _PillBadge(
                                 label: ConstString.freeEntry,
@@ -178,7 +178,7 @@ class PlanDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                                 maxLine: 1,
                                 fontFamily:
-                                    GoogleFonts.plusJakartaSans().fontFamily,
+                                GoogleFonts.plusJakartaSans().fontFamily,
                               ),
                               Spacer(),
                               GestureDetector(
@@ -231,7 +231,7 @@ class PlanDetailsScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Obx(
-                  () => CustomText(
+                      () => CustomText(
                     title: controller.isLocked
                         ? '🕐 Time Confirmed!'
                         : 'Choose Time',
@@ -248,45 +248,45 @@ class PlanDetailsScreen extends StatelessWidget {
               SizedBox(height: 10.h),
 
               Obx(
-                () => controller.isLocked
+                    () => controller.isLocked
                     ? _ChooseTimeCard(
-                        timeText: 'Sat • 7:30 PM',
-                        voteCount: '4 Vote',
-                        isSelected: true,
-                        onTap: () {},
-                      )
+                  timeText: 'Sat • 7:30 PM',
+                  voteCount: '4 Vote',
+                  isSelected: true,
+                  onTap: () {},
+                )
                     : Column(
-                        children: [
-                          _ChooseTimeCard(
-                            timeText: 'Sat • 7:30 PM',
-                            voteCount: '4 Vote',
-                            isSelected: controller.selectedTimeIndex.value == 0,
-                            onTap: () {
-                              if (!controller.hasJoined.value) {
-                                AppSnackBar.message(
-                                  'Please join this plan to vote on time and location.',
-                                );
-                                return;
-                              }
-                              controller.selectTime(0);
-                            },
-                          ),
-                          _ChooseTimeCard(
-                            timeText: 'Sat • 8:40 PM',
-                            voteCount: '2 Vote',
-                            isSelected: controller.selectedTimeIndex.value == 1,
-                            onTap: () {
-                              if (!controller.hasJoined.value) {
-                                AppSnackBar.message(
-                                  'Please join this plan to vote on time and location.',
-                                );
-                                return;
-                              }
-                              controller.selectTime(1);
-                            },
-                          ),
-                        ],
-                      ),
+                  children: [
+                    _ChooseTimeCard(
+                      timeText: 'Sat • 7:30 PM',
+                      voteCount: '4 Vote',
+                      isSelected: controller.selectedTimeIndex.value == 0,
+                      onTap: () {
+                        if (!controller.hasJoined.value) {
+                          AppSnackBar.message(
+                            'Please join this plan to vote on time and location.',
+                          );
+                          return;
+                        }
+                        controller.selectTime(0);
+                      },
+                    ),
+                    _ChooseTimeCard(
+                      timeText: 'Sat • 8:40 PM',
+                      voteCount: '2 Vote',
+                      isSelected: controller.selectedTimeIndex.value == 1,
+                      onTap: () {
+                        if (!controller.hasJoined.value) {
+                          AppSnackBar.message(
+                            'Please join this plan to vote on time and location.',
+                          );
+                          return;
+                        }
+                        controller.selectTime(1);
+                      },
+                    ),
+                  ],
+                ),
               ),
 
               SizedBox(height: 20.h),
@@ -294,7 +294,7 @@ class PlanDetailsScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Obx(
-                  () => CustomText(
+                      () => CustomText(
                     title: controller.isLocked
                         ? '📍 Venue Decided!'
                         : ConstString.pickALocation,
@@ -311,30 +311,30 @@ class PlanDetailsScreen extends StatelessWidget {
               SizedBox(height: 10.h),
 
               Obx(
-                () => controller.isLocked
+                    () => controller.isLocked
                     ? _LocationVoteCard(
-                        item: controller.locationVotes.reduce(
-                          (a, b) => a.votes >= b.votes ? a : b,
-                        ),
-                      )
+                  item: controller.locationVotes.reduce(
+                        (a, b) => a.votes >= b.votes ? a : b,
+                  ),
+                )
                     : Column(
-                        children: [
-                          ...controller.locationVotes.map(
-                            (loc) => _LocationVoteCard(
-                              item: loc,
-                              onTap: () {
-                                if (!controller.hasJoined.value) {
-                                  AppSnackBar.message(
-                                    'Please join this plan to vote on time and location.',
-                                  );
-                                  return;
-                                }
-                                controller.selectLocation(loc);
-                              },
-                            ),
-                          ),
-                        ],
+                  children: [
+                    ...controller.locationVotes.map(
+                          (loc) => _LocationVoteCard(
+                        item: loc,
+                        onTap: () {
+                          if (!controller.hasJoined.value) {
+                            AppSnackBar.message(
+                              'Please join this plan to vote on time and location.',
+                            );
+                            return;
+                          }
+                          controller.selectLocation(loc);
+                        },
                       ),
+                    ),
+                  ],
+                ),
               ),
 
               SizedBox(height: 8.h),
@@ -352,29 +352,29 @@ class PlanDetailsScreen extends StatelessWidget {
                   children: [
                     controller.lockTimer.value.isNotEmpty
                         ? Icon(
-                            Icons.hourglass_bottom_rounded,
-                            color: ConstColor.primaryColor,
-                            size: 16.r,
-                          )
+                      Icons.hourglass_bottom_rounded,
+                      color: ConstColor.primaryColor,
+                      size: 16.r,
+                    )
                         : SizedBox.shrink(),
                     SizedBox(width: 6.w),
                     Obx(
-                      () => controller.lockTimer.value.isNotEmpty
+                          () => controller.lockTimer.value.isNotEmpty
                           ? CustomText(
-                              title: 'Locks in: ${controller.lockTimer.value}',
-                              textColor: ConstColor.primaryColor,
-                              textSize: 14.sp,
-                              fontWeight: FontWeight.w700,
-                              maxLine: 1,
-                            )
+                        title: 'Locks in: ${controller.lockTimer.value}',
+                        textColor: ConstColor.primaryColor,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        maxLine: 1,
+                      )
                           : controller.lockUntil != null
                           ? CustomText(
-                              title: 'Plan is now locked 🔒',
-                              textColor: const Color(0xFFBA1A1A),
-                              textSize: 14.sp,
-                              fontWeight: FontWeight.w700,
-                              maxLine: 1,
-                            )
+                        title: 'Plan is now locked 🔒',
+                        textColor: const Color(0xFFBA1A1A),
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w700,
+                        maxLine: 1,
+                      )
                           : const SizedBox.shrink(),
                     ),
                   ],
@@ -430,7 +430,7 @@ class PlanDetailsScreen extends StatelessWidget {
       ),
 
       bottomNavigationBar: Obx(
-        () => Padding(
+            () => Padding(
           padding: EdgeInsets.fromLTRB(
             16.w,
             0,
@@ -439,101 +439,119 @@ class PlanDetailsScreen extends StatelessWidget {
           ),
           child: controller.hasJoined.value
               ? Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Obx(() {
-                      if (!controller.isTimerExpired) {
-                        return const SizedBox.shrink();
-                      }
-                      return AnimatedSize(
-                        duration: const Duration(milliseconds: 400),
-                        curve: Curves.easeInOut,
-                        child: Row(
-                          children: [
-                            if (!controller.hasNavigated.value) ...[
-                              Expanded(
-                                child: _OutlineButton(
-                                  label: ConstString.couldTAttend,
-                                  color: const Color(0xFFBA1A1A),
-                                  onTap: () {
-                                    Get.toNamed(AppRoutes.joinedPlanUserReport);
-                                    AppSnackBar.message("Attendance canceled");
-                                  },
-                                ),
-                              ),
-                              SizedBox(width: 12.w),
-                            ],
-
-                            Obx(
-                              () => Expanded(
-                                child: controller.hasNavigated.value
-                                    ? _OutlineButton(
-                                        label: ConstString.attendance,
-                                        color: const Color(0xFF006C49),
-                                        onTap: controller.onConfirmAttendance,
-                                      )
-                                    : _OutlineButton(
-                                        label: ConstString.navigate,
-                                        color: const Color(0xFF0077CC),
-                                        onTap: () => Get.toNamed(
-                                          AppRoutes.planMapScreen,
-                                        ),
-                                      ),
-                              ),
-                            ),
-                          ],
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Obx(() {
+                if (!controller.isTimerExpired) {
+                  return const SizedBox.shrink();
+                }
+                return AnimatedSize(
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
+                  child: Row(
+                    children: [
+                      if (!controller.hasNavigated.value) ...[
+                        Expanded(
+                          child: _OutlineButton(
+                            label: ConstString.couldTAttend,
+                            color: const Color(0xFFBA1A1A),
+                            onTap: () {
+                              Get.toNamed(AppRoutes.joinedPlanUserReport);
+                              AppSnackBar.message("Attendance canceled");
+                            },
+                          ),
                         ),
-                      );
-                    }),
-
-                    CustomElevatedButton(
-                      height: 40.h,
-                      buttonBorderRadius: 32,
-                      gradient: [
-                        ConstColor.primaryDeepColor,
-                        ConstColor.primaryColor,
+                        SizedBox(width: 12.w),
                       ],
-                      onPressed: () {
-                        Get.toNamed(AppRoutes.planChatScreen);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.chat_bubble_outline,
-                            size: 18.sp,
-                            color: ConstColor.white,
+
+                      Obx(
+                            () => Expanded(
+                          child: controller.hasNavigated.value
+                              ? _OutlineButton(
+                            label: ConstString.attendance,
+                            color: const Color(0xFF006C49),
+                            onTap: controller.onConfirmAttendance,
+                          )
+                              : _OutlineButton(
+                            label: ConstString.navigate,
+                            color: const Color(0xFF0077CC),
+                            onTap: () => Get.toNamed(
+                              AppRoutes.planMapScreen,
+                            ),
                           ),
-                          SizedBox(width: 6.w),
-                          CustomText(
-                            title: ConstString.openChat,
-                            textColor: ConstColor.white,
-                            textSize: 14.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10.h),
-                  ],
-                )
-              : CustomElevatedButton(
-                  onPressed: controller.showJoinSheet,
-                  height: 50,
-                  top: 0,
-                  buttonBorderRadius: 30,
-                  gradient: const [
-                    ConstColor.primaryDeepColor,
-                    ConstColor.primaryColor,
-                  ],
-                  child: CustomText(
-                    title: ConstString.joinEvent,
-                    textColor: Colors.white,
-                    textSize: 15.sp,
-                    fontWeight: FontWeight.w600,
-                    maxLine: 1,
+                    ],
                   ),
+                );
+              }),
+
+              CustomElevatedButton(
+                height: 40.h,
+                buttonBorderRadius: 32,
+                gradient: [
+                  ConstColor.primaryDeepColor,
+                  ConstColor.primaryColor,
+                ],
+                onPressed: () {
+                  Get.toNamed(AppRoutes.planChatScreen);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.chat_bubble_outline,
+                      size: 18.sp,
+                      color: ConstColor.white,
+                    ),
+                    SizedBox(width: 6.w),
+                    CustomText(
+                      title: ConstString.openChat,
+                      textColor: ConstColor.white,
+                      textSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ],
                 ),
+              ),
+              SizedBox(height: 10.h),
+            ],
+          )
+              : controller.showBoostGate.value
+              ? CustomElevatedButton(
+            onPressed: controller.showSelectPackageSheet,
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: const [
+              ConstColor.primaryDeepColor,
+              ConstColor.primaryColor,
+            ],
+            child: CustomText(
+              title: ConstString.get1BoostToJoin,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
+          )
+              : CustomElevatedButton(
+            onPressed: controller.showJoinSheet,
+            height: 50,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: const [
+              ConstColor.primaryDeepColor,
+              ConstColor.primaryColor,
+            ],
+            child: CustomText(
+              title: ConstString.joinEvent,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
+          ),
         ),
       ),
     );
