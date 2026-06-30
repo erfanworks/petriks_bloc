@@ -26,11 +26,15 @@ class SubscriptionScreen extends StatelessWidget {
             _TabBar(c: c),
             SizedBox(height: 16.h),
             Obx(
-                  () => c.selectedTab.value == 0
-                  ? _PlanCard(c: c, isPremium: false)
+                  () => (c.showFreePlan.value && c.selectedTab.value == 0)
+                  ? Column(
+                    children: [
+                      _PlanCard(c: c, isPremium: false),
+                      SizedBox(height: 16.h),
+                    ],
+                  )
                   : const SizedBox.shrink(),
             ),
-            SizedBox(height: 16.h),
             _PlanCard(c: c, isPremium: true),
             SizedBox(height: 24.h),
           ],

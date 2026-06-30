@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
 import '../../../../widget/AppImage/app_image.dart';
@@ -13,6 +14,7 @@ import '../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../../../../widget/text/custom_text.dart';
 import 'Controller/create_plan_controller.dart';
 import 'Widget/cover_photo_uploader.dart';
+import 'Widget/show_add_custom_location_sheet.dart';
 
 class CreatePlanScreen extends StatelessWidget {
   const CreatePlanScreen({super.key});
@@ -592,8 +594,7 @@ class _Step4WhenWhere extends StatelessWidget {
             ),
           )),
 
-          SizedBox(height: 24.h),
-          _VoteDurationSection(),
+
           SizedBox(height: 16.h),
 
 
@@ -602,131 +603,152 @@ class _Step4WhenWhere extends StatelessWidget {
           _FieldLabel(label: ConstString.recommendedPartnerPlaces),
           SizedBox(height: 12.h),
 
-          SizedBox(
-            height: 310.h,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: c.locations.length,
-              separatorBuilder: (_, __) => SizedBox(width: 12.w),
-              itemBuilder: (context, i) {
-                final loc = c.locations[i];
-                return Obx(() {
-                  final selected = c.selectedLocations.contains(i);
-                  return AnimatedContainer(
-                    duration: const Duration(milliseconds: 180),
-                    width: 260.w,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16.r),
-                      border: Border.all(
-                        color: selected ? ConstColor.primaryColor : ConstColor.borderColor,
-                        width: selected ? 1.8 : 1,
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
-                          child: Stack(
-                            children: [
-                              AppImage(
-                                path: loc['image']!,
-                                width: double.infinity,
-                                height: 150.h,
-                                fit: BoxFit.cover,
-                              ),
-                              Positioned(
-                                top: 10.h,
-                                left: 10.w,
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFB35A00),
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: CustomText(
-                                    title: loc['discount']!,
-                                    textSize: 10.sp,
-                                    fontWeight: FontWeight.w600,
-                                    textColor: Colors.white,
-                                    maxLine: 1,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+          Obx(
+                () => SizedBox(
+              height: 310.h,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: c.locations.length,
+                separatorBuilder: (_, __) => SizedBox(width: 12.w),
+                itemBuilder: (context, i) {
+                  final loc = c.locations[i];
+                  final String name = loc['name'] ?? '';
+
+                  return Obx(() {
+                    final selected = c.selectedLocationNames.contains(name);
+                    final isCustom = loc['isCustom'] == 'true';
+
+                    return AnimatedContainer(
+                      duration: const Duration(milliseconds: 180),
+                      width: 260.w,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16.r),
+                        border: Border.all(
+                          color: selected ? ConstColor.primaryColor : ConstColor.borderColor,
+                          width: selected ? 1.8 : 1,
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(12.r),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                title: loc['name']!,
-                                textSize: 15.sp,
-                                fontWeight: FontWeight.w700,
-                                textColor: ConstColor.black,
-                                maxLine: 1,
-                              ),
-                              SizedBox(height: 4.h),
-                              Row(
-                                children: [
-                                  Icon(Icons.location_on_outlined, size: 14.sp, color: ConstColor.textColor),
-                                  SizedBox(width: 4.w),
-                                  CustomText(
-                                    title: loc['sub']!,
-                                    textSize: 12.sp,
-                                    textColor: ConstColor.textColor,
-                                    maxLine: 1,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 4.h),
-                              CustomText(
-                                title: loc['desc']!,
-                                textSize: 12.sp,
-                                textColor: ConstColor.grey,
-                                maxLine: 2,
-                              ),
-                              SizedBox(height: 10.h),
-                              GestureDetector(
-                                onTap: () => c.toggleLocation(i),
-                                child: Container(
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
+                            child: Stack(
+                              children: [
+                                AppImage(
+                                  path: isCustom ? null : loc['image'],
+                                  filePath: isCustom ? loc['image'] : null,
                                   width: double.infinity,
-                                  padding: EdgeInsets.symmetric(vertical: 11.h),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30.r),
-                                    border: Border.all(color: ConstColor.primaryColor),
-                                  ),
-                                  child: Center(
-                                    child: CustomText(
-                                      title: selected ? ConstString.useThisVenue : ConstString.select,
-                                      textSize: 14.sp,
-                                      fontWeight: FontWeight.w600,
-                                      textColor: ConstColor.primaryColor,
-                                      maxLine: 1,
+                                  height: 150.h,
+                                  fit: BoxFit.cover,
+                                ),
+
+                                // ── Badge: discount (admin) OR "Added by you" (custom) ──
+                                Positioned(
+                                  top: 10.h,
+                                  left: 10.w,
+                                  child: Container(
+                                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                                    decoration: BoxDecoration(
+                                      color: isCustom ? ConstColor.primaryColor : const Color(0xFFB35A00),
+                                      borderRadius: BorderRadius.circular(20.r),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        if (isCustom) ...[
+                                          Icon(Icons.person_pin_circle_rounded, size: 12.sp, color: Colors.white),
+                                          SizedBox(width: 3.w),
+                                        ],
+                                        CustomText(
+                                          title: isCustom ? ConstString.addedByYou : loc['discount']!,
+                                          textSize: 10.sp,
+                                          fontWeight: FontWeight.w600,
+                                          textColor: Colors.white,
+                                          maxLine: 1,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                });
-              },
+                          Padding(
+                            padding: EdgeInsets.all(12.r),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(
+                                  title: name,
+                                  textSize: 15.sp,
+                                  fontWeight: FontWeight.w700,
+                                  textColor: ConstColor.black,
+                                  maxLine: 1,
+                                ),
+                                SizedBox(height: 4.h),
+                                Row(
+                                  children: [
+                                    Icon(Icons.location_on_outlined, size: 14.sp, color: ConstColor.textColor),
+                                    SizedBox(width: 4.w),
+                                    Expanded(
+                                      child: CustomText(
+                                        title: loc['sub']!,
+                                        textSize: 12.sp,
+                                        textColor: ConstColor.textColor,
+                                        maxLine: 1,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                if (loc['desc']!.isNotEmpty) ...[
+                                  SizedBox(height: 4.h),
+                                  CustomText(
+                                    title: loc['desc']!,
+                                    textSize: 12.sp,
+                                    textColor: ConstColor.grey,
+                                    maxLine: 2,
+                                  ),
+                                ],
+                                SizedBox(height: 10.h),
+                                GestureDetector(
+                                  onTap: () => c.toggleLocation(name),
+                                  child: Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.symmetric(vertical: 11.h),
+                                    decoration: BoxDecoration(
+                                      color: selected ? ConstColor.primaryColor : Colors.transparent,
+                                      borderRadius: BorderRadius.circular(30.r),
+                                      border: Border.all(color: ConstColor.primaryColor),
+                                    ),
+                                    child: Center(
+                                      child: CustomText(
+                                        title: selected ? ConstString.selected : ConstString.useThisVenue,
+                                        textSize: 14.sp,
+                                        fontWeight: FontWeight.w600,
+                                        textColor: selected ? Colors.white : ConstColor.primaryColor,
+                                        maxLine: 1,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  });
+                },
+              ),
             ),
           ),
 
           SizedBox(height: 8.h),
 
           GestureDetector(
-            onTap: () {
-              // TODO
-            },
+            onTap: showAddCustomLocationSheet,
             child: Container(
               width: double.infinity,
               margin: EdgeInsets.only(top: 8.h, bottom: 15.h),
@@ -749,74 +771,77 @@ class _Step4WhenWhere extends StatelessWidget {
               ),
             ),
           ),
+          const PlaceVotingSection(),
 
 
-          SizedBox(height: 16.h),
-
-          _FieldLabel(label: ConstString.voteLockSettings),
-          SizedBox(height: 8.h),
-          Obx(
-            () => _ToggleCard(
-              icon: Icons.lock_outline,
-              title: ConstString.enableAutoLock,
-              value: c.autoLock.value,
-              onChanged: (v) => c.autoLock.value = v,
-            ),
-          ),
-          SizedBox(height: 8.h),
-
-          _FieldLabel(label: ConstString.setTime),
-        SizedBox(height: 6.h),
-        Obx(
-              () => GestureDetector(
-            onTap: () async {
-              final picked = await showTimePicker(
-                context: context,
-                initialTime: TimeOfDay.now(),
-                builder: (ctx, child) => Theme(
-                  data: Theme.of(ctx).copyWith(
-                    colorScheme: const ColorScheme.light(
-                      primary: ConstColor.primaryColor,
-                    ),
-                  ),
-                  child: child!,
-                ),
-              );
-              if (picked != null) c.onAutoLockTimeSelected(picked);
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 13.h),
-              decoration: BoxDecoration(
-                color: ConstColor.boxColor,
-                borderRadius: BorderRadius.circular(12.r),
-                border: Border.all(color: ConstColor.borderColor),
-              ),
-              child: Row(
-                children: [
-                  SvgPicture.asset(
-                    'assets/icons/clock_icon.svg',
-                    width: 16.r,
-                    height: 16.r,
-                    colorFilter: const ColorFilter.mode(
-                      ConstColor.primaryColor,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  SizedBox(width: 8.w),
-                  Expanded(
-                    child: CustomText(
-                      title: c.autoLockTime.value,
-                      textSize: 16.sp,
-                      textColor: ConstColor.black,
-                      maxLine: 1,
-                    ),
-                  ),
-                  Icon(Icons.edit_outlined, size: 18.r, color: ConstColor.black),
-                ],
-              ),
-            ),
-          ),
-        ),
+        //   SizedBox(height: 16.h),
+        //
+        //   _FieldLabel(label: ConstString.voteLockSettings),
+        //   SizedBox(height: 8.h),
+        //   Obx(
+        //     () => _ToggleCard(
+        //       icon: Icons.lock_outline,
+        //       title: ConstString.enableAutoLock,
+        //       value: c.autoLock.value,
+        //       onChanged: (v) => c.autoLock.value = v,
+        //     ),
+        //   ),
+        //   SizedBox(height: 8.h),
+        //
+        //   _FieldLabel(label: ConstString.setTime),
+        // SizedBox(height: 6.h),
+        // Obx(
+        //       () => GestureDetector(
+        //     onTap: () async {
+        //       final picked = await showTimePicker(
+        //         context: context,
+        //         initialTime: TimeOfDay.now(),
+        //         builder: (ctx, child) => Theme(
+        //           data: Theme.of(ctx).copyWith(
+        //             colorScheme: const ColorScheme.light(
+        //               primary: ConstColor.primaryColor,
+        //             ),
+        //           ),
+        //           child: child!,
+        //         ),
+        //       );
+        //       if (picked != null) c.onAutoLockTimeSelected(picked);
+        //     },
+        //     child: Container(
+        //       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 13.h),
+        //       decoration: BoxDecoration(
+        //         color: ConstColor.boxColor,
+        //         borderRadius: BorderRadius.circular(12.r),
+        //         border: Border.all(color: ConstColor.borderColor),
+        //       ),
+        //       child: Row(
+        //         children: [
+        //           SvgPicture.asset(
+        //             'assets/icons/clock_icon.svg',
+        //             width: 16.r,
+        //             height: 16.r,
+        //             colorFilter: const ColorFilter.mode(
+        //               ConstColor.primaryColor,
+        //               BlendMode.srcIn,
+        //             ),
+        //           ),
+        //           SizedBox(width: 8.w),
+        //           Expanded(
+        //             child: CustomText(
+        //               title: c.autoLockTime.value,
+        //               textSize: 16.sp,
+        //               textColor: ConstColor.black,
+        //               maxLine: 1,
+        //             ),
+        //           ),
+        //           Icon(Icons.edit_outlined, size: 18.r, color: ConstColor.black),
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
+          SizedBox(height: 14.h),
+          _VoteDurationSection(),
 
 
 
@@ -883,6 +908,59 @@ class _Step4WhenWhere extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class PlaceVotingSection extends StatelessWidget {
+  const PlaceVotingSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = Get.find<CreatePlanController>();
+
+    return Obx(() {
+      if (!c.showPlaceVoting) return const SizedBox.shrink();
+
+      final selectedLocs = c.selectedLocationNames.toList()..sort();
+
+      return Container(
+        margin: EdgeInsets.only(top: 16.h),
+        padding: EdgeInsets.all(14.r),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF1F8E9),
+          borderRadius: BorderRadius.circular(14.r),
+          border: Border.all(color: const Color(0xFF2E7D32).withAlpha(60)),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(Icons.how_to_vote_outlined, color: const Color(0xFF2E7D32), size: 20.sp),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    title: ConstString.peopleMayVoteForPlace,
+                    textSize: 14.sp,
+                    fontWeight: FontWeight.w700,
+                    textColor: const Color(0xFF2E7D32),
+                    maxLine: 1,
+                  ),
+                  SizedBox(height: 4.h),
+                  CustomText(
+                    title: ConstString.peopleMayVoteForPlaceDesc(selectedLocs.length),
+                    textSize: 12.sp,
+                    textColor: ConstColor.textColor,
+                    maxLine: 2,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
 

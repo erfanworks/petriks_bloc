@@ -42,7 +42,7 @@ class VerifyIdController extends GetxController {
       _showSnackBar('Profile photo is required');
       return;
     }
-    Get.toNamed(AppRoutes.subscriptionScreen);
+    Get.toNamed(AppRoutes.subscriptionScreen, arguments: {'showFreePlan': true});
   }
 
   void _showSnackBar(String message) {

@@ -607,4 +607,12 @@ class ConstString {
   static const String feature         = 'Feature';
   static const String boostFeatureDesc = 'Reach more people and get more participants faster.';
   static const String selectAPackage  = 'Select a Package';
+  static const String uploadPlaceImage       = 'Upload place image';
+  static const String placeName              = 'Place Name';
+  static const String placeAddress           = 'Location / Address';
+  static const String placeSubtitleOptional  = 'Subtitle (optional)';
+  static const String peopleMayVoteForPlace  = 'People may vote for place';
+  static const String addedByYou = 'Added by you';
+  static String peopleMayVoteForPlaceDesc(int count) => 'You selected $count places. Guests will be able to vote on their preferred location.';
+  
 }

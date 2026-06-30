@@ -83,7 +83,7 @@ class CommunityController extends GetxController {
   final showUpgradeWall = true.obs;
   void onUpgradeTap() {
     Get.toNamed(
-      AppRoutes.freeTrialEndedScreen,
+      AppRoutes.subscriptionScreen,
       arguments: {
         'onConfirm': () {
           showUpgradeWall.value = false;

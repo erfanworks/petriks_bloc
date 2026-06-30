@@ -84,19 +84,60 @@ class CreatePlanController extends GetxController {
   final autoLock            = true.obs;
   final coverPhotoPath = ''.obs;
 
-  final List<Map<String, String>> locations = [
+  final RxList<Map<String, String>> locations = <Map<String, String>>[
     {'name': 'Bean House Café',  'sub': '0.4 miles away', 'desc': 'Good for small coffee meetups.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/party_img.png'},
-    {'name': 'Bean House Café',  'sub': '0.4 miles away', 'desc': 'Good for small coffee meetups.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/location_img1.jpg'},
-  ];
+    {'name': 'Bean House Café ',  'sub': '0.4 miles away', 'desc': 'Good for small coffee meetups.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/location_img1.jpg'},
+  ].obs;
+
+  // ── Custom Location (user added) ──
+  final customLocationNameController = TextEditingController();
+  final customLocationAddressController = TextEditingController();
+  final customLocationFormTick = 0.obs; // reactive trigger for form validity
+  final customLocationSubtitleController = TextEditingController();
+  final customLocationImagePath = ''.obs;
+
+  final RxSet<String> selectedLocationNames = <String>{}.obs;
+
+  void pickCustomLocationImage(String path) {
+    customLocationImagePath.value = path;
+  }
+
+  bool get canAddCustomLocation =>
+      customLocationNameController.text.trim().isNotEmpty &&
+          customLocationAddressController.text.trim().isNotEmpty &&
+          customLocationImagePath.value.isNotEmpty;
+
+  void addCustomLocation() {
+    if (!canAddCustomLocation) return;
+
+    // Insert at the front (index 0) → custom locations show first
+    locations.insert(0, {
+      'name': customLocationNameController.text.trim(),
+      'sub': customLocationAddressController.text.trim(),
+      'desc': customLocationSubtitleController.text.trim(),
+      'discount': '',
+      'image': customLocationImagePath.value,
+      'isCustom': 'true',
+    });
+
+    // reset form
+    customLocationNameController.clear();
+    customLocationAddressController.clear();
+    customLocationSubtitleController.clear();
+    customLocationImagePath.value = '';
+  }
+
+  // ── Place voting becomes relevant only when 2+ locations selected ──
+  bool get showPlaceVoting => selectedLocationNames.length >= 2;
 
   void onDateSelected(DateTime date) {
     selectedDate.value = '${date.day} ${_month(date.month)}, ${date.year}';
   }
-  void toggleLocation(int index) {
-    if (selectedLocations.contains(index)) {
-      selectedLocations.remove(index);
+  void toggleLocation(String name) {
+    if (selectedLocationNames.contains(name)) {
+      selectedLocationNames.remove(name);
     } else {
-      selectedLocations.add(index);
+      selectedLocationNames.add(name);
     }
   }
 
@@ -167,8 +208,8 @@ class CreatePlanController extends GetxController {
             selectedLanguage.value.isNotEmpty;
       }
       if (currentStep.value == 3) {
-        return planTitleController.text.isNotEmpty ;
-        // selectedLocation.value != -1;
+        return planTitleController.text.isNotEmpty &&
+            selectedLocationNames.isNotEmpty;
       }
     } else {
       // Easy Start
@@ -181,8 +222,8 @@ class CreatePlanController extends GetxController {
             selectedLanguage.value.isNotEmpty;
       }
       if (currentStep.value == 2) {
-        return planTitleController.text.isNotEmpty ;
-        // selectedLocation.value != -1;
+        return planTitleController.text.isNotEmpty &&
+            selectedLocationNames.isNotEmpty;
       }
     }
     return false;
@@ -207,6 +248,16 @@ class CreatePlanController extends GetxController {
       currentStep.value++;
     }
   }
+
+  @override
+  void onInit() {
+    super.onInit();
+    selectedLocationNames.clear();
+    customLocationNameController.addListener(_bumpCustomLocationTick);
+    customLocationAddressController.addListener(_bumpCustomLocationTick);
+  }
+
+  void _bumpCustomLocationTick() => customLocationFormTick.value++;
 
   @override
   void onClose() {

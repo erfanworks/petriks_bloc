@@ -37,7 +37,7 @@ class VerifyIdScreen extends StatelessWidget {
                     fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   GestureDetector(
-                    onTap: () => Get.toNamed(AppRoutes.subscriptionScreen),
+                    onTap: () => Get.toNamed(AppRoutes.subscriptionScreen, arguments: {'showFreePlan': true}),
                     child: CustomText(
                       title: ConstString.skip,
                       textSize: 16.sp,

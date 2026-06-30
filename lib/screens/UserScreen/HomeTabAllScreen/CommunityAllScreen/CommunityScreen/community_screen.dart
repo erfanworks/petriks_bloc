@@ -132,7 +132,7 @@ class CommunityScreen extends StatelessWidget {
                 ),
                 child: CustomElevatedButton(
                   onPressed: () => Get.toNamed(
-                    AppRoutes.freeTrialEndedScreen,
+                    AppRoutes.subscriptionScreen,
                     arguments: {'onConfirm': () {}},
                   ),
                   height: 52,

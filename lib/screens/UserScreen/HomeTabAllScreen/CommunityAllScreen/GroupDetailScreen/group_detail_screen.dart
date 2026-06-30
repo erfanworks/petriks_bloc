@@ -208,7 +208,7 @@ class GroupDetailScreen extends StatelessWidget {
           child: c.showUpgradeGate.value
               ? CustomElevatedButton(
             onPressed: () => Get.toNamed(
-              AppRoutes.freeTrialEndedScreen,
+              AppRoutes.subscriptionScreen,
               arguments: {
                 'onConfirm': () => c.showUpgradeGate.value = false,
               },

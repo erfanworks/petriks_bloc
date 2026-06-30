@@ -1,7 +1,5 @@
+import 'dart:ui';
 import 'package:get/get.dart';
-import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
-import 'package:petriks_flutter_app/constant/const_color.dart';
-
 import '../../../../../constant/const_string.dart';
 import '../../../../../routes/app_routes/app_routes.dart';
 
@@ -12,6 +10,17 @@ class PlanFeature {
 
 class SubscriptionController extends GetxController {
   final selectedTab = 0.obs; // 0 = Monthly, 1 = Yearly
+  final showFreePlan = false.obs;
+  VoidCallback? onConfirmCallback;
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (Get.arguments is Map) {
+      onConfirmCallback = Get.arguments['onConfirm'];
+      showFreePlan.value = Get.arguments['showFreePlan'] ?? false;
+    }
+  }
 
   final freeFeatures = const <PlanFeature>[
     PlanFeature(ConstString.freeFeature1),
@@ -53,10 +62,18 @@ class SubscriptionController extends GetxController {
   String get periodLabel => selectedTab.value == 0 ? ConstString.perMonth : ConstString.perYear;
 
   void onTabChanged(int index) => selectedTab.value = index;
-  void onJoinFree() => Get.offAllNamed(AppRoutes.navBar);
+  void onJoinFree() {
+    if (onConfirmCallback != null) {
+      Get.back();
+      onConfirmCallback?.call();
+    } else {
+      Get.offAllNamed(AppRoutes.navBar);
+    }
+  }
 
-  void onUpgradePremium() => AppSnackBar.message(
-    "Feature Update! \nThis feature will be available soon.",
-    backgroundColor: ConstColor.primaryColor,
-  ); // TODO
+
+  void onUpgradePremium() {
+    Get.back();
+    onConfirmCallback?.call();
+  }
 }
