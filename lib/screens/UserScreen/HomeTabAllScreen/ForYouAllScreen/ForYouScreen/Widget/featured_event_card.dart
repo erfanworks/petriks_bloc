@@ -23,7 +23,7 @@ class FeaturedEventCard extends StatelessWidget {
             Get.toNamed(AppRoutes.planDetailsScreen);
           },
           child: Container(
-            height: 200.h,
+            height: 210.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.r),
               gradient: const LinearGradient(
@@ -218,7 +218,7 @@ class _AvatarStack extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 58.w,
-      height: 26.h,
+      height: 28.h,
       child: Stack(
         children: [
           Positioned(

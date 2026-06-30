@@ -603,5 +603,8 @@ class ConstString {
   static const String selectPackage         = 'Select Package';
   static const String purchasePackageToJoin = 'Purchase a package to join additional plans';
   static const String confirmAndPay         = 'Confirm & pay';
-
+  static const String boostYourPlan   = 'Boost your plan';
+  static const String feature         = 'Feature';
+  static const String boostFeatureDesc = 'Reach more people and get more participants faster.';
+  static const String selectAPackage  = 'Select a Package';
 }

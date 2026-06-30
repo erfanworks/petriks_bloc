@@ -66,6 +66,7 @@ class AppRoutes {
   static const joinedPlanUserReport = '/joinedPlanUserReport';
   static const feedBackScreen = '/feedBackScreen';
   static const editPlanScreen = '/editPlanScreen';
+  static const String boostPlanScreen = '/boost-plan';
 
   ////////////// Create Plan Screen Part ///////////////////////
   static const createPlanScreen = '/createPlanScreen';

@@ -515,7 +515,7 @@ class _BoostButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {}, // TODO
+      onTap: isBoosted ? null : () => Get.toNamed(AppRoutes.boostPlanScreen),
       borderRadius: BorderRadius.circular(20.r),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),

@@ -235,12 +235,14 @@ class UpcomingEventCard extends StatelessWidget {
                         color: ConstColor.primaryDeepColor,
                       ),
                       SizedBox(width: 4.w),
-                      CustomText(
-                        title: item.date,
-                        textColor: ConstColor.textColor,
-                        fontWeight: FontWeight.w500,
-                        textSize: 12.sp,
-                        maxLine: 1,
+                      Flexible(
+                        child: CustomText(
+                          title: item.date,
+                          textColor: ConstColor.textColor,
+                          fontWeight: FontWeight.w500,
+                          textSize: 12.sp,
+                          maxLine: 1,
+                        ),
                       ),
                       SizedBox(width: 8.w),
                       Container(
@@ -255,12 +257,14 @@ class UpcomingEventCard extends StatelessWidget {
                         color: ConstColor.primaryDeepColor,
                       ),
                       SizedBox(width: 2.w),
-                      CustomText(
-                        title: ConstString.voteNow,
-                        textColor: ConstColor.primaryColor,
-                        textSize: 12.sp,
-                        fontWeight: FontWeight.w500,
-                        maxLine: 1,
+                      Flexible(
+                        child: CustomText(
+                          title: ConstString.voteNow,
+                          textColor: ConstColor.primaryColor,
+                          textSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                          maxLine: 1,
+                        ),
                       ),
                       Spacer(),
                       // Invite button

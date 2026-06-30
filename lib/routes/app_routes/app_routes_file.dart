@@ -47,6 +47,7 @@ import '../../screens/UserScreen/MessageTabAllScreen/ChatScreen/chat_screen.dart
 import '../../screens/UserScreen/MessageTabAllScreen/DirectChatScreen/direct_chat_screen.dart';
 import '../../screens/UserScreen/MessageTabAllScreen/GroupPlanChatScreen/group_plan_chat_screen.dart';
 import '../../screens/UserScreen/MessageTabAllScreen/PlanChatScreen/plan_chat_screen.dart';
+import '../../screens/UserScreen/MyPlanTabAllScreen/BoostPlanScreen/boost_plan_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/FeedBackScreen/feed_back_screen.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/JoinedPlanDetailsScreen/JoinedPlanUserReport/joined_plan_user_report.dart';
 import '../../screens/UserScreen/MyPlanTabAllScreen/MyPlanScreen/DetailsScreen/JoinedPlanDetailsScreen/joined_plan_details_screen.dart';
@@ -139,6 +140,7 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.joinedPlanUserReport,page: () => JoinedPlanUserReport(),binding: AppBindings()),
   GetPage(name: AppRoutes.feedBackScreen,page: () => FeedBackScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.editPlanScreen,page: () => EditPlanScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.boostPlanScreen,page: () => const BoostPlanScreen(),),
 
 
   ////////////My Plan Screen Part////////////
