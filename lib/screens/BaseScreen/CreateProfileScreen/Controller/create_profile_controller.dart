@@ -172,7 +172,7 @@ class CreateProfileController extends GetxController {
             selectedDob.value != null &&
             selectedAgeBand.value.isNotEmpty;
       case 1:
-        return selectedInterests.isNotEmpty;
+        return selectedInterests.length >= 2;
       case 2:
         return selectedLanguages.isNotEmpty ||
             preferredChatLanguage.value.isNotEmpty;
