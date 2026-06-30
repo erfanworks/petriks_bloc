@@ -8,7 +8,7 @@ import '../../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_shee
 
 class CreateCommunityController extends GetxController {
   final currentStep = 0.obs;
-  static const totalSteps = 3;
+  static const totalSteps = 4;
 
   final selectedCategory = ''.obs;
 
@@ -37,6 +37,35 @@ class CreateCommunityController extends GetxController {
       'iconColor': const Color(0xFF0562FC),
       'tag': 'GUIDED',
     },
+  ];
+
+
+  // language
+  final selectedLanguages = <String>{}.obs;
+  final preferredChatLanguage = ''.obs;
+  final List<String> languages = [
+    'English',
+    'Spanish',
+    'French',
+    'German',
+    'Mandarin',
+    'Japanese',
+    'Hindi',
+    'Arabic',
+    'Portuguese',
+    'Italian',
+  ];
+  final List<String> chatLanguages = [
+    'English',
+    'Spanish',
+    'French',
+    'German',
+    'Mandarin',
+    'Japanese',
+    'Hindi',
+    'Arabic',
+    'Portuguese',
+    'Italian',
   ];
 
   //Step 2
@@ -77,14 +106,25 @@ class CreateCommunityController extends GetxController {
   void selectCategory(String label) => selectedCategory.value = label;
   void selectInterest(String label)  => selectedInterest.value = label;
 
+  void toggleLanguage(String lang) {
+    if (selectedLanguages.contains(lang)) {
+      selectedLanguages.remove(lang);
+    } else {
+      selectedLanguages.add(lang);
+    }
+  }
+
   bool get canProceed {
     if (currentStep.value == 0) {
       return selectedCategory.value.isNotEmpty;
     } else if (currentStep.value == 1) {
+      return selectedLanguages.isNotEmpty ||
+          preferredChatLanguage.value.isNotEmpty;
+    } else if (currentStep.value == 2) {
       return nameText.value.trim().isNotEmpty &&
           descText.value.trim().isNotEmpty &&
           coverPhotoPath.value.isNotEmpty;
-    } else if (currentStep.value == 2) {
+    } else if (currentStep.value == 3) {
       return selectedInterest.value.isNotEmpty;
     }
     return false;
@@ -107,6 +147,8 @@ class CreateCommunityController extends GetxController {
       descController.clear();
       nameText.value = '';
       descText.value = '';
+      selectedLanguages.clear();
+      preferredChatLanguage.value = '';
 
       Get.offAllNamed(AppRoutes.navBar);
     }

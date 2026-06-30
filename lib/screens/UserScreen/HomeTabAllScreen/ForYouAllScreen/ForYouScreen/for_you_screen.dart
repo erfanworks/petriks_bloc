@@ -166,12 +166,14 @@ class _InviteFriendsButton extends StatelessWidget {
                 size: 18.sp,
               ),
               SizedBox(width: 8.w),
-              CustomText(
-                title: ConstString.inviteFriendsBoots,
-                textColor: ConstColor.primaryColor,
-                textSize: 13.sp,
-                fontWeight: FontWeight.w500,
-                maxLine: 1,
+              Flexible(
+                child: CustomText(
+                  title: ConstString.inviteFriendsBoots,
+                  textColor: ConstColor.primaryColor,
+                  textSize: 13.sp,
+                  fontWeight: FontWeight.w500,
+                  maxLine: 1,
+                ),
               ),
               SizedBox(width: 10.w),
               Image.asset("assets/images/bossts_img.png"),

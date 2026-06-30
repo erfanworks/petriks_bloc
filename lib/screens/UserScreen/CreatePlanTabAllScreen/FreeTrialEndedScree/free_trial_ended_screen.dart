@@ -187,12 +187,14 @@ class _AlertBox extends StatelessWidget {
                       maxLine: 1,
                     ),
                     SizedBox(width: 6.w),
-                    CustomText(
-                      title: ConstString.trialCompleted,
-                      textSize: 10.sp,
-                      fontWeight: FontWeight.w600,
-                      textColor: const Color(0xFFFF9800),
-                      maxLine: 1,
+                    Flexible(
+                      child: CustomText(
+                        title: ConstString.trialCompleted,
+                        textSize: 10.sp,
+                        fontWeight: FontWeight.w600,
+                        textColor: const Color(0xFFFF9800),
+                        maxLine: 1,
+                      ),
                     ),
                   ],
                 ),

@@ -18,6 +18,7 @@ class FeedScreen extends StatelessWidget {
     final controller = Get.find<FeedController>();
 
     return SingleChildScrollView(
+      key: const PageStorageKey('feed_scroll_key'),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

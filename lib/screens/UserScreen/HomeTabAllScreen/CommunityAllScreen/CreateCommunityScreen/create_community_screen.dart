@@ -43,8 +43,10 @@ class CreateCommunityScreen  extends StatelessWidget {
                   case 0:
                     return _Step1Category(c: c);
                   case 1:
-                    return _Step2Details(c: c);
+                    return const StepLanguages();
                   case 2:
+                    return _Step2Details(c: c);
+                  case 3:
                     return _Step3Interests(c: c);
                   default:
                     return const SizedBox.shrink();
@@ -196,6 +198,176 @@ class _Step1Category extends StatelessWidget {
     );
   }
 }
+
+
+
+class StepLanguages extends StatelessWidget {
+  const StepLanguages({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final c = Get.find<CreateCommunityController>();
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _StepHeader(
+          title: ConstString.whatLanguageTo,
+          subtitle: ConstString.thisHelpsYouConnect,
+        ),
+        SizedBox(height: 16.h),
+        // ── Language chips ──
+        Obx(
+              () => Wrap(
+            spacing: 8.w,
+            runSpacing: 12.h,
+            children: c.languages.map((lang) {
+              final selected = c.selectedLanguages.contains(lang);
+              return GestureDetector(
+                onTap: () => c.toggleLanguage(lang),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 160),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 9.h,
+                  ),
+                  decoration: BoxDecoration(
+                    color: selected
+                        ? ConstColor.primaryColor
+                        : ConstColor.boxColor,
+                    borderRadius: BorderRadius.circular(30.r),
+                    border: Border.all(
+                      color: selected
+                          ? ConstColor.primaryColor
+                          : ConstColor.borderColor,
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      CustomText(
+                        title: lang,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        textColor: selected
+                            ? Colors.white
+                            : ConstColor.textColor,
+                        maxLine: 1,
+                      ),
+                      if (selected) ...[
+                        SizedBox(width: 4.w),
+                        Icon(Icons.check, color: Colors.white, size: 13.r),
+                      ],
+                    ],
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+        ),
+
+        SizedBox(height: 28.h),
+
+        // ── Preferred chat language ──
+        CustomText(
+          title: ConstString.preferredChat,
+          textSize: 20.sp,
+          fontWeight: FontWeight.w700,
+          textColor: ConstColor.black,
+          maxLine: 1,
+          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+        ),
+        SizedBox(height: 4.h),
+        CustomText(
+          title: ConstString.chooseYourPrimary,
+          textSize: 14.sp,
+          textColor: ConstColor.textColor,
+          fontWeight: FontWeight.w400,
+          maxLine: 3,
+        ),
+        SizedBox(height: 18.h),
+
+        Obx(
+              () => Container(
+            height: 52.h,
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            decoration: BoxDecoration(
+              color: ConstColor.boxColor,
+              borderRadius: BorderRadius.circular(90.r),
+              border: Border.all(color: const Color(0xFFE0DFF0)),
+            ),
+            child: DropdownButtonHideUnderline(
+              child: Theme(
+                data: Theme.of(context).copyWith(
+                  hoverColor: Colors.transparent,
+                  focusColor: ConstColor.silverGray20.withAlpha(40),
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  canvasColor: Colors.white,
+                ),
+                child: DropdownButton<String>(
+                  value: c.preferredChatLanguage.value.isEmpty
+                      ? null
+                      : c.preferredChatLanguage.value,
+                  hint: CustomText(
+                    title: 'Select Language',
+                    textSize: 14.sp,
+                    textColor: ConstColor.grey,
+                    maxLine: 1,
+                  ),
+                  isExpanded: true,
+                  icon: Icon(
+                    Icons.keyboard_arrow_down_rounded,
+                    color: const Color(0xFF6B6B80),
+                    size: 22.r,
+                  ),
+                  items: c.chatLanguages
+                      .map(
+                        (e) => DropdownMenuItem(
+                      value: e,
+                      child: CustomText(
+                        title: e,
+                        textSize: 14.sp,
+                        textColor: const Color(0xFF1A1A2E),
+                        maxLine: 1,
+                      ),
+                    ),
+                  )
+                      .toList(),
+                  onChanged: (v) => c.preferredChatLanguage.value = v ?? '',
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        SizedBox(height: 22.h),
+        CustomText(
+          title: ConstString.languageNotListed,
+          textSize: 14.sp,
+          textColor: ConstColor.textColor,
+          fontWeight: FontWeight.w400,
+          maxLine: 3,
+        ),
+        SizedBox(height: 12.h),
+        CustomTextFormField(
+          keyboardType: TextInputType.text,
+          numeric: true,
+          onChanged: (val) {
+            if (val.trim().isNotEmpty) {
+              c.selectedLanguages.add('custom');
+            } else {
+              c.selectedLanguages.remove('custom');
+            }
+          },
+        ),
+      ],
+    );
+  }
+}
+
+
+
 
 class _Step2Details extends StatelessWidget {
   const _Step2Details({required this.c});

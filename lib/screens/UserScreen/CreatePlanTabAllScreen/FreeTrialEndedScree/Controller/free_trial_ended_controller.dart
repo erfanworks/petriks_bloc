@@ -18,8 +18,8 @@ class FreeTrialEndedController extends GetxController {
   VoidCallback? onConfirmCallback;
 
   final plans = const [
-    TrialPlan(title: 'GoodNiva Plus', subtitle: 'Full plus access',      price: 'GBP  €15',   period: '/ month'),
-    TrialPlan(title: 'Create 1 Plan', subtitle: 'Allows user to create 1 plan', price: 'GBP  €1.49', period: ''),
+    TrialPlan(title: 'GoodNiva Plus', subtitle: 'Full plus access',      price: 'GBP  £15',   period: '/ month'),
+    TrialPlan(title: 'Create 1 Plan', subtitle: 'Allows user to create 1 plan', price: 'GBP  £1.49', period: ''),
   ];
 
   final features = const [
