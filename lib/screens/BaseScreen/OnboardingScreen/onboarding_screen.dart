@@ -30,10 +30,61 @@ class OnboardingScreen extends StatelessWidget {
   }
 }
 
-class _MapSection extends StatelessWidget {
+// ════════════════════════════════════════════════
+// _MapSection — now animated (Stateful)
+// ════════════════════════════════════════════════
+class _MapSection extends StatefulWidget {
   const _MapSection({required this.controller});
 
   final OnboardingController controller;
+
+  @override
+  State<_MapSection> createState() => _MapSectionState();
+}
+
+class _MapSectionState extends State<_MapSection>
+    with TickerProviderStateMixin {
+  late final AnimationController _floatCtrl;
+  late final AnimationController _entryCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Continuous gentle float loop (used by avatars/cards)
+    _floatCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    )..repeat(reverse: true);
+
+    // One-time entrance animation (title + fade/slide-in)
+    _entryCtrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    )..forward();
+  }
+
+  @override
+  void dispose() {
+    _floatCtrl.dispose();
+    _entryCtrl.dispose();
+    super.dispose();
+  }
+
+  /// Builds a looping vertical float offset, phase-shifted per widget
+  /// so avatars don't all move in perfect unison (feels more organic).
+  Animation<double> _floatOffset({double amplitude = 6, double phase = 0}) {
+    return Tween<double>(begin: -amplitude, end: amplitude).animate(
+      CurvedAnimation(
+        parent: _floatCtrl,
+        curve: Interval(
+          (phase).clamp(0.0, 0.8),
+          (phase + 0.2).clamp(0.2, 1.0),
+          curve: Curves.easeInOut,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,57 +93,86 @@ class _MapSection extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
+          // ── Floating / fading title ──
           Positioned(
             top: 50.h,
             left: 0,
             right: 0,
             child: Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CustomText(
-                    title: ConstString.welcomeTo,
-                    textSize: 14.sp,
-                    fontWeight: FontWeight.w500,
-                    textColor: Colors.white.withAlpha(200),
-                    maxLine: 1,
+              child: AnimatedBuilder(
+                animation: _entryCtrl,
+                builder: (context, child) {
+                  final t = Curves.easeOutCubic.transform(_entryCtrl.value);
+                  return Opacity(
+                    opacity: t,
+                    child: Transform.translate(
+                      offset: Offset(0, (1 - t) * -16),
+                      child: child,
+                    ),
+                  );
+                },
+                child: AnimatedBuilder(
+                  animation: _floatCtrl,
+                  builder: (context, child) => Transform.translate(
+                    offset: Offset(0, _floatOffset(amplitude: 3).value),
+                    child: child,
                   ),
-                  CustomText(
-                    title: ConstString.appName,
-                    textSize: 32.sp,
-                    fontWeight: FontWeight.w800,
-                    textColor: Colors.white,
-                    maxLine: 1,
-                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-                  ),
-                  SizedBox(height: 2.h),
-                  Row(
+                  child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       CustomText(
-                        title: ConstString.yourCommunityStartsHere,
+                        title: ConstString.welcomeTo,
                         textSize: 14.sp,
-                        fontWeight: FontWeight.w600,
-                        textColor: Colors.white,
+                        fontWeight: FontWeight.w500,
+                        textColor: Colors.white.withAlpha(200),
                         maxLine: 1,
                       ),
-                      SizedBox(width: 6.w),
-                      Text('👋', style: TextStyle(fontSize: 14.sp)),
+                      CustomText(
+                        title: ConstString.appName,
+                        textSize: 32.sp,
+                        fontWeight: FontWeight.w800,
+                        textColor: Colors.white,
+                        maxLine: 1,
+                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                      ),
+                      SizedBox(height: 2.h),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomText(
+                            title: ConstString.yourCommunityStartsHere,
+                            textSize: 14.sp,
+                            fontWeight: FontWeight.w600,
+                            textColor: Colors.white,
+                            maxLine: 1,
+                          ),
+                          SizedBox(width: 6.w),
+                          Text('👋', style: TextStyle(fontSize: 14.sp)),
+                        ],
+                      ),
                     ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
 
+          // ── Pulsing dashed circles ──
           Positioned(
             top: 160.h,
             left: 0,
             right: 0,
             child: Center(
-              child: _DashedCircle(
-                radius: 130.r,
-                color: Colors.white.withAlpha(150),
+              child: AnimatedBuilder(
+                animation: _floatCtrl,
+                builder: (context, child) {
+                  final scale = 1.0 + (_floatCtrl.value * 0.015);
+                  return Transform.scale(scale: scale, child: child);
+                },
+                child: _DashedCircle(
+                  radius: 130.r,
+                  color: Colors.white.withAlpha(150),
+                ),
               ),
             ),
           ),
@@ -102,40 +182,58 @@ class _MapSection extends StatelessWidget {
             left: 0,
             right: 0,
             child: Center(
-              child: _DashedCircle(
-                radius: 85.r,
-                color: Colors.white.withAlpha(150),
+              child: AnimatedBuilder(
+                animation: _floatCtrl,
+                builder: (context, child) {
+                  final scale = 1.0 - (_floatCtrl.value * 0.015);
+                  return Transform.scale(scale: scale, child: child);
+                },
+                child: _DashedCircle(
+                  radius: 85.r,
+                  color: Colors.white.withAlpha(150),
+                ),
               ),
             ),
           ),
 
+          // ── Center chat bubble — soft pulse ──
           Positioned(
             top: 255.h,
             left: 0,
             right: 0,
             child: Center(
-              child: Container(
-                width: 80.r,
-                height: 80.r,
-                decoration: BoxDecoration(
-                  color: Colors.white.withAlpha(10),
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white.withAlpha(60), width: 1.5),
-                ),
-                child: Center(
-                  child: Container(
-                    width: 60.r,
-                    height: 60.r,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withAlpha(40),
-                      shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 2),
+              child: AnimatedBuilder(
+                animation: _floatCtrl,
+                builder: (context, child) {
+                  final scale = 1.0 + (_floatCtrl.value * 0.04);
+                  return Transform.scale(scale: scale, child: child);
+                },
+                child: Container(
+                  width: 80.r,
+                  height: 80.r,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withAlpha(10),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white.withAlpha(60),
+                      width: 1.5,
                     ),
-                    child: Center(
-                      child: SvgPicture.asset(
-                        width: 28.w,
-                        height: 28.h,
-                        "assets/icons/onboarding_chat_icon.svg",
+                  ),
+                  child: Center(
+                    child: Container(
+                      width: 60.r,
+                      height: 60.r,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withAlpha(40),
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 2),
+                      ),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          width: 28.w,
+                          height: 28.h,
+                          "assets/icons/onboarding_chat_icon.svg",
+                        ),
                       ),
                     ),
                   ),
@@ -144,62 +242,168 @@ class _MapSection extends StatelessWidget {
             ),
           ),
 
-          // Positioned(
-          //   top: 248.h,
-          //   right: 138,
-          //   child: Icon(Icons.location_on, color: Colors.white, size: 23.sp),
-          // ),
-          //
-          // Positioned(
-          //   top: 310.h,
-          //   right: 90.w,
-          //   child: Icon(
-          //     Icons.location_on,
-          //     color: Colors.white.withAlpha(120),
-          //     size: 16.sp,
-          //   ),
-          // ),
-
+          // ── Floating profile avatars (each with its own phase) ──
           Positioned(
             top: 228.h,
             right: 36.w,
-            child: _AvatarBubble(
-              imagePath: 'assets/images/splash_5.jpg',
-              size: 56,
+            child: AnimatedBuilder(
+              animation: _floatCtrl,
+              builder: (context, child) => Transform.translate(
+                offset: Offset(0, _floatOffset(amplitude: 7, phase: 0.0).value),
+                child: child,
+              ),
+              child: const _AvatarBubble(
+                imagePath: 'assets/images/splash_5.jpg',
+                size: 56,
+              ),
             ),
           ),
 
           Positioned(
             top: 250.h,
             left: 72.w,
-            child: _AvatarBubble(
-              imagePath: 'assets/images/splash_4.jpg',
-              size: 52,
+            child: AnimatedBuilder(
+              animation: _floatCtrl,
+              builder: (context, child) => Transform.translate(
+                offset: Offset(0, _floatOffset(amplitude: 6, phase: 0.3).value),
+                child: child,
+              ),
+              child: const _AvatarBubble(
+                imagePath: 'assets/images/splash_4.jpg',
+                size: 52,
+              ),
             ),
           ),
 
           Positioned(
             bottom: 25.h,
             left: 170.w,
-            child: _AvatarBubble(
-              imagePath: 'assets/images/splash_6.jpg',
-              size: 50,
+            child: AnimatedBuilder(
+              animation: _floatCtrl,
+              builder: (context, child) => Transform.translate(
+                offset: Offset(0, _floatOffset(amplitude: 5, phase: 0.6).value),
+                child: child,
+              ),
+              child: const _AvatarBubble(
+                imagePath: 'assets/images/splash_6.jpg',
+                size: 50,
+              ),
             ),
           ),
 
-          Positioned(top: 155.h, left: 16.w, child: _GroupCard()),
+          // ── Floating glass cards (subtle motion + entrance) ──
+          Positioned(
+            top: 155.h,
+            left: 16.w,
+            child: _EntranceFade(
+              controller: _entryCtrl,
+              delay: 0.1,
+              offset: const Offset(-12, 0),
+              child: AnimatedBuilder(
+                animation: _floatCtrl,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(0, _floatOffset(amplitude: 4, phase: 0.1).value),
+                  child: child,
+                ),
+                child: const _GroupCard(),
+              ),
+            ),
+          ),
 
           Positioned(
             top: 168.h,
             right: 16.w,
-            child: _LocationCard(label: ConstString.buildYourCommunity),
+            child: _EntranceFade(
+              controller: _entryCtrl,
+              delay: 0.2,
+              offset: const Offset(12, 0),
+              child: AnimatedBuilder(
+                animation: _floatCtrl,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(0, _floatOffset(amplitude: 4, phase: 0.4).value),
+                  child: child,
+                ),
+                child: _LocationCard(label: ConstString.buildYourCommunity),
+              ),
+            ),
           ),
 
-          Positioned(bottom: 50.h, left: 12.w, child: _CompetitionCard()),
+          Positioned(
+            bottom: 50.h,
+            left: 12.w,
+            child: _EntranceFade(
+              controller: _entryCtrl,
+              delay: 0.3,
+              offset: const Offset(-12, 0),
+              child: AnimatedBuilder(
+                animation: _floatCtrl,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(0, _floatOffset(amplitude: 5, phase: 0.2).value),
+                  child: child,
+                ),
+                child: const _CompetitionCard(),
+              ),
+            ),
+          ),
 
-          Positioned(bottom: 10.h, right: 16.w, child: _OneTOOneCard()),
+          Positioned(
+            bottom: 10.h,
+            right: 16.w,
+            child: _EntranceFade(
+              controller: _entryCtrl,
+              delay: 0.4,
+              offset: const Offset(12, 0),
+              child: AnimatedBuilder(
+                animation: _floatCtrl,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(0, _floatOffset(amplitude: 5, phase: 0.5).value),
+                  child: child,
+                ),
+                child: const _OneTOOneCard(),
+              ),
+            ),
+          ),
         ],
       ),
+    );
+  }
+}
+
+/// Small reusable fade + slide-in wrapper for entrance animation.
+/// `delay` (0–1) shifts when this widget starts animating within
+/// the parent's entrance timeline, creating a staggered effect.
+class _EntranceFade extends StatelessWidget {
+  final AnimationController controller;
+  final double delay;
+  final Offset offset;
+  final Widget child;
+
+  const _EntranceFade({
+    required this.controller,
+    required this.delay,
+    required this.offset,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final curved = CurvedAnimation(
+      parent: controller,
+      curve: Interval(delay.clamp(0.0, 0.6), 1.0, curve: Curves.easeOutCubic),
+    );
+    return AnimatedBuilder(
+      animation: curved,
+      builder: (context, c) {
+        final t = curved.value;
+        return Opacity(
+          opacity: t,
+          child: Transform.translate(
+            offset: Offset(offset.dx * (1 - t), offset.dy * (1 - t)),
+            child: c,
+          ),
+        );
+      },
+      child: child,
     );
   }
 }
@@ -348,62 +552,6 @@ class _LocationCard extends StatelessWidget {
   }
 }
 
-// class _OneTOOneCard extends StatelessWidget {
-//   const _OneTOOneCard();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 11.h),
-//       decoration: BoxDecoration(
-//         color: Colors.white.withAlpha(30),
-//         borderRadius: BorderRadius.circular(14.r),
-//         border: Border.all(color: Colors.white.withAlpha(60), width: 1),
-//       ),
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           Container(
-//             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
-//             decoration: BoxDecoration(
-//               color: const Color(0xFF34D399),
-//               borderRadius: BorderRadius.circular(6.r),
-//             ),
-//             child: CustomText(
-//               title: ConstString.oneToOne,
-//               textSize: 9.sp,
-//               fontWeight: FontWeight.w700,
-//               textColor: const Color(0xFF022C22),
-//               maxLine: 1,
-//             ),
-//           ),
-//           SizedBox(height: 6.h),
-//           Row(
-//             children: [
-//               SizedBox(
-//                 width: 50.w,
-//                 height: 28.r,
-//                 child: Stack(
-//                   children: [
-//                     _SmallAvatar(path: 'assets/images/splash_7.jpg', left: 0),
-//                     _SmallAvatar(path: 'assets/images/splash_8.jpg', left: 18),
-//                   ],
-//                 ),
-//               ),
-//               SizedBox(width: 6.w),
-//               Icon(
-//                 Icons.swap_horiz_rounded,
-//                 color: Colors.white.withAlpha(150),
-//                 size: 20.sp,
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 class _BottomCard extends StatelessWidget {
   const _BottomCard({required this.controller});
 
@@ -476,7 +624,6 @@ class _BottomCard extends StatelessWidget {
   }
 }
 
-// ── Replace _GroupCard with this ──
 class _GroupCard extends StatelessWidget {
   const _GroupCard();
 
@@ -496,7 +643,6 @@ class _GroupCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // GROUP label row
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -512,7 +658,6 @@ class _GroupCard extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 8.h),
-              // Stacked avatars
               SizedBox(
                 height: 30.r,
                 width: 92.w,
@@ -606,7 +751,6 @@ class _CompetitionCard extends StatelessWidget {
   }
 }
 
-// ── Replace _OneTOOneCard with this ──
 class _OneTOOneCard extends StatelessWidget {
   const _OneTOOneCard();
 
@@ -626,7 +770,6 @@ class _OneTOOneCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 1-TO-1 badge
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
                 decoration: BoxDecoration(
@@ -650,7 +793,6 @@ class _OneTOOneCard extends StatelessWidget {
                 maxLine: 2,
               ),
               SizedBox(height: 8.h),
-              // Stacked avatars + swap icon
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
