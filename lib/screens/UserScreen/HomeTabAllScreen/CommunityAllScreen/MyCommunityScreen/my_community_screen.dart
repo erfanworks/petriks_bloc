@@ -16,6 +16,7 @@ class MyCommunityScreen extends StatelessWidget {
     final controller = Get.find<MyCommunityController>();
 
     return SingleChildScrollView(
+      key: const PageStorageKey('my_community_scroll_key'),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -23,6 +23,7 @@ class ForYouScreen extends StatelessWidget {
     final controller = Get.find<ForYouController>();
 
     return SingleChildScrollView(
+      key: const PageStorageKey('for_you_scroll_key'),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

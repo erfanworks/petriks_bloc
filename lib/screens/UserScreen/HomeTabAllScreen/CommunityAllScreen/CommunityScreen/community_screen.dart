@@ -68,6 +68,7 @@ class CommunityScreen extends StatelessWidget {
             child: Obx(() {
               if (controller.selectedCommunityTab.value == 0) {
                 return SingleChildScrollView(
+                  key: const PageStorageKey('community_scroll_key'),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -169,6 +170,7 @@ class _CommunityUpgradeWall extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: SingleChildScrollView(
+        key: const PageStorageKey('community_upgrade_wall_scroll_key'),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

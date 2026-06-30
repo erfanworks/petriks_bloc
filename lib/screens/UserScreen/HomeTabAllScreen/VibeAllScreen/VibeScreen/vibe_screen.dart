@@ -17,6 +17,7 @@ class VibeScreen extends StatelessWidget {
     final controller = Get.find<VibeController>();
 
     return SingleChildScrollView(
+      key: const PageStorageKey('vibe_scroll_key'),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
