@@ -20,7 +20,7 @@ class ConstString {
   static const account = 'account';
   static const feedback = 'Feedback';
   static const enterEmailPassword = 'Enter your email and password to log in';
-  static const chooseASignInMethod = 'Choose a sign-in method to continue.';
+  static const enterYourEmailPassword = 'Enter your email and password to log in ';
   static const continueWithGoogle = 'Continue with Google';
   static const continueWithFacebook = 'Continue with Facebook';
   static const continueWithPhone = 'Continue with Phone';
@@ -113,7 +113,7 @@ class ConstString {
   static const seeAll = 'See all';
   static const createCompetition = "Create Competition";
   static const inviteFriends = 'Invite Friends';
-  static const inviteFriendsBoots = ' Invite friends and get boost rewards';
+  static const inviteFriendsBoots = 'Invite your friends and get boost rewards';
   static const sayWarmHello = 'Say a warm Hello';
   static const open = 'OPEN';
   static const popular = 'POPULAR';

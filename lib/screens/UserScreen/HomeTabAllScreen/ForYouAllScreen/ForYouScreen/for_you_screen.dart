@@ -163,13 +163,13 @@ class _InviteFriendsButton extends StatelessWidget {
               Icon(
                 Icons.person_add_alt_1_outlined,
                 color: ConstColor.primaryColor,
-                size: 22.sp,
+                size: 18.sp,
               ),
               SizedBox(width: 8.w),
               CustomText(
                 title: ConstString.inviteFriendsBoots,
                 textColor: ConstColor.primaryColor,
-                textSize: 14.sp,
+                textSize: 13.sp,
                 fontWeight: FontWeight.w500,
                 maxLine: 1,
               ),

@@ -10,6 +10,7 @@ import '../../../../../constant/const_string.dart';
 import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+import '../../../../../widget/FullScreenImageViewer/full_screen_image_viewer.dart';
 import '../FeedScreen/Controller/feed_controller.dart';
 
 class CreatePostScreen extends StatelessWidget {
@@ -265,13 +266,16 @@ class _PickedImagePreview extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Stack(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12.r),
-            child: AppImage(
-              filePath: c.pickedImagePath.value,
-              width: double.infinity,
-              height: 200.h,
-              fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () => openFullScreenImage(c.pickedImagePath.value, isFile: true),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(12.r),
+              child: AppImage(
+                filePath: c.pickedImagePath.value,
+                width: double.infinity,
+                height: 200.h,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Positioned(

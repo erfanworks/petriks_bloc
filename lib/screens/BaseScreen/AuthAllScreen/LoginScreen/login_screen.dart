@@ -91,7 +91,7 @@ class LoginScreen extends StatelessWidget {
 
                 // ---- Subtitle ----
                 CustomText(
-                  title: ConstString.chooseASignInMethod,
+                  title: ConstString.enterYourEmailPassword,
                   textColor: Colors.white,
                   textSize: 12.sp,
                   fontWeight: FontWeight.w500,

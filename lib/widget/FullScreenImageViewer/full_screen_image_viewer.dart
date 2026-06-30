@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import '../../widget/AppImage/app_image.dart';
 
 // Call this anywhere to open full screen image
-void openFullScreenImage(String imagePath) {
+void openFullScreenImage(String imagePath, {bool isFile = false}) {
   Get.to(
-        () => FullScreenImageViewer(imagePath: imagePath),
+        () => FullScreenImageViewer(imagePath: imagePath, isFile: isFile),
     transition: Transition.fadeIn,
     duration: const Duration(milliseconds: 250),
   );
@@ -15,8 +15,9 @@ void openFullScreenImage(String imagePath) {
 // Full Screen Image Viewer
 class FullScreenImageViewer extends StatefulWidget {
   final String imagePath;
+  final bool isFile;
 
-  const FullScreenImageViewer({super.key, required this.imagePath});
+  const FullScreenImageViewer({super.key, required this.imagePath, this.isFile = false});
 
   @override
   State<FullScreenImageViewer> createState() => _FullScreenImageViewerState();
@@ -64,7 +65,8 @@ class _FullScreenImageViewerState extends State<FullScreenImageViewer> {
                 minScale: 0.5,
                 maxScale: 5.0,
                 child: AppImage(
-                  path: widget.imagePath,
+                  path: widget.isFile ? null : widget.imagePath,
+                  filePath: widget.isFile ? widget.imagePath : null,
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   fit: BoxFit.contain,
