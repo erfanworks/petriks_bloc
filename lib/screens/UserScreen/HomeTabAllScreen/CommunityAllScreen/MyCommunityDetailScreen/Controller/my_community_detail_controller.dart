@@ -66,13 +66,15 @@ class JoinableGroup {
 
 // ---- Community Detail Controller ----
 class MyCommunityDetailController extends GetxController {
-  MyCommunityModel? communityItem;
+  final communityItem = Rxn<MyCommunityModel>();
+  final isOwner = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     if (Get.arguments is MyCommunityModel) {
-      communityItem = Get.arguments;
+      communityItem.value = Get.arguments;
+      isOwner.value = (Get.arguments as MyCommunityModel).role.toLowerCase() == 'owner';
     }
   }
 

@@ -17,9 +17,10 @@ class ConstString {
   static const String upgradeToPlusPrice = 'Upgrade to Plus  (GBP 15/month)';
   static const welcomeTo = 'Welcome to';
   static const appName   = 'GoodNiva';
-  static const account = 'Account';
+  static const account = 'account';
   static const feedback = 'Feedback';
   static const enterEmailPassword = 'Enter your email and password to log in';
+  static const chooseASignInMethod = 'Choose a sign-in method to continue.';
   static const continueWithGoogle = 'Continue with Google';
   static const continueWithFacebook = 'Continue with Facebook';
   static const continueWithPhone = 'Continue with Phone';
@@ -48,6 +49,10 @@ class ConstString {
       'Help us tailor your experience with a few basic details.';
   static const fullName = 'Full Name';
   static const enterName = 'Enter name';
+  static const String firstName     = 'First Name';
+  static const String lastName      = 'Last Name';
+  static const String enterFirstName = 'Enter first name';
+  static const String enterLastName  = 'Enter last name';
   static const continueA = 'Continue';
   static const selected = 'SELECTED';
   static const dateOfBirth = 'Date of birth';
@@ -104,7 +109,7 @@ class ConstString {
   static const searchHint = 'Search events, people, or groups';
   static const easyMeetup = 'Easy Meetup';
   static const upcomingEvents = 'Upcoming Events';
-  static const peopleYouMayClick = 'Peoples you may click with';
+  static const peopleYouMayClick = 'People you may click with';
   static const seeAll = 'See all';
   static const createCompetition = "Create Competition";
   static const inviteFriends = 'Invite Friends';
@@ -180,7 +185,7 @@ class ConstString {
   static const viewProfile = 'View Profile';
   static const safetyFirst = 'Safety First';
   static const verifyUserOnly =
-      'Verified users only. Please respect community guidelines and stay within public areas of the park.';
+      'Verified users only. Please respect community guidelines and stay within public areas.';
   static const helpAndSafety = "Help & Safety";
   static const host = "Host";
   static const howAreYouFeeling = 'How are you feeling?';

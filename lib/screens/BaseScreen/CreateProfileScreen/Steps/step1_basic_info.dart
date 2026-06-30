@@ -26,26 +26,40 @@ class Step1BasicInfo extends StatelessWidget {
           ////// Full Name
           CustomTextFormField(
             onChanged: (_) => c.selectedAgeBand.refresh(),
-            fromTitle: ConstString.fullName,
-            textController: c.nameController,
+            fromTitle: ConstString.firstName,
+            textController: c.firstNameController,
             backgroundColor: ConstColor.boxColor,
             hintText: const Text(
-              ConstString.enterName,
-              style: TextStyle(
-                color: ConstColor.iconColor,
-                fontWeight: FontWeight.w400,
-              ),
+              ConstString.enterFirstName,
+              style: TextStyle(color: ConstColor.iconColor, fontWeight: FontWeight.w400),
             ),
             prefixIcon: Padding(
               padding: EdgeInsets.all(16.r),
               child: SvgPicture.asset(
                 'assets/icons/person_icon.svg',
-                width: 18.r,
-                height: 18.r,
-                colorFilter: const ColorFilter.mode(
-                  ConstColor.iconColor,
-                  BlendMode.srcIn,
-                ),
+                width: 18.r, height: 18.r,
+                colorFilter: const ColorFilter.mode(ConstColor.iconColor, BlendMode.srcIn),
+              ),
+            ),
+          ),
+
+          SizedBox(height: 8.h),
+
+          CustomTextFormField(
+            onChanged: (_) => c.selectedAgeBand.refresh(),
+            fromTitle: ConstString.lastName,
+            textController: c.lastNameController,
+            backgroundColor: ConstColor.boxColor,
+            hintText: const Text(
+              ConstString.enterLastName,
+              style: TextStyle(color: ConstColor.iconColor, fontWeight: FontWeight.w400),
+            ),
+            prefixIcon: Padding(
+              padding: EdgeInsets.all(16.r),
+              child: SvgPicture.asset(
+                'assets/icons/person_icon.svg',
+                width: 18.r, height: 18.r,
+                colorFilter: const ColorFilter.mode(ConstColor.iconColor, BlendMode.srcIn),
               ),
             ),
           ),

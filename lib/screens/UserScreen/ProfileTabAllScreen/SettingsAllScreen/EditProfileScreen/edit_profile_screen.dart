@@ -29,12 +29,19 @@ class EditProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Full Name
-                  _FieldLabel(ConstString.fullName),
+                  _FieldLabel(ConstString.firstName),
                   SizedBox(height: 6.h),
                   _InputTile(
                     icon: Icons.person_outline_rounded,
-                    ctrl: c.fullNameController,
+                    ctrl: c.firstNameController,
+                  ),
+                  SizedBox(height: 12.h),
+
+                  _FieldLabel(ConstString.lastName),
+                  SizedBox(height: 6.h),
+                  _InputTile(
+                    icon: Icons.person_outline_rounded,
+                    ctrl: c.lastNameController,
                   ),
                   SizedBox(height: 16.h),
 

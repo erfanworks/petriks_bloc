@@ -18,13 +18,7 @@ class MyCommunityDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<MyCommunityDetailController>();
-    final item = controller.communityItem;
-
-    if (item == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    }
-    final bool isOwner = item.role.toLowerCase() == 'owner';
+    final controller = Get.put(MyCommunityDetailController());
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
@@ -164,7 +158,7 @@ class MyCommunityDetailScreen extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-              itemCount: isOwner ? controller.groups.length : 1,
+              itemCount: controller.isOwner.value ? controller.groups.length : 1,
               separatorBuilder: (_, __) => SizedBox(height: 12.h),
               itemBuilder: (context, i) {
                 final GroupItem currentItem = controller.groups[i];
@@ -203,13 +197,17 @@ class MyCommunityDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10.h),
-            ...controller.competitions.map((comp) => _CompetitionListItem(item: comp,isOwner: isOwner,)),
+            Obx(() => Column(
+              children: controller.competitions.map((comp) =>
+                  _CompetitionListItem(item: comp, isOwner: controller.isOwner.value)
+              ).toList(),
+            )),
 
             SizedBox(height: 50.h),
           ],
         ),
       ),
-      bottomNavigationBar: isOwner ? Padding(
+      bottomNavigationBar: Obx(() => controller.isOwner.value ? Padding(
         padding: EdgeInsets.fromLTRB(
           16.w,
           0,
@@ -253,8 +251,8 @@ class MyCommunityDetailScreen extends StatelessWidget {
             ),
           ],
         ),
-      ) : const SizedBox.shrink(),
-    );
+      ) : const SizedBox.shrink()
+    ));
   }
 }
 

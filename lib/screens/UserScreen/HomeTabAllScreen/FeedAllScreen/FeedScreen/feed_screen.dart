@@ -63,7 +63,11 @@ class FeedScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(24.r),
                             ),
                             child: TextField(
-                              onTap: (){Get.toNamed(AppRoutes.createPostScreen);},
+
+                              onTap: (){
+                                FocusManager.instance.primaryFocus?.unfocus();
+                                Get.toNamed(AppRoutes.createPostScreen);},
+                              readOnly: true,
                               decoration: InputDecoration(
                                 hintText: ConstString.whatsOnYourMind,
                                 hintStyle: TextStyle(

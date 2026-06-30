@@ -70,7 +70,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => CommunityController());
     Get.lazyPut(() => CommunityDetailController());
     Get.lazyPut(() => MyCommunityController());
-    Get.lazyPut(() => MyCommunityDetailController());
+    Get.create(() => MyCommunityDetailController());
     Get.lazyPut(() => CreateCommunityController());
     Get.lazyPut(() => CreateGroupController());
     Get.lazyPut(() => CreateCompetitionController());

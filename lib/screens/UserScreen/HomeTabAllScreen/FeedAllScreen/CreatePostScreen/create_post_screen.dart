@@ -226,6 +226,7 @@ class _PostInputArea extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       child: TextField(
+        autofocus: false,
         onChanged: (val) => c.postController.value = val,
         maxLines: null,
         minLines: 8,
@@ -335,31 +336,34 @@ class _BottomActions extends StatelessWidget {
             ],
           ),
           SizedBox(height: 12.h),
-          Obx(
-            () => CustomElevatedButton(
+          Obx(() {
+            final hasText  = c.postController.value.trim().isNotEmpty;
+            final hasImage = c.pickedImagePath.value.isNotEmpty;
+            final canPost  = hasText || hasImage;
+
+            return CustomElevatedButton(
               onPressed: c.isPostLoading.value ? null : c.onSubmitPost,
               height: 48,
-              gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+              gradient: canPost
+                  ? [ConstColor.primaryDeepColor, ConstColor.primaryColor]
+                  : [ConstColor.primaryColor.withAlpha(100), ConstColor.primaryColor.withAlpha(100)],
               top: 0,
               buttonBorderRadius: 30,
               child: c.isPostLoading.value
                   ? SizedBox(
-                      width: 20.w,
-                      height: 20.h,
-                      child: CircularProgressIndicator(
-                        color: ConstColor.white,
-                        strokeWidth: 2,
-                      ),
-                    )
+                width: 20.w,
+                height: 20.h,
+                child: CircularProgressIndicator(color: ConstColor.white, strokeWidth: 2),
+              )
                   : CustomText(
-                      title: ConstString.post,
-                      textSize: 16.sp,
-                      fontWeight: FontWeight.w600,
-                      textColor: ConstColor.white,
-                      maxLine: 1,
-                    ),
-            ),
-          ),
+                title: ConstString.post,
+                textSize: 16.sp,
+                fontWeight: FontWeight.w600,
+                textColor: ConstColor.white,
+                maxLine: 1,
+              ),
+            );
+          }),
         ],
       ),
     );

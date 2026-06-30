@@ -8,7 +8,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 class EditProfileController extends GetxController {
-  final fullNameController = TextEditingController(text: 'Sophia Chen');
+  final firstNameController = TextEditingController(text: 'Sophia');
+  final lastNameController  = TextEditingController(text: 'Chen');
   final dateOfBirth        = '12 Aug, 2026'.obs;
   final selectedAgeBand    = '25 - 34'.obs;
   final searchLocationCtrl = TextEditingController();
@@ -20,7 +21,8 @@ class EditProfileController extends GetxController {
 
   @override
   void onClose() {
-    fullNameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
     searchLocationCtrl.dispose();
     super.onClose();
   }

@@ -91,7 +91,7 @@ class LoginScreen extends StatelessWidget {
 
                 // ---- Subtitle ----
                 CustomText(
-                  title: ConstString.enterEmailPassword,
+                  title: ConstString.chooseASignInMethod,
                   textColor: Colors.white,
                   textSize: 12.sp,
                   fontWeight: FontWeight.w500,
@@ -219,31 +219,31 @@ class LoginScreen extends StatelessWidget {
 
                 SizedBox(height: 32.h),
 
-                // ---- Sign Up Row ----
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomText(
-                      title: ConstString.donTHaveAccount,
-                      textColor: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      textSize: 12.sp,
-                      maxLine: 1,
-                      fontFamily: GoogleFonts.montserrat().fontFamily,
-                    ),
-                    GestureDetector(
-                      onTap: controller.goToSignUp,
-                      child: CustomText(
-                        title: ConstString.signUp,
-                        textColor: ConstColor.yellow,
-                        textSize: 13.sp,
-                        fontWeight: FontWeight.w600,
-                        maxLine: 1,
-                        fontFamily: GoogleFonts.montserrat().fontFamily,
-                      ),
-                    ),
-                  ],
-                ),
+                // // ---- Sign Up Row ----
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     CustomText(
+                //       title: ConstString.donTHaveAccount,
+                //       textColor: Colors.white,
+                //       fontWeight: FontWeight.w400,
+                //       textSize: 12.sp,
+                //       maxLine: 1,
+                //       fontFamily: GoogleFonts.montserrat().fontFamily,
+                //     ),
+                //     GestureDetector(
+                //       onTap: controller.goToSignUp,
+                //       child: CustomText(
+                //         title: ConstString.signUp,
+                //         textColor: ConstColor.yellow,
+                //         textSize: 13.sp,
+                //         fontWeight: FontWeight.w600,
+                //         maxLine: 1,
+                //         fontFamily: GoogleFonts.montserrat().fontFamily,
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),

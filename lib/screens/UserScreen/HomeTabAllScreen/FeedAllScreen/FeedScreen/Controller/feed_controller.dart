@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
@@ -162,14 +163,21 @@ class FeedController extends GetxController {
   void onFeeling() => Get.toNamed('/feeling');
 
   void onSubmitPost() async {
-    Get.back();
-    if (postController.value.trim().isEmpty && pickedImagePath.value.isEmpty) return;
+    FocusManager.instance.primaryFocus?.unfocus();
+    await Future.microtask(() {});
+
+    if (postController.value.trim().isEmpty && pickedImagePath.value.isEmpty) {
+      AppSnackBar.message("Please write something or add a photo to post.");
+      return;
+    }
     try {
       isPostLoading.value = true;
       await Future.delayed(const Duration(seconds: 1));
-      postController.value  = '';
+      postController.value = '';
       pickedImagePath.value = '';
+      FocusManager.instance.primaryFocus?.unfocus();
       Get.back();
+      AppSnackBar.success("Post created successfully. ✅");
     } catch (_) {
     } finally {
       isPostLoading.value = false;

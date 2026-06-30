@@ -9,7 +9,8 @@ class CreateProfileController extends GetxController {
   static const int totalSteps = 8;
 
   // Step 1
-  final nameController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController  = TextEditingController();
   final dobController = TextEditingController();
   final selectedGender = ''.obs;
   final selectedDob = Rx<DateTime?>(null);
@@ -165,7 +166,8 @@ class CreateProfileController extends GetxController {
   bool get isCurrentStepValid {
     switch (currentStep.value) {
       case 0:
-        return nameController.text.trim().isNotEmpty &&
+        return firstNameController.text.trim().isNotEmpty &&
+            lastNameController.text.trim().isNotEmpty &&
             selectedGender.value.isNotEmpty &&
             selectedDob.value != null &&
             selectedAgeBand.value.isNotEmpty;
@@ -245,7 +247,11 @@ class CreateProfileController extends GetxController {
 
   @override
   void onInit() {
-    nameController.addListener(() {
+    firstNameController.addListener(() {
+      selectedAgeBand.refresh();
+      currentStep.refresh();
+    });
+    lastNameController.addListener(() {
       selectedAgeBand.refresh();
       currentStep.refresh();
     });
@@ -256,7 +262,8 @@ class CreateProfileController extends GetxController {
 
   @override
   void onClose() {
-    nameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
     locationSearchController.dispose();
     dobController.dispose();
     super.onClose();

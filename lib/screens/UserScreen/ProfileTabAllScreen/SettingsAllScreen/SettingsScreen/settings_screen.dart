@@ -148,26 +148,26 @@ class _AccountCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                GestureDetector(
-                  onTap: c.onEditProfileTap,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 14.w,
-                      vertical: 7.h,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: ConstColor.primaryColor),
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
-                    child: CustomText(
-                      title: ConstString.editProfile,
-                      textSize: 12.sp,
-                      fontWeight: FontWeight.w500,
-                      textColor: ConstColor.primaryColor,
-                      maxLine: 1,
-                    ),
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: c.onEditProfileTap,
+                //   child: Container(
+                //     padding: EdgeInsets.symmetric(
+                //       horizontal: 14.w,
+                //       vertical: 7.h,
+                //     ),
+                //     decoration: BoxDecoration(
+                //       border: Border.all(color: ConstColor.primaryColor),
+                //       borderRadius: BorderRadius.circular(20.r),
+                //     ),
+                //     child: CustomText(
+                //       title: ConstString.editProfile,
+                //       textSize: 12.sp,
+                //       fontWeight: FontWeight.w500,
+                //       textColor: ConstColor.primaryColor,
+                //       maxLine: 1,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

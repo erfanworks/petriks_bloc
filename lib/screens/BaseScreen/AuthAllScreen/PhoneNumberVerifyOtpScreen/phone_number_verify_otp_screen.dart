@@ -220,7 +220,7 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
 
                         // ---- Back to Sign Up ----
                         GestureDetector(
-                          onTap: controller.goBack,
+                          onTap: controller.goBackSignUp,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

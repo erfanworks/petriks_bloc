@@ -305,8 +305,8 @@ class _MatchNotesCard extends StatelessWidget {
           CustomText(
             title: 'Match Notes',
             textColor: ConstColor.primaryColor,
-            textSize: 13.sp,
-            fontWeight: FontWeight.w700,
+            textSize: 16.sp,
+            fontWeight: FontWeight.w600,
             maxLine: 1,
           ),
           SizedBox(height: 8.h),
@@ -314,7 +314,7 @@ class _MatchNotesCard extends StatelessWidget {
             title:
                 '"Friendly game between long-time rivals. Expected high intensity and mutual respect on the pitch."',
             textColor: ConstColor.primaryColor,
-            textSize: 12.sp,
+            textSize: 14.sp,
             maxLine: 5,
           ),
           SizedBox(height: 10.h),
@@ -329,8 +329,9 @@ class _MatchNotesCard extends StatelessWidget {
               CustomText(
                 title: 'ORGANIZER NOTE',
                 textColor: ConstColor.primaryColor,
-                textSize: 10.sp,
+                textSize: 12.sp,
                 fontWeight: FontWeight.w700,
+                fontStyle: FontStyle.italic,
                 maxLine: 1,
               ),
             ],

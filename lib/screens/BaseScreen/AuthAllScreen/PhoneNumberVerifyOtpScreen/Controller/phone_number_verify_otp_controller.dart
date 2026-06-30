@@ -75,8 +75,8 @@ class PhoneNumberVerifyOtpController extends GetxController {
     // TODO: call resend API
   }
 
-  void goBack() {
-    Get.back();
+  void goBackSignUp() {
+    Get.toNamed(AppRoutes.loginScreen);
   }
 
   @override

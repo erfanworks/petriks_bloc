@@ -70,8 +70,9 @@ class ViewCompetitionController extends GetxController {
       return;
     }
     final teamName = rosterGroups[selectedRosterIndex.value!].name;
-    AppSnackBar.success("You've successfully registered with $teamName for this competition! 🎉", seconds: 3);
     Get.toNamed(AppRoutes.navBar);
+    AppSnackBar.success("You've successfully registered with $teamName for this competition! 🎉", seconds: 3);
+
   }
 
   void onMarkCompleted() => Get.toNamed(AppRoutes.addMatchResultScreen);
@@ -86,8 +87,9 @@ class ViewCompetitionController extends GetxController {
 
   void confirmResult() {
     isCompleted.value = true;
-    Get.back();
+    // Get.back();
     Get.toNamed(AppRoutes.finalScoreScreen);
+    AppSnackBar.success("Match result confirmed successfully.✅");
   }
 
   void onEditResult() => Get.toNamed(AppRoutes.addMatchResultScreen);
