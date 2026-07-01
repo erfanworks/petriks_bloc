@@ -235,7 +235,7 @@ class Step8Travel extends StatelessWidget {
               ),
               SizedBox(width: 6.w),
               CustomText(
-                title: ConstString.mins,
+                title: c.selectedTransport.value == 'Walking' ? ConstString.mins : ConstString.km,
                 textSize: 18.sp,
                 fontWeight: FontWeight.w700,
                 textColor: const Color(0xFF1A1A2E),
@@ -263,18 +263,21 @@ class Step8Travel extends StatelessWidget {
           )),
 
           // Slider labels
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: ['5m', '20m', '40m', 'Flexible']
-                .map((l) => CustomText(
-              title: l,
-              textSize: 12.sp,
-              textColor: const Color(0xFF6B6B80),
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
-            ))
-                .toList(),
-          ),
+          Obx(() {
+            final unit = c.selectedTransport.value == 'Walking' ? 'm' : 'km';
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: ['5$unit', '20$unit', '40$unit', 'Flexible']
+                  .map((l) => CustomText(
+                title: l,
+                textSize: 12.sp,
+                textColor: const Color(0xFF6B6B80),
+                fontWeight: FontWeight.w600,
+                maxLine: 1,
+              ))
+                  .toList(),
+            );
+          }),
           SizedBox(height: 8.h),
         ],
       ),

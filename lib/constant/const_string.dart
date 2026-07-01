@@ -85,6 +85,7 @@ class ConstString {
   static const preferredTransport = 'Preferred Transport';
   static const maximumComment = 'Maximum Commute';
   static const mins = 'mins';
+  static const km = 'km';
   static const verifyYourId = 'Verify your ID (optional)';
   static const skip = 'Skip';
   static const couldTAttend = "Couldn't Attend";

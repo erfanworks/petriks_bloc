@@ -242,7 +242,8 @@ class CreateProfileController extends GetxController {
   String get commuteLabelDisplay {
     final v = commuteMinutes.value.toInt();
     if (v >= 60) return 'Flexible';
-    return '$v mins';
+    final unit = selectedTransport.value == 'Walking' ? 'mins' : 'km';
+    return '$v $unit';
   }
 
   @override
