@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
 import '../../../../../../constant/const_color.dart';
 import '../Widget/competition_success_sheet.dart';
 
@@ -74,11 +75,19 @@ class CreateCompetitionController extends GetxController {
     ActivityItem(icon: 'assets/icons/badminton_icon.svg', name: 'Tennis'),
   ];
 
-  final RxInt selectedActivity = 0.obs;
+  final RxInt selectedActivity = (-1).obs;
 
   void selectActivity(int index) => selectedActivity.value = index;
 
-  // ---- Step 3: Match Details ----
+  // ---- Validations ----
+  bool get isStep1Valid => groups.where((g) => g.isSelected.value).length == 2;
+  bool get isStep2Valid => selectedActivity.value != -1;
+  bool get isStep3Valid =>
+      competitionTitle.value.trim().isNotEmpty &&
+      selectedMatchLocationNames.isNotEmpty &&
+      selectedDate.value.isNotEmpty &&
+      selectedTime.value.isNotEmpty;
+
   // ---- Step 3: Match Locations ----
   final RxList<Map<String, String>> matchLocations = <Map<String, String>>[
     {'name': 'Astro Turf', 'sub': '0.4 miles away', 'desc': 'Perfect for 5-a-side football matches, floodlights included', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/party_img.png'},
@@ -132,6 +141,7 @@ class CreateCompetitionController extends GetxController {
   }
 
   final titleController = TextEditingController(text: 'Football Match');
+  final RxString competitionTitle = 'Football Match'.obs;
   final notesController = TextEditingController();
   final RxString selectedDate = 'Saturday, Nov 24'.obs;
   final RxString selectedTime = '07:00 PM'.obs;
@@ -233,11 +243,35 @@ class CreateCompetitionController extends GetxController {
   ][m - 1];
 
   // ---- Navigation ----
-  void goToSelectActivity() => Get.toNamed(AppRoutes.selectActivityScreen);
+  void goToSelectActivity() {
+    if (isStep1Valid) {
+      Get.toNamed(AppRoutes.selectActivityScreen);
+    } else {
+      AppSnackBar.error("Please select exactly 2 groups to continue.");
+    }
+  }
 
-  void goToMatchDetails() => Get.toNamed(AppRoutes.setMatchDetailsScreen);
+  void goToMatchDetails() {
+    if (isStep2Valid) {
+      Get.toNamed(AppRoutes.setMatchDetailsScreen);
+    } else {
+      AppSnackBar.error("Please select an activity to continue.");
+    }
+  }
 
-  void goToFinalReview() => Get.toNamed(AppRoutes.finalReviewScreen);
+  void goToFinalReview() {
+    if (isStep3Valid) {
+      Get.toNamed(AppRoutes.finalReviewScreen);
+    } else {
+      if (competitionTitle.value.trim().isEmpty) {
+        AppSnackBar.error("Please enter a competition title.");
+      } else if (selectedMatchLocationNames.isEmpty) {
+        AppSnackBar.error("Please select at least one match location.");
+      } else {
+        AppSnackBar.error("Please fill in all required fields.");
+      }
+    }
+  }
 
   void goToPublish() => Get.toNamed("AppRoutes.selectActivityScreen");
 
@@ -249,6 +283,7 @@ class CreateCompetitionController extends GetxController {
   void onInit() {
     super.onInit();
     selectedMatchLocationNames.clear();
+    titleController.addListener(() => competitionTitle.value = titleController.text);
     customMatchLocationNameController.addListener(_bumpCustomMatchLocationTick);
     customMatchLocationAddressController.addListener(_bumpCustomMatchLocationTick);
   }

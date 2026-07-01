@@ -378,20 +378,36 @@ class SetMatchDetailsScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.fromLTRB(
-          16.w,
-          0,
-          16.w,
-          4.h + MediaQuery.of(context).padding.bottom,
-        ),
-        child: CustomElevatedButton(
-          onPressed: c.goToFinalReview,
-          height: 48, top: 0, buttonBorderRadius: 30,
-          gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
-          child: CustomText(title: ConstString.continueText, textColor: Colors.white, textSize: 15.sp, fontWeight: FontWeight.w600, maxLine: 1),
-        ),
-      ),
+      bottomNavigationBar: Obx(() {
+        final isValid = c.isStep3Valid;
+        return Padding(
+          padding: EdgeInsets.fromLTRB(
+            16.w,
+            0,
+            16.w,
+            4.h + MediaQuery.of(context).padding.bottom,
+          ),
+          child: CustomElevatedButton(
+            onPressed: c.goToFinalReview,
+            height: 48,
+            top: 0,
+            buttonBorderRadius: 30,
+            gradient: isValid
+                ? const [ConstColor.primaryDeepColor, ConstColor.primaryColor]
+                : [
+                    ConstColor.primaryColor.withAlpha(100),
+                    ConstColor.primaryColor.withAlpha(100)
+                  ],
+            child: CustomText(
+              title: ConstString.continueText,
+              textColor: Colors.white,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w600,
+              maxLine: 1,
+            ),
+          ),
+        );
+      }),
     );
   }
 }
