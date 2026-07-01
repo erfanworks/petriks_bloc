@@ -20,7 +20,7 @@ class ConstString {
   static const account = 'account';
   static const feedback = 'Feedback';
   static const enterEmailPassword = 'Enter your email and password to log in';
-  static const enterYourEmailPassword = 'Enter your email and password to log in ';
+  static const chooseASignInMethod = 'Choose a sign-in method to continue.';
   static const continueWithGoogle = 'Continue with Google';
   static const continueWithFacebook = 'Continue with Facebook';
   static const continueWithPhone = 'Continue with Phone';
@@ -405,6 +405,7 @@ class ConstString {
   static const String accountVerification = 'Account & Verification';
   static const String editProfile = 'Edit Profile';
   static const String personalInformation = 'Personal Information';
+  static const String bio                 = 'Bio';
   static const String identityVerification = 'Identity Verification';
   static const String preferences = 'Preferences';
   static const String languagePreferences = 'Language Preferences';

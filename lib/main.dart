@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes_file.dart';
+import 'package:petriks_flutter_app/widget/BackStackObserver/back_stack_observer.dart';
 import 'constant/const_color.dart';
 import 'initializer.dart';
 
@@ -31,12 +32,13 @@ class MainApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
+          navigatorObservers: [BackStackObserver()],
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.light,
           theme: ThemeData(scaffoldBackgroundColor: ConstColor.backgroundColor),
           defaultTransition: Transition.noTransition,
           getPages: appRouteFile,
-          initialRoute: AppRoutes.verifyIdScreen
+          initialRoute: AppRoutes.splashScreen,
         );
       },
     );

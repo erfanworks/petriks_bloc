@@ -91,7 +91,7 @@ class LoginScreen extends StatelessWidget {
 
                 // ---- Subtitle ----
                 CustomText(
-                  title: ConstString.enterYourEmailPassword,
+                  title: ConstString.chooseASignInMethod,
                   textColor: Colors.white,
                   textSize: 12.sp,
                   fontWeight: FontWeight.w500,
@@ -164,13 +164,20 @@ class LoginScreen extends StatelessWidget {
                         top: 0,
                         bottom: 0,
                         buttonBorderRadius: 30,
-                        child: CustomText(
-                          title: ConstString.continueWithPhone,
-                          textColor: ConstColor.black,
-                          textSize: 15.sp,
-                          fontWeight: FontWeight.w600,
-                          maxLine: 1,
-                          fontFamily: GoogleFonts.montserrat().fontFamily,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset("assets/icons/call_end.svg"),
+                            SizedBox(width: 6.w),
+                            CustomText(
+                              title: ConstString.continueWithPhone,
+                              textColor: ConstColor.black,
+                              textSize: 15.sp,
+                              fontWeight: FontWeight.w600,
+                              maxLine: 1,
+                              fontFamily: GoogleFonts.montserrat().fontFamily,
+                            ),
+                          ],
                         ),
                       ),
                     ],

@@ -5,6 +5,7 @@ import 'package:petriks_flutter_app/screens/UserScreen/ProfileTabAllScreen/Profi
 import '../../../UserScreen/CreatePlanTabAllScreen/CreatePlanBottomSheet/create_plan_sheet.dart';
 import '../../../UserScreen/CreatePlanTabAllScreen/CreatePlanScreen/create_plan_screen.dart';
 import '../../../UserScreen/HomeTabAllScreen/HomeScreen/home_screen.dart';
+import '../../../UserScreen/HomeTabAllScreen/HomeScreen/Controller/home_controller.dart';
 import '../../../UserScreen/MessageTabAllScreen/ChatScreen/chat_screen.dart';
 
 class NavbarController extends GetxController {
@@ -30,6 +31,9 @@ class NavbarController extends GetxController {
     }
     if (index == 1) {
       isMyPlanHighlighted.value = false;
+    }
+    if (index == 0) {
+      Get.find<HomeController>().selectedTab.value = 0;
     }
     selectedIndex.value = index;
   }

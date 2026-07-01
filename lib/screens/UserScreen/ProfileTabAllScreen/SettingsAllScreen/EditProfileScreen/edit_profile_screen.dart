@@ -43,6 +43,15 @@ class EditProfileScreen extends StatelessWidget {
                     icon: Icons.person_outline_rounded,
                     ctrl: c.lastNameController,
                   ),
+                  SizedBox(height: 12.h),
+
+                  _FieldLabel(ConstString.bio),
+                  SizedBox(height: 6.h),
+                  _InputTile(
+                    icon: Icons.edit_note_rounded,
+                    ctrl: c.bioController,
+                    maxLines: 4,
+                  ),
                   SizedBox(height: 16.h),
 
                   // Date of Birth
@@ -123,24 +132,34 @@ class _FieldLabel extends StatelessWidget {
 class _InputTile extends StatelessWidget {
   final IconData icon;
   final TextEditingController ctrl;
+  final int maxLines;
 
-  const _InputTile({required this.icon, required this.ctrl});
+  const _InputTile({
+    required this.icon,
+    required this.ctrl,
+    this.maxLines = 1,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 4.h),
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
       decoration: BoxDecoration(
-        color: ConstColor.backgroundColor,
+        color: ConstColor.boxColor,
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Row(
+        crossAxisAlignment: maxLines > 1 ? CrossAxisAlignment.start : CrossAxisAlignment.center,
         children: [
-          Icon(icon, size: 18.sp, color: ConstColor.textColor),
+          Padding(
+            padding: EdgeInsets.only(top: maxLines > 1 ? 2.h : 0),
+            child: Icon(icon, size: 18.sp, color: ConstColor.textColor),
+          ),
           SizedBox(width: 10.w),
           Expanded(
             child: TextField(
               controller: ctrl,
+              maxLines: maxLines,
               style: TextStyle(
                 fontSize: 14.sp,
                 color: ConstColor.black,
@@ -177,7 +196,7 @@ class _ReadonlyTile extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
         decoration: BoxDecoration(
-          color: ConstColor.backgroundColor,
+          color: ConstColor.boxColor,
           borderRadius: BorderRadius.circular(12.r),
         ),
         child: Row(
