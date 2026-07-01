@@ -32,13 +32,13 @@ class MainApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
-          navigatorObservers: [BackStackObserver()],
+          // navigatorObservers: [BackStackObserver()],
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.light,
           theme: ThemeData(scaffoldBackgroundColor: ConstColor.backgroundColor),
           defaultTransition: Transition.noTransition,
           getPages: appRouteFile,
-          initialRoute: AppRoutes.splashScreen,
+          initialRoute: AppRoutes.navBar,
         );
       },
     );

@@ -25,18 +25,16 @@ class _AddCustomMatchLocationSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = Get.find<CreateCompetitionController>();
 
-    return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Container(
-        padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 24.h + MediaQuery.of(context).padding.bottom),
-        decoration: BoxDecoration(
-          color: ConstColor.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
-        ),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 24.h + MediaQuery.of(context).viewInsets.bottom + MediaQuery.of(context).padding.bottom),
+      decoration: BoxDecoration(
+        color: ConstColor.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Container(
@@ -148,7 +146,6 @@ class _AddCustomMatchLocationSheet extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }
