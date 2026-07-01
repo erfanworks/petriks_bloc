@@ -23,6 +23,46 @@ class BoostPlanScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            AnimatedContainer(
+            duration: const Duration(milliseconds: 180),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+            decoration: BoxDecoration(
+              color: ConstColor.primaryColor,
+              borderRadius: BorderRadius.circular(14.r),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomText(
+                        title: ConstString.timeLimit,
+                        textSize: 15.sp,
+                        fontWeight: FontWeight.w700,
+                        textColor: ConstColor.white,
+                        maxLine: 1,
+                      ),
+                      CustomText(
+                        title: ConstString.essentialFor,
+                        textSize: 12.sp,
+                        textColor: ConstColor.white,
+                        maxLine: 1,
+                      ),
+                    ],
+                  ),
+                ),
+                CustomText(
+                  title: ConstString.boostPrice,
+                  textSize: 15.sp,
+                  fontWeight: FontWeight.w700,
+                  textColor: ConstColor.white,
+                  maxLine: 1,
+                ),
+              ],
+            ),
+          ),
+            SizedBox(height: 24.h),
             // ── Feature Card ──
             Container(
               width: double.infinity,
@@ -64,28 +104,28 @@ class BoostPlanScreen extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 24.h),
-
-            CustomText(
-              title: ConstString.selectAPackage,
-              textSize: 17.sp,
-              fontWeight: FontWeight.w700,
-              textColor: ConstColor.black,
-              maxLine: 1,
-            ),
-            SizedBox(height: 12.h),
-
-            // ── Packages ──
-            ...List.generate(c.packages.length, (i) => Padding(
-              padding: EdgeInsets.only(bottom: 12.h),
-              child: Obx(() => _PackageTile(
-                pkg: c.packages[i],
-                isSelected: c.selectedPackage.value == i,
-                onTap: () => c.selectPackage(i),
-              )),
-            )),
-
-            SizedBox(height: 12.h),
+            // SizedBox(height: 24.h),
+            //
+            // CustomText(
+            //   title: ConstString.selectAPackage,
+            //   textSize: 17.sp,
+            //   fontWeight: FontWeight.w700,
+            //   textColor: ConstColor.black,
+            //   maxLine: 1,
+            // ),
+            // SizedBox(height: 12.h),
+            //
+            // // ── Packages ──
+            // ...List.generate(c.packages.length, (i) => Padding(
+            //   padding: EdgeInsets.only(bottom: 12.h),
+            //   child: Obx(() => _PackageTile(
+            //     pkg: c.packages[i],
+            //     isSelected: c.selectedPackage.value == i,
+            //     onTap: () => c.selectPackage(i),
+            //   )),
+            // )),
+            //
+            // SizedBox(height: 12.h),
           ],
         ),
       ),

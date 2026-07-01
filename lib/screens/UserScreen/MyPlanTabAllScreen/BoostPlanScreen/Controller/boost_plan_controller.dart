@@ -19,11 +19,11 @@ class BoostPlanController extends GetxController {
     'Reach nearby users',
   ];
 
-  final packages = const [
-    BoostPackage(title: '24 Hours', subtitle: 'Essential for short-term visibility', price: '£2.99'),
-    BoostPackage(title: '3 Days',   subtitle: 'Optimal balance for events',          price: '£4.99'),
-    BoostPackage(title: '7 days',   subtitle: 'Optimal balance for events',          price: '£9.99'),
-  ];
+  // final packages = const [
+  //   BoostPackage(title: '24 Hours', subtitle: 'Essential for short-term visibility', price: '£2.99'),
+  //   BoostPackage(title: '3 Days',   subtitle: 'Optimal balance for events',          price: '£4.99'),
+  //   BoostPackage(title: '7 days',   subtitle: 'Optimal balance for events',          price: '£9.99'),
+  // ];
 
   void selectPackage(int index) => selectedPackage.value = index;
 
