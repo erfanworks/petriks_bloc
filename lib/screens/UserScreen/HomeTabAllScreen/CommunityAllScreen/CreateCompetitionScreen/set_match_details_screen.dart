@@ -103,7 +103,7 @@ class SetMatchDetailsScreen extends StatelessWidget {
                                     filePath: isCustom ? loc['image'] : null,
                                     width: double.infinity,
                                     height: 120.h,
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.contain,
                                   ),
                                   Positioned(
                                     top: 10.h,

@@ -23,16 +23,24 @@ class MeetPreferenceScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-            child: Obx(() => ListView.separated(
+            child: SingleChildScrollView(
               padding: EdgeInsets.all(16.r),
-              itemCount: c.options.length,
-              separatorBuilder: (_, _) => SizedBox(height: 12.h),
-              itemBuilder: (_, i) {
-                final opt = c.options[i];
-                final isSelected = c.selectedMeet.value == opt.title;
-                return _MeetCard(option: opt, isSelected: isSelected, onTap: () => c.onMeetSelected(opt.title));
-              },
-            )),
+              child: Obx(
+                () => Column(
+                  children: c.options.map((opt) {
+                    final isSelected = c.selectedMeet.value == opt.title;
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 12.h),
+                      child: _MeetCard(
+                        option: opt,
+                        isSelected: isSelected,
+                        onTap: () => c.onMeetSelected(opt.title),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
           ),
           _SaveButton(onSave: c.onSave),
         ],
@@ -49,10 +57,11 @@ class _MeetCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final iconBg = Color(option.colorValue);
+    final iconBg = isSelected ? ConstColor.primaryColor : Color(option.colorValue);
 
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.opaque,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
@@ -61,10 +70,10 @@ class _MeetCard extends StatelessWidget {
             duration: const Duration(milliseconds: 180),
             padding: EdgeInsets.all(16.r),
             decoration: BoxDecoration(
-              color: ConstColor.white,
+              color: isSelected ? ConstColor.primaryColor.withAlpha(20) : ConstColor.white,
               borderRadius: BorderRadius.circular(16.r),
               border: Border.all(
-                color: isSelected ? ConstColor.primaryColor : Colors.transparent,
+                color: isSelected ? ConstColor.primaryColor : const Color(0xFFE0DFF0),
                 width: 1.5,
               ),
             ),

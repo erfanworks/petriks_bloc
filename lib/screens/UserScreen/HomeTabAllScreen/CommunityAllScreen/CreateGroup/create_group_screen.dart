@@ -287,7 +287,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                                   borderRadius: BorderRadius.circular(14.r),
                                   child: Image.file(
                                     File(c.descriptionPhotoPath.value),
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.contain,
                                   ),
                                 ),
 

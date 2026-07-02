@@ -66,7 +66,7 @@ class FinalReviewScreen extends StatelessWidget {
                           path: 'assets/images/football_ground.png',
                           width: double.infinity,
                           height: 180.h,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.contain,
                         ),
                       ),
                       Positioned(

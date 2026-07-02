@@ -111,7 +111,7 @@ class _ImagePreview extends StatelessWidget {
           borderRadius: BorderRadius.circular(14.r),
           child: Image.file(
             File(path),
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
             width: double.infinity,
             height: double.infinity,
           ),

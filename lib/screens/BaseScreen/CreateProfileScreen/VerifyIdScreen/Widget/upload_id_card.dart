@@ -93,7 +93,7 @@ class _ImagePreview extends StatelessWidget {
             c.selectedIdImage.value!,
             width: double.infinity,
             height: 180.h,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           ),
         ),
 

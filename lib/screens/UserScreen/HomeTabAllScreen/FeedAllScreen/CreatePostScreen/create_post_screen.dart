@@ -273,8 +273,7 @@ class _PickedImagePreview extends StatelessWidget {
               child: AppImage(
                 filePath: c.pickedImagePath.value,
                 width: double.infinity,
-                height: 200.h,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
           ),

@@ -486,7 +486,7 @@ class _Step2Details extends StatelessWidget {
                       borderRadius: BorderRadius.circular(14.r),
                       child: Image.file(
                         File(c.coverPhotoPath.value),
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                     ),
 
