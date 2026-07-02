@@ -7,6 +7,9 @@ class TravelTimeController extends GetxController {
   final currentLocation = 'City/Town: London'.obs;
 
   final commuteMinutes = 15.0.obs;
+  final selectedTransport = 'Walking'.obs;
+
+  final transportOptions = ['Walking', 'Driving'];
 
   String get commuteLabel {
     if (commuteMinutes.value >= 60) return 'Flexible';
@@ -16,6 +19,12 @@ class TravelTimeController extends GetxController {
   bool get isFlexible => commuteMinutes.value >= 60;
 
   void onSliderChanged(double value) => commuteMinutes.value = value;
+
+  void selectTransport(String t) => selectedTransport.value = t;
+
+  void editLocation() {
+    // TODO: open location picker
+  }
 
   void onSave() async {
     // TODO

@@ -8,6 +8,7 @@ import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+import '../../../../../widget/CustomTextFormField/custom_text_form_field.dart';
 import 'Controller/language_preference_controller.dart';
 
 class LanguagePreferenceScreen extends StatelessWidget {
@@ -148,6 +149,29 @@ class LanguagePreferenceScreen extends StatelessWidget {
                     ),
                   )
                       : const SizedBox.shrink()),
+
+                  SizedBox(height: 22.h),
+                  CustomText(
+                    title: ConstString.languageNotListed,
+                    textSize: 14.sp,
+                    textColor: ConstColor.textColor,
+                    fontWeight: FontWeight.w400,
+                    maxLine: 3,
+                  ),
+                  SizedBox(height: 12.h),
+                  CustomTextFormField(
+                    keyboardType: TextInputType.text,
+                    numeric: true,
+                    onChanged: (val) {
+                      if (val.trim().isNotEmpty) {
+                        if (!c.selectedLanguages.contains('custom')) {
+                          c.selectedLanguages.add('custom');
+                        }
+                      } else {
+                        c.selectedLanguages.remove('custom');
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
