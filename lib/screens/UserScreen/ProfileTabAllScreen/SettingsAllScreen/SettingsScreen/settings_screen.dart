@@ -221,6 +221,20 @@ class _PrefsCard extends StatelessWidget {
           ),
           _Div(),
           _SvgTile(
+            icon: 'assets/icons/weekday_icon.svg',
+            title: ConstString.weeklyAvailability,
+            subtitle: ConstString.weekdaysEvening,
+            onTap: c.onWeeklyAvailability,
+          ),
+          _Div(),
+          _SvgTile(
+            icon: 'assets/icons/chill_icon.svg',
+            title: ConstString.currentMood,
+            subtitle: ConstString.talkToSomeone,
+            onTap: c.onCurrentMood,
+          ),
+          _Div(),
+          _SvgTile(
             icon: 'assets/icons/social_icon.svg',
             title: ConstString.meetPreference,
             subtitle: ConstString.meetPrefSub,

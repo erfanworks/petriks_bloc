@@ -12,6 +12,8 @@ class SettingsController extends GetxController {
   void onLanguagePreferencesTap()  => Get.toNamed(AppRoutes.languagePreferenceScreen);
   void onTravelTimeTap()           => Get.toNamed(AppRoutes.travelTimeScreen);
   void onVibeSocialEnergyTap()     => Get.toNamed(AppRoutes.vibeSocialEnergyScreen);
+  void onWeeklyAvailability()     => Get.toNamed(AppRoutes.vibeSocialEnergyScreen);
+  void onCurrentMood()     => Get.toNamed(AppRoutes.vibeSocialEnergyScreen);
   void onMeetPreferenceTap()       => Get.toNamed(AppRoutes.meetPreferenceScreen);
   void onBlockListTap()            => Get.toNamed(AppRoutes.blockUserListScreen);
   void onTermsConditionTap()       => Get.toNamed(AppRoutes.termsConditionScreen);

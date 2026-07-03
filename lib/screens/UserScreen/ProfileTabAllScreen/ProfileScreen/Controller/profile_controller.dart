@@ -41,6 +41,10 @@ class ProfileController extends GetxController {
   final preferenceLabel = '1:1'.obs;
   final energyLabel    = 'Social'.obs;
   final travelLabel    = 'Flexible'.obs;
+  final availabilityTitle    = 'Weekday evenings';
+  final availabilitySubtitle = 'Perfect for after-work hangouts and dinners.';
+  final moodEmoji = '🙏';
+  final moodTitle = 'Do something calm';
 
   final interests = <InterestModel>[
     const InterestModel(icon: 'assets/icons/cofee_cup_icon.svg',  label: 'Coffee & Brunch'),

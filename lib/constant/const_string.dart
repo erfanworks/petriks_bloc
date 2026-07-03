@@ -618,6 +618,10 @@ class ConstString {
   static const String essentialFor              = 'Essential for short-term visibility';
   static const String boostPrice              = 'GBP 1.99';
   static const String addedByYou = 'Added by you';
+  static const String weeklyAvailability = 'Weekly Availability';
+  static const String weekdaysEvening = 'Weekday evenings';
+  static const String currentMood        = 'Current Mood';
+  static const String talkToSomeone        = 'Talk to someone';
   static String peopleMayVoteForPlaceDesc(int count) => 'You selected $count places. Guests will be able to vote on their preferred location.';
   
 }

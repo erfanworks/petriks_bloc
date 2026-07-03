@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../constant/const_color.dart';
@@ -46,6 +47,10 @@ class ProfileScreen extends StatelessWidget {
             _InterestSection(c: c),
             SizedBox(height: 8.h),
             _BadgesSection(c: c),
+            SizedBox(height: 8.h),
+            _WeeklyAvailabilitySection(c: c),  // ← new
+            SizedBox(height: 8.h),
+            _CurrentMoodSection(c: c),          // ← new
             SizedBox(height: 8.h),
             _IndicatorsSection(c: c),
             SizedBox(height: 8.h),
@@ -148,7 +153,7 @@ class _TopCard extends StatelessWidget {
               ),
               // Got Verified button
               GestureDetector(
-                onTap: () {},
+                onTap: () {Get.toNamed(AppRoutes.subscriptionScreen);},
                 child: Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: 10.w,
@@ -559,6 +564,153 @@ class _BadgesSection extends StatelessWidget {
           SizedBox(height: 12.h),
           ...c.badges.map(
             (b) => _IconRow(icon: b.icon, title: b.title, subtitle: b.subtitle),
+          ),
+        ],
+      ),
+    );
+  }
+}
+class _WeeklyAvailabilitySection extends StatelessWidget {
+  final ProfileController c;
+  const _WeeklyAvailabilitySection({required this.c});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 16.w),
+      padding: EdgeInsets.all(16.r),
+      decoration: BoxDecoration(
+        color: ConstColor.white,
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: ConstColor.borderColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomText(
+            title: ConstString.weeklyAvailability,
+            textSize: 16.sp,
+            fontWeight: FontWeight.w700,
+            textColor: ConstColor.black,
+            maxLine: 1,
+            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          ),
+          SizedBox(height: 12.h),
+          _InfoCard(
+            icon: 'assets/icons/weekday_icon.svg',
+            title: c.availabilityTitle,
+            subtitle: c.availabilitySubtitle,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ── Current Mood Section ──
+class _CurrentMoodSection extends StatelessWidget {
+  final ProfileController c;
+  const _CurrentMoodSection({required this.c});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 16.w),
+      padding: EdgeInsets.all(16.r),
+      decoration: BoxDecoration(
+        color: ConstColor.white,
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(color: ConstColor.borderColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomText(
+            title: ConstString.currentMood,
+            textSize: 16.sp,
+            fontWeight: FontWeight.w700,
+            textColor: ConstColor.black,
+            maxLine: 1,
+            fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          ),
+          SizedBox(height: 12.h),
+          _InfoCard(
+            emoji: c.moodEmoji,
+            title: c.moodTitle,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ── Shared info card (used by both sections) ──
+class _InfoCard extends StatelessWidget {
+  final String? icon;
+  final String? emoji;
+  final String title;
+  final String? subtitle;
+
+  const _InfoCard({
+    this.icon,
+    this.emoji,
+    required this.title,
+    this.subtitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+      decoration: BoxDecoration(
+        color: ConstColor.boxColor,
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(color: ConstColor.borderColor),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Icon or emoji
+          if (icon != null)
+            SvgPicture.asset(
+              icon!,
+              width: 24.r,
+              height: 24.r,
+              colorFilter: const ColorFilter.mode(
+                ConstColor.primaryColor,
+                BlendMode.srcIn,
+              ),
+            )
+          else if (emoji != null)
+            Text(emoji!, style: TextStyle(fontSize: 22.sp)),
+
+          SizedBox(width: 12.w),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(
+                  title: title,
+                  textSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  textColor: ConstColor.black,
+                  maxLine: 1,
+                ),
+                if (subtitle != null && subtitle!.isNotEmpty) ...[
+                  SizedBox(height: 2.h),
+                  CustomText(
+                    title: subtitle!,
+                    textSize: 12.sp,
+                    textColor: ConstColor.grey,
+                    maxLine: 2,
+                  ),
+                ],
+              ],
+            ),
           ),
         ],
       ),
