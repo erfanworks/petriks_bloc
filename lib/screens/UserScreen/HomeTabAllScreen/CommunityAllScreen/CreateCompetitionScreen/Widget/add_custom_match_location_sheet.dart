@@ -25,20 +25,30 @@ class _AddCustomMatchLocationSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = Get.find<CreateCompetitionController>();
 
-    return Container(
-      padding: EdgeInsets.fromLTRB(20.w, 16.h, 20.w, 24.h + MediaQuery.of(context).viewInsets.bottom + MediaQuery.of(context).padding.bottom),
-      decoration: BoxDecoration(
-        color: ConstColor.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.85,
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+      child: Container(
+        padding: EdgeInsets.fromLTRB(
+          20.w,
+          16.h,
+          20.w,
+          24.h + MediaQuery.of(context).padding.bottom,
+        ),
+        decoration: BoxDecoration(
+          color: ConstColor.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Container(
-                  width: 40.w, height: 4.h,
+                  width: 40.w,
+                  height: 4.h,
                   decoration: BoxDecoration(
                     color: ConstColor.borderColor,
                     borderRadius: BorderRadius.circular(2.r),
@@ -56,44 +66,54 @@ class _AddCustomMatchLocationSheet extends StatelessWidget {
               ),
               SizedBox(height: 16.h),
 
-              Obx(() => GestureDetector(
-                onTap: () async {
-                  final picked = await ImagePicker().pickImage(source: ImageSource.gallery);
-                  if (picked != null) c.pickCustomMatchLocationImage(picked.path);
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 140.h,
-                  decoration: BoxDecoration(
-                    color: ConstColor.boxColor,
-                    borderRadius: BorderRadius.circular(14.r),
-                    border: Border.all(color: ConstColor.borderColor),
-                  ),
-                  child: c.customMatchLocationImagePath.value.isEmpty
-                      ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.add_a_photo_outlined, color: ConstColor.primaryColor, size: 26.sp),
-                      SizedBox(height: 6.h),
-                      CustomText(
-                        title: ConstString.uploadPlaceImage,
-                        textSize: 13.sp,
-                        textColor: ConstColor.grey,
-                        maxLine: 1,
+              Obx(
+                    () => GestureDetector(
+                  onTap: () async {
+                    final picked = await ImagePicker().pickImage(
+                      source: ImageSource.gallery,
+                    );
+                    if (picked != null) {
+                      c.pickCustomMatchLocationImage(picked.path);
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 140.h,
+                    decoration: BoxDecoration(
+                      color: ConstColor.boxColor,
+                      borderRadius: BorderRadius.circular(14.r),
+                      border: Border.all(color: ConstColor.borderColor),
+                    ),
+                    child: c.customMatchLocationImagePath.value.isEmpty
+                        ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.add_a_photo_outlined,
+                          color: ConstColor.primaryColor,
+                          size: 26.sp,
+                        ),
+                        SizedBox(height: 6.h),
+                        CustomText(
+                          title: ConstString.uploadPlaceImage,
+                          textSize: 13.sp,
+                          textColor: ConstColor.grey,
+                          maxLine: 1,
+                        ),
+                      ],
+                    )
+                        : ClipRRect(
+                      borderRadius: BorderRadius.circular(14.r),
+                      child: AppImage(
+                        filePath: c.customMatchLocationImagePath.value,
+                        width: double.infinity,
+                        height: 140.h,
+                        fit: BoxFit.cover,
                       ),
-                    ],
-                  )
-                      : ClipRRect(
-                    borderRadius: BorderRadius.circular(14.r),
-                    child: AppImage(
-                      filePath: c.customMatchLocationImagePath.value,
-                      width: double.infinity,
-                      height: 140.h,
-                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
-              )),
+              ),
               SizedBox(height: 14.h),
 
               CustomTextFormField(
@@ -133,7 +153,10 @@ class _AddCustomMatchLocationSheet extends StatelessWidget {
                   height: 50,
                   top: 0,
                   buttonBorderRadius: 30,
-                  gradient: const [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+                  gradient: const [
+                    ConstColor.primaryDeepColor,
+                    ConstColor.primaryColor,
+                  ],
                   child: CustomText(
                     title: ConstString.addLocation,
                     textSize: 15.sp,
@@ -146,6 +169,7 @@ class _AddCustomMatchLocationSheet extends StatelessWidget {
             ],
           ),
         ),
-      );
+      ),
+    );
   }
 }
