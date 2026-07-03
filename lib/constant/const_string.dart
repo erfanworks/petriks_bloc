@@ -623,6 +623,15 @@ class ConstString {
   static const String weekdaysEvening = 'Weekday evenings';
   static const String currentMood        = 'Current Mood';
   static const String talkToSomeone        = 'Talk to someone';
+  static const String editCommunity        = 'Edit Community';
+  static const String changeCover          = 'Change Cover';
+  static const String shortDescHint        = 'Describe your community...';
+  static const String languageSpoken       = 'Language Spoken';
+  static const String selectOtherLanguage  = 'Select Other Language';
+  static const String interest             = 'Interest';
+  static const String manageVibe           = 'Manage Vibe';
+  static const String done                 = 'Done';
+  static const String editGroup   = 'Edit Group';
   static String peopleMayVoteForPlaceDesc(int count) => 'You selected $count places. Guests will be able to vote on their preferred location.';
   
 }

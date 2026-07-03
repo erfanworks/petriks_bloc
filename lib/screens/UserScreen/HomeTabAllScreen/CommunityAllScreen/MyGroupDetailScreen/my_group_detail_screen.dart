@@ -18,16 +18,56 @@ class MyGroupDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final c = Get.find<MyCommunityDetailController>();
+    final controller = Get.find<MyCommunityDetailController>();
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
-      appBar: GlobalAppBar(title: ConstString.groupDetails,),
+      appBar: GlobalAppBar(
+        title: ConstString.groupDetails,
+        actions: [
+          PopupMenuButton<int>(
+            icon: const Icon(Icons.more_vert, color: ConstColor.black),
+            offset: const Offset(-10, 40),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.r),
+            ),
+            color: Colors.white,
+            onSelected: (value) {
+              if (value == 1) {
+                controller.onEditGroup();
+              } else if (value == 2) {
+                controller.onDeleteGroup();
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 1,
+                child: CustomText(
+                  title: 'Edit Community',
+                  textColor: ConstColor.black,
+                  textSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const PopupMenuDivider(height: 1),
+              PopupMenuItem(
+                value: 2,
+                child: CustomText(
+                  title: 'Delete community',
+                  textColor: ConstColor.black,
+                  textSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
             Stack(
               children: [
                 AppImage(
@@ -113,7 +153,7 @@ class MyGroupDetailScreen extends StatelessWidget {
                   SizedBox(height: 8.h),
                   CustomText(
                     title:
-                    'We are a collective of high- performance movers who treat the concrete as our playground. Pushing urban endurance limits through collaborative training, competitive heat, and shared grit.',
+                        'We are a collective of high- performance movers who treat the concrete as our playground. Pushing urban endurance limits through collaborative training, competitive heat, and shared grit.',
                     textColor: ConstColor.grey,
                     textSize: 15.sp,
                     maxLine: 6,
@@ -204,11 +244,13 @@ class MyGroupDetailScreen extends StatelessWidget {
           4.h + MediaQuery.of(context).padding.bottom,
         ),
         child: CustomElevatedButton(
-          onPressed: (){Get.toNamed(AppRoutes.inviteFriendsListScreen);},
+          onPressed: () {
+            Get.toNamed(AppRoutes.inviteFriendsListScreen);
+          },
           height: 50,
           top: 0,
           buttonBorderRadius: 30,
-          gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
+          gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
           child: CustomText(
             title: ConstString.inviteFriends,
             textColor: Colors.white,
@@ -221,6 +263,7 @@ class MyGroupDetailScreen extends StatelessWidget {
     );
   }
 }
+
 class _TagBadge extends StatelessWidget {
   final String label;
 
@@ -244,6 +287,7 @@ class _TagBadge extends StatelessWidget {
     );
   }
 }
+
 class _CompetitionListItem extends StatelessWidget {
   final CompetitionItem item;
 
@@ -252,7 +296,9 @@ class _CompetitionListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){Get.toNamed(AppRoutes.viewCompetitionScreen);},
+      onTap: () {
+        Get.toNamed(AppRoutes.viewCompetitionScreen);
+      },
       child: Container(
         margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 10.h),
         padding: EdgeInsets.all(14.r),
@@ -322,6 +368,7 @@ class _CompetitionListItem extends StatelessWidget {
     );
   }
 }
+
 class _StatBox extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
@@ -366,6 +413,7 @@ class _StatBox extends StatelessWidget {
     );
   }
 }
+
 class _Card extends StatelessWidget {
   final Widget child;
 
