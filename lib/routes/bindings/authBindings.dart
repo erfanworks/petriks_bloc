@@ -7,6 +7,8 @@ import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/Communit
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCommunityScreen/Controller/create_community_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateGroup/Controller/create_group_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/Controller/my_community_detail_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyGroupDetailScreen/Controller/edit_group_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyGroupDetailScreen/edit_group_screen.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Controller/plan_details_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/HostProfileScreen/Controller/host_profile_controller.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/MessageTabAllScreen/ChatScreen/Controller/chat_controller.dart';
@@ -103,6 +105,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => AdController());
     Get.lazyPut(() => CurrentMoodController());
     Get.lazyPut(() => WeeklyAvailabilityController());
+    Get.lazyPut(() => MyGroupController());
 
 
   }

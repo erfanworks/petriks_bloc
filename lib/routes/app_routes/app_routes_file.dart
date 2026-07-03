@@ -24,6 +24,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/GroupDetail
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/GroupDetailScreen/join_group_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/edit_community_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/my_community_detail_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyGroupDetailScreen/edit_group_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyGroupDetailScreen/my_group_detail_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/add_match_result_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/final_score_screen.dart';
@@ -124,6 +125,7 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.joinGroupScreen,page: () => JoinGroupScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.myCommunityDetailScreen,page: () => MyCommunityDetailScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.editCommunityScreen,page: () => EditCommunityScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.editGroupScreen,page: () => EditGroupScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.myGroupDetailScreen,page: () => MyGroupDetailScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.createCommunityScreen,page: () => CreateCommunityScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.createGroupScreen,page: () => CreateGroupScreen(),binding: AppBindings()),

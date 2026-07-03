@@ -232,15 +232,7 @@ class MyCommunityDetailController extends GetxController {
     AppSnackBar.success("Competition deleted successfully.");
   }
 
-  // Edit Group
-  void onEditGroup() {
-    // Get.toNamed(AppRoutes.editCommunityScreen);
-  }
 
-  void onDeleteGroup() {
-    Get.back();
-    // AppSnackBar.success("Competition deleted successfully.");
-  }
 
   void confirmJoinGroup() {
     Get.back();

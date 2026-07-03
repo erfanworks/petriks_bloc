@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/Controller/my_community_detail_controller.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyGroupDetailScreen/Controller/edit_group_controller.dart';
 import 'package:petriks_flutter_app/widget/GlobalAppBar/global_app_bar.dart';
-
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
@@ -18,7 +16,7 @@ class MyGroupDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<MyCommunityDetailController>();
+    final controller = Get.find<MyGroupController>();
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
@@ -216,6 +214,7 @@ class MyGroupDetailScreen extends StatelessWidget {
               ),
             ),
 
+            SizedBox(height: 50.h),
             // SizedBox(height: 20.h),
             //
             // // ---- Competitions ----
@@ -232,7 +231,7 @@ class MyGroupDetailScreen extends StatelessWidget {
             // SizedBox(height: 10.h),
             // ...c.competitions.map((comp) => _CompetitionListItem(item: comp)),
             //
-            // SizedBox(height: 100.h),
+
           ],
         ),
       ),
