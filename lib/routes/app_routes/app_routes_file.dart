@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/plan_details_screen.dart';
+import 'package:petriks_flutter_app/screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/CurrentMoodScreen/current_mood_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/LoginScreen/login_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneLoginScreen/phone_login_screen.dart';
 import '../../screens/BaseScreen/AuthAllScreen/PhoneNumberVerifyOtpScreen/phone_number_verify_otp_screen.dart';
@@ -66,6 +67,7 @@ import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SettingsS
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TermsConditionScreen/terms_condition_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TravelTimeScreen/travel_time_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/VibeSocialEnergyScreen/vibe_social_energy_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/WeeklyAvailabilityScreen/weekly_availability_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SubscriptionScreen/subscription_screen.dart';
 import '../bindings/authBindings.dart';
 import 'app_routes.dart';
@@ -170,5 +172,8 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.inviteFriendsListScreen,page: () => InviteFriendsListScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.connectionScreen,page: () => ConnectionScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.notificationScreen,page: () => NotificationScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.currentMoodScreen,page: () => CurrentMoodScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.weeklyAvailabilityScreen,page: () => WeeklyAvailabilityScreen(),binding: AppBindings()),
+
 
 ];

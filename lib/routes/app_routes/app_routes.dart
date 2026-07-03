@@ -95,6 +95,8 @@ class AppRoutes {
   static const inviteFriendsListScreen = '/inviteFriendsListScreen';
   static const connectionScreen = '/connectionScreen';
   static const notificationScreen = '/notificationScreen';
+  static const String currentMoodScreen        = '/current-mood';
+  static const String weeklyAvailabilityScreen = '/weekly-availability';
 
 
 }
