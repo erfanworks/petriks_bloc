@@ -22,7 +22,51 @@ class MyCommunityDetailScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
-      appBar: GlobalAppBar(title: ConstString.community),
+      appBar: GlobalAppBar(
+        title: ConstString.communityDetails,
+        actions: [
+          controller.isOwner.value
+              ? PopupMenuButton<int>(
+                  icon: const Icon(Icons.more_vert, color: ConstColor.black),
+                  offset: const Offset(-10, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.r),
+                  ),
+                  color: Colors.white,
+                  onSelected: (value) {
+                    if (value == 1) {
+                      controller.onEditCommunity();
+                    } else if (value == 2) {
+                      controller.onDeleteCommunity();
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 1,
+                      child: CustomText(
+                        title: 'Edit Community',
+                        textColor: ConstColor.black,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const PopupMenuDivider(
+                      height: 1,
+                    ),
+                    PopupMenuItem(
+                      value: 2,
+                      child: CustomText(
+                        title: 'Delete community',
+                        textColor: ConstColor.black,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                )
+              : const SizedBox.shrink(),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,19 +140,13 @@ class MyCommunityDetailScreen extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: _StatCard(
-                      title: "Active Group",
-                      count: "05",
-                    ),
+                    child: _StatCard(title: "Active Group", count: "05"),
                   ),
 
                   SizedBox(width: 12.w),
 
                   Expanded(
-                    child: _StatCard(
-                      title: "Live Competitions",
-                      count: "04",
-                    ),
+                    child: _StatCard(title: "Live Competitions", count: "04"),
                   ),
                 ],
               ),
@@ -131,7 +169,7 @@ class MyCommunityDetailScreen extends StatelessWidget {
                   SizedBox(height: 8.h),
                   CustomText(
                     title:
-                    'We are a collective of high- performance movers who treat the concrete as our playground. Pushing urban endurance limits through collaborative training, competitive heat, and shared grit.',
+                        'We are a collective of high- performance movers who treat the concrete as our playground. Pushing urban endurance limits through collaborative training, competitive heat, and shared grit.',
                     textColor: ConstColor.textColor,
                     textSize: 16.sp,
                     maxLine: 6,
@@ -158,7 +196,9 @@ class MyCommunityDetailScreen extends StatelessWidget {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-              itemCount: controller.isOwner.value ? controller.groups.length : 1,
+              itemCount: controller.isOwner.value
+                  ? controller.groups.length
+                  : 1,
               separatorBuilder: (_, __) => SizedBox(height: 12.h),
               itemBuilder: (context, i) {
                 final GroupItem currentItem = controller.groups[i];
@@ -197,65 +237,78 @@ class MyCommunityDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10.h),
-            Obx(() => Column(
-              children: controller.competitions.map((comp) =>
-                  _CompetitionListItem(item: comp, isOwner: controller.isOwner.value)
-              ).toList(),
-            )),
+            Obx(
+              () => Column(
+                children: controller.competitions
+                    .map(
+                      (comp) => _CompetitionListItem(
+                        item: comp,
+                        isOwner: controller.isOwner.value,
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
 
             SizedBox(height: 50.h),
           ],
         ),
       ),
-      bottomNavigationBar: Obx(() => controller.isOwner.value ? Padding(
-        padding: EdgeInsets.fromLTRB(
-          16.w,
-          0,
-          16.w,
-          4.h + MediaQuery.of(context).padding.bottom,
-        ),
-        child: Column(
-          // ─── ERROR FIXED: This prevents the Column from taking the full screen height ───
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CustomElevatedButton(
-              onPressed: controller.toCreateGroup,
-              height: 48,
-              top: 0,
-              buttonBorderRadius: 30,
-              gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
-              child: CustomText(
-                title: ConstString.createGroup,
-                textColor: Colors.white,
-                textSize: 15.sp,
-                fontWeight: FontWeight.w600,
-                maxLine: 1,
-              ),
-            ),
-            SizedBox(height: 6.h),
-            CustomElevatedButton(
-              onPressed: controller.toCreateCompetition,
-              height: 48,
-              elevation: 0,
-              isOutLined: true,
-              outLineColour: ConstColor.primaryColor,
-              top: 0,
-              buttonBorderRadius: 30,
-              child: CustomText(
-                title: ConstString.createCompetition,
-                textColor: ConstColor.primaryColor,
-                textSize: 15.sp,
-                fontWeight: FontWeight.w600,
-                maxLine: 1,
-              ),
-            ),
-          ],
-        ),
-      ) : const SizedBox.shrink()
-    ));
+      bottomNavigationBar: Obx(
+        () => controller.isOwner.value
+            ? Padding(
+                padding: EdgeInsets.fromLTRB(
+                  16.w,
+                  0,
+                  16.w,
+                  4.h + MediaQuery.of(context).padding.bottom,
+                ),
+                child: Column(
+                  // ─── ERROR FIXED: This prevents the Column from taking the full screen height ───
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CustomElevatedButton(
+                      onPressed: controller.toCreateGroup,
+                      height: 48,
+                      top: 0,
+                      buttonBorderRadius: 30,
+                      gradient: [
+                        ConstColor.primaryDeepColor,
+                        ConstColor.primaryColor,
+                      ],
+                      child: CustomText(
+                        title: ConstString.createGroup,
+                        textColor: Colors.white,
+                        textSize: 15.sp,
+                        fontWeight: FontWeight.w600,
+                        maxLine: 1,
+                      ),
+                    ),
+                    SizedBox(height: 6.h),
+                    CustomElevatedButton(
+                      onPressed: controller.toCreateCompetition,
+                      height: 48,
+                      elevation: 0,
+                      isOutLined: true,
+                      outLineColour: ConstColor.primaryColor,
+                      top: 0,
+                      buttonBorderRadius: 30,
+                      child: CustomText(
+                        title: ConstString.createCompetition,
+                        textColor: ConstColor.primaryColor,
+                        textSize: 15.sp,
+                        fontWeight: FontWeight.w600,
+                        maxLine: 1,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : const SizedBox.shrink(),
+      ),
+    );
   }
 }
-
 
 class _StatCard extends StatelessWidget {
   final String title;
@@ -301,8 +354,6 @@ class _StatCard extends StatelessWidget {
     );
   }
 }
-
-
 
 class _Card extends StatelessWidget {
   final Widget child;
@@ -362,7 +413,7 @@ class _ProgressTable extends StatelessWidget {
                   ),
                 ),
                 ...['M', 'W', 'D', 'L'].map(
-                      (h) => SizedBox(
+                  (h) => SizedBox(
                     width: 28.w,
                     child: CustomText(
                       title: h,
@@ -443,7 +494,7 @@ class _ProgressRow extends StatelessWidget {
             ),
           ),
           ...[team.matches, team.wins, team.draws, team.losses].map(
-                (v) => SizedBox(
+            (v) => SizedBox(
               width: 28.w,
               child: CustomText(
                 title: '$v',
@@ -487,11 +538,12 @@ class _LegendDot extends StatelessWidget {
     );
   }
 }
+
 class _CompetitionListItem extends StatelessWidget {
   final CompetitionItem item;
   final bool isOwner;
 
-  const _CompetitionListItem({required this.item,required this.isOwner,});
+  const _CompetitionListItem({required this.item, required this.isOwner});
 
   @override
   Widget build(BuildContext context) {
@@ -569,6 +621,3 @@ class _CompetitionListItem extends StatelessWidget {
     );
   }
 }
-
-
-

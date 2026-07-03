@@ -210,6 +210,7 @@ class ConstString {
   static const communityIndicators = 'Community Indicators';
   static const plans = 'Plans';
   static const community = 'Community';
+  static const communityDetails = 'Community Details';
   static const introVideo = 'INTRO VIDEO';
   static const report = 'Report';
   static const reportUser = 'Report User';
