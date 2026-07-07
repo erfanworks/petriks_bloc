@@ -235,14 +235,20 @@ class PlanDetailsController extends GetxController {
 
   void selectTime(int index) => selectedTimeIndex.value = index;
 
-  void submitReport() => Get.back();
+  void submitReport() {
+    Get.back();
+    AppSnackBar.success("Report submitted successfully! ✅");
+  }
 
   void blockUser() {
     Get.back();
     AppSnackBar.success("User blocked successfully 🚫");
   }
 
-  void submitSupport() => Get.back();
+  void submitSupport() {
+    Get.back();
+    AppSnackBar.success("Support request sent successfully! ✅");
+  }
 
   @override
   void onClose() {

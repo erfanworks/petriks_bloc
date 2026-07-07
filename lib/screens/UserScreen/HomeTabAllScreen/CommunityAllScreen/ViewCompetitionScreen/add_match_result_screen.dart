@@ -96,8 +96,8 @@ class AddMatchResultScreen extends StatelessWidget {
               child: TextField(
                 maxLines: 8,
                 style: TextStyle(
-                  fontSize: 10.sp,
-                  color: ConstColor.silverGray20,
+                  fontSize: 14.sp,
+                  color: ConstColor.textColor,
                   fontWeight: FontWeight.w400,
                 ),
                 decoration: InputDecoration(

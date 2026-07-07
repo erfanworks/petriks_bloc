@@ -228,13 +228,22 @@ class OneToOneMeetupDetailsController extends GetxController {
     reason.isSelected.value = true;
   }
 
-  void submitReport() => Get.back();
+  void submitReport() {
+    Get.back();
+    AppSnackBar.success("Report submitted successfully! ✅");
+  }
 
   // Block
-  void blockUser() => Get.back();
+  void blockUser() {
+    Get.back();
+    AppSnackBar.success("User blocked successfully 🚫");
+  }
 
   // Support
-  void submitSupport() => Get.back();
+  void submitSupport() {
+    Get.back();
+    AppSnackBar.success("Support request sent successfully! ✅");
+  }
 
 
 

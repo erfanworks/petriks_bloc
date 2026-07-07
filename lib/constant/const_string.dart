@@ -632,6 +632,7 @@ class ConstString {
   static const String manageVibe           = 'Manage Vibe';
   static const String done                 = 'Done';
   static const String editGroup   = 'Edit Group';
+  static const String deleteGroup   = 'Delete Group';
   static String peopleMayVoteForPlaceDesc(int count) => 'You selected $count places. Guests will be able to vote on their preferred location.';
   
 }

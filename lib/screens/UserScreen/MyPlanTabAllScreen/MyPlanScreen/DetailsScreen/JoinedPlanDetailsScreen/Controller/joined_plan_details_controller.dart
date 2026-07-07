@@ -228,9 +228,15 @@ class JoinedPlanDetailsController extends GetxController {
     });
   }
 
-  void blockUser() => Get.back();
+  void blockUser() {
+    Get.back();
+    AppSnackBar.success("User blocked successfully 🚫");
+  }
 
-  void submitSupport() => Get.back();
+  void submitSupport() {
+    Get.back();
+    AppSnackBar.success("Support request sent successfully! ✅");
+  }
 
   @override
   void onClose() {

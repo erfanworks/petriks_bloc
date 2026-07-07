@@ -41,7 +41,7 @@ class MyGroupDetailScreen extends StatelessWidget {
               PopupMenuItem(
                 value: 1,
                 child: CustomText(
-                  title: 'Edit Community',
+                  title: ConstString.editGroup,
                   textColor: ConstColor.black,
                   textSize: 14.sp,
                   fontWeight: FontWeight.w600,
@@ -51,7 +51,7 @@ class MyGroupDetailScreen extends StatelessWidget {
               PopupMenuItem(
                 value: 2,
                 child: CustomText(
-                  title: 'Delete community',
+                  title: ConstString.deleteGroup,
                   textColor: ConstColor.black,
                   textSize: 14.sp,
                   fontWeight: FontWeight.w600,

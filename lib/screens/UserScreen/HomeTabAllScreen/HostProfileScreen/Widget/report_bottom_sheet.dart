@@ -365,6 +365,7 @@ class _SuccessView extends StatelessWidget {
               maxLine: 1,
             ),
           ),
+          SizedBox(height: 20.h,)
         ],
       ),
     );
