@@ -143,6 +143,7 @@ class CreateCompetitionController extends GetxController {
   final titleController = TextEditingController(text: 'Football Match');
   final RxString competitionTitle = 'Football Match'.obs;
   final notesController = TextEditingController();
+  final capacityController = TextEditingController();
   final RxString selectedDate = 'Saturday, Nov 24'.obs;
   final RxString selectedTime = '07:00 PM'.obs;
   final descriptionController = TextEditingController();
@@ -294,6 +295,7 @@ class CreateCompetitionController extends GetxController {
   void onClose() {
     titleController.dispose();
     notesController.dispose();
+    capacityController.dispose();
     descriptionController.dispose();
     customMatchLocationNameController.dispose();
     customMatchLocationAddressController.dispose();

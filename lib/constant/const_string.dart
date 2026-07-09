@@ -267,6 +267,7 @@ class ConstString {
       'Select the activity for this competition.';
   static const setMatchDetails = 'Set match details';
   static const competitionTitle = 'Competition Title';
+  static const playerCapacity = 'Player Capacity';
   static const matchDate = 'Match Date';
   static const selectTime = 'Select Time';
   static const notes = 'Notes';

@@ -319,6 +319,50 @@ class SetMatchDetailsScreen extends StatelessWidget {
 
             SizedBox(height: 16.h),
 
+            // ---- Player Capacity ----
+            CustomText(
+              title: ConstString.playerCapacity,
+              textColor: ConstColor.black,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w500,
+              maxLine: 1,
+            ),
+            SizedBox(height: 8.h),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12.r),
+                border: Border.all(color: ConstColor.borderColor),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.group_outlined,
+                      color: ConstColor.primaryColor, size: 20.sp),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: TextField(
+                      controller: c.capacityController,
+                      keyboardType: TextInputType.number,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: ConstColor.black,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        isDense: true,
+                        hintText: '5',
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 16.h),
+
             CustomText(
               title: ConstString.notes,
               textColor: ConstColor.black,
