@@ -188,6 +188,7 @@ class ConstString {
   static const verifyUserOnly =
       'Verified users only. Please respect community guidelines and stay within public areas.';
   static const helpAndSafety = "Help & Safety";
+  static const helpAndAttendance= "Help & Attendance";
   static const host = "Host";
   static const howAreYouFeeling = 'How are you feeling?';
   static const whoToMeet = 'Who would you like to meet?';

@@ -31,6 +31,9 @@ class SettingsScreen extends StatelessWidget {
             _Label(ConstString.preferences),
             _PrefsCard(c: c),
             SizedBox(height: 8.h),
+            _Label(ConstString.helpAndSafety),
+            _HelpCard(c: c),
+            SizedBox(height: 8.h),
             _Label(ConstString.blockedUser),
             _BlockCard(c: c),
             SizedBox(height: 8.h),
@@ -246,6 +249,23 @@ class _PrefsCard extends StatelessWidget {
   }
 }
 
+class _HelpCard extends StatelessWidget {
+  final SettingsController c;
+
+  const _HelpCard({required this.c});
+
+  @override
+  Widget build(BuildContext context) {
+    return _Card(
+      child: _Tile(
+        icon: Icons.help_outline_outlined,
+        title: ConstString.helpAndAttendance,
+        onTap: c.onHelpAndAttendanceTap,
+      ),
+    );
+  }
+}
+
 class _BlockCard extends StatelessWidget {
   final SettingsController c;
 
@@ -305,13 +325,13 @@ class _NotifCard extends StatelessWidget {
               ),
             ),
             Obx(
-                  () => Transform.scale(
+              () => Transform.scale(
                 scale: 0.8,
                 child: Switch(
                   value: c.pushNotificationsEnabled.value,
                   onChanged: c.onPushNotificationToggle,
-                    thumbColor: WidgetStateProperty.resolveWith((states) {
-                      if (states.contains(WidgetState.selected)) {
+                  thumbColor: WidgetStateProperty.resolveWith((states) {
+                    if (states.contains(WidgetState.selected)) {
                       return Colors.white;
                     }
                     return Colors.white;
