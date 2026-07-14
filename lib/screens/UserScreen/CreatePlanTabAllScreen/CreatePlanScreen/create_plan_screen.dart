@@ -1,10 +1,8 @@
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
 import '../../../../widget/AppImage/app_image.dart';
@@ -447,6 +445,15 @@ class _Step3Vibe extends StatelessWidget {
               items: c.languages,
               onChanged: (v) => c.selectedLanguage.value = v ?? '',
             ),
+          ),
+
+          SizedBox(height: 12.h),
+          CustomTextFormField(
+            borderRadius: 12,
+            backgroundColor: ConstColor.white,
+            fromTitle: ConstString.languageNotListed,
+            textController: c.customLanguageController,
+            hintText: const SizedBox.shrink(),
           ),
 
           SizedBox(height: 30.h),

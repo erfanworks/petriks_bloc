@@ -238,7 +238,7 @@ class _PostInputArea extends StatelessWidget {
           fontFamily: 'Roboto',
         ),
         decoration: InputDecoration(
-          hintText: ConstString.whatsOnYourMind,
+          hintText: ConstString.whatWouldYouLikeToShare,
           hintStyle: TextStyle(
             fontSize: 15.sp,
             color: ConstColor.grey,
@@ -314,7 +314,7 @@ class _BottomActions extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: ConstColor.white,
-        border: Border(top: BorderSide(color: ConstColor.borderColor)),
+        border: Border(top: BorderSide(color: ConstColor.primaryColor)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,

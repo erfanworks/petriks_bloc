@@ -192,7 +192,7 @@ class ConstString {
   static const host = "Host";
   static const howAreYouFeeling = 'How are you feeling?';
   static const whoToMeet = 'Who would you like to meet?';
-  static const whatsOnYourMind = "What's on your mind?";
+  static const whatWouldYouLikeToShare = "What would you like to share?";
   static const photo = 'Photo';
   static const tagFriends = 'Tag Friends';
   static const feeling = 'Feeling';
@@ -635,6 +635,7 @@ class ConstString {
   static const String done                 = 'Done';
   static const String editGroup   = 'Edit Group';
   static const String deleteGroup   = 'Delete Group';
+  static const String otherAddLanguageManually = 'Other / Add language manually';
   static String peopleMayVoteForPlaceDesc(int count) => 'You selected $count places. Guests will be able to vote on their preferred location.';
   
 }

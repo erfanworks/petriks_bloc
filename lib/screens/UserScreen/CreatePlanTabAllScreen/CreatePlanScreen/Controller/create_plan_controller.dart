@@ -72,9 +72,12 @@ class CreatePlanController extends GetxController {
     'Hindi',
     'Arabic',
     'Portuguese',
-    'Italian',];
+    'Italian',
+    ConstString.otherAddLanguageManually,
+  ];
 
   final planTitleController = TextEditingController(text: 'Coffee Time');
+  final customLanguageController = TextEditingController();
   final selectedDate        = 'Saturday, Nov 24'.obs;
   final selectedTime1       = '07:00 PM'.obs;
   final selectedLocation    = (-1).obs;
@@ -200,12 +203,16 @@ class CreatePlanController extends GetxController {
     if (selectedPlanType.value == 'Group Plan') {
       if (currentStep.value == 1) return selectedActivity.value.isNotEmpty;
       if (currentStep.value == 2) {
+        bool isLanguageValid = (selectedLanguage.value.isNotEmpty &&
+                selectedLanguage.value != ConstString.otherAddLanguageManually) ||
+            customLanguageController.text.trim().isNotEmpty;
+
         return selectedVibe.value.isNotEmpty &&
             selectedGroupSize.value.isNotEmpty &&
             selectedBudget.value.isNotEmpty &&
             selectedGender.value.isNotEmpty &&
             selectedAgeBand.value.isNotEmpty &&
-            selectedLanguage.value.isNotEmpty;
+            isLanguageValid;
       }
       if (currentStep.value == 3) {
         return planTitleController.text.isNotEmpty &&
@@ -214,12 +221,16 @@ class CreatePlanController extends GetxController {
     } else {
       // Easy Start
       if (currentStep.value == 1) {
+        bool isLanguageValid = (selectedLanguage.value.isNotEmpty &&
+                selectedLanguage.value != ConstString.otherAddLanguageManually) ||
+            customLanguageController.text.trim().isNotEmpty;
+
         return selectedVibe.value.isNotEmpty &&
             // selectedGroupSize.value.isNotEmpty &&
             selectedBudget.value.isNotEmpty &&
             selectedGender.value.isNotEmpty &&
             selectedAgeBand.value.isNotEmpty &&
-            selectedLanguage.value.isNotEmpty;
+            isLanguageValid;
       }
       if (currentStep.value == 2) {
         return planTitleController.text.isNotEmpty &&
@@ -242,6 +253,8 @@ class CreatePlanController extends GetxController {
       selectedPlanType.value = '';
       selectedActivity.value = '';
       selectedVibe.value = '';
+      selectedLanguage.value = '';
+      customLanguageController.clear();
       selectedLocation.value = -1;
 
     } else {
@@ -255,13 +268,17 @@ class CreatePlanController extends GetxController {
     selectedLocationNames.clear();
     customLocationNameController.addListener(_bumpCustomLocationTick);
     customLocationAddressController.addListener(_bumpCustomLocationTick);
+    customLanguageController.addListener(_updateStepValidity);
   }
+
+  void _updateStepValidity() => currentStep.refresh();
 
   void _bumpCustomLocationTick() => customLocationFormTick.value++;
 
   @override
   void onClose() {
     // planTitleController.dispose();
+    customLanguageController.dispose();
     super.onClose();
   }
 }

@@ -70,7 +70,7 @@ class FeedScreen extends StatelessWidget {
                                 Get.toNamed(AppRoutes.createPostScreen);},
                               readOnly: true,
                               decoration: InputDecoration(
-                                hintText: ConstString.whatsOnYourMind,
+                                hintText: ConstString.whatWouldYouLikeToShare,
                                 hintStyle: TextStyle(
                                   color: ConstColor.grey,
                                   fontSize: 14.sp,
