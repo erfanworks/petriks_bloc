@@ -257,8 +257,10 @@ class ConstString {
   static const coverPhotoHint =
       'Recommended: 1600 × 900px. High-quality \nvisuals attract more members.';
   static const setTheInterest = 'Set the Interest';
+  static const chooseInterest = 'Choose an Interest';
   static const setInterestSubtitle =
       'How would you describe the atmosphere of your community? This helps like-minded people find you.';
+  static const whatIsYourCommunity = 'What is your community interested in? Choose an option to help like-minded people find you.';
   static const createCompetitions = 'Create Competitions';
   static const chooseGroups = 'Choose groups';
   static const selectTwoGroups = 'Select two groups from your community';

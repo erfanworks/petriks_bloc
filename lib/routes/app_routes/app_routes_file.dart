@@ -42,7 +42,6 @@ import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/HowDidItGoScre
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/plan_map_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/HomeScreen/home_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/HostProfileScreen/host_profile_screen.dart';
-import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/GroupDetailScreen/meetup_group_details_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/one_to_one_meetup_details_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupScreen/one_to_one_meetup_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/VibeAllScreen/VibeScreen/vibe_screen.dart';

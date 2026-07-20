@@ -569,8 +569,8 @@ class _Step3Interests extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _StepHeader(
-          title: ConstString.setTheInterest,
-          subtitle: ConstString.setInterestSubtitle,
+          title: ConstString.chooseInterest,
+          subtitle: ConstString.whatIsYourCommunity,
         ),
         SizedBox(height: 16.h),
         Obx(
