@@ -259,7 +259,7 @@ class _HelpCard extends StatelessWidget {
     return _Card(
       child: _Tile(
         icon: Icons.help_outline_outlined,
-        title: ConstString.helpAndAttendance,
+        title: ConstString.supportContact,
         onTap: c.onHelpAndAttendanceTap,
       ),
     );

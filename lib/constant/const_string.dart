@@ -191,6 +191,7 @@ class ConstString {
       'Verified users only. Please respect community guidelines and stay within public areas.';
   static const helpAndSafety = "Help & Safety";
   static const helpAndAttendance= "Help & Attendance";
+  static const supportContact= "Support / Contact Help";
   static const host = "Host";
   static const howAreYouFeeling = 'How are you feeling?';
   static const whoToMeet = 'Who would you like to meet?';
