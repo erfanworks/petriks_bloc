@@ -304,6 +304,7 @@ class ConstString {
   static const teamsRoster = 'Teams Roster';
   static const yourTeam = 'Your Team';
   static const registerNow = 'Register Now';
+  static const registerForCompetition = 'Register for competition';
   static const markAsCompleted = 'Mark as completed';
   static const editCompetition = 'Edit competition';
   static const addMatchResult = 'Add Match Result';

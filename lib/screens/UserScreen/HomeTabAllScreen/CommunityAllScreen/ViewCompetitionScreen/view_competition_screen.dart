@@ -146,7 +146,7 @@ class ViewCompetitionScreen extends StatelessWidget {
                   buttonBorderRadius: 30,
                   gradient: const [ConstColor.primaryDeepColor,ConstColor.primaryColor],
                   child: CustomText(
-                    title: ConstString.registerNow,
+                    title: ConstString.registerForCompetition,
                     textColor: Colors.white,
                     textSize: 15.sp,
                     fontWeight: FontWeight.w600,

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
+import '../../../../../../constant/const_color.dart';
+import '../../../../../../widget/AppDialog/app_dialog.dart';
 
 ////// Models
 class RosterGroup {
@@ -59,11 +63,58 @@ class ViewCompetitionController extends GetxController {
     ),
   ];
 
-  ///// Actions
+
   void onRegister() {
     final teamName = rosterGroups[0].name;
-    Get.toNamed(AppRoutes.navBar);
-    AppSnackBar.success("You've successfully registered with $teamName for this competition! 🎉", seconds: 3);
+
+    AppDialog.show(
+      icon: Icons.assignment_ind_outlined,
+      iconBackgroundColor: ConstColor.primaryColor.withAlpha(30),
+      iconColor: ConstColor.primaryColor,
+      title: 'Register Confirmation',
+      titleColor: const Color(0xFF2E7D32),
+      content: RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          style: TextStyle(
+            fontSize: 14.sp,
+            color: ConstColor.textColor,
+          ),
+          children: [
+            const TextSpan(text: 'You are about to register for this competition as a member of '),
+            TextSpan(
+              text: teamName,
+              style: const TextStyle(fontWeight: FontWeight.w700, color: ConstColor.black),
+            ),
+          ],
+        ),
+      ),
+      secondaryButtonText: ConstString.cancel,
+      onSecondaryTap: () => Get.back(),
+      primaryButtonText: ConstString.confirm,
+      onPrimaryTap: () {
+        Get.back();
+        _showRegisterSuccessDialog(teamName);
+      },
+    );
+  }
+
+  void _showRegisterSuccessDialog(String teamName) {
+    AppDialog.show(
+      icon: Icons.check,
+      iconBackgroundColor: const Color(0xFF22C55E),
+      iconColor: Colors.white,
+      title: 'Awesome!',
+      titleColor: ConstColor.grey,
+      message: "You're successfully registered",
+      primaryButtonText: 'Done',
+      onPrimaryTap: () {
+        Get.back();
+        backToHome();
+      },
+      autoDismissDuration: const Duration(seconds: 3),
+      onAutoDismiss: backToHome,
+    );
   }
 
   void onMarkCompleted() => Get.toNamed(AppRoutes.addMatchResultScreen);
