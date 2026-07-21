@@ -71,7 +71,7 @@ class SetMatchDetailsScreen extends StatelessWidget {
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: c.matchLocations.length,
-                  separatorBuilder: (_, __) => SizedBox(width: 12.w),
+                  separatorBuilder: (_, _) => SizedBox(width: 12.w),
                   itemBuilder: (context, i) {
                     final loc = c.matchLocations[i];
                     final String name = loc['name'] ?? '';
@@ -299,7 +299,7 @@ class SetMatchDetailsScreen extends StatelessWidget {
 
             // ---- Select Time ----
             CustomText(
-              title: ConstString.selectTime,
+              title: ConstString.matchStart,
               textColor: ConstColor.black,
               textSize: 15.sp,
               fontWeight: FontWeight.w500,
@@ -358,6 +358,36 @@ class SetMatchDetailsScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+
+            SizedBox(height: 16.h),
+
+// ---- Registration Deadline ----
+            CustomText(
+              title: ConstString.registrationDeadline,
+              textColor: ConstColor.black,
+              textSize: 15.sp,
+              fontWeight: FontWeight.w500,
+              maxLine: 1,
+            ),
+            SizedBox(height: 4.h),
+            CustomText(
+              title: ConstString.registrationDeadlineSubtitle,
+              textColor: ConstColor.iconColor,
+              textSize: 12.sp,
+              fontWeight: FontWeight.w400,
+              maxLine: 2,
+            ),
+            SizedBox(height: 8.h),
+            Obx(
+                  () => GestureDetector(
+                onTap: () => c.pickDate(context),
+                child: _DropdownField(
+                  icon: Icons.calendar_today_outlined,
+                  iconColor: ConstColor.primaryColor,
+                  value: c.selectedDate.value,
+                ),
               ),
             ),
 

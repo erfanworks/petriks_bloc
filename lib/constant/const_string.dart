@@ -279,6 +279,9 @@ class ConstString {
   static const playerCapacity = 'Player Capacity';
   static const matchDate = 'Match Date';
   static const selectTime = 'Select Time';
+  static const matchStart = 'Match Start Time';
+  static const registrationDeadline = 'Registration Deadline';
+  static const registrationDeadlineSubtitle = 'Choose a deadline at least 24 hours before the competition.';
   static const notes = 'Notes';
   static const finalReview = 'Final Review';
   static const finalReviewSubtitle =
