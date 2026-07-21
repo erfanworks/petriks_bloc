@@ -219,6 +219,8 @@ class ConstString {
   static const replace = "Replace";
   static const remove = "Remove";
   static const uploadAVideo = "Upload a Video";
+  static const uploadAImage = "Upload Image";
+  static const recommendedImageQuality = "Recommended: 1600 x 900px. High-quality visuals attract more members.";
   static const report = 'Report';
   static const reportUser = 'Report User';
   static const helpUsUnderstand = 'Help us understand the issue';
@@ -288,6 +290,7 @@ class ConstString {
       'Check all the details of your competition before going live. Everything looks ready for the pitch!';
   static const publishCompetition = 'Publish Competition';
   static const continueText = 'Continue';
+  static const saveAndContinue = 'Save and Continue';
   static const youReAllSet = "You're all set!";
   static const competitionScheduled =
       'Your competition has been successfully scheduled.';

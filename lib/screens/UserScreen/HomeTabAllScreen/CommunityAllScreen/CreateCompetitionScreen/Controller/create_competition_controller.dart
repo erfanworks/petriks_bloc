@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
 import '../../../../../../constant/const_color.dart';
+import '../../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
 import '../Widget/competition_success_sheet.dart';
 
 // ---- Models ----
@@ -147,6 +149,23 @@ class CreateCompetitionController extends GetxController {
   final RxString selectedDate = 'Saturday, Nov 24'.obs;
   final RxString selectedTime = '07:00 PM'.obs;
   final descriptionController = TextEditingController();
+  final uploadImage = ''.obs;
+
+
+  Future<void> _pickDescriptionImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final XFile? file = await picker.pickImage(source: source);
+    if (file != null) {
+      uploadImage.value = file.path;
+    }
+  }
+
+  void pickDescriptionPhoto() {
+    MediaPickerBottomSheet.show(
+      onGallery: () => _pickDescriptionImage(ImageSource.gallery),
+      onCamera: () => _pickDescriptionImage(ImageSource.camera),
+    );
+  }
 
   Future<void> pickDate(BuildContext context) async {
     final picked = await showDatePicker(

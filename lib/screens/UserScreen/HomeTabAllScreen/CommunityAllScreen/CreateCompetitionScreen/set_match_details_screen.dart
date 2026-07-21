@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -41,6 +45,112 @@ class SetMatchDetailsScreen extends StatelessWidget {
 
             SizedBox(height: 20.h),
 
+            CustomText(
+              title: ConstString.uploadAImage,
+              textSize: 16.sp,
+              fontWeight: FontWeight.w500,
+              textColor: ConstColor.black,
+              maxLine: 1,
+            ),
+            SizedBox(height: 8.h),
+
+            Obx(() {
+              final hasImage = c.uploadImage.value.isNotEmpty;
+
+              return GestureDetector(
+                onTap: hasImage ? null : c.pickDescriptionPhoto,
+                child: DottedBorder(
+                  options: RoundedRectDottedBorderOptions(
+                    color: ConstColor.primaryDeepColor,
+                    strokeWidth: 1,
+                    dashPattern: const <double>[10, 5],
+                    radius: Radius.circular(16.r),
+                    padding: EdgeInsets.zero,
+                  ),
+                  child: Container(
+                    width: double.infinity,
+                    height: 150.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(14.r),
+                    ),
+                    child: hasImage
+                        ? Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(14.r),
+                          child: Image.file(
+                            File(c.uploadImage.value),
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+
+                        Positioned(
+                          top: 8.h,
+                          right: 8.w,
+                          child: GestureDetector(
+                            onTap: c.pickDescriptionPhoto,
+                            child: Container(
+                              padding: EdgeInsets.all(6.r),
+                              decoration: const BoxDecoration(
+                                color: ConstColor.primaryColor,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                Icons.edit,
+                                color: Colors.white,
+                                size: 16.sp,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                        : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 50.r,
+                          height: 50.r,
+                          decoration: BoxDecoration(
+                            color: ConstColor.white,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withAlpha(20),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset(
+                              'assets/icons/camera_icon.svg',
+                              width: 18.r,
+                              height: 18.r,
+                              colorFilter: const ColorFilter.mode(
+                                ConstColor.primaryColor,
+                                BlendMode.srcIn,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10.h),
+                        CustomText(
+                          title: ConstString.recommendedImageQuality,
+                          textSize: 10.sp,
+                          textColor: ConstColor.iconColor,
+                          textAlign: TextAlign.center,
+                          maxLine: 3,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }),
+            SizedBox(height: 16.h),
             CustomText(
               title: ConstString.competitionTitle,
               textColor: ConstColor.black,
@@ -473,7 +583,7 @@ class SetMatchDetailsScreen extends StatelessWidget {
                     ConstColor.primaryColor.withAlpha(100)
                   ],
             child: CustomText(
-              title: ConstString.continueText,
+              title: ConstString.saveAndContinue,
               textColor: Colors.white,
               textSize: 15.sp,
               fontWeight: FontWeight.w600,
