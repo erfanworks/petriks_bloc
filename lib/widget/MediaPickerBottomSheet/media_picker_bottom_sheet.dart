@@ -8,6 +8,7 @@ class MediaPickerBottomSheet {
   static Future<void> show({
     required VoidCallback onGallery,
     required VoidCallback onCamera,
+    String title = "Select Image Source",
   }) async {
     await Get.bottomSheet(
       Builder(
@@ -37,7 +38,7 @@ class MediaPickerBottomSheet {
                   ),
                   SizedBox(height: 20.h),
                   CustomText(
-                    title: "Select Image Source",
+                    title: title,
                     textSize: 18.sp,
                     fontWeight: FontWeight.w600,
                   ),

@@ -19,6 +19,8 @@ class ConstString {
   static const appName   = 'GoodNiva';
   static const account = 'account';
   static const feedback = 'Feedback';
+  static const introVideoProfile = 'Intro Video';
+  static const tapAndHoldToReplace = 'Tap & hold to replace or delete video';
   static const enterEmailPassword = 'Enter your email and password to log in';
   static const chooseASignInMethod = 'Choose a sign-in method to continue.';
   static const continueWithGoogle = 'Continue with Google';
@@ -213,6 +215,9 @@ class ConstString {
   static const community = 'Community';
   static const communityDetails = 'Community Details';
   static const introVideo = 'INTRO VIDEO';
+  static const replace = "Replace";
+  static const remove = "Remove";
+  static const uploadAVideo = "Upload a Video";
   static const report = 'Report';
   static const reportUser = 'Report User';
   static const helpUsUnderstand = 'Help us understand the issue';

@@ -48,9 +48,9 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: 8.h),
             _BadgesSection(c: c),
             SizedBox(height: 8.h),
-            _WeeklyAvailabilitySection(c: c),  // ← new
+            _WeeklyAvailabilitySection(c: c),
             SizedBox(height: 8.h),
-            _CurrentMoodSection(c: c),          // ← new
+            _CurrentMoodSection(c: c),
             SizedBox(height: 8.h),
             _IndicatorsSection(c: c),
             SizedBox(height: 8.h),
@@ -212,6 +212,14 @@ class _TopCard extends StatelessWidget {
           ),
           SizedBox(height: 14.h),
           _PremiumBanner(c: c),
+          SizedBox(height: 22.h),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _SectionTitle(ConstString.introVideoProfile),
+              CustomText(title: ConstString.tapAndHoldToReplace,)
+            ],
+          ),
           SizedBox(height: 14.h),
           _IntroVideoCard(c: c),
         ],
@@ -334,54 +342,161 @@ class _IntroVideoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: c.onIntroVideoTap,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(14.r),
-        child: Stack(
-          children: [
-            AppImage(
-              path: 'assets/images/onboarding2_img.jpg',
+    return Obx(() {
+      final hasVideo = c.introVideoPath.value != null;
+      final showActions = c.isIntroVideoActionVisible.value;
+
+      // STATE 1: No video uploaded
+      if (!hasVideo) {
+        return GestureDetector(
+          onTap: c.onUploadIntroVideo,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(14.r),
+            child: Container(
               width: double.infinity,
               height: 190.h,
-              fit: BoxFit.cover,
-            ),
-            Container(
-              width: double.infinity,
-              height: 180.h,
-              color: Colors.black.withAlpha(80),
-            ),
-            Positioned.fill(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 50.w,
-                    height: 50.h,
-                    decoration: BoxDecoration(
-                      color: ConstColor.white.withAlpha(100),
-                      shape: BoxShape.circle,
-                      border: Border.all(color: ConstColor.white),
+              color: ConstColor.primaryColor.withAlpha(60),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.video_library_outlined,
+                      color: ConstColor.primaryColor,
+                      size: 32.sp,
                     ),
-                    child: Icon(
-                      Icons.play_arrow_rounded,
-                      color: ConstColor.white,
-                      size: 28.sp,
+                    SizedBox(height: 8.h),
+                    CustomText(
+                      title: ConstString.uploadAVideo,
+                      textSize: 13.sp,
+                      fontWeight: FontWeight.w700,
+                      textColor: ConstColor.primaryColor,
+                      maxLine: 1,
                     ),
-                  ),
-                  SizedBox(height: 8.h),
-                  CustomText(
-                    title: ConstString.introVideo,
-                    textSize: 12.sp,
-                    fontWeight: FontWeight.w700,
-                    textColor: ConstColor.white,
-                    maxLine: 1,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ],
+          ),
+        );
+      }
+
+      // STATE 2 & 3: Video exists
+      return GestureDetector(
+        onTap: showActions ? null : c.onIntroVideoTap,
+        onLongPress: c.onIntroVideoLongPress,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(14.r),
+          child: Stack(
+            children: [
+              AppImage(
+                path: 'assets/images/onboarding2_img.jpg',
+                width: double.infinity,
+                height: 190.h,
+                fit: BoxFit.cover,
+              ),
+              Container(
+                width: double.infinity,
+                height: 190.h,
+                color: Colors.black.withAlpha(showActions ? 130 : 80),
+              ),
+
+              // STATE 2: play button (hidden when actions visible)
+              if (!showActions)
+                Positioned.fill(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 50.w,
+                        height: 50.h,
+                        decoration: BoxDecoration(
+                          color: ConstColor.white.withAlpha(100),
+                          shape: BoxShape.circle,
+                          border: Border.all(color: ConstColor.white),
+                        ),
+                        child: Icon(
+                          Icons.play_arrow_rounded,
+                          color: ConstColor.white,
+                          size: 28.sp,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      CustomText(
+                        title: ConstString.introVideo,
+                        textSize: 12.sp,
+                        fontWeight: FontWeight.w700,
+                        textColor: ConstColor.white,
+                        maxLine: 1,
+                      ),
+                    ],
+                  ),
+                ),
+
+              // STATE 3: Replace / Delete actions
+              if (showActions)
+                Positioned.fill(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _VideoActionButton(
+                        icon: Icons.refresh,
+                        label: ConstString.replace,
+                        color: ConstColor.primaryColor,
+                        onTap: c.onReplaceIntroVideo,
+                      ),
+                      SizedBox(width: 24.w),
+                      _VideoActionButton(
+                        icon: Icons.delete,
+                        label: ConstString.replace,
+                        color: Colors.redAccent,
+                        onTap: c.onDeleteIntroVideo,
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
         ),
+      );
+    });
+  }
+}
+
+class _VideoActionButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _VideoActionButton({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 48.w,
+            height: 48.h,
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+            child: Icon(icon, color: ConstColor.white, size: 22.sp),
+          ),
+          SizedBox(height: 6.h),
+          CustomText(
+            title: label,
+            textSize: 12.sp,
+            fontWeight: FontWeight.w600,
+            textColor: ConstColor.white,
+          ),
+        ],
       ),
     );
   }

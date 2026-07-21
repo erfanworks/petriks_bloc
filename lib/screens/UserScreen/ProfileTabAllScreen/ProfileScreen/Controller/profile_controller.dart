@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+import '../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart'; // TODO: adjust to actual relative path
 
 class InterestModel {
   final String icon;
@@ -45,6 +47,11 @@ class ProfileController extends GetxController {
   final availabilitySubtitle = 'Perfect for after-work hangouts and dinners.';
   final moodEmoji = '🙏';
   final moodTitle = 'Do something calm';
+
+  // ===== ADDED: Intro Video state =====
+  final introVideoPath = Rx<String?>(null);
+  final isIntroVideoActionVisible = false.obs;
+  // =====================================
 
   final interests = <InterestModel>[
     const InterestModel(icon: 'assets/icons/cofee_cup_icon.svg',  label: 'Coffee & Brunch'),
@@ -95,4 +102,39 @@ class ProfileController extends GetxController {
     friends[index].isInvited.value = !friends[index].isInvited.value;
     Get.toNamed(AppRoutes.inviteFriendsScreen);
   }
+
+  // ===== ADDED: Intro Video methods =====
+  Future<void> _pickIntroVideo(ImageSource source) async {
+    final picker = ImagePicker();
+    final XFile? file = await picker.pickVideo(source: source);
+    if (file != null) {
+      introVideoPath.value = file.path;
+      isIntroVideoActionVisible.value = false;
+    }
+  }
+
+  void onUploadIntroVideo() {
+    MediaPickerBottomSheet.show(
+      title: "Select Video Source",
+      onGallery: () => _pickIntroVideo(ImageSource.gallery),
+      onCamera: () => _pickIntroVideo(ImageSource.camera),
+    );
+  }
+
+  void onIntroVideoLongPress() {
+    if (introVideoPath.value != null) {
+      isIntroVideoActionVisible.value = true;
+    }
+  }
+
+  void onReplaceIntroVideo() {
+    isIntroVideoActionVisible.value = false;
+    onUploadIntroVideo();
+  }
+
+  void onDeleteIntroVideo() {
+    introVideoPath.value = null;
+    isIntroVideoActionVisible.value = false;
+  }
+// ========================================
 }
