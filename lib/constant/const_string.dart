@@ -90,6 +90,7 @@ class ConstString {
   static const km = 'km';
   static const verifyYourId = 'Verify your ID (optional)';
   static const skip = 'Skip';
+  static const goTOCommunityChat = 'Go to Community Chat';
   static const couldTAttend = "Couldn't Attend";
   static const unlockFullAccess = 'Unlock full access and build more trust';
   static const whyVerify = 'Why verify?';

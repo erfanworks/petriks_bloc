@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../../constant/const_color.dart';
+import '../../../../../../widget/AppDialog/app_dialog.dart';
 import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
-import '../../GroupDetailScreen/Widget/join_success_sheet.dart';
 
 // ---- Models ----
 class GroupItem {
@@ -115,22 +118,50 @@ class CommunityDetailController extends GetxController {
   }
 
   void confirmJoinGroup(BuildContext context) {
-
     hasJoined.value = true;
 
     Get.find<NavbarController>().highlightMyPlan();
 
-    JoinedSuccessDialog.show(
-      context,
-      communityName: 'Urban Athletes',
-      onGoToChat: () {
-        Get.back(); // Close dialog first
-        Get.toNamed(AppRoutes.directChatScreen);
-      },
-      onBackToDiscovery: () {
-        Get.back(); // Close dialog first
-        Get.toNamed(AppRoutes.navBar);
-      },
+    AppDialog.show(
+      icon: Icons.check,
+      iconColor: ConstColor.primaryColor,
+      iconBackgroundColor: ConstColor.primaryColor.withAlpha(30),
+      title: "You're in! 🎉",
+      content: RichText(
+        textAlign: TextAlign.center,
+        text: TextSpan(
+          style: TextStyle(fontSize: 14.sp, color: ConstColor.textColor),
+          children: [
+            const TextSpan(text: 'Welcome to '),
+            const TextSpan(
+              text: 'Urban Athletes',
+              style: TextStyle(fontWeight: FontWeight.w700, color: ConstColor.primaryColor),
+            ),
+            const TextSpan(text: '. You can now participate in discussions and join upcoming plans.'),
+          ],
+        ),
+      ),
+      buttons: [
+        AppDialogButton(
+          label: ConstString.goTOCommunityChat,
+          icon: Icons.chat_bubble_outline_rounded,
+          gradient: const [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+          onTap: () {
+            Get.back();
+            Get.toNamed(AppRoutes.directChatScreen);
+          },
+        ),
+        AppDialogButton(
+          label: ConstString.backToDiscovery,
+          backgroundColor: Colors.white,
+          textColor: ConstColor.black,
+          isOutlined: true,
+          onTap: () {
+            Get.back();
+            Get.toNamed(AppRoutes.navBar);
+          },
+        ),
+      ],
     );
   }
 

@@ -11,7 +11,6 @@ import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../CommunityDetailScreen/Controller/community_detail_controller.dart';
-import 'Widget/join_success_sheet.dart';
 
 class JoinGroupScreen extends StatelessWidget {
   const JoinGroupScreen({super.key});
@@ -142,12 +141,6 @@ class JoinGroupScreen extends StatelessWidget {
           5.h + MediaQuery.of(context).padding.bottom,
         ),
         child: CustomElevatedButton(
-          // onPressed: () => JoinedSuccessDialog.show(
-          //   context,
-          //   communityName: 'Urban Athletes',
-          //   onGoToChat: () => Get.toNamed(AppRoutes.directChatScreen),
-          //   onBackToDiscovery: () => Get.toNamed(AppRoutes.navBar),
-          // ),
           onPressed: () => c.confirmJoinGroup(context),
           height: 48,
           top: 0,

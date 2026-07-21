@@ -5,6 +5,26 @@ import 'package:get/get.dart';
 import '../text/custom_text.dart';
 import '../../constant/const_color.dart';
 
+class AppDialogButton {
+  final String label;
+  final IconData? icon;
+  final VoidCallback onTap;
+  final Color backgroundColor;
+  final Color textColor;
+  final bool isOutlined;
+  final List<Color>? gradient;
+
+  const AppDialogButton({
+    required this.label,
+    required this.onTap,
+    this.icon,
+    this.backgroundColor = ConstColor.primaryColor,
+    this.textColor = Colors.white,
+    this.isOutlined = false,
+    this.gradient,
+  });
+}
+
 class AppDialog {
   static Future<T?> show<T>({
     IconData? icon,
@@ -16,14 +36,12 @@ class AppDialog {
     Color titleColor = ConstColor.black,
     double titleSize = 18,
 
-    // Either pass a plain message OR a fully custom content widget
     String? message,
     Color messageColor = ConstColor.textColor,
     double messageSize = 14,
     TextAlign messageAlign = TextAlign.center,
     Widget? content,
 
-    // Buttons — if secondaryButtonText is null, only ONE full-width button shows
     String? primaryButtonText,
     VoidCallback? onPrimaryTap,
     Color primaryButtonColor = ConstColor.primaryColor,
@@ -34,9 +52,10 @@ class AppDialog {
     Color secondaryButtonColor = const Color(0xFFE5E5EA),
     Color secondaryTextColor = ConstColor.black,
 
+    List<AppDialogButton>? buttons,
+
     bool barrierDismissible = true,
 
-    // Auto-dismiss support (used for success/toast-style dialogs)
     Duration? autoDismissDuration,
     VoidCallback? onAutoDismiss,
   }) {
@@ -99,7 +118,53 @@ class AppDialog {
                   maxLine: 4,
                 ),
 
-              if (primaryButtonText != null) ...[
+              if (buttons != null) ...[
+                SizedBox(height: 22.h),
+                Column(
+                  children: List.generate(buttons.length, (i) {
+                    final b = buttons[i];
+                    return Padding(
+                      padding: EdgeInsets.only(
+                        bottom: i == buttons.length - 1 ? 0 : 10.h,
+                      ),
+                      child: GestureDetector(
+                        onTap: b.onTap,
+                        child: Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(vertical: 14.h),
+                          decoration: BoxDecoration(
+                            color: b.gradient == null ? b.backgroundColor : null,
+                            gradient: b.gradient != null
+                                ? LinearGradient(colors: b.gradient!)
+                                : null,
+                            borderRadius: BorderRadius.circular(30.r),
+                            border: b.isOutlined
+                                ? Border.all(color: ConstColor.borderColor)
+                                : null,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomText(
+                                title: b.label,
+                                textSize: 15.sp,
+                                fontWeight: FontWeight.w600,
+                                textColor: b.textColor,
+                                maxLine: 1,
+                              ),
+                              if (b.icon != null) ...[
+                                SizedBox(width: 8.w),
+                                Icon(b.icon, size: 18.sp, color: b.textColor),
+                              ],
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ]
+              else if (primaryButtonText != null) ...[
                 SizedBox(height: 24.h),
                 Row(
                   children: [
