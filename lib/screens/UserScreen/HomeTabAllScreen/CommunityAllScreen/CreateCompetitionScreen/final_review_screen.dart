@@ -185,7 +185,7 @@ class FinalReviewScreen extends StatelessWidget {
             ConstColor.primaryColor,
           ],
           child: CustomText(
-            title: ConstString.continueText,
+            title: ConstString.publish,
             textColor: Colors.white,
             textSize: 15.sp,
             fontWeight: FontWeight.w600,

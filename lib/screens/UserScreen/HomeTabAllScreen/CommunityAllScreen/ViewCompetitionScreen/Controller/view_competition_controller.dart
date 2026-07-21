@@ -35,7 +35,6 @@ class ViewCompetitionController extends GetxController {
 
   ///// Notes
   final notesController = TextEditingController();
-  final selectedRosterIndex = RxnInt();
   final List<RosterGroup> rosterGroups = [
     const RosterGroup(
       image: 'assets/images/hank_out_party_img.jpg',
@@ -60,19 +59,11 @@ class ViewCompetitionController extends GetxController {
     ),
   ];
 
-  void onRosterSelect(int index) {
-    selectedRosterIndex.value = selectedRosterIndex.value == index ? null : index;
-  }
   ///// Actions
   void onRegister() {
-    if (selectedRosterIndex.value == null) {
-      AppSnackBar.message("Please select a team to register!");
-      return;
-    }
-    final teamName = rosterGroups[selectedRosterIndex.value!].name;
+    final teamName = rosterGroups[0].name;
     Get.toNamed(AppRoutes.navBar);
     AppSnackBar.success("You've successfully registered with $teamName for this competition! 🎉", seconds: 3);
-
   }
 
   void onMarkCompleted() => Get.toNamed(AppRoutes.addMatchResultScreen);

@@ -71,7 +71,7 @@ class ViewCompetitionScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: CustomText(
-                title: ConstString.teamsRoster,
+                title: ConstString.yourTeam,
                 textColor: ConstColor.black,
                 textSize: 16.sp,
                 fontWeight: FontWeight.w600,
@@ -81,17 +81,9 @@ class ViewCompetitionScreen extends StatelessWidget {
 
             SizedBox(height: 10.h),
 
-            Obx(() => Column(
-              children: Get.find<ViewCompetitionController>().rosterGroups
-                  .asMap()
-                  .entries
-                  .map((entry) => RosterCard(
-                group: entry.value,
-                isSelected: c.selectedRosterIndex.value == entry.key,
-                onTap: () => c.onRosterSelect(entry.key),
-              ))
-                  .toList(),
-            )),
+            RosterCard(
+              group: c.rosterGroups[0],
+            ),
             SizedBox(height: 100.h),
           ],
         ),

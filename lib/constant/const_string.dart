@@ -291,6 +291,7 @@ class ConstString {
   static const publishCompetition = 'Publish Competition';
   static const continueText = 'Continue';
   static const saveAndContinue = 'Save and Continue';
+  static const publish = 'Publish Competition';
   static const youReAllSet = "You're all set!";
   static const competitionScheduled =
       'Your competition has been successfully scheduled.';
@@ -301,6 +302,7 @@ class ConstString {
       "Your competition has been successfully scheduled.";
   static const eventLogistics = 'Event Logistics';
   static const teamsRoster = 'Teams Roster';
+  static const yourTeam = 'Your Team';
   static const registerNow = 'Register Now';
   static const markAsCompleted = 'Mark as completed';
   static const editCompetition = 'Edit competition';
