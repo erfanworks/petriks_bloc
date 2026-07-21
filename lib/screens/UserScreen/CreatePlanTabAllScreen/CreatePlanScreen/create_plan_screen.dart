@@ -561,7 +561,36 @@ class _Step4WhenWhere extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(height: 8.h),
+          SizedBox(height: 12.h),
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.all(12.w),
+            decoration: BoxDecoration(
+              color: ConstColor.primaryColor.withAlpha(25),
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.info_outline_rounded,
+                  color: ConstColor.primaryColor,
+                  size: 18.sp,
+                ),
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: CustomText(
+                    title: ConstString.itIsBestToSetTheVoting,
+                    textSize: 12.sp,
+                    fontWeight: FontWeight.w500,
+                    textColor: ConstColor.black,
+                    maxLine: 5,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 12.h),
 
           Obx(
                 () => _ToggleCard(

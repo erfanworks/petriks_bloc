@@ -267,6 +267,7 @@ class ConstString {
   static const setInterestSubtitle =
       'How would you describe the atmosphere of your community? This helps like-minded people find you.';
   static const whatIsYourCommunity = 'What is your community interested in? Choose an option to help like-minded people find you.';
+  static const itIsBestToSetTheVoting = 'It is best to set the voting deadline around 1 hour before the plan starts. This gives users enough time to see the winning option and prevents the navigate button from appearing too early or causing confusion.';
   static const createCompetitions = 'Create Competitions';
   static const chooseGroups = 'Choose groups';
   static const selectTwoGroups = 'Select two groups from your community';
