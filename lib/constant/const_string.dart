@@ -573,6 +573,16 @@ class ConstString {
   static const String yearlyPrice         = 'GBP £120';
   static const String freeFeature1  = 'Create Profile';
   static const String freeFeature2  = 'Verify Account';
+  static const congratulationsTo = 'Congratulations to';
+  static const winningTeamSuffix = 'Winning Team';
+  static const defaultLeagueName = 'SUMMER SPRINT LEAGUE';
+  static const howWasYourExperience = 'How was your\ncompetition experience?';
+  static const leaveAReview = 'Leave a review';
+  static const addYourThoughtsHint = 'Add your thoughts (optional)...';
+  static const submitAReview = 'Submit a review';
+  static const reviewGreatTitle = 'Great!';
+  static const reviewThankYouMessage = 'Thank you for your feedback';
+  static const doneLabel = 'Done';
   static const String freeFeature3  = 'Browse Feed (with Ads)';
   static const String freeFeature4  = 'Discover Plans';
   static const String freeFeature5  = 'Join Plans (Unlimited)';

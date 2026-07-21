@@ -24,6 +24,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/AddCardAndBanner/Controller/ad
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CommunityScreen/Controller/community_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/CreateCompetitionScreen/Controller/create_competition_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityScreen/Controller/my_community_controller.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/CompetitionExperienceScreen/Controller/competition_experience_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/Controller/view_competition_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/FeedAllScreen/FeedScreen/Controller/feed_controller.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/ForYouAllScreen/ForYouScreen/Controller/for_you_controller.dart';
@@ -106,6 +107,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => CurrentMoodController());
     Get.lazyPut(() => WeeklyAvailabilityController());
     Get.lazyPut(() => MyGroupController());
+    Get.lazyPut(() => CompetitionExperienceController());
 
 
   }

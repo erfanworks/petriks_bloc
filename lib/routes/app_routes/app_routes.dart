@@ -60,6 +60,7 @@ class AppRoutes {
   static const viewCompetitionScreen = '/viewCompetitionScreen';
   static const addMatchResultScreen = '/addMatchResultScreen';
   static const finalScoreScreen = '/finalScoreScreen';
+  static const competitionExperienceScreen = '/competitionExperienceScreen';
 
 
   /////////////// My Plan Screen Part ///////////////////////

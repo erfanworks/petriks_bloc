@@ -26,6 +26,7 @@ import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunity
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyCommunityDetailScreen/my_community_detail_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyGroupDetailScreen/edit_group_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/MyGroupDetailScreen/my_group_detail_screen.dart';
+import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/CompetitionExperienceScreen/competition_experience_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/add_match_result_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/final_score_screen.dart';
 import '../../screens/UserScreen/HomeTabAllScreen/CommunityAllScreen/ViewCompetitionScreen/view_competition_screen.dart';
@@ -135,6 +136,7 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.viewCompetitionScreen,page: () => ViewCompetitionScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.addMatchResultScreen,page: () => AddMatchResultScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.finalScoreScreen,page: () => FinalScoreScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.competitionExperienceScreen,page: () => CompetitionExperienceScreen(),binding: AppBindings()),
 
 
 

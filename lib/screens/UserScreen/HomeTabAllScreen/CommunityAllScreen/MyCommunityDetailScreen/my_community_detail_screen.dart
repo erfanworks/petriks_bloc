@@ -556,8 +556,18 @@ class _CompetitionListItem extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          Get.find<ViewCompetitionController>().setOwner(isOwner);
-          Get.toNamed(AppRoutes.viewCompetitionScreen);
+          if (item.isUpcoming) {
+            Get.find<ViewCompetitionController>().setOwner(isOwner);
+            Get.toNamed(AppRoutes.viewCompetitionScreen);
+          } else {
+            Get.toNamed(
+              AppRoutes.competitionExperienceScreen,
+              arguments: {
+                'teamName': item.title,
+                'leagueName': item.status,
+              },
+            );
+          }
         },
         child: Row(
           children: [

@@ -142,6 +142,13 @@ class MyCommunityDetailController extends GetxController {
       title: 'Winter Showcase',
       status: 'Completed Jan 15',
       isUpcoming: false,
+
+    ),
+    const CompetitionItem(
+      emoji: '🌅',
+      title: 'Football Match',
+      status: 'Next Monday',
+      isUpcoming: true,
     ),
   ];
 
