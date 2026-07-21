@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
-
 import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
 import '../../../../../../constant/const_color.dart';
+import '../../../../../../widget/AppDialog/app_dialog.dart';
 import '../../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
-import '../Widget/competition_success_sheet.dart';
 
 // ---- Models ----
 class CompetitionGroup {
@@ -228,19 +228,32 @@ class CreateCompetitionController extends GetxController {
   }
 
   void showSuccessDialog() {
-    Get.dialog(
-      CompetitionSuccessDialog(
-        communityName: 'Sunday Championship',
-        goToViewCompetition: () {
-          // Get.back();
-          Get.toNamed(AppRoutes.viewCompetitionScreen);
-        },
-        onBackToCommunity: () {
-          Get.toNamed(AppRoutes.navBar);
-        },
-      ),
-      barrierDismissible: true,
-      barrierColor: Colors.black.withAlpha(120),
+    AppDialog.show(
+      icon: Icons.check,
+      iconColor: ConstColor.primaryColor,
+      iconBackgroundColor: ConstColor.primaryColor.withAlpha(30),
+      title: "You're all set! 🎉",
+      message: 'Your competition has been successfully scheduled.',
+      buttons: [
+        AppDialogButton(
+          label: ConstString.viewCompetition,
+          gradient: const [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+          onTap: () {
+            Get.back();
+            Get.toNamed(AppRoutes.viewCompetitionScreen);
+          },
+        ),
+        AppDialogButton(
+          label: ConstString.backToCommunity,
+          backgroundColor: Colors.white,
+          textColor: ConstColor.black,
+          isOutlined: true,
+          onTap: () {
+            Get.back();
+            Get.toNamed(AppRoutes.navBar);
+          },
+        ),
+      ],
     );
   }
 
