@@ -66,6 +66,7 @@ import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguageP
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/MeetPreferenceScreen/meet_preference_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/PrivacyPolicyScreen/privacy_policy_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SettingsScreen/settings_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SupportContactScreen/support_contact_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TermsConditionScreen/terms_condition_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TravelTimeScreen/travel_time_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/VibeSocialEnergyScreen/vibe_social_energy_screen.dart';
@@ -179,6 +180,7 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.notificationScreen,page: () => NotificationScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.currentMoodScreen,page: () => CurrentMoodScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.weeklyAvailabilityScreen,page: () => WeeklyAvailabilityScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.supportContactScreen,page: () => SupportContactScreen(),binding: AppBindings()),
 
 
 ];

@@ -29,7 +29,7 @@ class FeedScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(16.r),
-              border: Border.all(color: ConstColor.borderColor.withAlpha(80), width: 1),
+              border: Border.all(color: ConstColor.primaryDeepColor, width: 1),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withAlpha(10),

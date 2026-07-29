@@ -174,8 +174,8 @@ class CreateProfileController extends GetxController {
       case 1:
         return selectedInterests.length >= 3;
       case 2:
-        return selectedLanguages.isNotEmpty ||
-            preferredChatLanguage.value.isNotEmpty;
+        return preferredChatLanguage.value.isNotEmpty ||
+            selectedLanguages.contains('custom');
       case 3:
         return selectedMeetPref.value.isNotEmpty;
       case 4:

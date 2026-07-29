@@ -44,6 +44,7 @@ import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfi
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguagePreferenceScreen/Controller/language_preference_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/MeetPreferenceScreen/Controller/meet_preference_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SettingsScreen/Controller/settings_controller.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/SupportContactScreen/Controller/support_contact_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TermsConditionScreen/Controller/terms_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/TravelTimeScreen/Controller/travel_time_controller.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/VibeSocialEnergyScreen/Controller/vibe_controller.dart';
@@ -108,6 +109,7 @@ class AppBindings extends Bindings {
     Get.lazyPut(() => WeeklyAvailabilityController());
     Get.lazyPut(() => MyGroupController());
     Get.lazyPut(() => CompetitionExperienceController());
+    Get.lazyPut(() => SupportContactController());
 
 
   }

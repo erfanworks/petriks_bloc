@@ -63,7 +63,7 @@ class ConstString {
   static const confirmYourArea = 'Confirm your area';
   static const searchLocation = 'Search Location';
   static const yourInterests = 'Your Interests';
-  static const pickAFewWell = "Pick a few — we'll personalize your experience";
+  static const pickAFewWell = "Pick at least 3 interests - We'll personalize your experience";
   static const whatLanguageTo = 'What languages do you speak?';
   static const selectYourPreferred = 'Select your preferred meeting style to find connections that match your comfort zone.';
   static const thisHelpsYouConnect =
@@ -666,5 +666,6 @@ class ConstString {
   static const String deleteGroup   = 'Delete Group';
   static const String otherAddLanguageManually = 'Other / Add language manually';
   static String peopleMayVoteForPlaceDesc(int count) => 'You selected $count places. Guests will be able to vote on their preferred location.';
-  
+  static const subjectHint = 'Competition';
+  static const descriptionHint = 'Write here the description';
 }

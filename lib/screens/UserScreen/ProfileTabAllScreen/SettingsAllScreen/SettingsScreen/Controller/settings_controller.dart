@@ -25,7 +25,7 @@ class SettingsController extends GetxController {
 
   void onMeetPreferenceTap() => Get.toNamed(AppRoutes.meetPreferenceScreen);
 
-  void onHelpAndAttendanceTap() => Get.toNamed(AppRoutes.helpCenterScreen);
+  void onHelpAndAttendanceTap() => Get.toNamed(AppRoutes.supportContactScreen);
 
   void onBlockListTap() => Get.toNamed(AppRoutes.blockUserListScreen);
 

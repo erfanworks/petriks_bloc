@@ -159,7 +159,7 @@ class Step3Languages extends StatelessWidget {
           SizedBox(height: 12.h),
           CustomTextFormField(
             keyboardType: TextInputType.text,
-            numeric: true,
+            numeric: false,
             onChanged: (val) {
               if (val.trim().isNotEmpty) {
                 c.selectedLanguages.add('custom');

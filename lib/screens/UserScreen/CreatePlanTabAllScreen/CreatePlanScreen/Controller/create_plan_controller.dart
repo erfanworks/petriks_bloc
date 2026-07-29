@@ -278,7 +278,7 @@ class CreatePlanController extends GetxController {
   @override
   void onClose() {
     // planTitleController.dispose();
-    customLanguageController.dispose();
+    // customLanguageController.dispose();
     super.onClose();
   }
 }
