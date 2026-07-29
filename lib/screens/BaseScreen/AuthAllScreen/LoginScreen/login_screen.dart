@@ -114,12 +114,17 @@ class LoginScreen extends StatelessWidget {
                         top: 0,
                         bottom: 12,
                         buttonBorderRadius: 30,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        child: Stack(
+                          alignment: Alignment.center,
                           children: [
-                            Image.asset("assets/images/google_icon.png",
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Image.asset(
+                                "assets/images/google_icon.png",
+                                width: 24.r,
+                                height: 24.r,
+                              ),
                             ),
-                            SizedBox(width: 10.w),
                             CustomText(
                               title: ConstString.continueWithGoogle,
                               textColor: ConstColor.black,
@@ -139,12 +144,17 @@ class LoginScreen extends StatelessWidget {
                         top: 0,
                         bottom: 12,
                         buttonBorderRadius: 30,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        child: Stack(
+                          alignment: Alignment.center,
                           children: [
-                            Image.asset("assets/images/facebook_icon.png",
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Image.asset(
+                                "assets/images/facebook_icon.png",
+                                width: 24.r,
+                                height: 24.r,
+                              ),
                             ),
-                            SizedBox(width: 10.w),
                             CustomText(
                               title: ConstString.continueWithFacebook,
                               textColor: ConstColor.black,
@@ -164,15 +174,21 @@ class LoginScreen extends StatelessWidget {
                         top: 0,
                         bottom: 0,
                         buttonBorderRadius: 30,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        child: Stack(
+                          alignment: Alignment.center,
                           children: [
-                            SvgPicture.asset("assets/icons/call_end.svg"),
-                            SizedBox(width: 6.w),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Image.asset(
+                                "assets/images/phone_icon.png",
+                                width: 19.r,
+                                height: 19.r,
+                              ),
+                            ),
                             CustomText(
                               title: ConstString.continueWithPhone,
                               textColor: ConstColor.black,
-                              textSize: 15.sp,
+                              textSize: 14.sp,
                               fontWeight: FontWeight.w600,
                               maxLine: 1,
                               fontFamily: GoogleFonts.montserrat().fontFamily,
