@@ -8,6 +8,7 @@ import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
+import 'Controller/verify_id_controller.dart';
 import 'Widget/upload_id_card.dart';
 
 class VerifyIdScreen extends StatelessWidget {
@@ -15,6 +16,8 @@ class VerifyIdScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = Get.put(VerifyIdController());
+
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
       body: SafeArea(
@@ -37,7 +40,7 @@ class VerifyIdScreen extends StatelessWidget {
                     fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                   ),
                   GestureDetector(
-                    onTap: () => Get.toNamed(AppRoutes.subscriptionScreen, arguments: {'showFreePlan': true}),
+                    onTap: c.onSkip,
                     child: CustomText(
                       title: ConstString.skip,
                       textSize: 16.sp,
@@ -198,19 +201,30 @@ class VerifyIdScreen extends StatelessWidget {
             Padding(
               padding:
               EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-              child: CustomElevatedButton(
-                top: 0,
-                onPressed: () => Get.toNamed(AppRoutes.profilePhotoScreen),
-                gradient: [
-                  ConstColor.primaryDeepColor,
-                  ConstColor.primaryColor,
-                ],
-                buttonBorderRadius: 30,
-                child: CustomText(
-                  title: ConstString.continueA,
-                  textSize: 16.sp,
-                  fontWeight: FontWeight.w600,
-                  textColor: Colors.white,
+              child: Obx(
+                () => CustomElevatedButton(
+                  top: 0,
+                  onPressed: c.isLoading.value ? null : c.onVerifyIdContinue,
+                  gradient: [
+                    ConstColor.primaryDeepColor,
+                    ConstColor.primaryColor,
+                  ],
+                  buttonBorderRadius: 30,
+                  child: c.isLoading.value
+                      ? SizedBox(
+                          width: 20.w,
+                          height: 20.w,
+                          child: const CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : CustomText(
+                          title: ConstString.continueA,
+                          textSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          textColor: Colors.white,
+                        ),
                 ),
               ),
             ),

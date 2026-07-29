@@ -153,7 +153,7 @@ class _TopCard extends StatelessWidget {
               ),
               // Got Verified button
               GestureDetector(
-                onTap: () {Get.toNamed(AppRoutes.subscriptionScreen);},
+                onTap: () {Get.toNamed(AppRoutes.verifyIdScreen, arguments: {'fromProfile': true});},
                 child: Container(
                   padding: EdgeInsets.symmetric(
                     horizontal: 10.w,

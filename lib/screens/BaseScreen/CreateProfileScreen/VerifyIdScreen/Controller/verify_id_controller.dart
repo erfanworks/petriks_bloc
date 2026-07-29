@@ -10,6 +10,16 @@ class VerifyIdController extends GetxController {
   final selectedIdImage    = Rx<File?>(null);
   final selectedPhotoImage = Rx<File?>(null);
   final _picker = ImagePicker();
+  final isFromProfile = false.obs;
+  final isLoading = false.obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    if (Get.arguments != null && Get.arguments['fromProfile'] == true) {
+      isFromProfile.value = true;
+    }
+  }
 
   bool get hasIdImage    => selectedIdImage.value != null;
   bool get hasPhotoImage => selectedPhotoImage.value != null;
@@ -29,12 +39,30 @@ class VerifyIdController extends GetxController {
     if (xFile != null) selectedPhotoImage.value = File(xFile.path);
   }
 
-  void onVerifyIdContinue() {
+  void onSkip() {
+    if (isFromProfile.value) {
+      Get.back();
+    } else {
+      Get.toNamed(AppRoutes.subscriptionScreen, arguments: {'showFreePlan': true});
+    }
+  }
+
+  Future<void> onVerifyIdContinue() async {
     if (!hasIdImage) {
       _showSnackBar('Image is required');
       return;
     }
-    Get.toNamed(AppRoutes.profilePhotoScreen);
+
+    if (isFromProfile.value) {
+      isLoading.value = true;
+      await Future.delayed(const Duration(seconds: 2));
+      isLoading.value = false;
+      Get.back();
+      AppSnackBar.success("Verified ID");
+
+    } else {
+      Get.toNamed(AppRoutes.profilePhotoScreen);
+    }
   }
 
   void onProfilePhotoContinue() {
@@ -46,7 +74,7 @@ class VerifyIdController extends GetxController {
   }
 
   void _showSnackBar(String message) {
-    AppSnackBar.message(message, backgroundColor: ConstColor.primaryColor, seconds: 2);
+    AppSnackBar.error(message, seconds: 2);
   }
 
   void pickIdFromCamera() async {
