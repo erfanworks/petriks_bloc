@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
 import '../../../../widget/AppImage/app_image.dart';
@@ -645,7 +646,7 @@ class _Step4WhenWhere extends StatelessWidget {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: c.locations.length,
-                separatorBuilder: (_, __) => SizedBox(width: 12.w),
+                separatorBuilder: (_, _) => SizedBox(width: 12.w),
                 itemBuilder: (context, i) {
                   final loc = c.locations[i];
                   final String name = loc['name'] ?? '';
@@ -887,61 +888,179 @@ class _Step4WhenWhere extends StatelessWidget {
             () => PrivacySection(
               selectedPrivacy: c.selectedPrivacy.value,
               onPrivacyChanged: (val) => c.selectedPrivacy.value = val,
-              // onAddCustomLocation: () {},
             ),
           ),
           SizedBox(height: 14.h),
 
-          Container(
-            padding: EdgeInsets.all(14.r),
-            decoration: BoxDecoration(
-              color: const Color(0xFFDBEAFE),
-              border: Border.all(
-                color: ConstColor.primaryColor.withAlpha(40),
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(14.r),
-            ),
+          _InviteFriendsDashedButton(),
+          SizedBox(height: 14.h),
+
+          _SafetyNoteCard(),
+
+          SizedBox(height: 40.h),
+        ],
+      ),
+    );
+  }
+}
+
+class _InviteFriendsDashedButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: _DashedRectPainter(
+        color: ConstColor.primaryColor.withAlpha(120),
+        radius: 30.r,
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () {
+            Get.toNamed(AppRoutes.inviteFriendsListScreen);
+          },
+          borderRadius: BorderRadius.circular(30.r),
+          child: Container(
+            width: double.infinity,
+            height: 50.h,
+            alignment: Alignment.center,
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SvgPicture.asset(
-                  'assets/icons/stay_safe_icon.svg',
-                  width: 22.r,
-                  height: 22.r,
-                  colorFilter: const ColorFilter.mode(
-                    ConstColor.primaryColor,
-                    BlendMode.srcIn,
-                  ),
+                Icon(
+                  Icons.person_add_alt_1_outlined,
+                  color: ConstColor.primaryColor,
+                  size: 22.sp,
                 ),
-                SizedBox(width: 10.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomText(
-                        title: ConstString.staySafe,
-                        textSize: 16.sp,
-                        fontWeight: FontWeight.w700,
-                        textColor: const Color(0xFF1E3A8A),
-                        maxLine: 1,
-                      ),
-                      SizedBox(height: 2.h),
-                      CustomText(
-                        title: ConstString.staySafeSubtitle,
-                        textSize: 14.sp,
-                        textColor: ConstColor.primaryColor,
-                        maxLine: 4,
-                      ),
-                    ],
-                  ),
+                SizedBox(width: 8.w),
+                CustomText(
+                  title: 'Invite Friends',
+                  textColor: ConstColor.primaryColor,
+                  textSize: 16.sp,
+                  fontWeight: FontWeight.w600,
                 ),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
 
-          SizedBox(height: 40.h),
-        ],
+class _DashedRectPainter extends CustomPainter {
+  final Color color;
+  final double radius;
+
+  _DashedRectPainter({required this.color, required this.radius});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.5;
+
+    final path = Path()
+      ..addRRect(RRect.fromRectAndRadius(
+        Rect.fromLTWH(0, 0, size.width, size.height),
+        Radius.circular(radius),
+      ));
+
+    final dashPath = Path();
+    double dashWidth = 5.0;
+    double dashSpace = 3.0;
+    double distance = 0.0;
+
+    for (final pathMetric in path.computeMetrics()) {
+      while (distance < pathMetric.length) {
+        dashPath.addPath(
+          pathMetric.extractPath(distance, distance + dashWidth),
+          Offset.zero,
+        );
+        distance += dashWidth + dashSpace;
+      }
+    }
+    canvas.drawPath(dashPath, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+class _SafetyNoteCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final c = Get.find<CreatePlanController>();
+
+    return Obx(
+      () => Container(
+        padding: EdgeInsets.all(16.r),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF1F7FF),
+          borderRadius: BorderRadius.circular(24.r),
+          border: Border.all(color: const Color(0xFFE1EFFF), width: 1.5),
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 40.r,
+                  height: 40.r,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD6E9FF),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.shield_rounded,
+                    color: const Color(0xFF0055FF),
+                    size: 20.sp,
+                  ),
+                ),
+                SizedBox(width: 12.w),
+                Expanded(
+                  child: CustomText(
+                    title: 'Safety Note',
+                    textColor: const Color(0xFF1E3A8A),
+                    textSize: 16.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Switch(
+                  value: c.isSafetyNoteEnabled.value,
+                  onChanged: (v) => c.isSafetyNoteEnabled.value = v,
+                  activeColor: Colors.white,
+                  activeTrackColor: const Color(0xFF5A4CFF),
+                ),
+              ],
+            ),
+            SizedBox(height: 16.h),
+            Container(
+              height: 100.h,
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16.r),
+                border: Border.all(color: const Color(0xFFE2E8F0)),
+              ),
+              child: TextField(
+                enabled: c.isSafetyNoteEnabled.value,
+                controller: c.safetyNoteController,
+                maxLines: null,
+                decoration: InputDecoration(
+                  hintText: 'Write here',
+                  hintStyle: TextStyle(
+                    color: Colors.grey.shade400,
+                    fontSize: 14.sp,
+                  ),
+                  border: InputBorder.none,
+                  isDense: true,
+                ),
+                style: TextStyle(fontSize: 14.sp, color: ConstColor.black),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

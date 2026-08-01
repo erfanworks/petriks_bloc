@@ -214,6 +214,9 @@ class ViewCompetitionController extends GetxController {
 
   void onEditCompetition() => Get.toNamed(AppRoutes.setMatchDetailsScreen);
 
+  void onInviteFriends() {
+    Get.toNamed(AppRoutes.inviteFriendsListScreen);
+  }
 
   void backToHome() =>
   Get.offAllNamed(AppRoutes.navBar, arguments: 0);

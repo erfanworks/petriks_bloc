@@ -149,6 +149,11 @@ class ViewCompetitionScreen extends StatelessWidget {
               RosterCard(
                 group: c.rosterGroups[0],
               ),
+              SizedBox(height: 10.h),
+
+              _InviteFriendsButton(
+                onTap: c.onInviteFriends,
+              ),
               SizedBox(height: 40.h),
             ],
           ),
@@ -848,6 +853,57 @@ class _SmallAvatarStack extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _InviteFriendsButton extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const _InviteFriendsButton({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 16.w),
+        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 10.h),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFEAD1),
+          borderRadius: BorderRadius.circular(40.r),
+        ),
+        child: Row(
+          children: [
+            Icon(
+              Icons.person_add_alt_1_outlined,
+              color: const Color(0xFFF97316),
+              size: 26.sp,
+            ),
+            SizedBox(width: 16.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomText(
+                    title: ConstString.inviteFriends,
+                    textColor: ConstColor.black,
+                    textSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  SizedBox(height: 2.h),
+                  CustomText(
+                    title: ConstString.inviteFriendsToJoin,
+                    textColor: ConstColor.silverGray20,
+                    textSize: 12.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

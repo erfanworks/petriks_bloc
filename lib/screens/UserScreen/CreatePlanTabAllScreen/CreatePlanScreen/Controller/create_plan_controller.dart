@@ -87,6 +87,9 @@ class CreatePlanController extends GetxController {
   final autoLock            = true.obs;
   final coverPhotoPath = ''.obs;
 
+  final isSafetyNoteEnabled = false.obs;
+  final safetyNoteController = TextEditingController();
+
   final RxList<Map<String, String>> locations = <Map<String, String>>[
     {'name': 'Bean House Café',  'sub': '0.4 miles away', 'desc': 'Good for small coffee meetups.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/party_img.png'},
     {'name': 'Bean House Café ',  'sub': '0.4 miles away', 'desc': 'Good for small coffee meetups.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/location_img1.jpg'},

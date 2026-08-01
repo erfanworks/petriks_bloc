@@ -117,6 +117,7 @@ class ConstString {
   static const seeAll = 'See all';
   static const createCompetition = "Create Competition";
   static const inviteFriends = 'Invite Friends';
+  static const inviteFriendsToJoin = 'Invite friends to join your team';
   static const inviteFriendsBoots = 'Invite your friends and get boost rewards';
   static const sayWarmHello = 'Say a warm Hello';
   static const open = 'OPEN';
