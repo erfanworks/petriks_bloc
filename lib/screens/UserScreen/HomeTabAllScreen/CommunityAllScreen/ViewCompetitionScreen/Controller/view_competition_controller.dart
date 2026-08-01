@@ -25,6 +25,49 @@ class RosterGroup {
   });
 }
 
+class LocationVoteItem {
+  final String image;
+  final String name;
+  final int votes;
+  final int totalVotes;
+  final bool isSelected;
+
+  const LocationVoteItem({
+    required this.image,
+    required this.name,
+    required this.votes,
+    required this.totalVotes,
+    this.isSelected = false,
+  });
+
+  int get percent => ((votes / totalVotes) * 100).round();
+  LocationVoteItem copyWith({bool? isSelected}) {
+    return LocationVoteItem(
+      image: image,
+      name: name,
+      votes: votes,
+      totalVotes: totalVotes,
+      isSelected: isSelected ?? this.isSelected,
+    );
+  }
+}
+
+class ChatMessage {
+  final String senderName;
+  final String message;
+  final String time;
+  final bool isMe;
+  final String? avatar;
+
+  const ChatMessage({
+    required this.senderName,
+    required this.message,
+    required this.time,
+    required this.isMe,
+    this.avatar,
+  });
+}
+
 ///// Controller
 class ViewCompetitionController extends GetxController {
   ///// State
@@ -62,6 +105,38 @@ class ViewCompetitionController extends GetxController {
       extraCount: 6,
     ),
   ];
+
+  final RxList<LocationVoteItem> locationVotes = <LocationVoteItem>[
+    const LocationVoteItem(
+      image: 'assets/images/location_img1.jpg',
+      name: 'Green Fields Arena',
+      votes: 2,
+      totalVotes: 5,
+      isSelected: false,
+    ),
+    const LocationVoteItem(
+      image: 'assets/images/location_img2.jpg',
+      name: 'Central Sports Complex',
+      votes: 3,
+      totalVotes: 5,
+    ),
+  ].obs;
+
+  final RxList<ChatMessage> chatMessages = <ChatMessage>[
+    const ChatMessage(
+      senderName: 'Sarah L.',
+      message: "Can't wait for the vinyl set! Is there a dress code? 🎵",
+      time: '5:12 PM',
+      isMe: false,
+      avatar: 'assets/images/person1_img.jpg',
+    ),
+    const ChatMessage(
+      senderName: 'Me',
+      message: "I'm bringing a few rare records to show Marcus!",
+      time: 'Just now',
+      isMe: true,
+    ),
+  ].obs;
 
 
   void onRegister() {
@@ -110,11 +185,29 @@ class ViewCompetitionController extends GetxController {
       primaryButtonText: 'Done',
       onPrimaryTap: () {
         Get.back();
-        backToHome();
+        isRegistered.value = true;
       },
       autoDismissDuration: const Duration(seconds: 3),
-      onAutoDismiss: backToHome,
+      onAutoDismiss: () {
+        isRegistered.value = true;
+      },
     );
+  }
+
+  void selectLocation(LocationVoteItem selected) {
+    for (int i = 0; i < locationVotes.length; i++) {
+      locationVotes[i] = locationVotes[i].copyWith(
+        isSelected: locationVotes[i] == selected,
+      );
+    }
+  }
+
+  void onNavigate() {
+    Get.toNamed(AppRoutes.planMapScreen);
+  }
+
+  void onChat() {
+    Get.toNamed(AppRoutes.groupPlanChatScreen);
   }
 
   void onMarkCompleted() => Get.toNamed(AppRoutes.addMatchResultScreen);
