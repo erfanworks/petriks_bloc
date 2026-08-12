@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
+import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/widget/AppImage/app_image.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -64,32 +66,102 @@ class ViewCompetitionScreen extends StatelessWidget {
 
               LogisticsCard(),
 
+              Obx(
+                () => c.lockTimer.value.isNotEmpty
+                    ? Container(
+                        margin: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 0),
+                        padding: EdgeInsets.symmetric(vertical: 12.h),
+                        decoration: BoxDecoration(
+                          color: ConstColor.primaryColor.withAlpha(20),
+                          borderRadius: BorderRadius.circular(30.r),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.hourglass_bottom_rounded,
+                              color: ConstColor.primaryColor,
+                              size: 16.r,
+                            ),
+                            SizedBox(width: 6.w),
+                            CustomText(
+                              title: 'Locks in: ${c.lockTimer.value}',
+                              textColor: ConstColor.primaryColor,
+                              textSize: 14.sp,
+                              fontWeight: FontWeight.w700,
+                              maxLine: 1,
+                            ),
+                          ],
+                        ),
+                      )
+                    : c.isLocked
+                        ? Container(
+                            margin: EdgeInsets.fromLTRB(16.w, 12.h, 16.w, 0),
+                            padding: EdgeInsets.symmetric(vertical: 12.h),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFBA1A1A).withAlpha(20),
+                              borderRadius: BorderRadius.circular(30.r),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomText(
+                                  title: 'Plan is now locked 🔒',
+                                  textColor: const Color(0xFFBA1A1A),
+                                  textSize: 14.sp,
+                                  fontWeight: FontWeight.w700,
+                                  maxLine: 1,
+                                ),
+                              ],
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+              ),
+
+              if (c.isOwner.value) ...[
+                SizedBox(height: 20.h),
+                _AvailabilitySection(),
+              ],
+
               SizedBox(height: 20.h),
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                child: CustomText(
-                  title: ConstString.pickALocation,
-                  textColor: ConstColor.black,
-                  textSize: 18.sp,
-                  fontWeight: FontWeight.w700,
-                  maxLine: 1,
-                  fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                child: Obx(
+                  () => CustomText(
+                    title: c.isLocked
+                        ? '📍 Venue Decided!'
+                        : ConstString.pickALocation,
+                    textColor: ConstColor.black,
+                    textSize: 18.sp,
+                    fontWeight: FontWeight.w700,
+                    maxLine: 1,
+                    fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+                  ),
                 ),
               ),
               SizedBox(height: 10.h),
 
-              Column(
-                children: [
-                  ...c.locationVotes.map(
-                    (loc) => _LocationVoteCard(
-                      item: loc,
-                      onTap: () {
-                        c.selectLocation(loc);
-                      },
-                    ),
-                  ),
-                ],
+              Obx(
+                () => Column(
+                  children: [
+                    if (c.isLocked)
+                      _LocationVoteCard(
+                        item: c.locationVotes.reduce(
+                          (a, b) => a.votes >= b.votes ? a : b,
+                        ),
+                      )
+                    else
+                      ...c.locationVotes.map(
+                        (loc) => _LocationVoteCard(
+                          item: loc,
+                          onTap: () {
+                            c.selectLocation(loc);
+                          },
+                        ),
+                      ),
+                  ],
+                ),
               ),
 
               SizedBox(height: 20.h),
@@ -110,12 +182,22 @@ class ViewCompetitionScreen extends StatelessWidget {
                     if (c.isRegistered.value)
                       GestureDetector(
                         onTap: c.onChat,
-                        child: CustomText(
-                          title: ConstString.view,
-                          textColor: ConstColor.primaryColor,
-                          textSize: 13.sp,
-                          fontWeight: FontWeight.w600,
-                          maxLine: 1,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.chat_bubble_outline_rounded,
+                              size: 18.sp,
+                              color: ConstColor.primaryColor,
+                            ),
+                            SizedBox(width: 6.w),
+                            CustomText(
+                              title: ConstString.openChat,
+                              textColor: ConstColor.primaryColor,
+                              textSize: 14.sp,
+                              fontWeight: FontWeight.w600,
+                              maxLine: 1,
+                            ),
+                          ],
                         ),
                       ),
                   ],
@@ -129,9 +211,10 @@ class ViewCompetitionScreen extends StatelessWidget {
 
               SizedBox(height: 16.h),
 
-              _MatchNotesCard(),
-
-              SizedBox(height: 20.h),
+              if (!c.isOwner.value) ...[
+                _MatchNotesCard(),
+                SizedBox(height: 20.h),
+              ],
 
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -218,50 +301,149 @@ class ViewCompetitionScreen extends StatelessWidget {
                       ),
                     ],
                   )
-                : Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      CustomElevatedButton(
-                        onPressed: isRegistered ? c.onNavigate : c.onRegister,
-                        height: 48,
-                        top: 0,
-                        buttonBorderRadius: 30,
-                        gradient: const [
-                          ConstColor.primaryDeepColor,
-                          ConstColor.primaryColor
+                : isRegistered
+                    ? c.isLocked
+                        ? Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(height: 8.h),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: _OutlineButton(
+                                      label: ConstString.couldTAttend,
+                                      color: const Color(0xFFBA1A1A),
+                                      onTap: () {
+                                        Get.toNamed(AppRoutes.joinedPlanUserReport);
+                                        AppSnackBar.message("Attendance canceled");
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(width: 12.w),
+                                  Expanded(
+                                    child: _OutlineButton(
+                                      label: ConstString.attendance,
+                                      color: const Color(0xFF006C49),
+                                      onTap: c.onConfirmAttendance,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              CustomElevatedButton(
+                                height: 48.h,
+                                top: 12,
+                                buttonBorderRadius: 32,
+                                gradient: [
+                                  ConstColor.primaryDeepColor,
+                                  ConstColor.primaryColor,
+                                ],
+                                onPressed: c.onNavigate,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.near_me_rounded,
+                                      size: 20.sp,
+                                      color: ConstColor.white,
+                                    ),
+                                    SizedBox(width: 8.w),
+                                    CustomText(
+                                      title: ConstString.navigate,
+                                      textColor: ConstColor.white,
+                                      textSize: 15.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10.h),
+                            ],
+                          )
+                        : Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+                                decoration: BoxDecoration(
+                                  color: ConstColor.primaryColor.withAlpha(15),
+                                  borderRadius: BorderRadius.circular(16.r),
+                                  border: Border.all(color: ConstColor.primaryColor.withAlpha(30)),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.check_circle_rounded, color: ConstColor.primaryColor, size: 20.sp),
+                                    SizedBox(width: 10.w),
+                                    Expanded(
+                                      child: CustomText(
+                                        title: "You're registered! Competition locks when the timer ends.",
+                                        textColor: ConstColor.primaryColor,
+                                        textSize: 13.sp,
+                                        fontWeight: FontWeight.w600,
+                                        maxLine: 2,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 10.h),
+                              CustomElevatedButton(
+                                onPressed: () => Get.back(),
+                                height: 48,
+                                top: 0,
+                                elevation: 0,
+                                buttonBorderRadius: 30,
+                                isOutLined: true,
+                                outLineColour: ConstColor.grey,
+                                child: CustomText(
+                                  title: ConstString.cancel,
+                                  textColor: ConstColor.black,
+                                  textSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
+                                  maxLine: 1,
+                                ),
+                              ),
+                            ],
+                          )
+                    : Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomElevatedButton(
+                            onPressed: c.onRegister,
+                            height: 48,
+                            top: 0,
+                            buttonBorderRadius: 30,
+                            gradient: const [
+                              ConstColor.primaryDeepColor,
+                              ConstColor.primaryColor
+                            ],
+                            child: CustomText(
+                              title: ConstString.registerForCompetition,
+                              textColor: Colors.white,
+                              textSize: 15.sp,
+                              fontWeight: FontWeight.w600,
+                              maxLine: 1,
+                            ),
+                          ),
+                          SizedBox(height: 5.h),
+                          CustomElevatedButton(
+                            onPressed: () => Get.back(),
+                            height: 48,
+                            top: 0,
+                            elevation: 0,
+                            buttonBorderRadius: 30,
+                            isOutLined: true,
+                            outLineColour: ConstColor.grey,
+                            child: CustomText(
+                              title: ConstString.cancel,
+                              textColor: ConstColor.black,
+                              textSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                              maxLine: 1,
+                            ),
+                          ),
                         ],
-                        child: CustomText(
-                          title: isRegistered
-                              ? ConstString.navigate
-                              : ConstString.registerForCompetition,
-                          textColor: Colors.white,
-                          textSize: 15.sp,
-                          fontWeight: FontWeight.w600,
-                          maxLine: 1,
-                        ),
-                      ),
-                      SizedBox(height: 5.h),
-                      CustomElevatedButton(
-                        onPressed: isRegistered ? c.onChat : () => Get.back(),
-                        height: 48,
-                        top: 0,
-                        elevation: 0,
-                        buttonBorderRadius: 30,
-                        isOutLined: true,
-                        outLineColour: ConstColor.grey,
-                        child: CustomText(
-                          title: isRegistered
-                              ? ConstString.openChat
-                              : ConstString.cancel,
-                          textColor: ConstColor.black,
-                          textSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          maxLine: 1,
-                        ),
-                      ),
-                    ],
-                  ),
-          );
+                      ));
         },
       ),
     );
@@ -383,6 +565,73 @@ class _BannerInfo extends StatelessWidget {
           textSize: 16.sp,
           fontWeight: FontWeight.w700,
           maxLine: 1,
+        ),
+      ],
+    );
+  }
+}
+
+// ---- Availability Section (Owner Only) ----
+class _AvailabilitySection extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: CustomText(
+            title: 'Availability',
+            textColor: ConstColor.black,
+            textSize: 16.sp,
+            fontWeight: FontWeight.w600,
+            maxLine: 1,
+          ),
+        ),
+        SizedBox(height: 10.h),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 16.w),
+          padding: EdgeInsets.all(16.r),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(14.r),
+          ),
+          child: Column(
+            children: [
+              _AvailabilityRow(label: 'Total Capacity', value: '40'),
+              SizedBox(height: 12.h),
+              _AvailabilityRow(label: 'Availability', value: '2 seats left'),
+            ],
+          ),
+        ),
+        SizedBox(height: 16.h),
+        _MatchNotesCard(),
+      ],
+    );
+  }
+}
+
+class _AvailabilityRow extends StatelessWidget {
+  final String label;
+  final String value;
+  const _AvailabilityRow({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CustomText(
+          title: label,
+          textColor: const Color(0xFF6B6B80),
+          textSize: 14.sp,
+          fontWeight: FontWeight.w500,
+        ),
+        CustomText(
+          title: value,
+          textColor: ConstColor.black,
+          textSize: 15.sp,
+          fontWeight: FontWeight.w700,
         ),
       ],
     );
@@ -935,3 +1184,37 @@ class _CircleAvatar extends StatelessWidget {
   }
 }
 
+class _OutlineButton extends StatelessWidget {
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _OutlineButton({
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        decoration: BoxDecoration(
+          border: Border.all(color: color, width: 1.5),
+          borderRadius: BorderRadius.circular(30.r),
+        ),
+        child: Center(
+          child: CustomText(
+            title: label,
+            textSize: 14.sp,
+            fontWeight: FontWeight.w600,
+            textColor: color,
+            maxLine: 1,
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -74,8 +76,41 @@ class ViewCompetitionController extends GetxController {
   final RxBool isRegistered = false.obs;
   final RxBool isCompleted = false.obs;
   final isOwner = false.obs;
+  final lockTimer = ''.obs;
+  Timer? _timer;
+  DateTime? lockUntil;
+  final attendanceConfirmed = false.obs;
+
+  bool get isLocked => lockTimer.value.isEmpty && lockUntil != null;
 
   void setOwner(bool value) => isOwner.value = value;
+
+  void initLockTimer(DateTime lockUntilTime) {
+    lockUntil = lockUntilTime;
+    _startCountdown();
+  }
+
+  void _startCountdown() {
+    _timer?.cancel();
+    _tick();
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _tick());
+  }
+
+  void _tick() {
+    if (lockUntil == null) return;
+    final remaining = lockUntil!.difference(DateTime.now());
+    if (remaining.isNegative || remaining.inSeconds == 0) {
+      _timer?.cancel();
+      lockTimer.value = '';
+      return;
+    }
+    final h = remaining.inHours;
+    final m = remaining.inMinutes % 60;
+    final s = remaining.inSeconds % 60;
+    lockTimer.value = h > 0
+        ? '${h}h ${m.toString().padLeft(2, '0')}m'
+        : '${m}m ${s.toString().padLeft(2, '0')}s';
+  }
 
   //// Select Winner (0=GroupA, 1=GroupB, 2=Draw)
   final RxInt selectedWinner = 0.obs;
@@ -195,6 +230,11 @@ class ViewCompetitionController extends GetxController {
   }
 
   void selectLocation(LocationVoteItem selected) {
+    if (!isRegistered.value) {
+      AppSnackBar.message("Please register to vote for a location.");
+      return;
+    }
+    if (isLocked) return;
     for (int i = 0; i < locationVotes.length; i++) {
       locationVotes[i] = locationVotes[i].copyWith(
         isSelected: locationVotes[i] == selected,
@@ -204,6 +244,13 @@ class ViewCompetitionController extends GetxController {
 
   void onNavigate() {
     Get.toNamed(AppRoutes.planMapScreen);
+  }
+
+  void onConfirmAttendance() {
+    attendanceConfirmed.value = true;
+    Get.back();
+    AppSnackBar.success("Attendance confirmed successfully! 🎉");
+
   }
 
   void onChat() {
@@ -233,8 +280,15 @@ class ViewCompetitionController extends GetxController {
   void onEditResult() => Get.toNamed(AppRoutes.addMatchResultScreen);
 
   @override
+  void onInit() {
+    super.onInit();
+    initLockTimer(DateTime.now().add(const Duration(seconds: 30)));
+  }
+
+  @override
   void onClose() {
     notesController.dispose();
+    _timer?.cancel();
     super.onClose();
   }
 }
