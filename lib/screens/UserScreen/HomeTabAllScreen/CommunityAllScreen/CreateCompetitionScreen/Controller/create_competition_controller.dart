@@ -151,6 +151,29 @@ class CreateCompetitionController extends GetxController {
   final descriptionController = TextEditingController();
   final uploadImage = ''.obs;
 
+  // ── Vote Duration ──
+  final voteDurationIndex = 0.obs;
+  final voteDurations = ['1h', '3h', '6h', '12h', '24h', '48h'];
+  final customDuration = ''.obs;
+
+  void onPickCustomDuration(BuildContext context) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: const TimeOfDay(hour: 2, minute: 0),
+      helpText: 'Set custom vote duration',
+      builder: (ctx, child) => Theme(
+        data: Theme.of(ctx).copyWith(
+          colorScheme: const ColorScheme.light(primary: ConstColor.primaryColor),
+        ),
+        child: child!,
+      ),
+    );
+    if (picked == null) return;
+    if (picked.hour == 0 && picked.minute == 0) return;
+    final h = picked.hour;
+    final m = picked.minute;
+    customDuration.value = h > 0 ? (m > 0 ? '${h}h ${m}m' : '${h}h') : '${m}m';
+  }
 
   Future<void> _pickDescriptionImage(ImageSource source) async {
     final picker = ImagePicker();
