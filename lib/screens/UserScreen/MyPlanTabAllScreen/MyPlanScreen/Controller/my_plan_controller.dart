@@ -43,6 +43,62 @@ class MyPlanController extends GetxController {
 
   final activities = ['Coffee', 'Sports', 'Art', 'Outdoors', 'Music'];
 
+  final RxList<Map<String, String>> locations = <Map<String, String>>[
+    {'name': 'Bean House Café',  'sub': '0.4 miles away', 'desc': 'Good for small coffee meetups.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/party_img.png'},
+    {'name': 'Central Park',  'sub': 'Manhattan, NY 10024', 'desc': 'Great for outdoor activities.', 'discount': '', 'image': 'assets/images/centarl_park_img.png'},
+  ].obs;
+
+  final RxSet<String> selectedLocationNames = {'Central Park'}.obs;
+
+  final customLocationNameController = TextEditingController();
+  final customLocationAddressController = TextEditingController();
+  final customLocationSubtitleController = TextEditingController();
+  final customLocationImagePath = ''.obs;
+  final customLocationFormTick = 0.obs;
+
+  void pickCustomLocationImage(String path) {
+    customLocationImagePath.value = path;
+  }
+
+  bool get canAddCustomLocation =>
+      customLocationNameController.text.trim().isNotEmpty &&
+          customLocationAddressController.text.trim().isNotEmpty &&
+          customLocationImagePath.value.isNotEmpty;
+
+  void addCustomLocation() {
+    if (!canAddCustomLocation) return;
+    locations.insert(0, {
+      'name': customLocationNameController.text.trim(),
+      'sub': customLocationAddressController.text.trim(),
+      'desc': customLocationSubtitleController.text.trim(),
+      'discount': '',
+      'image': customLocationImagePath.value,
+      'isCustom': 'true',
+    });
+    selectedLocationNames.add(customLocationNameController.text.trim());
+    customLocationNameController.clear();
+    customLocationAddressController.clear();
+    customLocationSubtitleController.clear();
+    customLocationImagePath.value = '';
+  }
+
+  void toggleLocation(String name) {
+    if (selectedLocationNames.contains(name)) {
+      selectedLocationNames.remove(name);
+    } else {
+      selectedLocationNames.add(name);
+    }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    customLocationNameController.addListener(_bumpCustomLocationTick);
+    customLocationAddressController.addListener(_bumpCustomLocationTick);
+  }
+
+  void _bumpCustomLocationTick() => customLocationFormTick.value++;
+
   final createdPlans = <PlanModel>[
     // const PlanModel(
     //   id: '1', title: 'Hang out at the park',

@@ -200,6 +200,11 @@ class PlanDetailsController extends GetxController {
     Get.find<NavbarController>().highlightMyPlan();
   }
 
+  void leavePlan() {
+    hasJoined.value = false;
+    AppSnackBar.message("You have left the plan");
+  }
+
   void onConfirmAttendance() {
     attendanceConfirmed.value = true;
     Get.toNamed(AppRoutes.helpCenterScreen);
