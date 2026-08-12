@@ -236,7 +236,7 @@ class MyCommunityDetailController extends GetxController {
   }
   void onDeleteCommunity() {
     Get.back();
-    AppSnackBar.success("Competition deleted successfully.");
+    AppSnackBar.success("Community deleted successfully.");
   }
 
 

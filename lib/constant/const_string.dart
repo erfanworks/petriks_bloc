@@ -663,6 +663,7 @@ class ConstString {
   static const String selectOtherLanguage  = 'Select Other Language';
   static const String interest             = 'Interest';
   static const String manageVibe           = 'Manage Vibe';
+  static const String editInterests        = 'Edit Interests';
   static const String done                 = 'Done';
   static const String editGroup   = 'Edit Group';
   static const String deleteGroup   = 'Delete Group';

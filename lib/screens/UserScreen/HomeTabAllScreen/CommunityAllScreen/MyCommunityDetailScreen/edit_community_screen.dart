@@ -220,7 +220,7 @@ class EditCommunityScreen extends StatelessWidget {
                       GestureDetector(
                         onTap: () => _showInterestSheet(context, c),
                         child: CustomText(
-                          title: ConstString.manageVibe,
+                          title: ConstString.editInterests,
                           textSize: 13.sp,
                           fontWeight: FontWeight.w600,
                           textColor: ConstColor.primaryColor,
@@ -304,7 +304,7 @@ class EditCommunityScreen extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             CustomText(
-              title: ConstString.manageVibe,
+              title: ConstString.editInterests,
               textSize: 18.sp,
               fontWeight: FontWeight.w700,
               textColor: ConstColor.black,
