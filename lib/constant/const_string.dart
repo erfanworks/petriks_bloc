@@ -103,6 +103,7 @@ class ConstString {
   static const addAProfilePhoto = 'Add a profile photo';
   static const profileWithPhotos = 'Profiles with photos feel more trustworthy';
   static const takeASelfie = 'Take a Selfie';
+  static const continueToVerification = "Continue to verification";
   static const useYourCameraNow = 'Use your camera now';
   static const uploadFromGallery = 'Upload from Gallery';
   static const pickFromYour = 'Pick from your photo library';

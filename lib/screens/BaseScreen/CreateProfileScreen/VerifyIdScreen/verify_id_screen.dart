@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/constant/const_color.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
@@ -138,60 +139,35 @@ class VerifyIdScreen extends StatelessWidget {
                       ),
                     ),
 
-                    SizedBox(height: 14.h),
+                    // SizedBox(height: 14.h),
 
                     // ── Upload card ──
-                    UploadIdCard(),
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     Get.toNamed(AppRoutes.profilePhotoScreen);
-                    //   },
-                    //   child: _InfoCard(
-                    //     child: Row(
-                    //       children: [
-                    //         Container(
-                    //           width: 48.r,
-                    //           height: 48.r,
-                    //           decoration: BoxDecoration(
-                    //             color: const Color(0xFF6C5CE7).withAlpha(30),
-                    //             shape: BoxShape.circle,
-                    //           ),
-                    //           child: Center(
-                    //             child: SvgPicture.asset(
-                    //               'assets/icons/gellary_icon.svg',
-                    //               width: 22.r,
-                    //               height: 22.r,
-                    //               colorFilter: const ColorFilter.mode(
-                    //                   ConstColor.primaryColor, BlendMode.srcIn),
-                    //             ),
-                    //           ),
-                    //         ),
-                    //         SizedBox(width: 14.w),
-                    //         Column(
-                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                    //           children: [
-                    //             CustomText(
-                    //               title: ConstString.uploadIdFor,
-                    //               textSize: 16.sp,
-                    //               fontWeight: FontWeight.w700,
-                    //               textColor: const Color(0xFF1A1A2E),
-                    //               maxLine: 1,
-                    //               fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-                    //             ),
-                    //             SizedBox(height: 2.h),
-                    //             CustomText(
-                    //               title: 'PDF, PNG, Zip',
-                    //               textSize: 14.sp,
-                    //               fontWeight: FontWeight.w400,
-                    //               textColor: ConstColor.grey,
-                    //               maxLine: 1,
-                    //             ),
-                    //           ],
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
+                    // const UploadIdCard(),
+                    SizedBox(height: 14.h),
+                    CustomElevatedButton(
+                      top: 0,
+                      height: 48,
+                      elevation: 0,
+                      onPressed: c.onContinueToVerification,
+                      buttonBorderRadius: 30,
+                      isOutLined: true,
+                      outLineColour: ConstColor.primaryColor,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CustomText(
+                            title: ConstString.continueToVerification,
+                            textSize: 15.sp,
+                            fontWeight: FontWeight.w600,
+                            textColor: ConstColor.primaryColor,
+                          ),
+                          SizedBox(width: 8.w),
+                          const Icon(Icons.verified_outlined)
+                        ],
+                      ),
+                    ),
+
                   ],
                 ),
               ),

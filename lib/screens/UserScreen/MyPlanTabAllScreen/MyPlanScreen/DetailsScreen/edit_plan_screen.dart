@@ -12,7 +12,9 @@ import '../../../../../constant/const_string.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/CustomTextFormField/custom_text_form_field.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+import '../../../../../widget/AppImage/app_image.dart';
 import '../Controller/my_plan_controller.dart';
+import 'Widget/show_add_location_sheet.dart';
 
 class EditPlanScreen extends StatelessWidget {
   const EditPlanScreen({super.key});
@@ -139,93 +141,124 @@ class EditPlanScreen extends StatelessWidget {
                   _FieldLabel(label: ConstString.pickAPlace),
                   SizedBox(height: 8.h),
 
-                  // Map placeholder
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(14.r),
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 160.h,
-                          width: double.infinity,
-                          color: const Color(0xFFE8E0D5),
-                          child: Image.asset(
-                            "assets/images/centarl_park_img.png",
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 10.h,
-                          left: 10.w,
-                          right: 10.w,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 14.w,
-                              vertical: 10.h,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(30.r),
-                            ),
-                            child: Row(
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/icons/location_icon.svg',
-                                  width: 16.r,
-                                  height: 16.r,
-                                  colorFilter: const ColorFilter.mode(
-                                    ConstColor.primaryColor,
-                                    BlendMode.srcIn,
-                                  ),
+                  Obx(
+                    () => SizedBox(
+                      height: 170.h,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: c.locations.length,
+                        separatorBuilder: (_, __) => SizedBox(width: 12.w),
+                        itemBuilder: (context, i) {
+                          final loc = c.locations[i];
+                          final name = loc['name'] ?? '';
+                          final isSelected = c.selectedLocationNames.contains(name);
+                          final isCustom = loc['isCustom'] == 'true';
+
+                          return GestureDetector(
+                            onTap: () => c.toggleLocation(name),
+                            child: Container(
+                              width: 280.w,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(16.r),
+                                border: Border.all(
+                                  color: isSelected
+                                      ? ConstColor.primaryColor
+                                      : ConstColor.borderColor,
+                                  width: isSelected ? 1.5 : 1,
                                 ),
-                                SizedBox(width: 8.w),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      CustomText(
-                                        title: 'Central Park',
-                                        textSize: 14.sp,
-                                        fontWeight: FontWeight.w700,
-                                        textColor: ConstColor.black,
-                                        maxLine: 1,
-                                      ),
-                                      CustomText(
-                                        title: 'Manhattan, NY 10024',
-                                        textSize: 11.sp,
-                                        textColor: ConstColor.textColor,
-                                        maxLine: 1,
-                                      ),
-                                    ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(16.r)),
+                                    child: AppImage(
+                                      path: isCustom ? null : loc['image'],
+                                      filePath: isCustom ? loc['image'] : null,
+                                      width: double.infinity,
+                                      height: 100.h,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 12.w, vertical: 8.h),
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          'assets/icons/location_icon.svg',
+                                          width: 14.r,
+                                          height: 14.r,
+                                          colorFilter: ColorFilter.mode(
+                                            isSelected
+                                                ? ConstColor.primaryColor
+                                                : ConstColor.grey,
+                                            BlendMode.srcIn,
+                                          ),
+                                        ),
+                                        SizedBox(width: 6.w),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              CustomText(
+                                                title: name,
+                                                textSize: 14.sp,
+                                                fontWeight: FontWeight.w700,
+                                                textColor: ConstColor.black,
+                                                maxLine: 1,
+                                              ),
+                                              CustomText(
+                                                title: loc['sub'] ?? '',
+                                                textSize: 11.sp,
+                                                textColor: ConstColor.textColor,
+                                                maxLine: 1,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        if (isSelected)
+                                          Icon(
+                                            Icons.check_circle,
+                                            color: ConstColor.primaryColor,
+                                            size: 20.r,
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ),
-                      ],
+                          );
+                        },
+                      ),
                     ),
                   ),
+
                   SizedBox(height: 10.h),
 
                   // Add location
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(vertical: 14.h),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.r),
-                      border: Border.all(color: ConstColor.borderColor),
-                    ),
-                    child: Center(
-                      child: CustomText(
-                        title: ConstString.addLocation,
-                        textSize: 16.sp,
-                        fontWeight: FontWeight.w500,
-                        textColor: ConstColor.grey,
-                        maxLine: 1,
+                  GestureDetector(
+                    onTap: showAddLocationSheet,
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.symmetric(vertical: 14.h),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12.r),
+                        border: Border.all(color: ConstColor.borderColor),
+                      ),
+                      child: Center(
+                        child: CustomText(
+                          title: ConstString.addLocation,
+                          textSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          textColor: ConstColor.grey,
+                          maxLine: 1,
+                        ),
                       ),
                     ),
                   ),

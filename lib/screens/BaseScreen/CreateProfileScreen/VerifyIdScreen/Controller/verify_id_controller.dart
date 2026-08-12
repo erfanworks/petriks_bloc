@@ -47,12 +47,15 @@ class VerifyIdController extends GetxController {
     }
   }
 
-  Future<void> onVerifyIdContinue() async {
-    if (!hasIdImage) {
-      _showSnackBar('Image is required');
-      return;
+  void onContinueToVerification() {
+    if (isFromProfile.value) {
+      Get.back();
+    } else {
+      Get.toNamed(AppRoutes.profilePhotoScreen);
     }
+  }
 
+  Future<void> onVerifyIdContinue() async {
     if (isFromProfile.value) {
       isLoading.value = true;
       await Future.delayed(const Duration(seconds: 2));
