@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+import '../../../../../../widget/AppDialog/app_dialog.dart';
 import '../../MyCommunityScreen/Controller/my_community_controller.dart';
 
 // ---- Models ----
@@ -235,8 +236,21 @@ class MyCommunityDetailController extends GetxController {
     Get.toNamed(AppRoutes.editCommunityScreen);
   }
   void onDeleteCommunity() {
-    Get.back();
-    AppSnackBar.success("Community deleted successfully.");
+    AppDialog.show(
+      title: "Delete Community",
+      message: "Are you sure you want to delete this community?",
+      icon: Icons.delete_outline_rounded,
+      iconBackgroundColor: Colors.red.withAlpha(30),
+      iconColor: Colors.red,
+      primaryButtonText: "Delete",
+      primaryButtonColor: Colors.red,
+      secondaryButtonText: "Cancel",
+      onPrimaryTap: () {
+        Get.back(); // Close dialog
+        Get.back(); // Close screen/sheet
+        AppSnackBar.success("Community deleted successfully.");
+      },
+    );
   }
 
 
