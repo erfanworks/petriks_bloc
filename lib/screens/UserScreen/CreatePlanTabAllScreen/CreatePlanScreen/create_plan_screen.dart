@@ -634,8 +634,18 @@ class _Step4WhenWhere extends StatelessWidget {
 
           SizedBox(height: 16.h),
 
+          _FieldLabel(label: ConstString.selectCity),
+          SizedBox(height: 8.h),
+          Obx(
+            () => _DropdownBox(
+              hint: ConstString.chooseCity,
+              value: c.selectedCity.value.isEmpty ? null : c.selectedCity.value,
+              items: c.cities,
+              onChanged: (v) => c.selectedCity.value = v ?? '',
+            ),
+          ),
 
-
+          SizedBox(height: 16.h),
 
           _FieldLabel(label: ConstString.recommendedPartnerPlaces),
           SizedBox(height: 12.h),

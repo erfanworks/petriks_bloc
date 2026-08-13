@@ -559,6 +559,7 @@ class ConstString {
   static const recentActivity  = 'Recent Activity';
   static const yesterday       = 'Yesterday';
   static const voteNow       = 'Vote Now';
+  static const chooseCity = 'Choose city';
   static const String whatWouldYouLikeToCreate = 'What would you like to create?';
   static const String completed             = 'COMPLETED';
   static const String overAllVibe           = 'Over All Vibe';

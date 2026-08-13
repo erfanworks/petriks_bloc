@@ -78,9 +78,11 @@ class CreatePlanController extends GetxController {
 
   final planTitleController = TextEditingController(text: 'Coffee Time');
   final customLanguageController = TextEditingController();
-  final selectedDate        = 'Saturday, Nov 24'.obs;
-  final selectedTime1       = '07:00 PM'.obs;
-  final selectedLocation    = (-1).obs;
+  final RxString selectedDate = 'Saturday, Nov 24'.obs;
+  final RxString selectedTime1 = '07:00 PM'.obs;
+  final RxString selectedCity = ''.obs;
+  final List<String> cities = ['London', 'Manchester', 'Birmingham', 'Liverpool', 'Leeds', 'Sheffield'];
+  final selectedLocation = (-1).obs;
   final selectedLocations = <int>{}.obs;
   final voteOnTime          = false.obs;
   final voteOnPlace         = true.obs;
@@ -219,7 +221,8 @@ class CreatePlanController extends GetxController {
       }
       if (currentStep.value == 3) {
         return planTitleController.text.isNotEmpty &&
-            selectedLocationNames.isNotEmpty;
+            selectedLocationNames.isNotEmpty &&
+            selectedCity.value.isNotEmpty;
       }
     } else {
       // Easy Start
@@ -237,7 +240,8 @@ class CreatePlanController extends GetxController {
       }
       if (currentStep.value == 2) {
         return planTitleController.text.isNotEmpty &&
-            selectedLocationNames.isNotEmpty;
+            selectedLocationNames.isNotEmpty &&
+            selectedCity.value.isNotEmpty;
       }
     }
     return false;
