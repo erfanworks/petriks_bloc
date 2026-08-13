@@ -70,7 +70,7 @@ class ConstString {
       'This helps you connect comfortably and find local communities that share your native tongue.';
   static const preferredChat = 'Preferred Chat Language';
   static const chooseYourPrimary =
-      'Choose your primary language for app notifications and chat translations.';
+      'Select the language you prefer for app alerts and community interactions.';
   static const howToYouPerfect = 'How do you prefer to meet?';
   static const languageNotListed = 'Language not listed? Add manually:';
   static const whatsYourVibe = "What's your vibe?";
@@ -476,7 +476,7 @@ class ConstString {
   static const String languagePreference = 'Language preference';
   static const String preferredChatLanguage = 'Preferred Chat Language';
   static const String preferredChatLangDesc =
-      'Choose your primary language for app notifications and chat translations.';
+      'Select the language you prefer for app alerts and community interactions.';
   static const String langEnglish = 'English';
   static const String langSpanish = 'Spanish';
   static const String langFrench = 'French';

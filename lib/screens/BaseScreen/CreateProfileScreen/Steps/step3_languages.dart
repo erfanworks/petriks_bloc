@@ -92,11 +92,11 @@ class Step3Languages extends StatelessWidget {
             fontWeight: FontWeight.w400,
             maxLine: 3,
           ),
-          SizedBox(height: 18.h),
+          SizedBox(height: 12.h),
 
           Obx(
             () => Container(
-              height: 52.h,
+              height: 48.h,
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               decoration: BoxDecoration(
                 color: ConstColor.boxColor,
@@ -156,7 +156,7 @@ class Step3Languages extends StatelessWidget {
             fontWeight: FontWeight.w400,
             maxLine: 3,
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 6.h),
           CustomTextFormField(
             keyboardType: TextInputType.text,
             numeric: false,
