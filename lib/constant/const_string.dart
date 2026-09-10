@@ -41,9 +41,9 @@ class ConstString {
   static const backToSignUp = 'Back to Sign Up';
   static const verifyOtp = 'Verify OTP';
   static const enterCodeSent = 'Enter the code sent to your phone number';
-  static const codeHasBeenSent = 'A code has been sent to your phone no';
+  static const codeHasBeenSent = 'A code has been sent to your phone number';
   static const verify = 'Verify';
-  static const donTGetOtp = 'Dont get OTP?';
+  static const donTGetOtp = 'Didn’t get OTP?';
   static const groupLimit = 'Group Limit';
   static const resend = 'Resend';
   static const tellUsAboutYou = 'Tell us about you';
@@ -382,7 +382,7 @@ class ConstString {
   static const leaveGroup = 'Leave Group';
   static const groupA = 'GROUP A';
   static const groupB = 'GROUP B';
-  static const String gotVerified = 'Got Verified';
+  static const String getVerified = 'Get Verified';
   static const String followers = 'Followers';
   static const String yourPlan = 'Your Plan';
   static const String premium = 'Premium';
