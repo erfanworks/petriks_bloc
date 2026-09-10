@@ -365,7 +365,6 @@ class _AppInfoCard extends StatelessWidget {
           _SvgTile(
             icon: 'assets/icons/email_icon.svg',
             title: ConstString.privacyPolicy,
-            subtitle: ConstString.privacyPolicySub,
             onTap: c.onPrivacyPolicyTap,
           ),
         ],
