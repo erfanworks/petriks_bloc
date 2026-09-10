@@ -359,7 +359,6 @@ class _AppInfoCard extends StatelessWidget {
           _SvgTile(
             icon: 'assets/icons/location_icon.svg',
             title: ConstString.termsCondition,
-            subtitle: ConstString.pushNotifSub,
             onTap: c.onTermsConditionTap,
           ),
           _Div(),
@@ -470,13 +469,13 @@ class _Tile extends StatelessWidget {
 class _SvgTile extends StatelessWidget {
   final String icon;
   final String title;
-  final String subtitle;
+  final String? subtitle;
   final VoidCallback onTap;
 
   const _SvgTile({
     required this.icon,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     required this.onTap,
   });
 
@@ -501,25 +500,33 @@ class _SvgTile extends StatelessWidget {
             ),
             SizedBox(width: 12.w),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(
-                    title: title,
-                    textSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    textColor: ConstColor.black,
-                    maxLine: 1,
-                  ),
-                  SizedBox(height: 2.h),
-                  CustomText(
-                    title: subtitle,
-                    textSize: 12.sp,
-                    textColor: ConstColor.grey,
-                    maxLine: 1,
-                  ),
-                ],
-              ),
+              child: (subtitle == null || subtitle!.isEmpty)
+                  ? CustomText(
+                      title: title,
+                      textSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      textColor: ConstColor.black,
+                      maxLine: 1,
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomText(
+                          title: title,
+                          textSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                          textColor: ConstColor.black,
+                          maxLine: 1,
+                        ),
+                        SizedBox(height: 2.h),
+                        CustomText(
+                          title: subtitle!,
+                          textSize: 12.sp,
+                          textColor: ConstColor.grey,
+                          maxLine: 1,
+                        ),
+                      ],
+                    ),
             ),
             Icon(
               Icons.chevron_right_rounded,
