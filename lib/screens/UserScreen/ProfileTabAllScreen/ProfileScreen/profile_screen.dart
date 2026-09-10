@@ -164,7 +164,7 @@ class _TopCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.r),
                   ),
                   child: CustomText(
-                    title: ConstString.gotVerified,
+                    title: ConstString.getVerified,
                     textSize: 11.sp,
                     fontWeight: FontWeight.w600,
                     textColor: ConstColor.primaryColor,
