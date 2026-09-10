@@ -130,7 +130,7 @@ class PhoneNumberVerifyOtpScreen extends StatelessWidget {
                         CustomText(
                           title: ConstString.codeHasBeenSent,
                           textColor: ConstColor.textColor,
-                          textSize: 14.sp,
+                          textSize: 12.sp,
                           textAlign: TextAlign.center,
                           fontWeight: FontWeight.w400,
                           maxLine: 1,
