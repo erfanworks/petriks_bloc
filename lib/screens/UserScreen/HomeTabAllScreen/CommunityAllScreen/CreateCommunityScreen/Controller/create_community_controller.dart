@@ -93,6 +93,8 @@ class CreateCommunityController extends GetxController {
 
   //Step 3
   final selectedInterest = ''.obs;
+  final customInterestController = TextEditingController();
+  final customInterestText = ''.obs;
 
   final List<Map<String, String>> interests = [
     {'label': 'Coffee',     'icon': 'assets/icons/cofee_icon.svg'},
@@ -125,6 +127,9 @@ class CreateCommunityController extends GetxController {
           descText.value.trim().isNotEmpty &&
           coverPhotoPath.value.isNotEmpty;
     } else if (currentStep.value == 3) {
+      if (selectedCategory.value == 'Custom Community') {
+        return customInterestText.value.trim().isNotEmpty;
+      }
       return selectedInterest.value.isNotEmpty;
     }
     return false;
@@ -142,6 +147,8 @@ class CreateCommunityController extends GetxController {
       currentStep.value = 0;
       selectedCategory.value = '';
       selectedInterest.value = '';
+      customInterestController.clear();
+      customInterestText.value = '';
       coverPhotoPath.value = '';
       nameController.clear();
       descController.clear();
@@ -161,6 +168,7 @@ class CreateCommunityController extends GetxController {
   void onClose() {
     nameController.dispose();
     descController.dispose();
+    customInterestController.dispose();
     super.onClose();
   }
 }

@@ -38,7 +38,7 @@ class MainApp extends StatelessWidget {
           theme: ThemeData(scaffoldBackgroundColor: ConstColor.backgroundColor),
           defaultTransition: Transition.noTransition,
           getPages: appRouteFile,
-          initialRoute: AppRoutes.verifyIdScreen
+          initialRoute: AppRoutes.navBar
         );
       },
     );

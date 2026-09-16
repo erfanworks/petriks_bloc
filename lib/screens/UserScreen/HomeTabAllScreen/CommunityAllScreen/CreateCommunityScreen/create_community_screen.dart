@@ -573,8 +573,41 @@ class _Step3Interests extends StatelessWidget {
           subtitle: ConstString.whatIsYourCommunity,
         ),
         SizedBox(height: 16.h),
-        Obx(
-              () => GridView.count(
+        Obx(() {
+          if (c.selectedCategory.value == 'Custom Community') {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(
+                  title: "Name Of Interest",
+                  textSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                  textColor: ConstColor.silverGray20,
+                  maxLine: 1,
+                ),
+                SizedBox(height: 8.h),
+                CustomTextFormField(
+                  textController: c.customInterestController,
+                  hintText: const SizedBox.shrink(),
+                  onChanged: (val) => c.customInterestText.value = val,
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(12.r),
+                    child: SvgPicture.asset(
+                      'assets/icons/edit_icon.svg',
+                      width: 18.r,
+                      height: 18.r,
+                      colorFilter: const ColorFilter.mode(
+                        ConstColor.primaryColor,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }
+
+          return GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -637,8 +670,8 @@ class _Step3Interests extends StatelessWidget {
                 ),
               );
             }).toList(),
-          ),
-        ),
+          );
+        }),
       ],
     );
   }
