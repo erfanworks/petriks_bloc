@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,58 @@ class EditProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Center(
+                    child: Column(
+                      children: [
+                        Obx(
+                          () => Container(
+                            width: 122.r,
+                            height: 124.r,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 3.r,
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withAlpha(20),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: ClipOval(
+                              child: c.pickedAvatarPath.value.isEmpty
+                                  ? AppImage(
+                                      path: 'assets/images/onboarding2_img.jpg',
+                                      width: 110.r,
+                                      height: 110.r,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.file(
+                                      File(c.pickedAvatarPath.value),
+                                      width: 110.r,
+                                      height: 110.r,
+                                      fit: BoxFit.cover,
+                                    ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 12.h),
+                        GestureDetector(
+                          onTap: c.onAvatarTap,
+                          child: CustomText(
+                            title: "Change Profile picture",
+                            textSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            textColor: ConstColor.primaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 24.h),
                   _FieldLabel(ConstString.firstName),
                   SizedBox(height: 6.h),
                   _InputTile(

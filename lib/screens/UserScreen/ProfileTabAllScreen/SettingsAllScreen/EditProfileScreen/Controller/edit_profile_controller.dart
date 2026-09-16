@@ -7,6 +7,7 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+import 'package:petriks_flutter_app/widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
 
 import '../../../ProfileScreen/Controller/profile_controller.dart';
 
@@ -52,9 +53,22 @@ class EditProfileController extends GetxController {
     }
   }
 
-  void onAvatarTap() async {
+  void onAvatarTap() {
+    MediaPickerBottomSheet.show(
+      onGallery: () => pickFromGallery(),
+      onCamera: () => pickFromCamera(),
+    );
+  }
+
+  Future<void> pickFromGallery() async {
     final picker = ImagePicker();
     final picked = await picker.pickImage(source: ImageSource.gallery);
+    if (picked != null) pickedAvatarPath.value = picked.path;
+  }
+
+  Future<void> pickFromCamera() async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(source: ImageSource.camera);
     if (picked != null) pickedAvatarPath.value = picked.path;
   }
 
