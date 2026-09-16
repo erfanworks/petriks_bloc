@@ -447,6 +447,8 @@ class ConstString {
   static const String pushNotifications = 'Push Notifications';
   static const String pushNotifSub = 'Direct messages, Meetup updates';
   static const String appInfo = 'App info';
+  static const String faq = 'FAQ';
+  static const String aboutUs = 'About Us';
   static const String termsCondition = 'Terms & Condition';
   static const String privacyPolicySub = 'Weekly discovery & community news';
   static const String newYorkNY = 'New York, NY';

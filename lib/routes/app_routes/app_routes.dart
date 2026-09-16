@@ -95,6 +95,8 @@ class AppRoutes {
   static const blockUserListScreen = '/blockUserListScreen';
   static const termsConditionScreen = '/termsConditionScreen';
   static const privacyPolicyScreen = '/privacyPolicyScreen';
+  static const faqScreen = '/faqScreen';
+  static const aboutUsScreen = '/aboutUsScreen';
   static const inviteFriendsListScreen = '/inviteFriendsListScreen';
   static const connectionScreen = '/connectionScreen';
   static const notificationScreen = '/notificationScreen';

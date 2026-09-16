@@ -357,6 +357,18 @@ class _AppInfoCard extends StatelessWidget {
       child: Column(
         children: [
           _SvgTile(
+            icon: 'assets/icons/FAQ_icon.svg',
+            title: ConstString.faq,
+            onTap: c.onFAQTap,
+          ),
+          _Div(),
+          _SvgTile(
+            icon: 'assets/icons/about_icon.svg',
+            title: ConstString.aboutUs,
+            onTap: c.onAboutUsTap,
+          ),
+          _Div(),
+          _SvgTile(
             icon: 'assets/icons/location_icon.svg',
             title: ConstString.termsCondition,
             onTap: c.onTermsConditionTap,

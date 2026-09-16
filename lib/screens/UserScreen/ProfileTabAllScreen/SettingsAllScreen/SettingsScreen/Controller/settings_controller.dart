@@ -33,6 +33,10 @@ class SettingsController extends GetxController {
 
   void onPrivacyPolicyTap() => Get.toNamed(AppRoutes.privacyPolicyScreen);
 
+  void onFAQTap() => Get.toNamed(AppRoutes.faqScreen);
+
+  void onAboutUsTap() => Get.toNamed(AppRoutes.aboutUsScreen);
+
   void onPushNotificationToggle(bool value) {
     pushNotificationsEnabled.value = value;
     // TODO

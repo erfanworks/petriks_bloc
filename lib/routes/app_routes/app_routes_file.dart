@@ -62,6 +62,8 @@ import '../../screens/UserScreen/ProfileTabAllScreen/ProfileScreen/profile_scree
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/BlockUserScreen/block_user_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/EditProfileScreen/edit_profile_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/InviteFriendsScreen/invite_friends_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/AboutUsScreen/about_us_screen.dart';
+import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/FAQScreen/faq_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/LanguagePreferenceScreen/language_preference_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/MeetPreferenceScreen/meet_preference_screen.dart';
 import '../../screens/UserScreen/ProfileTabAllScreen/SettingsAllScreen/PrivacyPolicyScreen/privacy_policy_screen.dart';
@@ -175,6 +177,8 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.blockUserListScreen,page: () => BlockUserListScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.termsConditionScreen,page: () => TermsConditionScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.privacyPolicyScreen,page: () => PrivacyPolicyScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.faqScreen,page: () => FAQScreen(),binding: AppBindings()),
+  GetPage(name: AppRoutes.aboutUsScreen,page: () => AboutUsScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.inviteFriendsListScreen,page: () => InviteFriendsListScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.connectionScreen,page: () => ConnectionScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.notificationScreen,page: () => NotificationScreen(),binding: AppBindings()),
