@@ -9,6 +9,7 @@ import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
+import '../../../../../widget/CustomTextFormField/custom_text_form_field.dart';
 import 'Controller/my_community_detail_controller.dart';
 
 class EditCommunityScreen extends StatelessWidget {
@@ -183,32 +184,42 @@ class EditCommunityScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 8.h),
                   Obx(
-                    () => _Dropdown(
-                      hint: ConstString.selectOtherLanguage,
-                      items: c.availableLanguages
-                          .where((l) => !c.selectedLanguages.contains(l))
-                          .toList(),
-                      onChanged: (val) {
-                        if (val != null) c.addLanguage(val);
-                      },
+                    () => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _Dropdown(
+                          hint: ConstString.selectOtherLanguage,
+                          items: [
+                            ...c.availableLanguages
+                                .where((l) => !c.selectedLanguages.contains(l))
+                                .toList(),
+                            ConstString.otherAddLanguageManually,
+                          ],
+                          onChanged: (val) {
+                            if (val != null) c.addLanguage(val);
+                          },
+                        ),
+                        if (c.showCustomLanguageField.value) ...[
+                          SizedBox(height: 12.h),
+                          CustomTextFormField(
+                            textController: c.customLanguageController,
+                            hintText: CustomText(
+                              title: "Enter language manually",
+                              textSize: 14.sp,
+                              textColor: ConstColor.grey,
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: c.addCustomLanguage,
+                              icon: const Icon(Icons.check,
+                                  color: ConstColor.primaryColor),
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
                   ),
 
                   SizedBox(height: 16.h),
-
-                  // ── Preferred Chat Language ──
-                  _Label(ConstString.preferredChatLanguage),
-                  SizedBox(height: 8.h),
-                  Obx(
-                    () => _Dropdown(
-                      hint: '',
-                      value: c.preferredLanguage.value,
-                      items: c.availableLanguages,
-                      onChanged: (val) {
-                        if (val != null) c.preferredLanguage.value = val;
-                      },
-                    ),
-                  ),
 
                   SizedBox(height: 16.h),
 
@@ -527,6 +538,7 @@ class _Dropdown extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
           value: value?.isEmpty ?? true ? null : value,
+          dropdownColor: Colors.white,
           hint: CustomText(
             title: hint,
             textSize: 14.sp,

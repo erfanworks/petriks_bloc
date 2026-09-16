@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+import '../../../../../../constant/const_string.dart';
 import '../../../../../../widget/AppDialog/app_dialog.dart';
 import '../../MyCommunityScreen/Controller/my_community_controller.dart';
 
@@ -175,9 +176,24 @@ class MyCommunityDetailController extends GetxController {
   ];
   final selectedLanguages = <String>['English', 'Spanish'].obs;
   final preferredLanguage = 'English'.obs;
+  final customLanguageController = TextEditingController();
+  final showCustomLanguageField = false.obs;
 
   void addLanguage(String lang) {
-    if (!selectedLanguages.contains(lang)) selectedLanguages.add(lang);
+    if (lang == ConstString.otherAddLanguageManually) {
+      showCustomLanguageField.value = true;
+    } else {
+      if (!selectedLanguages.contains(lang)) selectedLanguages.add(lang);
+    }
+  }
+
+  void addCustomLanguage() {
+    final lang = customLanguageController.text.trim();
+    if (lang.isNotEmpty && !selectedLanguages.contains(lang)) {
+      selectedLanguages.add(lang);
+      customLanguageController.clear();
+      showCustomLanguageField.value = false;
+    }
   }
 
   void removeLanguage(String lang) => selectedLanguages.remove(lang);
@@ -262,6 +278,14 @@ class MyCommunityDetailController extends GetxController {
   void goToCommunityChat() => Get.back();
 
   void backToDiscovery() => Get.back();
+
+  @override
+  void onClose() {
+    nameController.dispose();
+    descController.dispose();
+    customLanguageController.dispose();
+    super.onClose();
+  }
 }
 
 // class JoinSuccessSheet extends StatelessWidget {
