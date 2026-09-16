@@ -8,6 +8,8 @@ import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import '../../../../../routes/app_routes/app_routes.dart';
 import '../../../../../widget/AppImage/app_image.dart';
+import '../../../../../Widget/app_snack_bar/app_snack_bar.dart';
+import '../../../../../widget/AppDialog/app_dialog.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
 import '../Controller/my_plan_controller.dart';
@@ -506,18 +508,55 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
               16.w,
               5.h + MediaQuery.of(context).padding.bottom,
             ),
-            child: CustomElevatedButton(
-              top: 0,
-              onPressed: c.goToEditPlan,
-              gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
-              buttonBorderRadius: 30,
-              child: CustomText(
-                title: ConstString.editPlan,
-                textSize: 15.sp,
-                fontWeight: FontWeight.w600,
-                textColor: Colors.white,
-                maxLine: 1,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomElevatedButton(
+                  top: 0,
+                  onPressed: c.goToEditPlan,
+                  gradient: [ConstColor.primaryDeepColor, ConstColor.primaryColor],
+                  buttonBorderRadius: 30,
+                  child: CustomText(
+                    title: ConstString.editPlan,
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    textColor: Colors.white,
+                    maxLine: 1,
+                  ),
+                ),
+                CustomElevatedButton(
+                  top: 10,
+                  onPressed: () {
+                    AppDialog.show(
+                      title: "Delete plan",
+                      message: "Are you sure you want to delete this plan?",
+                      icon: Icons.delete,
+                      iconBackgroundColor: Colors.red,
+                      primaryButtonText: "Delete",
+                      primaryButtonColor: Colors.red,
+                      secondaryButtonText: "Cancel",
+                      onPrimaryTap: () {
+                        Get.back(); // close dialog
+                        Get.back(); // close details screen
+                        AppSnackBar.success("Plan deleted successfully.");
+                      },
+                      onSecondaryTap: () => Get.back(),
+                    );
+                  },
+                  isOutLined: true,
+                  outLineColour: Colors.red,
+                  borderColor: Colors.red,
+                  elevation: 0,
+                  buttonBorderRadius: 30,
+                  child: CustomText(
+                    title: "Delete Plan",
+                    textSize: 15.sp,
+                    fontWeight: FontWeight.w600,
+                    textColor: Colors.red,
+                    maxLine: 1,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
