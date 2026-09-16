@@ -6,8 +6,8 @@ import '../../../../constant/const_color.dart';
 import '../../../../widget/AppImage/app_image.dart';
 import 'Controller/ad_controller.dart';
 
-class SponsoredLocalOfferCard extends StatelessWidget {
-  const SponsoredLocalOfferCard({super.key});
+class PartnerLocalOfferCard extends StatelessWidget {
+  const PartnerLocalOfferCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class SponsoredLocalOfferCard extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
                 child: CustomText(
-                  title: c.sponsoredLabel.value,
+                  title: c.partnerLabel.value,
                   textSize: 11.sp,
                   textColor: ConstColor.grey,
                   fontWeight: FontWeight.w500,
@@ -37,7 +37,7 @@ class SponsoredLocalOfferCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(12.r),
                 child: AppImage(
-                  path: c.sponsoredImagePath.value,
+                  path: c.partnerImagePath.value,
                   width: double.infinity,
                   height: 160.h,
                   fit: BoxFit.cover,

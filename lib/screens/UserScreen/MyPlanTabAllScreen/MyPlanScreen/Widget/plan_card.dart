@@ -83,7 +83,7 @@ class PlanCard extends StatelessWidget {
                         Icon(Icons.verified_rounded, color: const Color(0xFFFF9800), size: 12.sp),
                         SizedBox(width: 4.w),
                         CustomText(
-                          title: ConstString.sponsored,
+                          title: ConstString.partner,
                           textColor: Colors.white,
                           textSize: 10.sp,
                           fontWeight: FontWeight.w700,

@@ -146,7 +146,7 @@ class FeedScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w),
             itemCount: controller.posts.length + 2,
             itemBuilder: (_, index) {
-              if (index == 1) return const SponsoredLocalOfferCard();
+              if (index == 1) return const PartnerLocalOfferCard();
               if (index == 3) return const BannerAdCard();
 
               int postIndex = index;

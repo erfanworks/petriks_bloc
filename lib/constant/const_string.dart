@@ -521,7 +521,7 @@ class ConstString {
   static const String meetBothDesc =
       'I\'m open to all types of discovery and social experiences.';
   static const String selectedLabel = 'SELECTED';
-  static const String sponsored = 'SPONSORED';
+  static const String partner = 'PARTNER';
   static const String blockUserTitle = 'Block User';
   static const String currentlyBlocked = 'Currently Blocked';
   static const String unblock = 'Unblock';
@@ -632,7 +632,7 @@ class ConstString {
   static const String recommendedPartnerPlaces = 'Recommended Partner Places';
   static const String select       = 'Select';
   static const String useThisVenue = 'Use this venue';
-  static const String sponsoredLocalOffer = 'Sponsored Local Offer';
+  static const String partnerLocalOffer = 'Partner Local Offer';
   static const String createYourOwnCommunity     = 'Create Your Own Community';
   static const String createCommunitySubtitle    = 'Build and grow your own community. Connect people with similar interests, organize activities, and create a space where members can engage, share, and participate together.';
   static const String communityCreationAvailable = 'Community Creation is available with GoodNiva Plus';

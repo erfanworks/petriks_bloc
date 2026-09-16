@@ -35,7 +35,7 @@ class CreateCommunityController extends GetxController {
       'icon': 'assets/icons/custom_community_icon.svg',
       'bgColor': const Color(0xFFE5F4FF),
       'iconColor': const Color(0xFF0562FC),
-      'tag': 'GUIDED',
+      'tag': '',
     },
   ];
 

@@ -243,7 +243,7 @@ class OneToOneMeetupCard extends StatelessWidget {
                             ),
                             SizedBox(width: 5.w),
                             CustomText(
-                              title: ConstString.sponsored,
+                              title: ConstString.partner,
                               textColor: Colors.white,
                               textSize: 10.sp,
                               fontWeight: FontWeight.w700,

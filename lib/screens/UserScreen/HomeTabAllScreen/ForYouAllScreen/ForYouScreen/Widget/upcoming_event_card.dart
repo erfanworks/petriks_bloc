@@ -77,7 +77,7 @@ class UpcomingEventCard extends StatelessWidget {
                           ),
                           SizedBox(width: 5),
                           CustomText(
-                            title: ConstString.sponsored,
+                            title: ConstString.partner,
                             textColor: Colors.white,
                             textSize: 10.sp,
                             fontWeight: FontWeight.w700,
