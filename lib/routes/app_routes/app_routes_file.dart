@@ -113,7 +113,6 @@ List<GetPage> appRouteFile = <GetPage>[
   GetPage(name: AppRoutes.vibeScreen,page: () => VibeScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.oneToOneMeetupScreen,page: () => OneToOneMeetupScreen(),binding: AppBindings()),
   GetPage(name: AppRoutes.oneToOneMeetupDetailsScreen,page: () => OneToOneMeetupDetailsScreen(),binding: AppBindings()),
-  // GetPage(name: AppRoutes.meetupGroupDetailsScreen,page: () => MeetupGroupDetailsScreen(),binding: AppBindings()),
 
 
   // Feed Screen

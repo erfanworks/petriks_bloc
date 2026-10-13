@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/constant/const_string.dart';
+import 'package:petriks_flutter_app/screens/BaseScreen/CreateProfileScreen/Widget/step_shell.dart';
 import 'package:petriks_flutter_app/widget/CustomElevatedButton/custom_elevated_button.dart';
 
 import '../../../../../Widget/text/custom_text.dart' show CustomText;
@@ -29,12 +29,20 @@ class MeetPreferenceScreen extends StatelessWidget {
                 () => Column(
                   children: c.options.map((opt) {
                     final isSelected = c.selectedMeet.value == opt.title;
-                    return Padding(
-                      padding: EdgeInsets.only(bottom: 12.h),
-                      child: _MeetCard(
-                        option: opt,
-                        isSelected: isSelected,
-                        onTap: () => c.onMeetSelected(opt.title),
+                    return SelectableOptionCard(
+                      label: opt.title,
+                      description: opt.description,
+                      isSelected: isSelected,
+                      showSelectedBadge: true,
+                      onTap: () => c.onMeetSelected(opt.title),
+                      iconWidget: SvgPicture.asset(
+                        opt.icon,
+                        width: 20.w,
+                        height: 20.h,
+                        colorFilter: ColorFilter.mode(
+                          isSelected ? Colors.white : ConstColor.primaryColor,
+                          BlendMode.srcIn,
+                        ),
                       ),
                     );
                   }).toList(),
@@ -43,108 +51,6 @@ class MeetPreferenceScreen extends StatelessWidget {
             ),
           ),
           _SaveButton(onSave: c.onSave),
-        ],
-      ),
-    );
-  }
-}
-
-class _MeetCard extends StatelessWidget {
-  final MeetOption option;
-  final bool isSelected;
-  final VoidCallback onTap;
-  const _MeetCard({required this.option, required this.isSelected, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final iconBg = isSelected ? ConstColor.primaryColor : Color(option.colorValue);
-
-    return GestureDetector(
-      onTap: onTap,
-      behavior: HitTestBehavior.opaque,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          // ── Card ──
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
-            padding: EdgeInsets.all(16.r),
-            decoration: BoxDecoration(
-              color: isSelected ? ConstColor.primaryColor.withAlpha(20) : ConstColor.white,
-              borderRadius: BorderRadius.circular(16.r),
-              border: Border.all(
-                color: isSelected ? ConstColor.primaryColor : const Color(0xFFE0DFF0),
-                width: 1.5,
-              ),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 58.w,
-                  height: 58.h,
-                  decoration: BoxDecoration(color: iconBg, shape: BoxShape.circle),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      option.icon,
-                      width: 20.w,
-                      height: 20.h,
-                      colorFilter: ColorFilter.mode(
-                        isSelected?ConstColor.white:ConstColor.primaryColor,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 14.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomText(
-                        title: option.title,
-                        textSize: 18.sp,
-                        fontWeight: FontWeight.w700,
-                        textColor: ConstColor.black,
-                        maxLine: 1,
-                        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-                      ),
-                      SizedBox(height: 4.h),
-                      CustomText(
-                        title: option.description,
-                        textSize: 14.sp,
-                        textColor: ConstColor.grey,
-                        maxLine: 3,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          if (isSelected)
-            Positioned(
-              top: -1,
-              right: -1,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: ConstColor.primaryColor,
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(14.r),
-                    bottomLeft: Radius.circular(10.r),
-                  ),
-                ),
-                child: CustomText(
-                  title: ConstString.selectedLabel,
-                  textSize: 10.sp,
-                  fontWeight: FontWeight.w600,
-                  textColor: ConstColor.white,
-                  maxLine: 1,
-                ),
-              ),
-            ),
         ],
       ),
     );
@@ -167,11 +73,17 @@ class _SaveButton extends StatelessWidget {
       ),
       child: CustomElevatedButton(
         onPressed: onSave,
-        gradient: [ConstColor.primaryDeepColor,ConstColor.primaryColor],
+        gradient: const [ConstColor.primaryDeepColor, ConstColor.primaryColor],
         height: 48,
         top: 0,
         buttonBorderRadius: 30,
-        child: CustomText(title: ConstString.save, textSize: 16.sp, fontWeight: FontWeight.w600, textColor: ConstColor.white, maxLine: 1),
+        child: CustomText(
+          title: ConstString.save,
+          textSize: 16.sp,
+          fontWeight: FontWeight.w600,
+          textColor: ConstColor.white,
+          maxLine: 1,
+        ),
       ),
     );
   }

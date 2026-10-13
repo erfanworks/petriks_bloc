@@ -53,9 +53,13 @@ class MediaPickerBottomSheet {
                       fontWeight: FontWeight.w400,
                     ),
                     onTap: () async {
-                      Get.back();
-                      await Future.delayed(const Duration(milliseconds: 300));
-                      onCamera();
+                      Navigator.of(context, rootNavigator: true).pop();
+                      await Future.delayed(const Duration(milliseconds: 350));
+                      try {
+                        onCamera();
+                      } catch (e) {
+                        debugPrint("Error opening camera: $e");
+                      }
                     },
                   ),
 
@@ -68,9 +72,13 @@ class MediaPickerBottomSheet {
                       fontWeight: FontWeight.w400,
                     ),
                     onTap: () async {
-                      Get.back();
-                      await Future.delayed(const Duration(milliseconds: 300));
-                      onGallery();
+                      Navigator.of(context, rootNavigator: true).pop();
+                      await Future.delayed(const Duration(milliseconds: 350));
+                      try {
+                        onGallery();
+                      } catch (e) {
+                        debugPrint("Error opening gallery: $e");
+                      }
                     },
                   ),
 

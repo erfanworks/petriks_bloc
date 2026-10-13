@@ -34,7 +34,6 @@ class AppRoutes {
   // vibe screen
   static const vibeScreen = '/vibeScreen';
   static const oneToOneMeetupScreen = '/oneToOneMeetupScreen';
-  static const meetupGroupDetailsScreen = '/meetupGroupDetailsScreen';
   static const oneToOneMeetupDetailsScreen = '/oneToOneMeetupDetailsScreen';
 
   // Feed screen

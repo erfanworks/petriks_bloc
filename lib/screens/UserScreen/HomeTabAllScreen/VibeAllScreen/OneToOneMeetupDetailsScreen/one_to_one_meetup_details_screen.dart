@@ -15,6 +15,7 @@ import '../../../../../../widget/AppImage/app_image.dart';
 import '../../../../../Widget/app_snack_bar/app_snack_bar.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+import '../../../../../widget/PlanDetailWidgets/plan_detail_widgets.dart';
 
 class OneToOneMeetupDetailsScreen extends StatelessWidget {
   const OneToOneMeetupDetailsScreen({super.key});
@@ -71,7 +72,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 maxLine: 1,
                               ),
-                              _PillBadge(
+                              PillBadge(
                                 label: ConstString.freeEntry,
                                 bgColor: const Color(0xFFEDE9FF),
                                 textColor: ConstColor.primaryColor,
@@ -79,7 +80,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 10.h),
-                          _DetailRow(
+                          PlanDetailRow(
                             icon: Icons.location_on_outlined,
                             label: 'Central Park West, NYC',
                           ),
@@ -99,7 +100,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                                 maxLine: 1,
                               ),
                               SizedBox(width: 10.w),
-                              _PillBadge(
+                              PillBadge(
                                 label: '👥 Chill Vibe',
                                 bgColor: const Color(0xFFEDE9FF),
                                 textColor: ConstColor.primaryColor,
@@ -123,7 +124,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 6.h),
-                          _DetailRow(
+                          PlanDetailRow(
                             icon: Icons.language_rounded,
                             label: 'English',
                           ),
@@ -155,7 +156,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
 
               Obx(
                     () => controller.isLocked
-                    ? _ChooseTimeCard(
+                    ? ChooseTimeCardWidget(
                   timeText: 'Sat • 7:30 PM',
                   voteCount: '4 Vote',
                   isSelected: true,
@@ -163,7 +164,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                 )
                     : Column(
                   children: [
-                    _ChooseTimeCard(
+                    ChooseTimeCardWidget(
                       timeText: 'Sat • 7:30 PM',
                       voteCount: '4 Vote',
                       isSelected: controller.selectedTimeIndex.value == 0,
@@ -177,7 +178,7 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
                         controller.selectTime(0);
                       },
                     ),
-                    _ChooseTimeCard(
+                    ChooseTimeCardWidget(
                       timeText: 'Sat • 8:40 PM',
                       voteCount: '2 Vote',
                       isSelected: controller.selectedTimeIndex.value == 1,
@@ -416,12 +417,12 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
               SizedBox(height: 16.h),
 
               // ---- Host Profile ----
-              _HostCard(),
+              HostCardWidget(),
 
               SizedBox(height: 12.h),
 
               // ---- Safety First ----
-              _SafetyCard(),
+              SafetyCardWidget(),
 
               SizedBox(height: 50.h),
             ],
@@ -557,508 +558,6 @@ class OneToOneMeetupDetailsScreen extends StatelessWidget {
   }
 }
 
-class _ChatLocked extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: ConstColor.borderColor, width: 1.5),
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          // ── Blurred background content ──
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16.r),
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 20.w),
-                child: Column(
-                  children: [
-                    // Fake blurred chat rows
-                    _FakeBlurRow(width: 0.7),
-                    SizedBox(height: 10.h),
-                    _FakeBlurRow(width: 0.5),
-                    SizedBox(height: 10.h),
-                    _FakeBlurRow(width: 0.6),
-                  ],
-                ),
-              ),
-            ),
-          ),
-
-          // ── Lock overlay ──
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 32.h, horizontal: 20.w),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Lock icon circle
-                Container(
-                  width: 48.r,
-                  height: 48.r,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withAlpha(20),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Icon(
-                    Icons.lock_outline_rounded,
-                    size: 22.sp,
-                    color: ConstColor.primaryColor,
-                  ),
-                ),
-                SizedBox(height: 10.h),
-
-                // Purple glow behind text
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.w,
-                    vertical: 10.h,
-                  ),
-                  decoration: BoxDecoration(
-                    color: ConstColor.primaryColor.withAlpha(30),
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Column(
-                    children: [
-                      CustomText(
-                        title: ConstString.joinToUnlock,
-                        textColor: ConstColor.black,
-                        textSize: 14.sp,
-                        fontWeight: FontWeight.w700,
-                        textAlign: TextAlign.center,
-                        maxLine: 1,
-                      ),
-                      SizedBox(height: 4.h),
-                      CustomText(
-                        title: ConstString.interactWith,
-                        textColor: ConstColor.black,
-                        textSize: 12.sp,
-                        fontWeight: FontWeight.w400,
-                        textAlign: TextAlign.center,
-                        maxLine: 2,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ── Fake blurred chat bubble row ──
-class _FakeBlurRow extends StatelessWidget {
-  const _FakeBlurRow({required this.width});
-
-  final double width; // 0.0 to 1.0 fraction of screen width
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        // Avatar circle
-        Container(
-          width: 32.r,
-          height: 32.r,
-          decoration: BoxDecoration(
-            color: ConstColor.primaryColor.withAlpha(60),
-            shape: BoxShape.circle,
-          ),
-        ),
-        SizedBox(width: 8.w),
-        // Chat bubble
-        Container(
-          height: 20.h,
-          width: MediaQuery.of(context).size.width * width - 80.w,
-          decoration: BoxDecoration(
-            color: ConstColor.primaryColor.withAlpha(40),
-            borderRadius: BorderRadius.circular(8.r),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// ---- Chat Unlocked ----
-class _ChatUnlocked extends StatelessWidget {
-  final OneToOneMeetupDetailsController controller;
-
-  const _ChatUnlocked({required this.controller});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w),
-      padding: EdgeInsets.all(12.r),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-      ),
-      child: Column(
-        children: controller.chatMessages.map((msg) {
-          if (msg.isMe) {
-            // ── My message: bubble left, avatar right ──
-            return Padding(
-              padding: EdgeInsets.only(bottom: 8.h, left: 40.w),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(10.r),
-                          decoration: BoxDecoration(
-                            color: ConstColor.primaryColor,
-                            borderRadius: BorderRadius.circular(12.r),
-                          ),
-                          child: CustomText(
-                            title: msg.message,
-                            textColor: Colors.white,
-                            textSize: 14.sp,
-                            fontWeight: FontWeight.w400,
-                            maxLine: 5,
-                          ),
-                        ),
-                        SizedBox(height: 2.h),
-                        CustomText(
-                          title: msg.time,
-                          textColor: ConstColor.grey,
-                          textSize: 10.sp,
-                          textAlign: TextAlign.right,
-                          maxLine: 1,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: 8.w),
-                  // Avatar right side
-                  ClipOval(
-                    child: AppImage(
-                      path: msg.avatar ?? 'assets/images/person1_img.jpg',
-                      width: 32.r,
-                      height: 32.r,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          // ── Other message: no avatar, name top-left, time bottom-right ──
-          return Padding(
-            padding: EdgeInsets.only(bottom: 8.h, right: 40.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  title: msg.senderName,
-                  textColor: ConstColor.primaryColor,
-                  textSize: 11.sp,
-                  fontWeight: FontWeight.w700,
-                  maxLine: 1,
-                ),
-                SizedBox(height: 4.h),
-                Container(
-                  padding: EdgeInsets.all(10.r),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFF5F5FA),
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: CustomText(
-                    title: msg.message,
-                    textColor: ConstColor.black,
-                    textSize: 14.sp,
-                    maxLine: 5,
-                  ),
-                ),
-                SizedBox(height: 2.h),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: CustomText(
-                    title: msg.time,
-                    textColor: ConstColor.grey,
-                    textSize: 10.sp,
-                    maxLine: 1,
-                  ),
-                ),
-                SizedBox(height: 8.h),
-              ],
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
-
-// ---- Host Card ----
-class _HostCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w),
-      padding: EdgeInsets.all(14.r),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: ConstColor.borderColor, width: 1.5),
-      ),
-      child: Row(
-        children: [
-          ClipOval(
-            child: AppImage(
-              path: 'assets/images/onboarding1_img.jpg',
-              width: 44.w,
-              height: 44.h,
-              fit: BoxFit.cover,
-            ),
-          ),
-          SizedBox(width: 12.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  title: 'Marcus Chen',
-                  textColor: ConstColor.black,
-                  textSize: 14.sp,
-                  fontWeight: FontWeight.w700,
-                  maxLine: 1,
-                ),
-                SizedBox(height: 2.h),
-                CustomText(
-                  title: '⭐ Central Park West, NYC',
-                  textColor: ConstColor.grey,
-                  textSize: 12.sp,
-                  maxLine: 1,
-                ),
-              ],
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Get.toNamed(AppRoutes.hostProfileScreen);
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
-              decoration: BoxDecoration(
-                border: Border.all(color: ConstColor.primaryColor),
-                borderRadius: BorderRadius.circular(20.r),
-              ),
-              child: CustomText(
-                title: ConstString.viewProfile,
-                textColor: ConstColor.primaryColor,
-                textSize: 12.sp,
-                fontWeight: FontWeight.w600,
-                maxLine: 1,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ---- Safety Card ----
-class _SafetyCard extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w),
-      padding: EdgeInsets.all(14.r),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF0EDFF),
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: ConstColor.borderColor, width: 1.5),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(
-                Icons.shield_outlined,
-                size: 16.sp,
-                color: ConstColor.primaryColor,
-              ),
-              SizedBox(width: 6.w),
-              CustomText(
-                title: ConstString.safetyFirst,
-                textColor: ConstColor.primaryColor,
-                textSize: 13.sp,
-                fontWeight: FontWeight.w700,
-                maxLine: 1,
-              ),
-            ],
-          ),
-          SizedBox(height: 6.h),
-          CustomText(
-            title: ConstString.verifyUserOnly,
-            textColor: ConstColor.grey,
-            textSize: 12.sp,
-            maxLine: 4,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ---- Shared Widgets ----
-class _DetailRow extends StatelessWidget {
-  final IconData icon;
-  final String label;
-
-  const _DetailRow({required this.icon, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(icon, size: 15.sp, color: ConstColor.primaryDeepColor),
-        SizedBox(width: 6.w),
-        Flexible(
-          child: CustomText(
-            title: label,
-            textColor: ConstColor.textColor,
-            textSize: 12.sp,
-            fontWeight: FontWeight.w500,
-            maxLine: 1,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _PillBadge extends StatelessWidget {
-  final String label;
-  final Color bgColor;
-  final Color textColor;
-
-  const _PillBadge({
-    required this.label,
-    required this.bgColor,
-    required this.textColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(20.r),
-        border: Border.all(
-          color: ConstColor.primaryDeepColor.withAlpha(40),
-          width: 1.5,
-        ),
-      ),
-      child: CustomText(
-        title: label,
-        textColor: textColor,
-        textSize: 12.sp,
-        fontWeight: FontWeight.w600,
-        maxLine: 1,
-      ),
-    );
-  }
-}
-
-class _SmallAvatarStack extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 58.w,
-      height: 26.h,
-      child: Stack(
-        children: [
-          // Avatar 1
-          Positioned(
-            left: 0,
-            child: _CircleAvatar(path: 'assets/images/onboarding5_img.jpg'),
-          ),
-          // Avatar 2
-          Positioned(
-            left: 15.w,
-            child: _CircleAvatar(path: 'assets/images/onboarding3_img.jpg'),
-          ),
-          // +1 count badge
-          Positioned(
-            left: 30.w,
-            child: Container(
-              width: 28.w,
-              height: 28.h,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: ConstColor.primaryColor,
-                border: Border.all(color: Colors.white, width: 1.5.w),
-              ),
-              child: Center(
-                child: CustomText(
-                  title: '+1',
-                  textColor: Colors.white,
-                  textSize: 9.sp,
-                  fontWeight: FontWeight.w700,
-                  maxLine: 1,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _CircleAvatar extends StatelessWidget {
-  final String path;
-
-  const _CircleAvatar({required this.path});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 28.w,
-      height: 28.h,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.white, width: 1.5.w),
-      ),
-      child: ClipOval(
-        child: AppImage(
-          path: path,
-          width: 26.w,
-          height: 26.h,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-}
 class _OutlineButton extends StatelessWidget {
   final String label;
   final Color color;
@@ -1094,99 +593,11 @@ class _OutlineButton extends StatelessWidget {
   }
 }
 
-class _ChooseTimeCard extends StatelessWidget {
-  final String timeText;
-  final String voteCount;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const _ChooseTimeCard({
-    required this.timeText,
-    required this.voteCount,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        margin: EdgeInsets.fromLTRB(16.w, 0, 16.w, 12.h),
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? ConstColor.primaryColor.withAlpha(15)
-              : Colors.white,
-          borderRadius: BorderRadius.circular(16.r),
-          border: isSelected
-              ? Border.all(color: ConstColor.primaryColor, width: 1.5.w)
-              : Border.all(color: Colors.transparent, width: 1.5.w),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withAlpha(10),
-              blurRadius: 8.r,
-              offset: Offset(0, 2.h),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: EdgeInsets.all(10.r),
-              decoration: BoxDecoration(
-                color: isSelected ? Colors.white : const Color(0xFFF6F5FF),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.calendar_today_outlined,
-                color: ConstColor.primaryColor,
-                size: 20.sp,
-              ),
-            ),
-            SizedBox(width: 16.w),
-
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomText(
-                  title: timeText,
-                  textColor: ConstColor.black,
-                  textSize: 16.sp,
-                  fontWeight: FontWeight.w700,
-                  maxLine: 1,
-                ),
-                SizedBox(height: 2.h),
-                CustomText(
-                  title: voteCount,
-                  textColor: ConstColor.grey,
-                  textSize: 12.sp,
-                  fontWeight: FontWeight.w400,
-                  maxLine: 1,
-                ),
-              ],
-            ),
-
-            const Spacer(),
-
-            if (isSelected)
-              Icon(
-                Icons.check_circle_rounded,
-                color: ConstColor.primaryColor,
-                size: 20.sp,
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 class _LocationVoteCard extends StatelessWidget {
   final LocationVoteItem item;
   final VoidCallback? onTap;
 
-  const _LocationVoteCard({required this.item,this.onTap,});
+  const _LocationVoteCard({required this.item, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -1275,7 +686,7 @@ class _LocationVoteCard extends StatelessWidget {
                   SizedBox(height: 6.h),
                   Row(
                     children: [
-                      _SmallAvatarStack(),
+                      SmallAvatarStack(),
                       SizedBox(width: 8.w),
                       CustomText(
                         title: '${item.votes} votes',
@@ -1285,7 +696,7 @@ class _LocationVoteCard extends StatelessWidget {
                       ),
                       if (item.isSelected) ...[
                         SizedBox(width: 8.w),
-                        const _PillBadge(
+                        const PillBadge(
                           label: 'MOST VOTED',
                           bgColor: Color(0x336C5CE7),
                           textColor: ConstColor.primaryColor,
