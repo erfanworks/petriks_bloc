@@ -134,7 +134,7 @@ class ConstString {
   static const hangOutPark = 'Hang out at the park';
   static const pickALocation = 'Pick a location';
   static const location = 'Location';
-  static const groupChat = 'Group Chat';
+  static const groupChat = 'Community Chat';
   static const navigate = 'Navigate';
   static const view = 'View';
   static const joinEvent = 'Join Event';
@@ -169,6 +169,7 @@ class ConstString {
   static const followGuidelines =
       'Follow these guidelines to stay while meeting new people';
   static const whyReporting = 'Why are you reporting this user?';
+  static const whyCouldntAttend = "Why couldn't you attend?";
   static const urgencyLevel = 'Urgency Level';
   static const submitReport = 'Submit Report';
   static const blockThisUser = 'Block This User?';
@@ -319,6 +320,7 @@ class ConstString {
   static const created = 'Created';
   static const editPlan = 'Edit Plan';
   static const joinedParticipants = 'Joined Participants';
+  static const requestedParticipants = 'Requested Participants';
   static const pollResult = 'Poll Result';
   static const timePoll = 'Time Poll';
   static const placePoll = 'Place Poll';
@@ -641,7 +643,7 @@ class ConstString {
   static const String get1BoostToJoin       = 'Get 1 Boost to Join';
   static const String selectPackage         = 'Select Package';
   static const String purchasePackageToJoin = 'Purchase a package to join additional plans';
-  static const String confirmAndPay         = 'Confirm & pay';
+  static const String confirmAndPay         = 'Confirm and Pay';
   static const String boostYourPlan   = 'Boost your plan';
   static const String feature         = 'Feature';
   static const String boostFeatureDesc = 'Reach more people and get more participants faster.';

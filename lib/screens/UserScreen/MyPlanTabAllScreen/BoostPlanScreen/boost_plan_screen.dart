@@ -138,7 +138,7 @@ class BoostPlanScreen extends StatelessWidget {
           buttonBorderRadius: 30,
           gradient: const [ConstColor.primaryDeepColor, ConstColor.primaryColor],
           child: CustomText(
-            title: ConstString.confirm,
+            title: ConstString.confirmAndPay,
             textSize: 16.sp,
             fontWeight: FontWeight.w600,
             textColor: Colors.white,

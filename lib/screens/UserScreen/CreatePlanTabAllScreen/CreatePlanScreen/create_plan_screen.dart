@@ -500,14 +500,6 @@ class _Step4WhenWhere extends StatelessWidget {
                 ),
               ),
             ),
-            suffixIcon: Padding(
-              padding: EdgeInsets.all(12.r),
-              child: Icon(
-                Icons.keyboard_arrow_down_rounded,
-                color: ConstColor.iconColor,
-                size: 20.r,
-              ),
-            ),
           ),
 
           SizedBox(height: 8.h),

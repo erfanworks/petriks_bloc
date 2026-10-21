@@ -313,7 +313,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         _SectionTitle(
-                          title: '${ConstString.joinedParticipants} (2/6)',
+                          title: '${ConstString.requestedParticipants} (2/6)',
                         ),
                         SizedBox(height: 10.h),
                         ...[

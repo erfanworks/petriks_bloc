@@ -303,7 +303,7 @@ class JoinedPlanDetailsScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(
-                      title: ConstString.groupChat,
+                      title: ConstString.planGroupChat,
                       textColor: ConstColor.black,
                       textSize: 16.sp,
                       fontWeight: FontWeight.w700,

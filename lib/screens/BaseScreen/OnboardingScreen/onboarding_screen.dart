@@ -277,16 +277,19 @@ class _MapSectionState extends State<_MapSection>
 
           Positioned(
             bottom: 25.h,
-            left: 170.w,
-            child: AnimatedBuilder(
-              animation: _floatCtrl,
-              builder: (context, child) => Transform.translate(
-                offset: Offset(0, _floatOffset(amplitude: 5, phase: 0.6).value),
-                child: child,
-              ),
-              child: const _AvatarBubble(
-                imagePath: 'assets/images/splash_6.jpg',
-                size: 50,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: AnimatedBuilder(
+                animation: _floatCtrl,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(0, _floatOffset(amplitude: 5, phase: 0.6).value),
+                  child: child,
+                ),
+                child: const _AvatarBubble(
+                  imagePath: 'assets/images/splash_6.jpg',
+                  size: 50,
+                ),
               ),
             ),
           ),

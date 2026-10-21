@@ -157,10 +157,10 @@ class PlanDetailsController extends GetxController {
   final reviewController = TextEditingController();
 
   final List<ReportReason> reportReasons = [
-    ReportReason(label: 'Inappropriate behavior'),
-    ReportReason(label: 'Harassment or bullying'),
-    ReportReason(label: 'Spam or fake account'),
-    ReportReason(label: 'Unsafe or suspicious activity'),
+    ReportReason(label: 'Sick / Feeling unwell'),
+    ReportReason(label: 'Family emergency'),
+    ReportReason(label: 'Schedule conflict'),
+    ReportReason(label: 'Transport issues'),
     ReportReason(label: 'Other'),
   ];
   final urgencyLevels = ['Low', 'Medium', 'High'];
