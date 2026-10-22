@@ -49,6 +49,8 @@ class ReportReason {
   final RxBool isSelected;
 
   ReportReason({required this.label}) : isSelected = false.obs;
+
+  bool get isOther => label == 'Other';
 }
 
 // ---- Plan Details Controller ----
@@ -154,6 +156,14 @@ class JoinedPlanDetailsController extends GetxController {
     ReportReason(label: 'Transport issues'),
     ReportReason(label: 'Other'),
   ];
+  final otherReasonController = TextEditingController();
+  final RxBool isOtherSelected = false.obs;
+
+  String get finalReason {
+    final selected = reportReasons.firstWhereOrNull((r) => r.isSelected.value);
+    if (selected == null) return '';
+    return selected.isOther ? otherReasonController.text.trim() : selected.label;
+  }
   final urgencyLevels = ['Low', 'Medium', 'High'];
   final selectedUrgency = 'High'.obs;
 
@@ -204,6 +214,8 @@ class JoinedPlanDetailsController extends GetxController {
     }
 
     reason.isSelected.value = true;
+    isOtherSelected.value = reason.isOther;
+    if (!reason.isOther) otherReasonController.clear();
 
     isReportSelected.value = true;
   }
@@ -218,6 +230,11 @@ class JoinedPlanDetailsController extends GetxController {
 
     if (!hasSelected) {
       AppSnackBar.error("Please select a report reason");
+      return;
+    }
+
+    if (isOtherSelected.value && otherReasonController.text.trim().isEmpty) {
+      AppSnackBar.error("Please tell us your reason");
       return;
     }
 
@@ -243,6 +260,7 @@ class JoinedPlanDetailsController extends GetxController {
     reviewController.dispose();
     supportSubjectController.dispose();
     supportDescController.dispose();
+    otherReasonController.dispose();
     _timer?.cancel();
     super.onClose();
   }
