@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
+import 'package:petriks_flutter_app/widget/AppDialog/app_confirm_dialog.dart';
 import 'package:petriks_flutter_app/widget/AppImage/app_image.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -314,8 +315,16 @@ class ViewCompetitionScreen extends StatelessWidget {
                                       label: ConstString.couldTAttend,
                                       color: const Color(0xFFBA1A1A),
                                       onTap: () {
-                                        Get.toNamed(AppRoutes.joinedPlanUserReport);
-                                        AppSnackBar.message("Attendance canceled");
+                                        AppConfirmDialog.show(
+                                          title: "Couldn't Attend?",
+                                          message: "Are you sure you can't attend? You'll be asked to share a reason next.",
+                                          confirmText: "Yes, Continue",
+                                          icon: Icons.event_busy_rounded,
+                                          onConfirm: () {
+                                            Get.toNamed(AppRoutes.joinedPlanUserReport);
+                                            AppSnackBar.message("Attendance canceled");
+                                          },
+                                        );
                                       },
                                     ),
                                   ),
