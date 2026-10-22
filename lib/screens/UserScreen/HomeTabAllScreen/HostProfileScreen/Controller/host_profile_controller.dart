@@ -1,10 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 class HostProfileController extends GetxController {
   final selectedReason = ''.obs;
   final selectedUrgency = 'High'.obs;
   final isReportSubmitted = false.obs;
+  final otherReasonController = TextEditingController();
+
+  String get finalReason => selectedReason.value == 'Other'
+      ? otherReasonController.text.trim()
+      : selectedReason.value;
 
   final List<String> reportReasons = [
     'Inappropriate behavior',
@@ -86,12 +93,20 @@ class HostProfileController extends GetxController {
 
   void onMessage() => Get.toNamed(AppRoutes.directChatScreen);
 
-  void selectReason(String reason) => selectedReason.value = reason;
+  void selectReason(String reason) {
+    selectedReason.value = reason;
+    if (reason != 'Other') otherReasonController.clear();
+  }
 
   void selectUrgency(String level) => selectedUrgency.value = level;
 
   void submitReport() {
     if (selectedReason.value.isEmpty) return;
+    if (selectedReason.value == 'Other' &&
+        otherReasonController.text.trim().isEmpty) {
+      AppSnackBar.error("Please tell us your reason");
+      return;
+    }
     isReportSubmitted.value = true;
   }
 
@@ -99,5 +114,12 @@ class HostProfileController extends GetxController {
     selectedReason.value = '';
     selectedUrgency.value = 'High';
     isReportSubmitted.value = false;
+    otherReasonController.clear();
+  }
+
+  @override
+  void onClose() {
+    otherReasonController.dispose();
+    super.onClose();
   }
 }
