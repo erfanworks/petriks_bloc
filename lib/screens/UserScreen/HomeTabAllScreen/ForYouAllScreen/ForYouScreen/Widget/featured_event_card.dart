@@ -109,7 +109,7 @@ class FeaturedEventCard extends StatelessWidget {
                         SizedBox(height: 5.h),
                         _InfoRow(
                           icon: Icons.location_on_outlined,
-                          label: 'Central Park West',
+                          label: 'Hyde Park',
                         ),
                         SizedBox(height: 5.h),
                         _InfoRow(
