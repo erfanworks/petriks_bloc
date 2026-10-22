@@ -49,7 +49,7 @@ class EditProfileController extends GetxController {
       ),
     );
     if (picked != null) {
-      dateOfBirth.value = '${picked.day} ${_month(picked.month)}, ${picked.year}';
+      dateOfBirth.value = '${picked.day} ${_month(picked.month)} ${picked.year}';
     }
   }
 
