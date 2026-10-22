@@ -539,7 +539,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                   onPressed: () {
                     AppDialog.show(
                       title: "Delete plan",
-                      message: "Are you sure you want to delete this plan?",
+                      message: "Are you sure you want to delete this plan? This action cannot be undone.",
                       icon: Icons.delete,
                       iconBackgroundColor: Colors.red,
                       primaryButtonText: "Delete",
