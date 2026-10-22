@@ -89,7 +89,6 @@ class EditGroupScreen extends StatelessWidget {
                             decoration: const InputDecoration(border: InputBorder.none, isDense: true),
                           ),
                         ),
-                        Icon(Icons.keyboard_arrow_down_rounded, color: ConstColor.grey, size: 22.sp),
                       ],
                     ),
                   ),
