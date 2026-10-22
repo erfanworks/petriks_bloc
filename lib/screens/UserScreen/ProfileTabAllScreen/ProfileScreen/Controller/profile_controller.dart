@@ -33,10 +33,10 @@ class InviteFriendModel {
 }
 
 class ProfileController extends GetxController {
-  final userName       = 'Rahim, 26'.obs;
-  final userLocation   = 'Dhaka'.obs;
-  final userLanguages  = 'English, Bangla'.obs;
-  final userBio        = 'Passionate about exploring local culture and finding the best street food in Dhaka. Always up for a friendly cricket match or a tech talk!'.obs;
+  final userName       = 'Oliver, 26'.obs;
+  final userLocation   = 'London'.obs;
+  final userLanguages  = 'English, French'.obs;
+  final userBio        = 'Passionate about exploring local culture and finding the best street food in London. Always up for a friendly cricket match or a tech talk!'.obs;
   final followerCount  = 24.obs;
   final followingCount = 18.obs;
   final isPremium      = true.obs;
