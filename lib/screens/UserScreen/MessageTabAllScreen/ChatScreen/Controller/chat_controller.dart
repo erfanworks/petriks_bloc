@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../Widget/AppDialog/app_confirm_dialog.dart';
 import '../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
 
 class ChatItem {
@@ -231,6 +233,37 @@ class ChatController extends GetxController {
 
     messageController.clear();
     selectedMediaPaths.clear();
+  }
+
+  // TODO(API): community-র competition আছে কিনা API থেকে আসবে
+  final RxBool hasCompetition = true.obs;
+
+  void confirmLeaveCommunityChat() {
+    AppConfirmDialog.show(
+      title: 'Leave Community Chat?',
+      message:
+          'Are you sure you want to leave this community chat? You will stop receiving its messages.',
+      confirmText: 'Leave Chat',
+      icon: Icons.logout_rounded,
+      onConfirm: () {
+        Get.back(); // chat screen বন্ধ
+        AppSnackBar.message('You have left the community chat');
+      },
+    );
+  }
+
+  void confirmLeavePlan() {
+    AppConfirmDialog.show(
+      title: 'Leave Plan?',
+      message:
+          'Are you sure you want to leave this plan? You will also be removed from its chat.',
+      confirmText: 'Leave Plan',
+      icon: Icons.logout_rounded,
+      onConfirm: () {
+        Get.back(); // plan chat screen বন্ধ
+        AppSnackBar.message('You have left the plan');
+      },
+    );
   }
 
   void switchTab(int i) => selectedTab.value = i;
