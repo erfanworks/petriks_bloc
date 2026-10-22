@@ -29,7 +29,7 @@ class PlanChatScreen extends StatelessWidget {
         subTitle: ConstString.fourParticipants,
         actions: [
           GestureDetector(
-            onTap: () => ChatBottomSheet.show(context),
+            onTap: () => ChatBottomSheet.show(context, isPlanChat: true),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Icon(
