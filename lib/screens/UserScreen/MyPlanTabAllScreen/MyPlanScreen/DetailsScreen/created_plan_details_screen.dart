@@ -9,6 +9,7 @@ import '../../../../../constant/const_string.dart';
 import '../../../../../routes/app_routes/app_routes.dart';
 import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../Widget/app_snack_bar/app_snack_bar.dart';
+import '../../../../../widget/AppDialog/app_confirm_dialog.dart';
 import '../../../../../widget/AppDialog/app_dialog.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
@@ -652,6 +653,21 @@ class _ParticipantRowState extends State<_ParticipantRow> {
 
   bool isApproved = false;
 
+  void _confirmDontApprove() {
+    AppConfirmDialog.show(
+      title: "Don't Approve?",
+      message:
+          "Remove approval for ${widget.name}? They will go back to requested participants.",
+      confirmText: "Don't Approve",
+      icon: Icons.person_remove_alt_1_rounded,
+      onConfirm: () {
+        if (!mounted) return;
+        setState(() => isApproved = false);
+        AppSnackBar.message("${widget.name}'s approval removed");
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -685,11 +701,7 @@ class _ParticipantRowState extends State<_ParticipantRow> {
           ),
 
           GestureDetector(
-            onTap: () {
-              setState(() {
-                isApproved = true;
-              });
-            },
+            onTap: isApproved ? null : () => setState(() => isApproved = true),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 250),
               padding: EdgeInsets.symmetric(
@@ -743,6 +755,23 @@ class _ParticipantRowState extends State<_ParticipantRow> {
               ),
             ),
           ),
+
+          if (isApproved) ...[
+            SizedBox(width: 6.w),
+            GestureDetector(
+              onTap: _confirmDontApprove,
+              child: Container(
+                width: 28.r,
+                height: 28.r,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                  border: Border.all(color: Colors.red.withAlpha(120), width: 1.2),
+                ),
+                child: Icon(Icons.close_rounded, size: 14.r, color: Colors.red),
+              ),
+            ),
+          ],
         ],
       ),
     );
