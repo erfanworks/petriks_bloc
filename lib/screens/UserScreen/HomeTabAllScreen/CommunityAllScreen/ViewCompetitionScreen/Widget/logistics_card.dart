@@ -18,7 +18,7 @@ class LogisticsCard extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _LogisticsRow(label: 'Date', value: 'Oct 22, 2023'),
+          _LogisticsRow(label: 'Date', value: '22 Oct 2023'),
           _Divider(),
           _LogisticsRow(label: 'Time', value: '17:00 (Local)'),
           _Divider(),
