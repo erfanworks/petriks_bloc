@@ -248,9 +248,8 @@ class ViewCompetitionController extends GetxController {
 
   void onConfirmAttendance() {
     attendanceConfirmed.value = true;
-    Get.back();
+    Get.toNamed(AppRoutes.attendanceTipsScreen);
     AppSnackBar.success("Attendance confirmed successfully! 🎉");
-
   }
 
   void onChat() {
