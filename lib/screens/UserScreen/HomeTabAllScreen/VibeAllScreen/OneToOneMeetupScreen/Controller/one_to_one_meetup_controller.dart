@@ -48,7 +48,7 @@ class OneToOneMeetupController extends GetxController {
       eventImage: 'assets/images/hank_out_party_img.jpg',
       tag: 'Social',
       eventTitle: 'Coffee Time',
-      location: 'Central Park West',
+      location: 'Hyde Park',
       date: 'Saturday, 24 June',
       time: '6:30 PM Today',
       isFreeEntry: true,
