@@ -115,7 +115,7 @@ class JoinedPlanDetailsScreen extends StatelessWidget {
                           SizedBox(height: 10.h),
                           const _DetailRow(
                             icon: Icons.location_on_outlined,
-                            label: 'Central Park West, NYC',
+                            label: 'Hyde Park, London',
                           ),
                           SizedBox(height: 6.h),
                           Row(
@@ -969,7 +969,7 @@ class _HostCard extends StatelessWidget {
                 ),
                 SizedBox(height: 6.h),
                 CustomText(
-                  title: '⭐ Central Park West, NYC',
+                  title: '⭐ Hyde Park, London',
                   textColor: ConstColor.grey,
                   textSize: 12.sp,
                   maxLine: 1,
