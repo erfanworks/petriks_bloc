@@ -200,13 +200,11 @@ class HostProfileScreen extends StatelessWidget {
         ),
         PopupMenuItem(
           child: CustomText(
-              title: ConstString.block,
+              title: c.isBlocked ? ConstString.unblock : ConstString.block,
               textSize: 14.sp,
               textColor: ConstColor.black,
               maxLine: 1),
-          onTap: () {
-            // TODO: block action
-          },
+          onTap: () => Future.microtask(c.onBlockTap),
         ),
       ],
     );
