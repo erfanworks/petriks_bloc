@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petriks_flutter_app/Widget/AppDialog/app_confirm_dialog.dart';
+import 'package:petriks_flutter_app/Widget/BlockService/block_service.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
@@ -12,6 +14,9 @@ class HostProfileController extends GetxController {
   String get finalReason => selectedReason.value == 'Other'
       ? otherReasonController.text.trim()
       : selectedReason.value;
+
+  String get _userName => name.split(',').first.trim();
+  bool get isBlocked => BlockService.to.isBlocked(_userName);
 
   final List<String> reportReasons = [
     'Inappropriate behavior',
@@ -89,9 +94,53 @@ class HostProfileController extends GetxController {
     {'name': 'Urban Athletes', 'sub': '12 Group', 'image': 'assets/images/hank_out_party_img.jpg'},
   ];
 
-  void toggleFollow() => isFollowing.value = !isFollowing.value;
+  bool _guardBlocked() {
+    if (!isBlocked) return false;
+    AppSnackBar.message('Unblock $_userName to continue');
+    return true;
+  }
 
-  void onMessage() => Get.toNamed(AppRoutes.directChatScreen);
+  void toggleFollow() {
+    if (_guardBlocked()) return;
+    isFollowing.value = !isFollowing.value;
+  }
+
+  void onMessage() {
+    if (_guardBlocked()) return;
+    Get.toNamed(AppRoutes.directChatScreen);
+  }
+
+  void onBlockTap() {
+    if (isBlocked) {
+      AppConfirmDialog.show(
+        title: 'Unblock $_userName?',
+        message: 'They will be able to message you and see your profile again.',
+        confirmText: 'Unblock',
+        icon: Icons.lock_open_rounded,
+        isDestructive: false,
+        onConfirm: () {
+          BlockService.to.unblock(_userName);
+          AppSnackBar.success('$_userName unblocked');
+        },
+      );
+      return;
+    }
+    AppConfirmDialog.show(
+      title: 'Block $_userName?',
+      message:
+          "They won't be able to message you or see your profile, and you won't see theirs. You can unblock them later.",
+      confirmText: 'Block',
+      icon: Icons.block_rounded,
+      onConfirm: () {
+        BlockService.to.block(
+          name: _userName,
+          image: 'assets/images/onboarding2_img.jpg',
+        );
+        Get.back(); // প্রোফাইল বন্ধ
+        AppSnackBar.success('$_userName blocked');
+      },
+    );
+  }
 
   void selectReason(String reason) {
     selectedReason.value = reason;
