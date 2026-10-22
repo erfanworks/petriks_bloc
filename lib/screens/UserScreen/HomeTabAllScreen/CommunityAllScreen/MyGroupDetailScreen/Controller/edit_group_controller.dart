@@ -52,7 +52,7 @@ class MyGroupController extends GetxController {
   void onDeleteGroup() {
     AppDialog.show(
       title: "Delete Group",
-      message: "Are you sure you want to delete this Group?",
+      message: "Are you sure you want to delete this group? This action cannot be undone.",
       icon: Icons.delete,
       iconBackgroundColor: Colors.red,
       primaryButtonText: "Delete",
