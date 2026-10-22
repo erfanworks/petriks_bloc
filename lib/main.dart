@@ -6,6 +6,7 @@ import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes_file.dart';
 import 'constant/const_color.dart';
 import 'initializer.dart';
+import 'widget/KeyboardDoneBar/keyboard_done_bar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,12 +33,14 @@ class MainApp extends StatelessWidget {
       builder: (context, child) {
         return GetMaterialApp(
           // navigatorObservers: [BackStackObserver()],
+          builder: (context, child) =>
+              KeyboardDoneBar(child: child ?? const SizedBox.shrink()),
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.light,
           theme: ThemeData(scaffoldBackgroundColor: ConstColor.backgroundColor),
           defaultTransition: Transition.noTransition,
           getPages: appRouteFile,
-          initialRoute: AppRoutes.navBar
+          initialRoute: AppRoutes.phoneLoginScreen
         );
       },
     );
