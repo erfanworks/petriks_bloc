@@ -7,6 +7,7 @@ import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import '../../../../../widget/AppImage/app_image.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
+import '../../../../../widget/OtherReasonField/other_reason_field.dart';
 import '../../../../../widget/text/custom_text.dart';
 import '../Controller/host_profile_controller.dart';
 
@@ -213,6 +214,10 @@ class _ReportFormView extends StatelessWidget {
               );
             }).toList(),
           )),
+
+          Obx(() => c.selectedReason.value == 'Other'
+              ? OtherReasonField(controller: c.otherReasonController)
+              : const SizedBox.shrink()),
 
           SizedBox(height: 12.h),
 
