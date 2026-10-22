@@ -339,7 +339,7 @@ class _CompetitionBanner extends StatelessWidget {
           SizedBox(height: 10.h),
           Row(
             children: [
-              _BannerInfo(label: 'DATE', value: 'Oct 24'),
+              _BannerInfo(label: 'DATE', value: '24 Oct'),
               SizedBox(width: 24.w),
               _BannerInfo(label: 'VENUE', value: 'Central Plaza'),
             ],
