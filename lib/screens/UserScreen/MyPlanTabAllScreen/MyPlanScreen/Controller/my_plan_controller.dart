@@ -37,7 +37,7 @@ class MyPlanController extends GetxController {
 
   final titleController    = TextEditingController(text: 'Hang out at the park');
   final selectedActivity   = 'Coffee'.obs;
-  final selectedDate       = 'Saturday, Nov 24'.obs;
+  final selectedDate       = 'Saturday, 24 Nov'.obs;
   final selectedTime1      = '07:00 PM'.obs;
   final selectedTime2      = '08:00 PM'.obs;
 
@@ -45,10 +45,10 @@ class MyPlanController extends GetxController {
 
   final RxList<Map<String, String>> locations = <Map<String, String>>[
     {'name': 'Bean House Café',  'sub': '0.4 miles away', 'desc': 'Good for small coffee meetups.', 'discount': '10% off for GoodNiva users', 'image': 'assets/images/party_img.png'},
-    {'name': 'Central Park',  'sub': 'Manhattan, NY 10024', 'desc': 'Great for outdoor activities.', 'discount': '', 'image': 'assets/images/centarl_park_img.png'},
+    {'name': 'Hyde Park',  'sub': 'London W2 2UH', 'desc': 'Great for outdoor activities.', 'discount': '', 'image': 'assets/images/centarl_park_img.png'},
   ].obs;
 
-  final RxSet<String> selectedLocationNames = {'Central Park'}.obs;
+  final RxSet<String> selectedLocationNames = {'Hyde Park'}.obs;
 
   final customLocationNameController = TextEditingController();
   final customLocationAddressController = TextEditingController();
@@ -109,7 +109,7 @@ class MyPlanController extends GetxController {
     // ),
     const PlanModel(
       id: '2', title: 'Hang out at the park',
-      location: 'Central Park West', date: 'Saturday, 24 June',
+      location: 'Hyde Park', date: 'Saturday, 24 June',
       time: '6:30 PM Today', language: 'English',
       type: 'Group', image: 'assets/images/hank_out_park_party_img.jpg',
       vibe: 'Social', joined: 3, total: 6,
@@ -117,7 +117,7 @@ class MyPlanController extends GetxController {
     ),
     const PlanModel(
       id: '3', title: 'Hang out at the park',
-      location: 'Central Park West', date: 'Saturday, 24 June',
+      location: 'Hyde Park', date: 'Saturday, 24 June',
       time: '6:30 PM Today', language: 'English',
       type: 'Group', image: 'assets/images/hank_out_party_img.jpg',
       vibe: 'Social', joined: 3, total: 6,
@@ -125,7 +125,7 @@ class MyPlanController extends GetxController {
     ),
     const PlanModel(
       id: '4', title: 'Hang out at the park',
-      location: 'Central Park West', date: 'Saturday, 24 June',
+      location: 'Hyde Park', date: 'Saturday, 24 June',
       time: '6:30 PM Today', language: 'English',
       type: 'Group', image: 'assets/images/hank_out_party_img.jpg',
       vibe: 'Social', joined: 11, total: 6,
@@ -136,21 +136,21 @@ class MyPlanController extends GetxController {
   final joinedPlans = <PlanModel>[
     const PlanModel(
       id: '4', title: 'Hang out at the park',
-      location: 'Central Park West', date: 'Saturday, 24 June',
+      location: 'Hyde Park', date: 'Saturday, 24 June',
       time: '6:30 PM Today', language: 'English',
       type: 'Group', image: 'assets/images/hank_out_party_img.jpg',
       vibe: 'Social', joined: 3, total: 6,
     ),
     const PlanModel(
       id: '5', title: 'Hang out at the park',
-      location: 'Central Park West, NYC', date: 'Saturday, 24 June',
+      location: 'Hyde Park, London', date: 'Saturday, 24 June',
       time: '6:30 PM Today', language: 'English',
       type: 'Group', image: 'assets/images/night_party_img.jpg',
       vibe: 'Nature Walk', joined: 6, total: 6, tag: 'COMPLETED',
     ),
     const PlanModel(
       id: '6', title: 'Hang out at the park',
-      location: 'Central Park West, NYC', date: 'Saturday, 24 June',
+      location: 'Hyde Park, London', date: 'Saturday, 24 June',
       time: '6:30 PM Today', language: 'English',
       type: 'Group', image: 'assets/images/night_party_img.jpg',
       vibe: 'Nature Walk', joined: 3, total: 6, tag: 'OPEN',
@@ -189,7 +189,7 @@ class MyPlanController extends GetxController {
     if (picked == null) return;
     final day = _weekday(picked.weekday);
     final month = _month(picked.month);
-    selectedDate.value = '$day, $month ${picked.day}';
+    selectedDate.value = '$day, ${picked.day} $month';
   }
 
 // Time picker
