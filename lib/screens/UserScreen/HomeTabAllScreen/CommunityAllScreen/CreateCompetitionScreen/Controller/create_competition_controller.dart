@@ -146,7 +146,7 @@ class CreateCompetitionController extends GetxController {
   final RxString competitionTitle = 'Football Match'.obs;
   final notesController = TextEditingController();
   final capacityController = TextEditingController();
-  final RxString selectedDate = 'Saturday, Nov 24'.obs;
+  final RxString selectedDate = 'Saturday, 24 Nov'.obs;
   final RxString selectedTime = '07:00 PM'.obs;
   final descriptionController = TextEditingController();
   final uploadImage = ''.obs;
@@ -216,7 +216,7 @@ class CreateCompetitionController extends GetxController {
     );
     if (picked != null) {
       selectedDate.value =
-      '${_weekday(picked.weekday)}, ${_month(picked.month)} ${picked.day}';
+      '${_weekday(picked.weekday)}, ${picked.day} ${_month(picked.month)}';
     }
   }
 
