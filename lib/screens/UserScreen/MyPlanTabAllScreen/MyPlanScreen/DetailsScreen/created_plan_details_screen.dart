@@ -232,7 +232,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                               SizedBox(height: 10.h),
                               _DetailRow(
                                 icon: "assets/icons/location_icon.svg",
-                                label: 'Central Park West, NYC',
+                                label: 'Hyde Park, London',
                               ),
                               SizedBox(height: 6.h),
                               Row(
@@ -365,10 +365,10 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                         SizedBox(height: 20.h),
                         _PollSection(
                           title: ConstString.placePoll,
-                          subtitle: 'Leading choice for Mohandis Lake',
+                          subtitle: 'Leading choice for Serpentine Lake',
                           options: [
-                            {'label': 'Mohandis Lake', 'percent': 0.85},
-                            {'label': 'Dishabille Park', 'percent': 0.15},
+                            {'label': 'Serpentine Lake', 'percent': 0.85},
+                            {'label': "Regent's Park", 'percent': 0.15},
                           ],
                         ),
                       ],
