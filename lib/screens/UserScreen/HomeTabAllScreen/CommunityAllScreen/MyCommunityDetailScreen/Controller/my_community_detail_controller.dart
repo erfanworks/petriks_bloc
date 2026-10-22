@@ -256,7 +256,7 @@ class MyCommunityDetailController extends GetxController {
   void onDeleteCommunity() {
     AppDialog.show(
       title: "Delete Community",
-      message: "Are you sure you want to delete this community?",
+      message: "Are you sure you want to delete this community? This action cannot be undone.",
       icon: Icons.delete_outline_rounded,
       iconBackgroundColor: Colors.red.withAlpha(30),
       iconColor: Colors.red,
