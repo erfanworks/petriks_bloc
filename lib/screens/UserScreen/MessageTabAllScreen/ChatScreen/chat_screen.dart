@@ -109,24 +109,25 @@ class ChatScreen extends StatelessWidget {
             SizedBox(height: 10.h),
 
             Expanded(
-              child: Obx(
-                () => ListView.separated(
+              child: Obx(() {
+                final list = c.visibleChats;
+                return ListView.separated(
                   padding: EdgeInsets.symmetric(
                     horizontal: 16.w,
                     vertical: 8.h,
                   ),
-                  itemCount: c.chats.length,
+                  itemCount: list.length,
                   separatorBuilder: (_, _) => Divider(
                     height: 1,
                     color: ConstColor.borderColor.withAlpha(80),
                     indent: 72.w,
                   ),
                   itemBuilder: (_, i) => _ChatListTile(
-                    item: c.chats[i],
-                    onTap: () => c.openChat(c.chats[i]),
+                    item: list[i],
+                    onTap: () => c.openChat(list[i]),
                   ),
-                ),
-              ),
+                );
+              }),
             ),
           ],
         ),
