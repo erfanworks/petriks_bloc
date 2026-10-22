@@ -173,7 +173,7 @@ class ViewCompetitionScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomText(
-                      title: ConstString.groupChat,
+                      title: ConstString.communityChat,
                       textColor: ConstColor.black,
                       textSize: 16.sp,
                       fontWeight: FontWeight.w700,
