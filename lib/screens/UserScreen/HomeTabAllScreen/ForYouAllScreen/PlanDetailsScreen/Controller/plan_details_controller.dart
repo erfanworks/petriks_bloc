@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../../Widget/BlockService/block_service.dart';
 import '../../../../../../Widget/JoinedParticipantsSheet/joined_participants_sheet.dart';
 import '../../../../../../widget/AppDialog/app_dialog.dart';
 import '../../../../../../widget/SelectPackageSheet/select_package_sheet.dart';
@@ -206,7 +207,9 @@ class PlanDetailsController extends GetxController {
   void showJoinedParticipants() {
     if (!hasJoined.value) return;
     JoinedParticipantsSheet.show(
-      participants: joinedParticipants,
+      participants: joinedParticipants
+          .where((p) => !BlockService.to.isBlocked(p.name))
+          .toList(),
       maxCount: 6,
     );
   }
@@ -292,6 +295,11 @@ class PlanDetailsController extends GetxController {
   }
 
   void blockUser() {
+    // স্ক্রিনে "Marcus Chen" ও person1_img হার্ডকোড করা আছে, তাই এখানেও একই
+    BlockService.to.block(
+      name: 'Marcus Chen',
+      image: 'assets/images/person1_img.jpg',
+    );
     Get.back();
     AppSnackBar.success("User blocked successfully 🚫");
   }
