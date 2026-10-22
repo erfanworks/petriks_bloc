@@ -286,14 +286,23 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                               SizedBox(height: 12.h),
                               Row(
                                 children: [
-                                  _SmallAvatarStack(),
-                                  SizedBox(width: 8.w),
-                                  CustomText(
-                                    title: '3/6 REQUESTED',
-                                    textColor: ConstColor.primaryColor,
-                                    textSize: 12.sp,
-                                    fontWeight: FontWeight.w600,
-                                    maxLine: 1,
+                                  GestureDetector(
+                                    behavior: HitTestBehavior.opaque,
+                                    onTap: detailsController.showJoinedParticipants,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        _SmallAvatarStack(),
+                                        SizedBox(width: 8.w),
+                                        CustomText(
+                                          title: '3/6 REQUESTED',
+                                          textColor: ConstColor.primaryColor,
+                                          textSize: 12.sp,
+                                          fontWeight: FontWeight.w600,
+                                          maxLine: 1,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   Spacer(),
                                   Align(
