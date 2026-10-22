@@ -19,7 +19,7 @@ class HostProfileController extends GetxController {
   bool get isBlocked => BlockService.to.isBlocked(_userName);
 
   final List<String> reportReasons = [
-    'Inappropriate behavior',
+    'Inappropriate behaviour',
     'Harassment or bullying',
     'Spam or fake account',
     'Unsafe or suspicious activity',
@@ -28,11 +28,11 @@ class HostProfileController extends GetxController {
 
   final List<String> urgencyLevels = ['Low', 'Medium', 'High'];
 
-  final name = 'Rahim, 26';
-  final location = 'Dhaka';
-  final languages = 'English, Bangla';
+  final name = 'Oliver, 26';
+  final location = 'London';
+  final languages = 'English, French';
   final bio =
-      'Passionate about exploring local culture and finding the best street food in Dhaka. Always up for a friendly cricket match or a tech talk!';
+      'Passionate about exploring local culture and finding the best street food in London. Always up for a friendly cricket match or a tech talk!';
   final followers = '24 Followers';
   final following = '18 Following';
   final mutualCount = '2 mutual connections you both know';
@@ -77,13 +77,13 @@ class HostProfileController extends GetxController {
   final List<Map<String, String>> plans = [
     {
       'title': 'Weekend Coding Retreat',
-      'location': 'Gulshan Innovation Lab',
+      'location': 'Shoreditch Innovation Lab',
       'date': 'Saturday, 10:00 AM',
       'tag': 'HOSTED',
     },
     {
       'title': 'Weekend Coding Retreat',
-      'location': 'Gulshan Innovation Lab',
+      'location': 'Shoreditch Innovation Lab',
       'date': 'Saturday, 10:00 AM',
       'tag': 'HOSTED',
     },
