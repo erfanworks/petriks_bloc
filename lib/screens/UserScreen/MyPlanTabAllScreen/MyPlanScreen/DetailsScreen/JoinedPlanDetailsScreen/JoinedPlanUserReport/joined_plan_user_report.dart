@@ -27,7 +27,7 @@ class JoinedPlanUserReport extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomText(
-              title: ConstString.whyCouldntAttend,
+              title: ConstString.whyReporting,
               textColor: ConstColor.black,
               textSize: 16.sp,
               fontWeight: FontWeight.w600,
