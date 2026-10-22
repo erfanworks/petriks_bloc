@@ -7,6 +7,7 @@ import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import 'Controller/support_contact_controller.dart';
+import 'support_history_screen.dart';
 
 class SupportContactScreen extends StatelessWidget {
   const SupportContactScreen({super.key});
@@ -17,7 +18,31 @@ class SupportContactScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: ConstColor.backgroundColor,
-      appBar: GlobalAppBar(title: ConstString.supportContactHelp),
+      appBar: GlobalAppBar(
+        title: ConstString.supportContactHelp,
+        actions: [
+          GestureDetector(
+            onTap: () => Get.to(() => const SupportHistoryScreen()),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.history_rounded, size: 18.sp, color: ConstColor.primaryColor),
+                  SizedBox(width: 4.w),
+                  CustomText(
+                    title: 'My Reports',
+                    textSize: 13.sp,
+                    fontWeight: FontWeight.w600,
+                    textColor: ConstColor.primaryColor,
+                    maxLine: 1,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(16.w, 16.h, 16.w, 0),
         child: Column(
