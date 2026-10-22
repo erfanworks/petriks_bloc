@@ -17,48 +17,52 @@ class MyGroupDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<MyGroupController>();
+    final args = ModalRoute.of(context)?.settings.arguments;
+    final bool canManage = args is Map && args['canManage'] == true;
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
       appBar: GlobalAppBar(
         title: ConstString.groupDetails,
         actions: [
-          PopupMenuButton<int>(
-            icon: const Icon(Icons.more_vert, color: ConstColor.black),
-            offset: const Offset(-10, 40),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.r),
-            ),
-            color: Colors.white,
-            onSelected: (value) {
-              if (value == 1) {
-                controller.onEditGroup();
-              } else if (value == 2) {
-                controller.onDeleteGroup();
-              }
-            },
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: 1,
-                child: CustomText(
-                  title: ConstString.editGroup,
-                  textColor: ConstColor.black,
-                  textSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              const PopupMenuDivider(height: 1),
-              PopupMenuItem(
-                value: 2,
-                child: CustomText(
-                  title: ConstString.deleteGroup,
-                  textColor: ConstColor.black,
-                  textSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
+          canManage
+              ? PopupMenuButton<int>(
+                  icon: const Icon(Icons.more_vert, color: ConstColor.black),
+                  offset: const Offset(-10, 40),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.r),
+                  ),
+                  color: Colors.white,
+                  onSelected: (value) {
+                    if (value == 1) {
+                      controller.onEditGroup();
+                    } else if (value == 2) {
+                      controller.onDeleteGroup();
+                    }
+                  },
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 1,
+                      child: CustomText(
+                        title: ConstString.editGroup,
+                        textColor: ConstColor.black,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const PopupMenuDivider(height: 1),
+                    PopupMenuItem(
+                      value: 2,
+                      child: CustomText(
+                        title: ConstString.deleteGroup,
+                        textColor: ConstColor.black,
+                        textSize: 14.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                )
+              : const SizedBox.shrink(),
         ],
       ),
       body: SingleChildScrollView(
