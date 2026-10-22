@@ -158,7 +158,7 @@ class ConstString {
   static const emergencyNumber2  = 'You can also call 112 in the UK.';
   static const emergencyNumber3  = 'For urgent medical help that is not life threatening, call 111.';
   static const emergencyNumber = 'Emergency number to need help';
-  static const helpCenter = 'Help Center';
+  static const helpCenter = 'Help Centre';
   static const attendanceTips = 'Attendance Tips';
   static const attendance = 'Attendance';
   static const howToMeetSafely = 'How to meet safely in person';
@@ -265,7 +265,7 @@ class ConstString {
   static const giveYourGroupAName = 'Give your group a name and description';
   static const shortDescription = 'Short Description';
   static const shortDescriptionHint =
-      'e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.';
+      'e.g., A community for weekly football meetups, practice matches, and social hangouts in London.';
   static const uploadCoverPhoto = 'Upload Cover Photo';
   static const coverPhotoHint =
       'Recommended: 1600 × 900px. High-quality \nvisuals attract more members.';
@@ -437,7 +437,7 @@ class ConstString {
   static const String identityVerification = 'Identity Verification';
   static const String preferences = 'Preferences';
   static const String languagePreferences = 'Language Preferences';
-  static const String languagePrefSub = 'English, Bangla';
+  static const String languagePrefSub = 'English, French';
   static const String travelTime = 'Travel Time';
   static const String travelTimeSub = 'Max 30 mins';
   static const String vibeSocialEnergy = 'Vibe / Social Energy';
@@ -454,7 +454,7 @@ class ConstString {
   static const String aboutUs = 'About Us';
   static const String termsCondition = 'Terms & Condition';
   static const String privacyPolicySub = 'Weekly discovery & community news';
-  static const String newYorkNY = 'New York, NY';
+  static const String newYorkNY = 'London, UK';
   static const String sophiaChen = 'Sophia Chen';
   static const String selectAgeBand = 'Select your age band';
   static const String confirmArea = 'Confirm your area';
