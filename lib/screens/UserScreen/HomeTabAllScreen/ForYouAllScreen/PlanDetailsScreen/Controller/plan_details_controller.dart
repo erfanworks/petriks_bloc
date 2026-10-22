@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../../widget/AppDialog/app_dialog.dart';
 import '../../../../../../widget/SelectPackageSheet/select_package_sheet.dart';
 import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
 import '../Widget/join_confirmation_sheet.dart';
@@ -57,6 +58,8 @@ class ReportReason {
   final RxBool isSelected;
 
   ReportReason({required this.label}) : isSelected = false.obs;
+
+  bool get isOther => label == 'Other';
 }
 
 class PlanDetailsController extends GetxController {
@@ -163,6 +166,14 @@ class PlanDetailsController extends GetxController {
     ReportReason(label: 'Transport issues'),
     ReportReason(label: 'Other'),
   ];
+  final otherReasonController = TextEditingController();
+  final RxBool isOtherSelected = false.obs;
+
+  String get finalReason {
+    final selected = reportReasons.firstWhereOrNull((r) => r.isSelected.value);
+    if (selected == null) return '';
+    return selected.isOther ? otherReasonController.text.trim() : selected.label;
+  }
   final urgencyLevels = ['Low', 'Medium', 'High'];
   final selectedUrgency = 'High'.obs;
 
@@ -201,8 +212,21 @@ class PlanDetailsController extends GetxController {
   }
 
   void leavePlan() {
-    hasJoined.value = false;
-    AppSnackBar.message("You have left the plan");
+    AppDialog.show(
+      title: "Leave Plan",
+      message: "Are you sure you want to leave this plan?",
+      icon: Icons.logout_rounded,
+      iconBackgroundColor: Colors.red.withAlpha(30),
+      iconColor: Colors.red,
+      primaryButtonText: "Leave Plan",
+      primaryButtonColor: Colors.red,
+      secondaryButtonText: "Cancel",
+      onPrimaryTap: () {
+        Get.back(); // dialog বন্ধ
+        hasJoined.value = false;
+        AppSnackBar.message("You have left the plan");
+      },
+    );
   }
 
   void onConfirmAttendance() {
@@ -236,11 +260,17 @@ class PlanDetailsController extends GetxController {
       r.isSelected.value = false;
     }
     reason.isSelected.value = true;
+    isOtherSelected.value = reason.isOther;
+    if (!reason.isOther) otherReasonController.clear();
   }
 
   void selectTime(int index) => selectedTimeIndex.value = index;
 
   void submitReport() {
+    if (isOtherSelected.value && otherReasonController.text.trim().isEmpty) {
+      AppSnackBar.error("Please tell us your reason");
+      return;
+    }
     Get.back();
     AppSnackBar.success("Report submitted successfully! ✅");
   }
@@ -260,6 +290,7 @@ class PlanDetailsController extends GetxController {
     reviewController.dispose();
     supportSubjectController.dispose();
     supportDescController.dispose();
+    otherReasonController.dispose();
     _timer?.cancel();
     super.onClose();
   }
