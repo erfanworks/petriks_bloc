@@ -159,10 +159,37 @@ class SetMatchDetailsScreen extends StatelessWidget {
               maxLine: 1,
             ),
             SizedBox(height: 8.h),
-            _DropdownField(
-              icon: Icons.edit_outlined,
-              iconColor: ConstColor.primaryColor,
-              value: c.titleController.text,
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12.r),
+                border: Border.all(color: ConstColor.borderColor),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.edit_outlined,
+                      color: ConstColor.primaryColor, size: 18.sp),
+                  SizedBox(width: 10.w),
+                  Expanded(
+                    child: TextField(
+                      controller: c.titleController,
+                      maxLength: 60,
+                      maxLines: 1,
+                      textCapitalization: TextCapitalization.words,
+                      textInputAction: TextInputAction.done,
+                      style: TextStyle(fontSize: 14.sp, color: ConstColor.black),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        isDense: true,
+                        counterText: '',
+                        hintText: 'Enter competition title',
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 16.h),
             // ---- Recommended Partner Places ----
