@@ -83,15 +83,15 @@ class CommunityDetailController extends GetxController {
 
   // ---- Progress Table ----
   final List<ProgressTeam> progressTeams = [
-    const ProgressTeam(position: '01', emoji: '⚡', name: 'Neon Vipers', city: 'Chicago 3', matches: 12, wins: 11, draws: 1, losses: 0),
-    const ProgressTeam(position: '02', emoji: '🌅', name: 'Morning Run', city: 'Chicago 2', matches: 12, wins: 11, draws: 1, losses: 0),
-    const ProgressTeam(position: '03', emoji: '⚡', name: 'Neon Vipers', city: 'Chicago 1', matches: 12, wins: 11, draws: 1, losses: 0),
+    const ProgressTeam(position: '01', emoji: '⚡', name: 'Neon Vipers', city: 'London 3', matches: 12, wins: 11, draws: 1, losses: 0),
+    const ProgressTeam(position: '02', emoji: '🌅', name: 'Morning Run', city: 'London 2', matches: 12, wins: 11, draws: 1, losses: 0),
+    const ProgressTeam(position: '03', emoji: '⚡', name: 'Neon Vipers', city: 'London 1', matches: 12, wins: 11, draws: 1, losses: 0),
   ];
 
   // ---- Competitions ----
   final List<CompetitionItem> competitions = [
     const CompetitionItem(emoji: '🚀', title: 'Creative Sprint 2024', status: 'Upcoming (Starts in 2d)', isUpcoming: true),
-    const CompetitionItem(emoji: '🧁', title: 'Winter Showcase', status: 'Completed Jan 15', isUpcoming: false),
+    const CompetitionItem(emoji: '🧁', title: 'Winter Showcase', status: 'Completed 15 Jan', isUpcoming: false),
   ];
 
   // ---- Join Group ----
