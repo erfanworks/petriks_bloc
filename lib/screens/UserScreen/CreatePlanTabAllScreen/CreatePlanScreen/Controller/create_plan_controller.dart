@@ -78,7 +78,7 @@ class CreatePlanController extends GetxController {
 
   final planTitleController = TextEditingController(text: 'Coffee Time');
   final customLanguageController = TextEditingController();
-  final RxString selectedDate = 'Saturday, Nov 24'.obs;
+  final RxString selectedDate = 'Saturday, 24 Nov'.obs;
   final RxString selectedTime1 = '07:00 PM'.obs;
   final RxString selectedCity = ''.obs;
   final List<String> cities = ['London', 'Manchester', 'Birmingham', 'Liverpool', 'Leeds', 'Sheffield'];
@@ -139,7 +139,7 @@ class CreatePlanController extends GetxController {
   bool get showPlaceVoting => selectedLocationNames.length >= 2;
 
   void onDateSelected(DateTime date) {
-    selectedDate.value = '${date.day} ${_month(date.month)}, ${date.year}';
+    selectedDate.value = '${date.day} ${_month(date.month)} ${date.year}';
   }
   void toggleLocation(String name) {
     if (selectedLocationNames.contains(name)) {
