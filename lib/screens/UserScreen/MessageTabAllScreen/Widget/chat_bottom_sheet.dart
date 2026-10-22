@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 
 import '../../../../Widget/text/custom_text.dart';
 import '../../../../constant/const_color.dart';
 import '../../../../constant/const_string.dart';
+import '../ChatScreen/Controller/chat_controller.dart';
 
 class ChatBottomSheet {
-  static void show(BuildContext context) {
+  static void show(BuildContext context, {bool isPlanChat = false}) {
+    final c = Get.find<ChatController>();
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -27,7 +28,7 @@ class ChatBottomSheet {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children:[
+          children: [
             // Drag handle
             Center(
               child: Container(
@@ -41,7 +42,7 @@ class ChatBottomSheet {
             ),
             SizedBox(height: 16.h),
             CustomText(
-              title: ConstString.groupOptions,
+              title: isPlanChat ? 'Plan Options' : ConstString.groupOptions,
               textSize: 18.sp,
               fontWeight: FontWeight.w700,
               textColor: ConstColor.primaryColor,
@@ -56,9 +57,12 @@ class ChatBottomSheet {
             ),
             _OptionRow(
               icon: Icons.logout_rounded,
-              label: ConstString.leaveGroup,
+              label: isPlanChat ? 'Leave Plan' : ConstString.leaveGroup,
               color: Colors.red,
-              onTap: () => Get.back(),
+              onTap: () {
+                Get.back(); // sheet বন্ধ
+                isPlanChat ? c.confirmLeavePlan() : c.confirmLeaveCommunityChat();
+              },
             ),
             _OptionRow(
               icon: Icons.flag_outlined,
@@ -92,7 +96,7 @@ class _OptionRow extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 14.h),
         child: Row(
-          children:[
+          children: [
             Icon(icon, size: 20.r, color: color),
             SizedBox(width: 14.w),
             CustomText(
