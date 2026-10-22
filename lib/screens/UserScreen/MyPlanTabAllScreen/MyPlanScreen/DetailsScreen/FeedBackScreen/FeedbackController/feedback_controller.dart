@@ -22,7 +22,7 @@ class JoinedUser {
 
 class FeedbackController extends GetxController {
   final planTitle    = 'Hang out at the park'.obs;
-  final planLocation = 'Central Park West, NYC'.obs;
+  final planLocation = 'Hyde Park, London'.obs;
   final planDate     = 'Saturday, 24 June'.obs;
   final planVibe     = 'Chill Vibe'.obs;
   final planLanguage = 'English'.obs;
