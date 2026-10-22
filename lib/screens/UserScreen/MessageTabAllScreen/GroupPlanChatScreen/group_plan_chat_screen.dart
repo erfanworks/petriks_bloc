@@ -79,17 +79,18 @@ class GroupPlanChatScreen extends StatelessWidget {
 
           Expanded(
             child: Obx(() {
-              int extraHeaderItems = 2;
+              final showCompetition = c.hasCompetition.value;
+              final extraHeaderItems = showCompetition ? 2 : 1;
 
               return ListView.builder(
                 reverse: true,
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                 itemCount: c.messages.length + extraHeaderItems,
                 itemBuilder: (_, i) {
-                  if (i == c.messages.length + 1) {
+                  if (i == c.messages.length + extraHeaderItems - 1) {
                     return const _SystemMessage(text: 'You joined this plan');
                   }
-                  if (i == c.messages.length) {
+                  if (showCompetition && i == c.messages.length) {
                     return _CompetitionCard();
                   }
 
