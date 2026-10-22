@@ -240,8 +240,10 @@ class MyCommunityDetailController extends GetxController {
   }
 
   // ---- Actions ----
-  void onViewGroup(GroupItem item) =>
-      Get.toNamed(AppRoutes.myGroupDetailScreen);
+  void onViewGroup(GroupItem item) => Get.toNamed(
+        AppRoutes.myGroupDetailScreen,
+        arguments: {'canManage': isOwner.value},
+      );
 
   void toCreateGroup() => Get.toNamed(AppRoutes.createGroupScreen);
 
