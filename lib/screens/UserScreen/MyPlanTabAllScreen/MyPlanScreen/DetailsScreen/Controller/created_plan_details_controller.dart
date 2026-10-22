@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-import '../../../../../../widget/JoinedParticipantsSheet/joined_participants_sheet.dart';
+import '../../../../../../Widget/BlockService/block_service.dart';
+import '../../../../../../Widget/JoinedParticipantsSheet/joined_participants_sheet.dart';
 import '../../Controller/my_plan_controller.dart';
 
 class CreatedPlanDetailsController extends GetxController {
@@ -14,7 +15,9 @@ class CreatedPlanDetailsController extends GetxController {
 
   void showJoinedParticipants() {
     JoinedParticipantsSheet.show(
-      participants: joinedParticipants,
+      participants: joinedParticipants
+          .where((p) => !BlockService.to.isBlocked(p.name))
+          .toList(),
       maxCount: 6,
     );
   }
