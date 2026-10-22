@@ -171,7 +171,7 @@ class HostCardWidget extends StatelessWidget {
   const HostCardWidget({
     super.key,
     this.name = 'Marcus Chen',
-    this.location = '⭐ Central Park West, NYC',
+    this.location = '⭐ Hyde Park, London',
     this.avatar = 'assets/images/onboarding1_img.jpg',
     this.onViewProfile,
   });
