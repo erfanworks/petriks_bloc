@@ -102,7 +102,7 @@ class AddMatchResultScreen extends StatelessWidget {
                 ),
                 decoration: InputDecoration(
                   hintText:
-                  "e.g., A community for weekly football meetups, practice matches, and social hangouts in Dhaka.",
+                  "e.g., A community for weekly football meetups, practice matches, and social hangouts in London.",
                   hintMaxLines: 3,
                   hintStyle: TextStyle(
                     color: ConstColor.textColor.withAlpha(150),
