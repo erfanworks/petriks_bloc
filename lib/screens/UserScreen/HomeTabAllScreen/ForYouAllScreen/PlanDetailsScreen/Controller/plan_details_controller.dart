@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
+import '../../../../../../Widget/JoinedParticipantsSheet/joined_participants_sheet.dart';
 import '../../../../../../widget/AppDialog/app_dialog.dart';
 import '../../../../../../widget/SelectPackageSheet/select_package_sheet.dart';
 import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
@@ -192,6 +193,21 @@ class PlanDetailsController extends GetxController {
       ),
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
+    );
+  }
+
+  // TODO(API): API থেকে joined user আসলে এই list বদলে দেবেন
+  final List<JoinedParticipant> joinedParticipants = const [
+    JoinedParticipant(name: 'Alex Rivera', image: 'assets/images/person1_img.jpg'),
+    JoinedParticipant(name: 'Marcus Chen', image: 'assets/images/onboarding5_img.jpg'),
+    JoinedParticipant(name: 'Petris', image: 'assets/images/onboarding3_img.jpg'),
+  ];
+
+  void showJoinedParticipants() {
+    if (!hasJoined.value) return;
+    JoinedParticipantsSheet.show(
+      participants: joinedParticipants,
+      maxCount: 6,
     );
   }
 
