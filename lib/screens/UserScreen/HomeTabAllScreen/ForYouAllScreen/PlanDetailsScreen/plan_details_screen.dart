@@ -116,7 +116,7 @@ class PlanDetailsScreen extends StatelessWidget {
                           SizedBox(height: 10.h),
                           const PlanDetailRow(
                             icon: Icons.location_on_outlined,
-                            label: 'Central Park West, NYC',
+                            label: 'Hyde Park, London',
                           ),
                           SizedBox(height: 6.h),
                           Row(
@@ -480,7 +480,7 @@ class PlanDetailsScreen extends StatelessWidget {
                           icon: Icons.event_busy_rounded,
                           onConfirm: () {
                             Get.toNamed(AppRoutes.joinedPlanUserReport);
-                            AppSnackBar.message("Attendance canceled");
+                            AppSnackBar.message("Attendance cancelled");
                           },
                         );
                       },
