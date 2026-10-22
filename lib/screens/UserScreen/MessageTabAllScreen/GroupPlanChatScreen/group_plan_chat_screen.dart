@@ -55,7 +55,7 @@ class GroupPlanChatScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 4.w),
                 CustomText(
-                  title: 'Sun, Mar 26',
+                  title: 'Sun, 26 Mar',
                   textSize: 12.sp,
                   fontWeight: FontWeight.w500,
                   textColor: ConstColor.primaryColor,
@@ -68,7 +68,7 @@ class GroupPlanChatScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 4.w),
                 CustomText(
-                  title: 'Downtown Cafe',
+                  title: 'Soho Café',
                   textSize: 12.sp,
                   fontWeight: FontWeight.w500,
                   textColor: ConstColor.primaryColor,
