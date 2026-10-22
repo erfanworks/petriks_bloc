@@ -322,7 +322,7 @@ class ViewCompetitionScreen extends StatelessWidget {
                                           icon: Icons.event_busy_rounded,
                                           onConfirm: () {
                                             Get.toNamed(AppRoutes.joinedPlanUserReport);
-                                            AppSnackBar.message("Attendance canceled");
+                                            AppSnackBar.message("Attendance cancelled");
                                           },
                                         );
                                       },
@@ -519,7 +519,7 @@ class _CompetitionBanner extends StatelessWidget {
               SizedBox(height: 12.h),
               Row(
                 children: [
-                  _BannerInfo(label: 'DATE', value: 'Oct 24'),
+                  _BannerInfo(label: 'DATE', value: '24 Oct'),
                   Container(
                     width: 1.w,
                     height: 30.h,
