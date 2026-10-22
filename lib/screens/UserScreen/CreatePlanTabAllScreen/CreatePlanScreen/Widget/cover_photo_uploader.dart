@@ -4,22 +4,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:petriks_flutter_app/Widget/CoverRatioHint/cover_ratio_hint.dart';
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
 import '../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
-// ─────────────────────────────────────────────────────
-// CoverPhotoUploader
-//
-// Usage — Step4WhenWhere এর Column এর একদম উপরে add করো:
-//   CoverPhotoUploader(coverPhotoPath: c.coverPhotoPath)
-//
-// Controller এ add করো:
-//   final coverPhotoPath = ''.obs;
-// ─────────────────────────────────────────────────────
+
 class CoverPhotoUploader extends StatelessWidget {
   final RxString coverPhotoPath;
+  final String ratio;
+  final String size;
 
-  const CoverPhotoUploader({super.key, required this.coverPhotoPath});
+  const CoverPhotoUploader({
+    super.key,
+    required this.coverPhotoPath,
+    this.ratio = '5:2',
+    this.size = '1200 × 480 px',
+  });
 
   void _pickImage() {
     final picker = ImagePicker();
@@ -38,34 +38,37 @@ class CoverPhotoUploader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final hasImage = coverPhotoPath.value.isNotEmpty;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Obx(() {
+          final hasImage = coverPhotoPath.value.isNotEmpty;
 
-      return GestureDetector(
-        onTap: hasImage ? null : _pickImage,
-        child: Container(
-          width: double.infinity,
-          height: 140.h,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(14.r),
-            border: Border.all(color: ConstColor.borderColor),
-          ),
-          child: hasImage
-              ? _ImagePreview(
-            path: coverPhotoPath.value,
-            onEdit: _pickImage,
-          )
-              : _EmptyUpload(),
-        ),
-      );
-    });
+          return GestureDetector(
+            onTap: hasImage ? null : _pickImage,
+            child: Container(
+              width: double.infinity,
+              height: 140.h,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14.r),
+                border: Border.all(color: ConstColor.borderColor),
+              ),
+              child: hasImage
+                  ? _ImagePreview(
+                      path: coverPhotoPath.value,
+                      onEdit: _pickImage,
+                    )
+                  : _EmptyUpload(),
+            ),
+          );
+        }),
+        CoverRatioHint(ratio: ratio, size: size),
+      ],
+    );
   }
 }
 
-// ─────────────────────────────────────────────────────
-// Empty state — camera icon + upload text
-// ─────────────────────────────────────────────────────
 class _EmptyUpload extends StatelessWidget {
   const _EmptyUpload();
 
@@ -92,9 +95,6 @@ class _EmptyUpload extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────
-// Image preview with edit icon on top right
-// ─────────────────────────────────────────────────────
 class _ImagePreview extends StatelessWidget {
   final String path;
   final VoidCallback onEdit;
@@ -106,7 +106,6 @@ class _ImagePreview extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        // ─── Cover image ──────────────────────────
         ClipRRect(
           borderRadius: BorderRadius.circular(14.r),
           child: Image.file(
@@ -116,8 +115,6 @@ class _ImagePreview extends StatelessWidget {
             height: double.infinity,
           ),
         ),
-
-        // ─── Edit icon top right ──────────────────
         Positioned(
           top: 10.h,
           right: 10.w,
