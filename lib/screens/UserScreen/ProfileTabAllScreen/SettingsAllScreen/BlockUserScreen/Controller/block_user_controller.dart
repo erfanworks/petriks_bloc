@@ -1,24 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-
-class BlockedUserModel {
-  final String image;
-  final String name;
-  final String blockedSince;
-  const BlockedUserModel({required this.image, required this.name, required this.blockedSince});
-}
+import 'package:petriks_flutter_app/Widget/BlockService/block_service.dart';
+export 'package:petriks_flutter_app/Widget/BlockService/block_service.dart'
+    show BlockedUserModel;
 
 // Block User Controller
 class BlockUserListController extends GetxController {
-  final blockedUsers = <BlockedUserModel>[
-    const BlockedUserModel(image: 'assets/images/onboarding1_img.jpg', name: 'Elena Rodriguez', blockedSince: 'Oct 12, 2023'),
-    const BlockedUserModel(image: 'assets/images/onboarding2_img.jpg', name: 'Marcus Sterling',  blockedSince: 'Sep 04, 2023'),
-    const BlockedUserModel(image: 'assets/images/onboarding1_img.jpg', name: 'Sarah Jenkins',    blockedSince: 'Aug 21, 2023'),
-    const BlockedUserModel(image: 'assets/images/onboarding2_img.jpg', name: 'David Chen',       blockedSince: 'Jul 15, 2023'),
-  ].obs;
+  final blockedUsers = BlockService.to.blockedUsers;
 
   void onUnblockTap(BlockedUserModel user) {
     Get.bottomSheet(
@@ -27,7 +17,6 @@ class BlockUserListController extends GetxController {
       backgroundColor: Colors.transparent,
     );
   }
-
 
   void onConfirmUnblock(BlockedUserModel user) {
     Get.back();
@@ -45,7 +34,7 @@ class UnblockSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(20, 12, 20, 32),
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 32),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -115,7 +104,6 @@ class UnblockSheet extends StatelessWidget {
                   ),
                 ),
               ),
-
             ],
           ),
           const SizedBox(height: 22),
