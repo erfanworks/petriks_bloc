@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import '../../../../../../Widget/BlockService/block_service.dart';
-import '../../../../../../Widget/JoinedParticipantsSheet/joined_participants_sheet.dart';
+import '../../../../../../widget/BlockService/block_service.dart';
+import '../../../../../../widget/JoinedParticipantsSheet/joined_participants_sheet.dart';
 import '../../Controller/my_plan_controller.dart';
 
 class CreatedPlanDetailsController extends GetxController {
