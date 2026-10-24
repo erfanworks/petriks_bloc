@@ -10,6 +10,7 @@ import '../../../../../../../constant/const_color.dart';
 import '../../../../../../../constant/const_string.dart';
 import '../../../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../../../widget/GlobalAppBar/global_app_bar.dart';
+import 'package:petriks_flutter_app/widget/OtherReasonField/other_reason_field.dart';
 
 class JoinedPlanUserReport extends StatelessWidget {
   const JoinedPlanUserReport({super.key});
@@ -21,74 +22,80 @@ class JoinedPlanUserReport extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
       appBar: GlobalAppBar(title: ConstString.reportProblem),
-      body: Padding(
-        padding: EdgeInsets.all(16.r),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomText(
-              title: ConstString.whyCouldntAttend,
-              textColor: ConstColor.black,
-              textSize: 16.sp,
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
-            ),
-            SizedBox(height: 12.h),
+      body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Padding(
+          padding: EdgeInsets.all(16.r),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomText(
+                title: ConstString.whyCouldntAttend,
+                textColor: ConstColor.black,
+                textSize: 16.sp,
+                fontWeight: FontWeight.w600,
+                maxLine: 1,
+              ),
+              SizedBox(height: 12.h),
 
-            ...controller.reportReasons.map(
-              (reason) => Obx(
-                () => GestureDetector(
-                  onTap: () => controller.selectReason(reason),
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 8.h),
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.w,
-                      vertical: 14.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          title: reason.label,
-                          textColor: ConstColor.black,
-                          textSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                          maxLine: 1,
-                        ),
-                        Container(
-                          width: 20.w,
-                          height: 20.h,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
+              ...controller.reportReasons.map(
+                (reason) => Obx(
+                  () => GestureDetector(
+                    onTap: () => controller.selectReason(reason),
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: 8.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                        vertical: 14.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomText(
+                            title: reason.label,
+                            textColor: ConstColor.black,
+                            textSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                            maxLine: 1,
+                          ),
+                          Container(
+                            width: 20.w,
+                            height: 20.h,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: reason.isSelected.value
+                                    ? ConstColor.primaryColor
+                                    : ConstColor.grey,
+                                width: 1.5.w,
+                              ),
                               color: reason.isSelected.value
                                   ? ConstColor.primaryColor
-                                  : ConstColor.grey,
-                              width: 1.5.w,
-                            ),
-                            color: reason.isSelected.value
-                                ? ConstColor.primaryColor
-                                : Colors.transparent,
+                                  : Colors.transparent,
+                              ),
+                            child: reason.isSelected.value
+                                ? Icon(
+                                    Icons.check_rounded,
+                                    color: Colors.white,
+                                    size: 12.sp,
+                                  )
+                                : null,
                           ),
-                          child: reason.isSelected.value
-                              ? Icon(
-                                  Icons.check_rounded,
-                                  color: Colors.white,
-                                  size: 12.sp,
-                                )
-                              : null,
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+              Obx(() => controller.isOtherSelected.value
+                  ? OtherReasonField(controller: controller.otherReasonController)
+                  : const SizedBox.shrink()),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(
