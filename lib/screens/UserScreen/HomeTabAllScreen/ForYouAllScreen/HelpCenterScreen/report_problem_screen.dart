@@ -9,6 +9,7 @@ import '../../../../../constant/const_color.dart';
 import '../../../../../constant/const_string.dart';
 import '../../../../../widget/CustomElevatedButton/custom_elevated_button.dart';
 import '../../../../../widget/GlobalAppBar/global_app_bar.dart';
+import 'package:petriks_flutter_app/widget/OtherReasonField/other_reason_field.dart';
 import '../PlanDetailsScreen/Controller/plan_details_controller.dart';
 
 class ReportProblemScreen extends StatelessWidget {
@@ -26,105 +27,117 @@ class ReportProblemScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomText(
-              title: ConstString.whyReporting,
-              textColor: ConstColor.textColor,
-              textSize: 16.sp,
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
-            ),
-            SizedBox(height: 12.h),
-
-            ...controller.reportReasons.map(
-                  (reason) => Obx(
-                    () => GestureDetector(
-                  onTap: () => controller.selectReason(reason),
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 8.h),
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12.r),
+            Expanded(
+              child: SingleChildScrollView(
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(
+                      title: ConstString.whyReporting,
+                      textColor: ConstColor.textColor,
+                      textSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                      maxLine: 1,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          title: reason.label,
-                          textColor: ConstColor.grey,
-                          textSize: 16.sp,
-                          fontWeight: FontWeight.w500,
-                          maxLine: 1,
-                        ),
-                        Container(
-                          width: 20.w,
-                          height: 20.h,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: reason.isSelected.value
-                                  ? ConstColor.primaryColor
-                                  : ConstColor.grey,
-                              width: 1.5.w,
+                    SizedBox(height: 12.h),
+
+                    ...controller.reportReasons.map(
+                          (reason) => Obx(
+                            () => GestureDetector(
+                          onTap: () => controller.selectReason(reason),
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 8.h),
+                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12.r),
                             ),
-                            color: reason.isSelected.value
-                                ? ConstColor.primaryColor
-                                : Colors.transparent,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CustomText(
+                                  title: reason.label,
+                                  textColor: ConstColor.grey,
+                                  textSize: 16.sp,
+                                  fontWeight: FontWeight.w500,
+                                  maxLine: 1,
+                                ),
+                                Container(
+                                  width: 20.w,
+                                  height: 20.h,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: reason.isSelected.value
+                                          ? ConstColor.primaryColor
+                                          : ConstColor.grey,
+                                      width: 1.5.w,
+                                    ),
+                                    color: reason.isSelected.value
+                                        ? ConstColor.primaryColor
+                                        : Colors.transparent,
+                                  ),
+                                  child: reason.isSelected.value
+                                      ? Icon(Icons.check_rounded, color: Colors.white, size: 12.sp)
+                                      : null,
+                                ),
+                              ],
+                            ),
                           ),
-                          child: reason.isSelected.value
-                              ? Icon(Icons.check_rounded, color: Colors.white, size: 12.sp)
-                              : null,
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+
+                    Obx(() => controller.isOtherSelected.value
+                        ? OtherReasonField(controller: controller.otherReasonController)
+                        : const SizedBox.shrink()),
+
+                    SizedBox(height: 20.h),
+
+                    // ---- Urgency ----
+                    CustomText(
+                      title: ConstString.urgencyLevel,
+                      textColor: ConstColor.black,
+                      textSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                      maxLine: 1,
+                    ),
+                    SizedBox(height: 10.h),
+                    Obx(
+                          () => Container(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12.r),
+                        ),
+                        child: Theme(
+                          data: Theme.of(context).copyWith(
+                            hoverColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            canvasColor: Colors.white,
+                          ),
+
+                          child: DropdownButton<String>(
+                            value: controller.selectedUrgency.value,
+                            isExpanded: true,
+                            underline: const SizedBox.shrink(),
+                            items: controller.urgencyLevels
+                                .map((u) => DropdownMenuItem(value: u, child: Text(u)))
+                                .toList(),
+                            onChanged: (val) {
+                              if (val != null) controller.selectedUrgency.value = val;
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-
-            SizedBox(height: 20.h),
-
-            // ---- Urgency ----
-            CustomText(
-              title: ConstString.urgencyLevel,
-              textColor: ConstColor.black,
-              textSize: 16.sp,
-              fontWeight: FontWeight.w600,
-              maxLine: 1,
-            ),
-            SizedBox(height: 10.h),
-            Obx(
-                  () => Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12.r),
-                ),
-                child: Theme(
-                  data: Theme.of(context).copyWith(
-                    hoverColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    canvasColor: Colors.white,
-                  ),
-
-                  child: DropdownButton<String>(
-                    value: controller.selectedUrgency.value,
-                    isExpanded: true,
-                    underline: const SizedBox.shrink(),
-                    items: controller.urgencyLevels
-                        .map((u) => DropdownMenuItem(value: u, child: Text(u)))
-                        .toList(),
-                    onChanged: (val) {
-                      if (val != null) controller.selectedUrgency.value = val;
-                    },
-                  ),
-                ),
-              ),
-            ),
-
-            const Spacer(),
 
             Padding(
               padding: EdgeInsets.fromLTRB(
