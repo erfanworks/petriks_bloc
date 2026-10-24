@@ -36,49 +36,51 @@ class PlanDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  AppImage(
-                    path: 'assets/images/party_place_img.jpg',
-                    width: double.infinity,
-                    height: 200.h,
-                    fit: BoxFit.cover,
-                  ),
+              SizedBox(
+                height: 345.h,
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    AppImage(
+                      path: 'assets/images/party_place_img.jpg',
+                      width: double.infinity,
+                      height: 200.h,
+                      fit: BoxFit.cover,
+                    ),
 
-                  Positioned(
-                    top: 8.h,
-                    left: 10.w,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10.w,
-                        vertical: 3.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: ConstColor.white,
-                        borderRadius: BorderRadius.circular(20.r),
-                      ),
-                      child: Row(
-                        children: [
-                          SvgPicture.asset("assets/icons/world_icon.svg"),
-                          const SizedBox(width: 5),
-                          CustomText(
-                            title: ConstString.publicLabel,
-                            textColor: ConstColor.primaryColor,
-                            textSize: 10.sp,
-                            fontWeight: FontWeight.w700,
-                            maxLine: 1,
-                          ),
-                        ],
+                    Positioned(
+                      top: 8.h,
+                      left: 10.w,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10.w,
+                          vertical: 3.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: ConstColor.white,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset("assets/icons/world_icon.svg"),
+                            const SizedBox(width: 5),
+                            CustomText(
+                              title: ConstString.publicLabel,
+                              textColor: ConstColor.primaryColor,
+                              textSize: 10.sp,
+                              fontWeight: FontWeight.w700,
+                              maxLine: 1,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
 
-                  Positioned(
-                    bottom: -145.h,
-                    left: 16.w,
-                    right: 16.w,
-                    child: Container(
+                    Positioned(
+                      bottom: 0,
+                      left: 16.w,
+                      right: 16.w,
+                      child: Container(
                       padding: EdgeInsets.all(16.r),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -237,8 +239,9 @@ class PlanDetailsScreen extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
 
-              SizedBox(height: 170.h),
+              SizedBox(height: 25.h),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Obx(
