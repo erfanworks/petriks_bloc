@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:petriks_flutter_app/Widget/BlockService/block_service.dart';
-export 'package:petriks_flutter_app/Widget/BlockService/block_service.dart'
+import 'package:petriks_flutter_app/widget/BlockService/block_service.dart';
+export 'package:petriks_flutter_app/widget/BlockService/block_service.dart'
     show BlockedUserModel;
 
 // Block User Controller
