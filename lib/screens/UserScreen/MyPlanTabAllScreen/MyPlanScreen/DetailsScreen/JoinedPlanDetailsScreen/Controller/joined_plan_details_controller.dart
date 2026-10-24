@@ -8,6 +8,8 @@ import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import '../../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
 import '../../../../../HomeTabAllScreen/ForYouAllScreen/PlanDetailsScreen/Widget/join_confirmation_sheet.dart';
 import '../Widget/joined_plan_confirmation_sheet.dart';
+import 'package:petriks_flutter_app/widget/JoinedParticipantsSheet/joined_participants_sheet.dart';
+import 'package:petriks_flutter_app/widget/BlockService/block_service.dart';
 
 // ---- Plan Detail Models ----
 class JoinedLocationVoteItem {
@@ -172,6 +174,22 @@ class JoinedPlanDetailsController extends GetxController {
   final supportDescController = TextEditingController();
 
   // ======= Actions =======
+
+// TODO(API): API থেকে joined user আসলে বদলে দেবেন
+final List<JoinedParticipant> joinedParticipants = const [
+  JoinedParticipant(name: 'Alex Rivera', image: 'assets/images/person1_img.jpg'),
+  JoinedParticipant(name: 'Marcus Chen', image: 'assets/images/onboarding5_img.jpg'),
+  JoinedParticipant(name: 'Petris', image: 'assets/images/onboarding3_img.jpg'),
+];
+
+void showJoinedParticipants() {
+  JoinedParticipantsSheet.show(
+    participants: joinedParticipants
+        .where((p) => !BlockService.to.isBlocked(p.name))
+        .toList(),
+    maxCount: 6,
+  );
+}
 
   void showJoinSheet() {
     Get.bottomSheet(
