@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:petriks_flutter_app/Widget/BlockService/block_service.dart';
-import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
+import 'package:petriks_flutter_app/widget/BlockService/block_service.dart';
+import 'package:petriks_flutter_app/widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
-import '../../../../../Widget/AppDialog/app_confirm_dialog.dart';
+import '../../../../../widget/AppDialog/app_confirm_dialog.dart';
 import '../../../../../widget/MediaPickerBottomSheet/media_picker_bottom_sheet.dart';
 
 class ChatItem {
