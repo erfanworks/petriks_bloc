@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:petriks_flutter_app/Widget/SupportReportService/support_report_service.dart';
-import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
+import 'package:petriks_flutter_app/widget/SupportReportService/support_report_service.dart';
+import '../../../../../../widget/app_snack_bar/app_snack_bar.dart';
 
 class SupportContactController extends GetxController {
   final subjectController = TextEditingController();
