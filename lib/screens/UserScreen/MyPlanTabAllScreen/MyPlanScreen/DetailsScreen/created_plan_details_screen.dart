@@ -154,9 +154,11 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
+                  SizedBox(
+                    height: 420.h,
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
                       AppImage(
                         path: 'assets/images/party_place_img.jpg',
                         width: double.infinity,
@@ -317,7 +319,7 @@ class CreatedPlanDetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 220.h),
+                ),
                   _SectionPad(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
