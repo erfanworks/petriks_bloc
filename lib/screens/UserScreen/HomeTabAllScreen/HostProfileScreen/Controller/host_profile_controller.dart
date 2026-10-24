@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:petriks_flutter_app/Widget/AppDialog/app_confirm_dialog.dart';
-import 'package:petriks_flutter_app/Widget/BlockService/block_service.dart';
-import 'package:petriks_flutter_app/Widget/app_snack_bar/app_snack_bar.dart';
+import 'package:petriks_flutter_app/widget/AppDialog/app_confirm_dialog.dart';
+import 'package:petriks_flutter_app/widget/BlockService/block_service.dart';
+import 'package:petriks_flutter_app/widget/app_snack_bar/app_snack_bar.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 
 class HostProfileController extends GetxController {
