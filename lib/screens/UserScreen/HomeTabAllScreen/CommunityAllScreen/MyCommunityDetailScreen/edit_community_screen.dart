@@ -88,7 +88,7 @@ class EditCommunityScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 0),
-              child: const CoverRatioHint(ratio: '2:1', size: '1200 × 600 px'),
+              child: const CoverRatioHint(ratio: '16:9', size: '1600 × 900 px'),
             ),
 
             Padding(
