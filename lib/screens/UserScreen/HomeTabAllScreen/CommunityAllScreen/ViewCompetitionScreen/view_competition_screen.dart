@@ -180,7 +180,7 @@ class ViewCompetitionScreen extends StatelessWidget {
                       maxLine: 1,
                       fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
                     ),
-                    if (c.isRegistered.value)
+                    if (c.isRegistered.value || c.isOwner.value)
                       GestureDetector(
                         onTap: c.onChat,
                         child: Row(
@@ -206,7 +206,7 @@ class ViewCompetitionScreen extends StatelessWidget {
               ),
               SizedBox(height: 10.h),
 
-              c.isRegistered.value
+              (c.isRegistered.value || c.isOwner.value)
                   ? _ChatUnlocked(controller: c)
                   : const _ChatLocked(),
 
