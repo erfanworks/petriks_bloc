@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petriks_flutter_app/routes/app_routes/app_routes.dart';
 import 'package:petriks_flutter_app/screens/UserScreen/HomeTabAllScreen/VibeAllScreen/OneToOneMeetupDetailsScreen/Widget/joined_one_to_one_sheet.dart';
+import 'package:petriks_flutter_app/widget/PlanStateService/plan_state_service.dart';
 import '../../../../../../Widget/app_snack_bar/app_snack_bar.dart';
 import '../../../../../../widget/SelectPackageSheet/select_package_sheet.dart';
 import '../../../../../BaseScreen/NavBar/controller/navbar_controller.dart';
@@ -63,6 +64,7 @@ class ReportReason {
 // ---- Plan Details Controller ----
 class OneToOneMeetupDetailsController extends GetxController {
   final RxBool hasJoined = false.obs;
+  String _planKey = 'one_to_one_default';
   final RxBool showBoostGate = true.obs;
   final RxInt selectedTimeIndex = (-1).obs;
   final lockTimer = ''.obs;
@@ -208,6 +210,7 @@ class OneToOneMeetupDetailsController extends GetxController {
   void onJoinConfirmed() {
     Navigator.of(Get.context!).pop();
     hasJoined.value = true;
+    PlanStateService.to.markJoined(_planKey);
     AppSnackBar.success("Joined successfully");
 
     Get.find<NavbarController>().highlightMyPlan();
@@ -276,7 +279,10 @@ class OneToOneMeetupDetailsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    // initLockTimer(DateTime.now().add(const Duration(hours: 2, minutes: 30)));
-    initLockTimer(DateTime.now().add(const Duration(seconds: 35)));
+    final args = Get.arguments;
+    if (args is String && args.isNotEmpty) _planKey = args;
+    final store = PlanStateService.to;
+    hasJoined.value = store.isJoined(_planKey);
+    initLockTimer(store.lockUntilFor(_planKey, const Duration(seconds: 35)));
   }
 }
