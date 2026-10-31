@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:petriks_flutter_app/widget/CoverRatioHint/cover_ratio_hint.dart';
 
 import '../../../../../Widget/text/custom_text.dart';
 import '../../../../../constant/const_color.dart';
@@ -554,7 +553,6 @@ class _Step2Details extends StatelessWidget {
             ),
           );
         }),
-        const CoverRatioHint(ratio: '2:1', size: '1200 × 600 px'),
       ],
     );
   }
