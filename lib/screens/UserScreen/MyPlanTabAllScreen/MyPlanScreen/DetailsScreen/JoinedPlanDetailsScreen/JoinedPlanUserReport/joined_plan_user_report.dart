@@ -21,7 +21,7 @@ class JoinedPlanUserReport extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5FA),
-      appBar: GlobalAppBar(title: ConstString.reportProblem),
+      appBar: GlobalAppBar(title: ConstString.couldTAttend),
       body: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Padding(
