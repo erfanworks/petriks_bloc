@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../CoverRatioHint/cover_ratio_hint.dart';
 import '../../Widget/text/custom_text.dart';
 import '../../constant/const_color.dart';
 import '../../constant/const_string.dart';
@@ -156,6 +157,7 @@ class AddCustomLocationSheet extends StatelessWidget {
                   ),
                 ),
               ),
+              const CoverRatioHint(ratio: '5:2', size: '1200 × 480 px'),
               SizedBox(height: 14.h),
 
               CustomTextFormField(
