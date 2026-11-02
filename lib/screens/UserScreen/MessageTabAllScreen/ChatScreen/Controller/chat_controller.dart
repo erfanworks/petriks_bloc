@@ -47,7 +47,7 @@ class ChatMessage {
 
 class ChatController extends GetxController {
   final selectedTab = 0.obs;
-  final tabs = ['Direct', 'Plan', 'Group'];
+  final tabs = ['Direct', 'Plan', 'Community'];
   final ImagePicker _picker = ImagePicker();
   final RxString selectedChatImagePath = ''.obs;
   final RxList<String> selectedMediaPaths = <String>[].obs;
@@ -238,6 +238,21 @@ class ChatController extends GetxController {
 
   // TODO(API): community-র competition আছে কিনা API থেকে আসবে
   final RxBool hasCompetition = true.obs;
+
+  void confirmBlockDirectUser({required String name, required String image}) {
+    AppConfirmDialog.show(
+      title: 'Block $name?',
+      message:
+          "They won't be able to message you or see your profile, and you won't see theirs. You can unblock them later.",
+      confirmText: 'Block',
+      icon: Icons.block_rounded,
+      onConfirm: () {
+        BlockService.to.block(name: name, image: image);
+        Get.back(); // chat বন্ধ
+        AppSnackBar.success('$name blocked');
+      },
+    );
+  }
 
   void confirmLeaveCommunityChat() {
     AppConfirmDialog.show(
