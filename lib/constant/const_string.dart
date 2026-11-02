@@ -380,9 +380,9 @@ class ConstString {
   static const activeNow = 'Active Now';
   static const typeAMessage = 'Type a message...';
   static const fourParticipants = '4 participants';
-  static const groupOptions = 'Group Options';
+  static const groupOptions = 'Community Options';
   static const muteNotifications = 'Mute Notifications';
-  static const leaveGroup = 'Leave Group';
+  static const leaveGroup = 'Leave Community Chat';
   static const groupA = 'GROUP A';
   static const groupB = 'GROUP B';
   static const String getVerified = 'Get Verified';
