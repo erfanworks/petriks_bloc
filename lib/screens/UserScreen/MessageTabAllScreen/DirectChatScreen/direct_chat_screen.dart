@@ -45,7 +45,12 @@ class DirectChatScreen extends StatelessWidget {
         subTitle: ConstString.activeNow,
         actions: [
           GestureDetector(
-            onTap: () => ChatBottomSheet.show(context),
+            onTap: () => ChatBottomSheet.show(
+              context,
+              isDirect: true,
+              userName: 'John Lura',
+              userImage: 'assets/images/onboarding1_img.jpg',
+            ),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Icon(
