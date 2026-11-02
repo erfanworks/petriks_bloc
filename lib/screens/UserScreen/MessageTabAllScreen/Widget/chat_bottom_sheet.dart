@@ -9,8 +9,20 @@ import '../../../../constant/const_string.dart';
 import '../ChatScreen/Controller/chat_controller.dart';
 
 class ChatBottomSheet {
-  static void show(BuildContext context, {bool isPlanChat = false}) {
+  static void show(
+    BuildContext context, {
+    bool isPlanChat = false,
+    bool isDirect = false,
+    String userName = '',
+    String userImage = '',
+  }) {
     final c = Get.find<ChatController>();
+    final sheetTitle = isDirect
+        ? 'Chat Options'
+        : isPlanChat
+            ? 'Plan Options'
+            : ConstString.groupOptions;
+
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
@@ -42,7 +54,7 @@ class ChatBottomSheet {
             ),
             SizedBox(height: 16.h),
             CustomText(
-              title: isPlanChat ? 'Plan Options' : ConstString.groupOptions,
+              title: sheetTitle,
               textSize: 18.sp,
               fontWeight: FontWeight.w700,
               textColor: ConstColor.primaryColor,
@@ -55,15 +67,26 @@ class ChatBottomSheet {
               color: ConstColor.black,
               onTap: () => Get.back(),
             ),
-            _OptionRow(
-              icon: Icons.logout_rounded,
-              label: isPlanChat ? 'Leave Plan' : ConstString.leaveGroup,
-              color: Colors.red,
-              onTap: () {
-                Get.back(); // sheet বন্ধ
-                isPlanChat ? c.confirmLeavePlan() : c.confirmLeaveCommunityChat();
-              },
-            ),
+            if (isDirect)
+              _OptionRow(
+                icon: Icons.block_rounded,
+                label: ConstString.blockUser,
+                color: Colors.red,
+                onTap: () {
+                  Get.back();
+                  c.confirmBlockDirectUser(name: userName, image: userImage);
+                },
+              )
+            else
+              _OptionRow(
+                icon: Icons.logout_rounded,
+                label: isPlanChat ? 'Leave Plan' : ConstString.leaveGroup,
+                color: Colors.red,
+                onTap: () {
+                  Get.back(); // sheet বন্ধ
+                  isPlanChat ? c.confirmLeavePlan() : c.confirmLeaveCommunityChat();
+                },
+              ),
             _OptionRow(
               icon: Icons.flag_outlined,
               label: ConstString.report,
